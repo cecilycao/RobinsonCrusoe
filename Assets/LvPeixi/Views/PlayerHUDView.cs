@@ -9,7 +9,7 @@ public class PlayerHUDView : MonoBehaviour
     public Text interactTipMsg;
     public Text foodMaterial;
     public Text buildingMaterial;
-    public Text vitality;
+    public Text fatigue;
     public Text hunger;
     // Start is called before the first frame update
     void Start()
@@ -19,11 +19,14 @@ public class PlayerHUDView : MonoBehaviour
             {
                 interactTipMsg.text = x;
             });
-
+        GUIEvents.Singleton.Fatigue
+            .Subscribe(x =>
+            {
+                fatigue.text = x.ToString();
+            });
         GUIEvents.Singleton.FoodMaterial
             .Subscribe(x =>
             {
-                print(x);
                 foodMaterial.text = x.ToString();
             });
 
@@ -33,16 +36,10 @@ public class PlayerHUDView : MonoBehaviour
                 buildingMaterial.text = x.ToString();
             });
 
-        GUIEvents.Singleton.BuildingMaterial
-            .Subscribe(x =>
-            {
-                vitality.text = x.ToString();
-            });
-
         GUIEvents.Singleton.Hunger
             .Subscribe(x =>
             {
                 hunger.text = x.ToString();
-            }); 
+            });
     }
 }

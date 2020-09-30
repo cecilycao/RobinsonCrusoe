@@ -5,17 +5,25 @@ using UniRx;
 
 public class SimplePlayerInventoryPresenter : MonoBehaviour
 {
-    SimplePlayerInventoryModel model = new SimplePlayerInventoryModel();
-    public ReactiveProperty<int> FoodMaterial
+    public SimplePlayerInventoryModel model = new SimplePlayerInventoryModel();
+    public ReactiveProperty<int> FoodMaterial 
     {
         get => model.foodMaterial;
     }
     public ReactiveProperty<int> BuildingMaterial
     {
-        get => model.foodMaterial;
+        get => model.buildingMaterial;
+    }
+    private void Awake()
+    {
+        model.foodMaterial.Value = 0;
+        model.buildingMaterial.Value = 0;
+
+        GUIEvents.Singleton.FoodMaterial = model.foodMaterial;
+        GUIEvents.Singleton.BuildingMaterial = model.buildingMaterial;
     }
     private void Start()
     {
-        GUIEvents.Singleton.FoodMaterial = model.foodMaterial;
+ 
     }
 }

@@ -7,13 +7,12 @@ public class PlayerAttributePresenter : MonoBehaviour
     PlayerAttributeModel model = new PlayerAttributeModel();
 
     #region//Property Block
-    public ReactiveProperty<int> Vitality
+    public ReactiveProperty<int> Fatigue
     {
-        get => model.currentVitality;
+        get => model.currentFatigue;
         set
         {
-            var _vitality = model.currentVitality.Value;
-            _vitality = Mathf.Clamp(_vitality, 0, model.ceilingVitality.Value);
+            model.currentFatigue.Value = Mathf.Clamp(model.currentFatigue.Value, 0, model.ceilingFatigue.Value);
         }
     }
     public ReactiveProperty<int> Hunger
@@ -21,22 +20,23 @@ public class PlayerAttributePresenter : MonoBehaviour
         get => model.hunger;
         set
         {
-            var _hunger = model.hunger.Value;
-            _hunger = Mathf.Clamp(_hunger, 0, model.ceilingHunger.Value);
+            model.hunger.Value= Mathf.Clamp(model.hunger.Value, 0, model.ceilingHunger.Value);
         }
     }
     #endregion
     // Start is called before the first frame update
     private void Awake()
     {
-        GUIEvents.Singleton.Vitality = model.currentVitality;
+        GUIEvents.Singleton.Fatigue = model.currentFatigue;
+        GUIEvents.Singleton.Hunger = model.hunger;
+
     }
     void Start()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))
             .Subscribe(x =>
             {
-                model.currentVitality.Value = model.currentVitality.Value + 1;
+                //model.currentFatigue.Value = model.currentFatigue.Value + 1;
             });
     }
 }

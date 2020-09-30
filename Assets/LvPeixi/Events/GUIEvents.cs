@@ -4,23 +4,25 @@ using UnityEngine;
 using System;
 using UniRx;
 
-public class GUIEvents:MonoBehaviour
+public class GUIEvents:MonoBehaviour,IGUIEvents
 {
-    static GUIEvents _sig;
-    ReactiveProperty<int> vitality = new ReactiveProperty<int>();
-    ReactiveProperty<int> foodMaterial = new ReactiveProperty<int>();
-    ReactiveProperty<int> buildingMaterial = new ReactiveProperty<int>();
-    ReactiveProperty<int> hunger = new ReactiveProperty<int>();
+    static IGUIEvents _sig;
+    #region//The register-needed events
+    ReactiveProperty<int> fatigue;
+    ReactiveProperty<int> foodMaterial;
+    ReactiveProperty<int> buildingMaterial;
+    ReactiveProperty<int> hunger;
+    #endregion
     Subject<string> broadcastInteractTipMessage = new Subject<string>();
 
-    public ReactiveProperty<int> Vitality
+    public ReactiveProperty<int> Fatigue
     {
-        get => vitality;
+        get => fatigue;
         set
         {
-            if (vitality == null)
+            if (fatigue == null)
             {
-                vitality = value;
+                fatigue = value;
             }
         }
     }
@@ -46,7 +48,6 @@ public class GUIEvents:MonoBehaviour
             }
         }
     }
-
     public ReactiveProperty<int> Hunger
     {
         get => hunger;
@@ -62,7 +63,7 @@ public class GUIEvents:MonoBehaviour
     {
         get => broadcastInteractTipMessage;
     }
-    public static GUIEvents Singleton
+    public static IGUIEvents Singleton
     {
         get => _sig;
         set

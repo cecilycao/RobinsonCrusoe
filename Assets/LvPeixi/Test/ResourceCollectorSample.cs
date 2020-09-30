@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaoCollector : MonoBehaviour,IInteractableResourceCollector
+public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollector
 {
     public int resourceAccount = 15;
     public string resourceType = "FoodMaterial";

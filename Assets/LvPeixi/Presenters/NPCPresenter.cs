@@ -19,7 +19,7 @@ public class NPCPresenter : MonoBehaviour,IInteractableNPC
     }
     public void OnDialogStart()
     {
-      
+        
     }
     public void OnDialogEnd()
     {

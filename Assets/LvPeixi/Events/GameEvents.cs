@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using UniRx;
 
@@ -14,7 +12,8 @@ public class GameEvents : MonoBehaviour
     public Action onGameEnd;
     public Action onDayStart;
     public Action onDayEnd;
-    public Action<TimeSystemPresenter> timeSystem;
+
+    public Subject<ITimeSystemData> timeSystem = new Subject<ITimeSystemData>();
     public Action<int, int> onIslandMerged;
     /// <summary>
     /// 玩家修复浮岛时触发

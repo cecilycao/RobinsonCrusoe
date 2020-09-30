@@ -52,11 +52,5 @@ public class PlayerInteractPresenter : MonoBehaviour
             }
             
         };
-
-        inventory.FoodMaterial
-            .Subscribe(x =>
-            {
-                print(x);
-            });
     }
 }
