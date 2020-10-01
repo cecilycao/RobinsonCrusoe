@@ -8,9 +8,6 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
 {
     [SerializeField]
     TimeSystemModel timeModel = new TimeSystemModel();
-    [Header("the test and readonly data")]
-    [SerializeField]
-    bool IsDay;
 
     public float DayCount { get => timeModel.dayCount.Value; }
     public float TimeCountdown { get => timeModel.timeCountdown.Value; }
@@ -31,8 +28,6 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
         OnDayStateChanged();
 
         SendTimeSystemInfoToGuiEventsStream();
-     
-        TestStream();
     }
 
     void DayCountStream()
@@ -71,6 +66,7 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
     void OnDayStateChanged()
     {
         timeModel.isDay
+          .Where(x=>timeModel.isActive)
           .Subscribe(x =>
           {
               if (x)
@@ -106,12 +102,4 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
             });
     }
 
-    void TestStream()
-    {
-        timeModel.isDay
-        .Subscribe(x =>
-        {
-            IsDay = x;
-        });
-    }
 }

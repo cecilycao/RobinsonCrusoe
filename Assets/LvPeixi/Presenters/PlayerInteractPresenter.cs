@@ -4,21 +4,36 @@ using System;
 using UnityEngine;
 using UniRx;
 
-public class PlayerInteractPresenter : MonoBehaviour
+public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
 {
+    #region//private variables
     PlayerStateModel stateModel;
     SimplePlayerInventoryPresenter inventory;
+    Dictionary<PlayerInteractionType, Action> playerInteractBehavior = new Dictionary<PlayerInteractionType, Action>();
+    #endregion
 
-    Dictionary<string, Action> playerInteractBehavior = new Dictionary<string, Action>();
+    #region//player interaction behaviors
+    public void PlayerEndInteraction()
+    {
+        stateModel.playerState.Value = PlayerState.MotionState;
+    }
+    public void PlayerStartInteraction(PlayerInteractionType interact)
+    {
+        stateModel.playerState.Value = PlayerState.InteractState;
+        playerInteractBehavior[interact]();
+    }
+    void PlayerCollectBehavior() { }
+    void PlayerDialogBehavior() { }
+    #endregion
 
     private void Init()
     {
         stateModel = GetComponent<PlayerStatePresenter>().StateModel;
         inventory = GetComponent<SimplePlayerInventoryPresenter>();
-        playerInteractBehavior.Add("NPC", () =>
-        {
-            print("start dialog");
-        });
+        Mediator.Sigton.PlayerInteract = this;
+
+        playerInteractBehavior[PlayerInteractionType.Collect] = PlayerCollectBehavior;
+        playerInteractBehavior[PlayerInteractionType.Dialog] = PlayerDialogBehavior;
     }
 
     private void Start()
@@ -31,11 +46,6 @@ public class PlayerInteractPresenter : MonoBehaviour
             {
                 print("interact action start");
             });
-
-        GameEvents.Sigton.onInteractStart += (IInteractable type) =>
-        {
-            //print(type.InteractObjectType);
-        };
 
         GameEvents.Sigton.onInteractEnd += () =>
         {
@@ -53,4 +63,9 @@ public class PlayerInteractPresenter : MonoBehaviour
             
         };
     }
+}
+public enum PlayerInteractionType
+{
+    Dialog,
+    Collect
 }

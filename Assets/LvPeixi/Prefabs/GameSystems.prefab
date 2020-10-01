@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeModel:
-    dayLastTime: 10
-    nightLastTime: 4
-    isActive: 1
+    dayLastTime: 30
+    nightLastTime: 5
+    isActive: 0
   IsDay: 0
 --- !u!114 &2817710857732659498
 MonoBehaviour:

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System;
+using UnityEngine.Assertions;
 using UnityEngine;
+using System;
 using UniRx;
 
 /// <summary>
@@ -12,6 +13,10 @@ public class Mediator : MonoBehaviour,IMediator
     #region//private variables
     static IMediator _instance;
     IInteractableNPC theCurrentInteractNPC;
+    /// <summary>
+    /// 调用玩家的互动指令
+    /// </summary>
+    IPlayerInteractPresenter playerInteract;
     /// <summary>
     /// 过滤掉多个密集请求
     /// </summary>
@@ -30,9 +35,11 @@ public class Mediator : MonoBehaviour,IMediator
             }
         }
     }
+   
     private void Awake()
     {
         Sigton = this;
+        Assert.IsNull(playerInteract, "Mediator.playerInteract is null");
     }
     #endregion
 
@@ -42,8 +49,6 @@ public class Mediator : MonoBehaviour,IMediator
         if (!IsAtInteractState)
         {
             IsAtInteractState = true;
-
-            GameEvents.Sigton.onInteractStart.Invoke(npc);
             IDisposable waitForKeyboardInteractSingle = null;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
 
@@ -54,6 +59,7 @@ public class Mediator : MonoBehaviour,IMediator
                     theCurrentInteractNPC = npc;
                     DialogManager.Singelton.StartDialog(npc.NPCName);
                     npc.OnDialogStart();
+                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
                     waitForKeyboardInteractSingle.Dispose();
                 });
@@ -99,10 +105,19 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount);
                     });
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在收集资源");
+                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
+                    //end collect resource after 1 sec
+                    IDisposable delayEndCollectInteraction = null;
+                    delayEndCollectInteraction = Observable.Timer(TimeSpan.FromSeconds(1))
+                    .Subscribe(y =>
+                    {
+                        collector.OnResourceCollectEnd();
+                        playerInteract.PlayerEndInteraction();
+                        GameEvents.Sigton.onInteractEnd();
+                        delayEndCollectInteraction.Dispose();
+                    });
 
-                    collector.OnResourceCollectEnd();
-                    GameEvents.Sigton.onInteractEnd();
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
@@ -189,6 +204,16 @@ public class Mediator : MonoBehaviour,IMediator
     public void EndInteract()
     {
         GameEvents.Sigton.onInteractEnd();
+    }
+    public IPlayerInteractPresenter PlayerInteract
+    {
+        set
+        {
+            if (playerInteract == null)
+            {
+                playerInteract = value;
+            }
+        }
     }
     #endregion
 }

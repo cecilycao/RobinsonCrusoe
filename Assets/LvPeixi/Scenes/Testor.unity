@@ -642,6 +642,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC1
       objectReference: {fileID: 0}
+    - target: {fileID: 1605683130355095587, guid: 53b36a7dbe9079e409336ef240685fe6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1605683130355095612, guid: 53b36a7dbe9079e409336ef240685fe6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -710,6 +715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RestoreIsland
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812004967593643444, guid: 0138c910dae98f44ab9f473984fcc9b7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4812004967593643451, guid: 0138c910dae98f44ab9f473984fcc9b7,
         type: 3}
@@ -1047,6 +1057,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174812003092429851, guid: b4b96bb8214c9a4488304b62eb44564d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -254
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174812003092429851, guid: b4b96bb8214c9a4488304b62eb44564d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 353.87183
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174812003290714359, guid: b4b96bb8214c9a4488304b62eb44564d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -501
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4b96bb8214c9a4488304b62eb44564d, type: 3}

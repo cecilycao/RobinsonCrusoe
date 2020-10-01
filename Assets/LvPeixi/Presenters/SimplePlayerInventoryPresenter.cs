@@ -22,8 +22,4 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
         GUIEvents.Singleton.FoodMaterial = model.foodMaterial;
         GUIEvents.Singleton.BuildingMaterial = model.buildingMaterial;
     }
-    private void Start()
-    {
- 
-    }
 }
