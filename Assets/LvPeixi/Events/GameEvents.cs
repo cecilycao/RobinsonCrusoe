@@ -20,6 +20,10 @@ public class GameEvents : MonoBehaviour
     /// </summary>
     public Action onIslandRestored;
     /// <summary>
+    /// 玩家新建浮岛时触发
+    /// </summary>
+    public Action onIslandCreated;
+    /// <summary>
     /// 对话展开时触发,需要一个string作为dialogID
     /// </summary>
     public Action<string> onDialogStart;

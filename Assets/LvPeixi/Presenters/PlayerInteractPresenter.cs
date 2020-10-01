@@ -52,5 +52,12 @@ public class PlayerInteractPresenter : MonoBehaviour
             }
             
         };
+
+        GameEvents.Sigton.onIslandCreated += () =>
+        {
+            inventory.BuildingMaterial.Value -= 15;
+            print("player use building material " + 15);
+
+        };
     }
 }

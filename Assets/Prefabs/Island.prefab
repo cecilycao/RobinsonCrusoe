@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.1798775, z: 1}
-  m_Center: {x: 0, y: 0.58993876, z: 0}
+  m_Size: {x: 4.997564, y: 2.1798775, z: 5.0251613}
+  m_Center: {x: -0.007327318, y: 0.58993876, z: 0.0011749268}
 --- !u!1 &7133911536132335610
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7133911536132335611
 Transform:
   m_ObjectHideFlags: 0
@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 7133911536132335610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.3, z: 1}
+  m_LocalScale: {x: 5, y: 0.3, z: 5}
   m_Children: []
   m_Father: {fileID: 7133911537286979602}
   m_RootOrder: 1
@@ -183,8 +183,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCore: 0
+  initialActive: 0
   nearbyIslands: []
   activeIsland: {fileID: 7133911536132335610}
   inactiveIsland: {fileID: 7133911535156715253}
-  RepairButton: {fileID: 0}
+  IslandDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  IslandDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  m_condition: 0
   durability: 0
