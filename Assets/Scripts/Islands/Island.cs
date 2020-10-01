@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Island : MonoBehaviour
+public class Island : MonoBehaviour, IInteractableIsland
 {
     
     public bool isCore;
@@ -29,6 +29,12 @@ public class Island : MonoBehaviour
     public static int DAMAGED_DURABILITY = 60;
     //public static int REPAIR_EFFECT = 50;
     static int MAX_DURABILITY = 100;
+
+    public string MaterialType => "BuildingMaterial";
+
+    public int MaterialCost => 15;
+
+    public string InteractObjectType => "Island";
 
     private void Awake()
     {
@@ -151,6 +157,9 @@ public class Island : MonoBehaviour
                 nearbyIsland.onNearbyIslandDestroy();
             }
             IslandDestroyed.Invoke();
+        } else
+        {
+
         }
     }
 
@@ -190,6 +199,40 @@ public class Island : MonoBehaviour
     {
         Vector3 offset = new Vector3(0, 0, -0.3f);
         Handles.Label(transform.position + offset, "" + durability);
+    }
+
+    public void OnIslandRestoreStart()
+    {
+        repair();
+    }
+
+    public void OnIslandRestoreEnd()
+    {
+        print("play island restore animation");
+    }
+
+    public void StartInteractWithPlayer()
+    {
+        playerHere = true;
+        if (!isCore)
+        {
+            print("Enter Island Space " + this.name);
+            
+            if (m_condition == IslandCondition.DAMAGED)
+            {
+                Mediator.Sigton.StartRestoreIsland(this);
+            }
+            
+        }
+    }
+
+    public void EndInteractWithPlayer()
+    {
+        playerHere = false;
+        if (!isCore)
+        {
+            Mediator.Sigton.EndInteract();
+        }
     }
 }
 
