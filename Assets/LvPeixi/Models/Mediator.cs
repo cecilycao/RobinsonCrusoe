@@ -9,13 +9,16 @@ using UniRx;
 /// </summary>
 public class Mediator : MonoBehaviour,IMediator
 {
+    #region//private variables
     static IMediator _instance;
-
     IInteractableNPC theCurrentInteractNPC;
     /// <summary>
-    /// 过滤掉多个请求
+    /// 过滤掉多个密集请求
     /// </summary>
     bool IsAtInteractState = false;
+    #endregion
+
+    #region//initialize
     public static IMediator Sigton
     {
         get => _instance;
@@ -31,6 +34,9 @@ public class Mediator : MonoBehaviour,IMediator
     {
         Sigton = this;
     }
+    #endregion
+
+    #region//IMediator implement
     public void StartDialog(IInteractableNPC npc)
     {
         if (!IsAtInteractState)
@@ -95,8 +101,8 @@ public class Mediator : MonoBehaviour,IMediator
                     });
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
 
-                    GameEvents.Sigton.onInteractEnd();
                     collector.OnResourceCollectEnd();
+                    GameEvents.Sigton.onInteractEnd();
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
@@ -107,13 +113,12 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-    public void StartAddIsland()
+    public void StartIslandBuild(IInteractableIsland island)
     {
-
+       
     }
     public void StartRestoreIsland(IInteractableIsland island)
     {
- 
         if (!IsAtInteractState)
         {
             IsAtInteractState = true;
@@ -121,14 +126,13 @@ public class Mediator : MonoBehaviour,IMediator
             //check player have enough resource?
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             var playerBuildingMaterial = inventory.BuildingMaterial.Value;
-            print(playerBuildingMaterial < island.MaterialCost);
             if (playerBuildingMaterial < island.MaterialCost)
             {
                 IsAtInteractState = false;
                 return;
             }
             //listen the interact key pressed event
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键修复浮岛");
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键建造浮岛");
             IDisposable waitForKeyboardInteractEvent = null;
             waitForKeyboardInteractEvent = InputSystem.Singleton.OnInteractBtnPressed
                 .Subscribe(x =>
@@ -148,12 +152,43 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-    public void StartProcessFood()
+    public void StartProcessFood(IFoodProcess foodProcess)
     {
+        if (!IsAtInteractState)
+        {
+            IsAtInteractState = true;
+            var attr = FindObjectOfType<PlayerAttributePresenter>();
+            var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+            //check player has enough food material?
+            if (inventory.FoodMaterial.Value < foodProcess.Cost)
+            {
+                IsAtInteractState = false;
+                return;
+            }
+            //listen the interact key pressed event
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键生产食物");
+            IDisposable waitForKeyboardInteractEvent = null;
+            waitForKeyboardInteractEvent = InputSystem.Singleton.OnInteractBtnPressed
+                .Subscribe(x =>
+                {
+                    foodProcess.OnStartProcessFood();
+                    inventory.FoodMaterial.Value -= foodProcess.Cost;
+                    attr.Hunger.Value -= foodProcess.HungerRestore;
+                    foodProcess.OnEndProcessFood();
+                    GameEvents.Sigton.onInteractEnd();
+                });
 
+            GameEvents.Sigton.onInteractEnd += () =>
+            {
+                IsAtInteractState = false;
+                waitForKeyboardInteractEvent.Dispose();
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+            };
+        }
     }
     public void EndInteract()
     {
         GameEvents.Sigton.onInteractEnd();
     }
+    #endregion
 }
