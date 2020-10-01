@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UniRx;
+using Fungus;
 
 public class DialogManager : MonoBehaviour
 {
+    Flowchart flowchart;
     static DialogManager _instance;
     public static DialogManager Singelton
     {
@@ -21,17 +24,15 @@ public class DialogManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        flowchart = GetComponentInChildren<Flowchart>();
+        Assert.IsNotNull(flowchart);
     }
     public void StartDialog(string npc)
     {
-        print("start " + npc + "'s dialog tree");
-        //延迟3秒结束对话 
-        IDisposable _dia = null;
-        _dia= Observable.Timer(TimeSpan.FromSeconds(3))
-            .Subscribe(x =>
-            {
-                Mediator.Sigton.EndDialog();
-                _dia.Dispose();
-            });
+        flowchart.SendFungusMessage(npc);
+    }
+    public void EndDialog()
+    {
+        Mediator.Sigton.EndDialog();
     }
 }
