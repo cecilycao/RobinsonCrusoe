@@ -128,7 +128,6 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-
     public void StartAddIsland(IslandBuilder builder)
     {
         if (!IsAtInteractState)
@@ -175,7 +174,7 @@ public class Mediator : MonoBehaviour,IMediator
                 return;
             }
             //listen the interact key pressed event
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键建造浮岛");
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键修复浮岛");
             IDisposable waitForKeyboardInteractEvent = null;
             waitForKeyboardInteractEvent = InputSystem.Singleton.OnInteractBtnPressed
                 .Subscribe(x =>
