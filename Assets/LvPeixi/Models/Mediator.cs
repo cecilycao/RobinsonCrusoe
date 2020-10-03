@@ -128,9 +128,37 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-    public void StartIslandBuild(IInteractableIsland island)
+
+    public void StartAddIsland(IslandBuilder builder)
     {
-       
+        if (!IsAtInteractState)
+        {
+            IsAtInteractState = true;
+
+            IDisposable waitForKeyboardInteractSingle = null;
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
+            waitForKeyboardInteractSingle = Observable.EveryUpdate()
+                .Where(x => Input.GetKeyDown(KeyCode.E))
+                .Subscribe(x =>
+                {
+                    builder.OnIslandBuild();
+                    AssertExtension.NotNullRun(GameEvents.Sigton.onIslandCreated, () =>
+                    {
+                        GameEvents.Sigton.onIslandCreated.Invoke();
+                    });
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+
+                    GameEvents.Sigton.onInteractEnd();
+                    builder.OnIslandBuildEnd();
+                });
+
+            GameEvents.Sigton.onInteractEnd += () =>
+            {
+                IsAtInteractState = false;
+                waitForKeyboardInteractSingle.Dispose();
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+            };
+        }
     }
     public void StartRestoreIsland(IInteractableIsland island)
     {

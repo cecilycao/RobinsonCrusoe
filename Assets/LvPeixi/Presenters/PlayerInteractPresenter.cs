@@ -62,6 +62,13 @@ public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
             }
             
         };
+
+        GameEvents.Sigton.onIslandCreated += () =>
+        {
+            inventory.BuildingMaterial.Value -= 15;
+            print("player use building material " + 15);
+
+        };
     }
 }
 public enum PlayerInteractionType
