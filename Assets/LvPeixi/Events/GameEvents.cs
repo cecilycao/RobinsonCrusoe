@@ -15,6 +15,8 @@ public class GameEvents : MonoBehaviour
 
     public Subject<ITimeSystemData> timeSystem = new Subject<ITimeSystemData>();
     public Action<int, int> onIslandMerged;
+
+    //----------浮岛事件---------------
     /// <summary>
     /// 玩家修复浮岛时触发
     /// </summary>
@@ -23,6 +25,12 @@ public class GameEvents : MonoBehaviour
     /// 玩家新建浮岛时触发
     /// </summary>
     public Action onIslandCreated;
+    /// <summary>
+    /// 玩家站在需要修复的岛上时触发
+    /// </summary>
+    public Action<bool> onTheBrokenIsland;
+
+    //----------Interactions-------------
     /// <summary>
     /// 对话展开时触发,需要一个string作为dialogID
     /// </summary>
@@ -36,12 +44,17 @@ public class GameEvents : MonoBehaviour
     /// 捡起资源时触发
     /// </summary>
     public Action<string, int> onResourceCollected;
-    /// <summary>
-    /// 玩家站在需要修复的岛上时触发
-    /// </summary>
-    public Action<bool> onTheBrokenIsland;
+
     public Action<IInteractable> onInteractStart;
     public Action onInteractEnd;
+
+    //----------Weather System--------------
+    public Action OnRainStart;
+    public Action OnRainEnd;
+    public Action OnStormStart;
+    public Action OnStormEnd;
+
+
 
     public static GameEvents Sigton
     {
