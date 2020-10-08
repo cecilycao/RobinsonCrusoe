@@ -60,7 +60,13 @@ public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
                 inventory.FoodMaterial.Value += account;
                 print("player get food " + inventory.FoodMaterial.Value);
             }
-            
+            if (type == "BuildingMaterial")
+            {
+
+                inventory.BuildingMaterial.Value += account;
+                print("player get building material " + inventory.BuildingMaterial.Value);
+            }
+
         };
 
         GameEvents.Sigton.onIslandCreated += () =>

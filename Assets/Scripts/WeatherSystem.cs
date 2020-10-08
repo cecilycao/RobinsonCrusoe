@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeatherSystem : MonoBehaviour
 {
+    static WeatherSystem weatherSystem;
     public weatherState m_state;
     public ParticleSystem rain;
     public ParticleSystem heavyRain;
@@ -15,6 +16,23 @@ public class WeatherSystem : MonoBehaviour
         SUNNY,
         RAIN,
         STORM
+    }
+
+    public static WeatherSystem Sigton
+    {
+        get => weatherSystem;
+        set
+        {
+            if (weatherSystem == null)
+            {
+                weatherSystem = value;
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        weatherSystem = this;
     }
 
     // Start is called before the first frame update

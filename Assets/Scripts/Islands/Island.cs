@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
+using UniRx;
 
 public class Island : MonoBehaviour, IInteractableIsland
 {
@@ -12,6 +14,7 @@ public class Island : MonoBehaviour, IInteractableIsland
     public Island[] nearbyIslands;
     public GameObject activeIsland;
     public GameObject inactiveIsland;
+    public int rainIntensity = 0;
     //temp
     public UnityEvent IslandDamaged;
     public UnityEvent IslandDestroyed;
@@ -52,6 +55,26 @@ public class Island : MonoBehaviour, IInteractableIsland
     //inactive at start
     void Start()
     {
+        GameEvents.Sigton.OnRainStart += () =>
+        {
+            rainIntensity = 1;
+        };
+
+        GameEvents.Sigton.OnRainEnd += () =>
+        {
+            rainIntensity = 0;
+        };
+
+        GameEvents.Sigton.OnStormStart += () =>
+        {
+            rainIntensity = 2;
+        };
+
+        GameEvents.Sigton.OnStormEnd += () =>
+        {
+            rainIntensity = 0;
+        };
+
         if (isCore)
         {
             initializeActiveIsland();
@@ -87,11 +110,11 @@ public class Island : MonoBehaviour, IInteractableIsland
         }
     }
 
-    void tempTimer()
+    void reduceDurability()
     {
         if(durability > 0)
         {
-            durability -= 1;
+            durability -= (rainIntensity + 1);
         }
         
     }
@@ -114,10 +137,16 @@ public class Island : MonoBehaviour, IInteractableIsland
 
     public void create()
     {
+
         initializeActiveIsland();
         if (!isCore)
         {
-            InvokeRepeating("tempTimer", 0.0f, 1.0f);
+            //InvokeRepeating("tempTimer", 0.0f, 1.0f);
+            GameEvents.Sigton.timeSystem
+                .Subscribe(_data =>
+                {
+                    reduceDurability();
+                });
         }
     }
 

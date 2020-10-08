@@ -134,6 +134,14 @@ public class Mediator : MonoBehaviour,IMediator
         {
             IsAtInteractState = true;
 
+            var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+            var playerBuildingMaterial = inventory.BuildingMaterial.Value;
+            if (playerBuildingMaterial < builder.MaterialCost)
+            {
+                IsAtInteractState = false;
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("building material is not enough");
+                return;
+            }
             IDisposable waitForKeyboardInteractSingle = null;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
             waitForKeyboardInteractSingle = Observable.EveryUpdate()
