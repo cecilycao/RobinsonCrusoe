@@ -14,6 +14,7 @@ public class GUIEvents:MonoBehaviour,IGUIEvents
     ReactiveProperty<int> hunger;
     #endregion
     Subject<string> broadcastInteractTipMessage = new Subject<string>();
+    Subject<float> interactionProgressBar = new Subject<float>();
 
     public ReactiveProperty<int> Fatigue
     {
@@ -74,6 +75,7 @@ public class GUIEvents:MonoBehaviour,IGUIEvents
             }
         }
     }
+    public Subject<float> InteractionProgressBar { get => interactionProgressBar; }
     private void Awake()
     {
         _sig = this;

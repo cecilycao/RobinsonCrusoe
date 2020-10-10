@@ -96,6 +96,8 @@ public class Mediator : MonoBehaviour,IMediator
 
             IDisposable waitForKeyboardInteractSingle = null;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
+
+            float timer = 0;
             waitForKeyboardInteractSingle = Observable.EveryUpdate()
                 .Where(x => Input.GetKeyDown(KeyCode.E))
                 .Subscribe(x =>
@@ -105,7 +107,9 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount);
                     });
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在收集资源");
+                    //Gui shows the interaction progress bar
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(1);
+                    //set player interact state
                     playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
                     //end collect resource after 1 sec
                     IDisposable delayEndCollectInteraction = null;
@@ -142,27 +146,67 @@ public class Mediator : MonoBehaviour,IMediator
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("building material is not enough");
                 return;
             }
-            IDisposable waitForKeyboardInteractSingle = null;
+            
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
-            waitForKeyboardInteractSingle = Observable.EveryUpdate()
-                .Where(x => Input.GetKeyDown(KeyCode.E))
+
+            //waitForKeyboardInteractSingle = Observable.EveryUpdate()
+            //    .Where(x => Input.GetKeyDown(KeyCode.E))
+            //    .Subscribe(x =>
+            //    {
+            //        builder.OnIslandBuild();
+            //        AssertExtension.NotNullRun(GameEvents.Sigton.onIslandCreated, () =>
+            //        {
+            //            GameEvents.Sigton.onIslandCreated.Invoke();
+            //        });
+            //        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+
+            //        GameEvents.Sigton.onInteractEnd();
+            //        builder.OnIslandBuildEnd();
+            //    });
+
+            IDisposable interactBtnPressingMicrotine = null;
+            IDisposable interactBtnPressedMicrotine = null;
+            IDisposable interactBtnReleasedMicrotine = null;
+
+            interactBtnPressingMicrotine = InputSystem.Singleton.OnInteractBtnPressing
                 .Subscribe(x =>
                 {
                     builder.OnIslandBuild();
-                    AssertExtension.NotNullRun(GameEvents.Sigton.onIslandCreated, () =>
-                    {
-                        GameEvents.Sigton.onIslandCreated.Invoke();
-                    });
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(1);
+                });
 
+            InputSystem.Singleton.OnInteractBtnPressed
+                .First()
+                .Subscribe(x =>
+                {
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(1);
+                });
+
+            interactBtnPressedMicrotine = InputSystem.Singleton.OnInteractBtnPressed
+                .Sample(TimeSpan.FromSeconds(1))
+                .Subscribe(x =>
+                {
+                    inventory.BuildingMaterial.Value -= builder.MaterialCost;
+                    print("has built island");
                     GameEvents.Sigton.onInteractEnd();
-                    builder.OnIslandBuildEnd();
+                }, () =>
+                {
+                    print("end builting island manually");
+                });
+            interactBtnReleasedMicrotine = InputSystem.Singleton.OnInteractBtnReleased
+                .Subscribe(x =>
+                {
+                    GameEvents.Sigton.onInteractEnd();
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
+                print(111);
                 IsAtInteractState = false;
-                waitForKeyboardInteractSingle.Dispose();
+                interactBtnPressedMicrotine.Dispose();
+                interactBtnPressingMicrotine.Dispose();
+                interactBtnReleasedMicrotine.Dispose();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
             };
         }
@@ -251,4 +295,6 @@ public class Mediator : MonoBehaviour,IMediator
         }
     }
     #endregion
+
+   
 }

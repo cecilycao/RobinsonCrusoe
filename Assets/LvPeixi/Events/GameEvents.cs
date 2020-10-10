@@ -54,8 +54,6 @@ public class GameEvents : MonoBehaviour
     public Action OnStormStart;
     public Action OnStormEnd;
 
-
-
     public static GameEvents Sigton
     {
         get => events;

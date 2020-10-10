@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Key": "positiveCollectTimeCost",
+    "Value": 1.0,
+    "Description": null
+  },
+  {
+    "Key": "negativeCollectTimeCost",
+    "Value": 1.0,
+    "Description": null
+  },
+  {
+    "Key": "addIslandTimeCost",
+    "Value": 1.0,
+    "Description": null
+  },
+  {
+    "Key": "restoreIslandTimeCost",
+    "Value": 1.0,
+    "Description": null
+  },
+  {
+    "Key": "processFoodTimeCost",
+    "Value": 1.0,
+    "Description": null
+  },
+  {
+    "Key": "eatFoodTimeCost",
+    "Value": 1.0,
+    "Description": null
+  }
+]
