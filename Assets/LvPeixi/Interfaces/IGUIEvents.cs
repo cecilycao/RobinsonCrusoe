@@ -11,4 +11,10 @@ public interface IGUIEvents
     Subject<float> InteractionProgressBar { get; }
     ReactiveProperty<int> BuildingMaterial { get; set; }
     ReactiveProperty<int> Hunger { get; set; }
+    
+    Subject<bool> PlayerStartFishing { get; }
+    /// <summary>
+    /// deliver player's fishing result;
+    /// </summary>
+    Subject<bool> PlayerEndFishing { get; }
 }

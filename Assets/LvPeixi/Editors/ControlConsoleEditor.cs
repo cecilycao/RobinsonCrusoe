@@ -8,6 +8,7 @@ using UnityEditor;
 public class ControlConsoleEditor : Editor
 {
     ControlConsole control;
+    bool showGuiTest;
     private void OnEnable()
     {
         control = (ControlConsole)target;
@@ -35,6 +36,17 @@ public class ControlConsoleEditor : Editor
             var attr = FindObjectOfType<PlayerAttributePresenter>();
             attr.Hunger.Value += 20;
         }
+
+        #region//-----Gui events&funtions test-----
+        showGuiTest = EditorGUILayout.Foldout(showGuiTest, "Gui功能测试");
+        if (showGuiTest)
+        {
+            if (GUILayout.Button("测试Fish Game小游戏(只能点一次)"))
+            {
+                GUIEvents.Singleton.PlayerStartFishing.OnNext(true);
+            }
+        }
+        #endregion
     }
 }
 

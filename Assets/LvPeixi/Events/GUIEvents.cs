@@ -15,6 +15,19 @@ public class GUIEvents:MonoBehaviour,IGUIEvents
     #endregion
     Subject<string> broadcastInteractTipMessage = new Subject<string>();
     Subject<float> interactionProgressBar = new Subject<float>();
+    Subject<bool> playerStartFishing = new Subject<bool>();
+    Subject<bool> playerEndFishing = new Subject<bool>();
+    public static IGUIEvents Singleton
+    {
+        get => _sig;
+        set
+        {
+            if (_sig== null)
+            {
+                _sig = value;
+            }
+        }
+    }
 
     public ReactiveProperty<int> Fatigue
     {
@@ -64,18 +77,10 @@ public class GUIEvents:MonoBehaviour,IGUIEvents
     {
         get => broadcastInteractTipMessage;
     }
-    public static IGUIEvents Singleton
-    {
-        get => _sig;
-        set
-        {
-            if (_sig== null)
-            {
-                _sig = value;
-            }
-        }
-    }
     public Subject<float> InteractionProgressBar { get => interactionProgressBar; }
+    public Subject<bool> PlayerStartFishing { get => playerStartFishing; }
+    public Subject<bool> PlayerEndFishing { get => playerEndFishing; }
+
     private void Awake()
     {
         _sig = this;
