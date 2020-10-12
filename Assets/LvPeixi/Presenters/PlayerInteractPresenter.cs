@@ -58,7 +58,6 @@ public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
             {
                
                 inventory.FoodMaterial.Value += account;
-                print("player get food " + inventory.FoodMaterial.Value);
             }
             if (type == "BuildingMaterial")
             {

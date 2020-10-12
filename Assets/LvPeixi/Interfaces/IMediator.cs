@@ -20,4 +20,10 @@ public interface IMediator
 
     void StartRestoreIsland(IInteractableIsland island);
     void StartProcessFood(IFoodProcess foodProcess);
+
+    void StartInteraction(IInteractableNPC npc);
+    void StartInteraction(IInteractableResourceCollector collector);
+    void StartInteraction(IIslandBuilder island);
+    void StartInteraction(IFoodProcess foodProcess);
+    void StartInteraction(IInteractableIsland island);
 }

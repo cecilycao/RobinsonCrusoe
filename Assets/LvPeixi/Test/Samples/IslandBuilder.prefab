@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1627427820847461642}
   - component: {fileID: 1627427820847461643}
   - component: {fileID: 1627427820847461636}
-  - component: {fileID: 7871721211848263092}
+  - component: {fileID: 8629811946763622867}
   m_Layer: 0
   m_Name: IslandBuilder
   m_TagString: Untagged
@@ -96,7 +96,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7871721211848263092
+--- !u!114 &8629811946763622867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,11 +105,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1627427820847461638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d2d5b52c149c24e96098ef70928005, type: 3}
+  m_Script: {fileID: 11500000, guid: cf7fd74e11fb6ff4f9336cde97b17c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactObjectType: IslandBuilder
-  MaterialCost: 30
+  buildMaterialRequire: 15
+  interactObjectType: BuildMaterial
 --- !u!1 &1627427822453230397
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,8 +170,8 @@ MonoBehaviour:
   sendOnPlayerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1627427820847461638}
-        m_MethodName: 
+      - m_Target: {fileID: 8629811946763622867}
+        m_MethodName: StartContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -184,8 +184,8 @@ MonoBehaviour:
   sendOnPlayerExit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: EndInteractWithPlayer
+      - m_Target: {fileID: 8629811946763622867}
+        m_MethodName: EndContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

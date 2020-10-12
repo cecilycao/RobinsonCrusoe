@@ -35,6 +35,7 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
                 slider.value = _progress;
                 if (_progress<=0)
                 {
+                    //print("key released,close progress bar");
                     slider.gameObject.SetActive(false);
                     progressMircotine.Dispose();
                 }

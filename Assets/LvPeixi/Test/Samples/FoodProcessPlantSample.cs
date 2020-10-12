@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 {
-    string materialType = "FoodMaterial";
-    string objectType = "FoodProcessPlant";
-    int cost = 10;
-    int hungerRestore = 5;
+    private string materialType = "FoodMaterial";
+    private string objectType = "FoodProcessPlant";
+    private int cost = 10;
+    private int hungerRestore = 5;
+    [SerializeField]
+    private bool hasFood = false;
     public string FoodMaterialType => materialType;
     public int Cost => cost;
     public int HungerRestore => hungerRestore;
     public string InteractObjectType => objectType;
+    public bool HasFood => hasFood;
 
-    public void EndInteractWithPlayer()
+    public void EndContact()
     {
         Mediator.Sigton.EndInteract();
+    }
+
+    public void EndInteract(object result)
+    {
+        hasFood = (bool)result;
     }
 
     public void OnEndProcessFood()
@@ -28,8 +36,13 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
         
     }
 
-    public void StartInteractWithPlayer()
+    public void StartContact()
     {
-        Mediator.Sigton.StartProcessFood(this);
+        Mediator.Sigton.StartInteraction(this);
+    }
+
+    public void StartInteract()
+    {
+        
     }
 }

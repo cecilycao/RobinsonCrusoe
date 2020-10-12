@@ -61,7 +61,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4812004967593643447}
-        m_MethodName: StartInteractWithPlayer
+        m_MethodName: StartContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4812004967593643447}
-        m_MethodName: EndInteractWithPlayer
+        m_MethodName: EndContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

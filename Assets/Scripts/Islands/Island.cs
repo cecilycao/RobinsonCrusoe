@@ -240,7 +240,7 @@ public class Island : MonoBehaviour, IInteractableIsland
         print("play island restore animation");
     }
 
-    public void StartInteractWithPlayer()
+    public void StartContact()
     {
         playerHere = true;
         if (!isCore)
@@ -255,13 +255,23 @@ public class Island : MonoBehaviour, IInteractableIsland
         }
     }
 
-    public void EndInteractWithPlayer()
+    public void EndContact()
     {
         playerHere = false;
         if (!isCore)
         {
             Mediator.Sigton.EndInteract();
         }
+    }
+
+    public void StartInteract()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void EndInteract(object result)
+    {
+        throw new NotImplementedException();
     }
 }
 

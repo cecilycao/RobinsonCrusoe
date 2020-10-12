@@ -10,26 +10,32 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
     public int ResourceAccount { get => resourceAccount; }
     public string ResourceType { get => resourceType; }
     public string InteractObjectType { get => interactObjectType; }
-    public void EndInteractWithPlayer()
+    public void EndContact()
     {
         Mediator.Sigton.EndInteract();
     }
-    public void OnResourceCollectEnd()
+
+    public void EndInteract(object result)
     {
-        resourceAccount = 0;
+        bool _res = (bool)result;
+        if (_res)
+        {
+            resourceAccount = 0;
+        }
     }
 
-    public void OnResourceCollectStart()
+    public void StartInteract()
     {
         
     }
 
-    public void StartInteractWithPlayer()
+    public void StartContact()
     {
         if (resourceAccount > 0)
         {
             //向Mediator通知要进行的互动行为
-            Mediator.Sigton.StartResourceCollect(this);
+            Mediator.Sigton.StartInteraction(this);
         }
     }
+
 }

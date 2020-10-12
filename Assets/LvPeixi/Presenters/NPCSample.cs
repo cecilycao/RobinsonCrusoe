@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public class NPCPresenter : MonoBehaviour,IInteractableNPC
+public class NPCSample : MonoBehaviour,IInteractableNPC
 {
     [SerializeField]
     NPCModel npcModel = new NPCModel();
     public string InteractObjectType { get => npcModel.interactObjectType; }
     public string NPCName { get => npcModel.npcName; }
-    public void StartInteractWithPlayer()
+    public void StartContact()
     {
-        Mediator.Sigton.StartDialog(this);
+        Mediator.Sigton.StartInteraction(this);
     }
-    public void EndInteractWithPlayer()
+    public void EndContact()
     {
         Mediator.Sigton.EndInteract();
     }
-    public void OnDialogStart()
+    public void StartInteract()
     {
         
     }
-    public void OnDialogEnd()
+    public void EndInteract(object result)
     {
-        print("dialog end and Alice exploded");
+        
     }
 }

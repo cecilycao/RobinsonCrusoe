@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IslandBuilder : MonoBehaviour, IInteractable
+public class IslandBuilder : MonoBehaviour
 {
     public string interactObjectType = "IslandBuilder";
     public int MaterialCost = 30;
@@ -10,7 +10,8 @@ public class IslandBuilder : MonoBehaviour, IInteractable
 
     public void OnIslandBuildEnd()
     {
-        IslandManager.Instance.createIsland();
+        //IslandManager.Instance.createIsland();
+        print("IslandManager creat island");
     }
 
     public void OnIslandBuild()
@@ -18,7 +19,7 @@ public class IslandBuilder : MonoBehaviour, IInteractable
         
     }
 
-    public void StartInteractWithPlayer()
+    public void StartContact()
     {
         if (true)
         {
@@ -27,8 +28,18 @@ public class IslandBuilder : MonoBehaviour, IInteractable
         }
     }
 
-    public void EndInteractWithPlayer()
+    public void EndContact()
     {
         Mediator.Sigton.EndInteract();
+    }
+
+    public void StartInteract()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void EndInteract(object result)
+    {
+        throw new System.NotImplementedException();
     }
 }
