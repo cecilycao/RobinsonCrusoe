@@ -292,7 +292,6 @@ public class Mediator : MonoBehaviour,IMediator
         if (!IsAtInteractState)
         {
             IsAtInteractState = true;
-
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             var playerBuildingMaterial = inventory.BuildingMaterial.Value;
             if (playerBuildingMaterial < builder.MaterialCost)
@@ -304,18 +303,20 @@ public class Mediator : MonoBehaviour,IMediator
 
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
 
+            float buildIslandCostTime = GameConfig.Singleton.InteractionConfig["addIslandTimeCost"];
+
             InputSystem.Singleton.OnInteractBtnPressed
                 .First()
                 .Subscribe(x =>
                 {
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");
-                    GUIEvents.Singleton.InteractionProgressBar.OnNext(2);
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
                     builder.StartInteract();
                 });
 
             IDisposable theEventCompleteProgress = null;
             theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
-                .Delay(TimeSpan.FromSeconds(2))
+                .Delay(TimeSpan.FromSeconds(buildIslandCostTime))
                 .First()
                 .Subscribe(x =>
                 {
@@ -374,6 +375,7 @@ public class Mediator : MonoBehaviour,IMediator
             }
             else
             {
+                float processFoodCostTime = GameConfig.Singleton.InteractionConfig["processFoodTimeCost"];
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按住E键生产食物");
                 //listen the interact key pressed event
                 InputSystem.Singleton.OnInteractBtnPressed
@@ -381,13 +383,13 @@ public class Mediator : MonoBehaviour,IMediator
                     .Subscribe(x =>
                     {
                         foodProcess.StartInteract();
-                        GUIEvents.Singleton.InteractionProgressBar.OnNext(2);
+                        GUIEvents.Singleton.InteractionProgressBar.OnNext(processFoodCostTime);
                         GameEvents.Sigton.onInteractEnd();
                     });
 
                 IDisposable theEventCompleteProgress = null;
                 theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
-                    .Delay(TimeSpan.FromSeconds(2))
+                    .Delay(TimeSpan.FromSeconds(processFoodCostTime))
                     .First()
                     .Subscribe(x =>
                     {
@@ -422,6 +424,8 @@ public class Mediator : MonoBehaviour,IMediator
         if (!IsAtInteractState)
         {
             IsAtInteractState = true;
+            //-----get config----
+            float restoreIslandCostTime = GameConfig.Singleton.InteractionConfig["restoreIslandTimeCost"];
 
             //check player have enough resource?
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
@@ -439,14 +443,14 @@ public class Mediator : MonoBehaviour,IMediator
                 .Subscribe(x =>
                 {
                     island.StartInteract();
-                    GUIEvents.Singleton.InteractionProgressBar.OnNext(2);
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(restoreIslandCostTime);
                     island.EndInteract(true);
                     GameEvents.Sigton.onInteractEnd();
                 });
 
             IDisposable theEventCompleteProgress = null;
             theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
-                .Delay(TimeSpan.FromSeconds(2))
+                .Delay(TimeSpan.FromSeconds(restoreIslandCostTime))
                 .First()
                 .Subscribe(x =>
                 {

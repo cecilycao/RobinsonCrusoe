@@ -11,18 +11,18 @@
   },
   {
     "Key": "addIslandTimeCost",
-    "Value": "3",
-    "Description": null
+    "Value": 3.0,
+    "Description": "新增浮岛用时"
   },
   {
     "Key": "restoreIslandTimeCost",
-    "Value": 1.0,
-    "Description": null
+    "Value": 2.0,
+    "Description": "修复浮岛用时"
   },
   {
     "Key": "processFoodTimeCost",
-    "Value": 1.0,
-    "Description": null
+    "Value": 2.0,
+    "Description": "加工食物用时"
   },
   {
     "Key": "eatFoodTimeCost",

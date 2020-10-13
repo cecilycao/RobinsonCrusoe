@@ -13,7 +13,7 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 
     public void EndContact()
     {
-        
+        Mediator.Sigton.EndInteract();
     }
 
     public void EndInteract(object result)
