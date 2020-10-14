@@ -12,19 +12,21 @@ public class TimeSystemView : MonoBehaviour
     void Start()
     {
         GameEvents.Sigton.timeSystem
+             .Where(x=>x.IsDay)//过滤掉晚上的计时
             .Subscribe(_data =>
             {
+                print(_data.DayCount + "" + _data.TimeCountdown);
                 time.text = _data.TimeCountdown.ToString();
                 day.text = _data.DayCount.ToString();
             });
 
         GameEvents.Sigton.onDayStart += () =>
         {
-            BlackScreenFadeOut();
+            //BlackScreenFadeOut();
         };
         GameEvents.Sigton.onDayEnd += () =>
         {
-            BlackScreenFadeIn();
+            //BlackScreenFadeIn();
         };
     }
 

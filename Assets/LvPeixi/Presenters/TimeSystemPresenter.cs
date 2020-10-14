@@ -11,6 +11,7 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
 
     public float DayCount { get => timeModel.dayCount.Value; }
     public float TimeCountdown { get => timeModel.timeCountdown.Value; }
+    public bool IsDay { get => timeModel.isDay.Value; }
 
     private void Awake()
     {

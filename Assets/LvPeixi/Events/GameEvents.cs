@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System;
 using UniRx;
-
 /// <summary>
 /// GameEvents只负责两个系统之间传递数据，没有任何协调、判定
 /// </summary>
@@ -29,6 +29,10 @@ public class GameEvents : MonoBehaviour
     /// 玩家站在需要修复的岛上时触发
     /// </summary>
     public Action<bool> onTheBrokenIsland;
+    /// <summary>
+    /// 玩家站在坏掉并且沉没的岛上时触发
+    /// </summary>
+    public Action<Hashtable> onIslandSinkWhenPlayerOnIt;
 
     //----------Interactions-------------
     /// <summary>
@@ -53,7 +57,6 @@ public class GameEvents : MonoBehaviour
     public Action OnRainEnd;
     public Action OnStormStart;
     public Action OnStormEnd;
-
     public static GameEvents Sigton
     {
         get => events;
