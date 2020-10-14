@@ -5,7 +5,7 @@ using UnityEngine;
 public class IslandBuilder : MonoBehaviour, IInteractable
 {
     public string interactObjectType = "IslandBuilder";
-    public int MaterialCost = 30;
+    public int MaterialCost = 15;
     public string InteractObjectType { get => interactObjectType; }
 
     public void OnIslandBuildEnd()

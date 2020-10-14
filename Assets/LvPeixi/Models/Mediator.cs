@@ -236,6 +236,32 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
+    public void OpenDiary(Diary diary)
+    {
+        if (!IsAtInteractState)
+        {
+            IsAtInteractState = true;
+            IDisposable waitForKeyboardInteractSingle = null;
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
+
+            waitForKeyboardInteractSingle = Observable.EveryUpdate()
+                .Where(x => Input.GetKeyDown(KeyCode.E))
+                .Subscribe(x =>
+                {
+                    diary.OnDiaryOpen();
+                    //playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    waitForKeyboardInteractSingle.Dispose();
+                });
+
+            GameEvents.Sigton.onInteractEnd += () =>
+            {
+                IsAtInteractState = false;
+                waitForKeyboardInteractSingle.Dispose();
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+            };
+        }
+    }
     public void EndInteract()
     {
         GameEvents.Sigton.onInteractEnd();

@@ -5,18 +5,10 @@ using UnityEngine;
 public class WeatherSystem : MonoBehaviour
 {
     static WeatherSystem weatherSystem;
-    public weatherState m_state;
+    public WeatherState m_state;
     public ParticleSystem rain;
     public ParticleSystem heavyRain;
     public ParticleSystem storm;
-
-
-    public enum weatherState
-    {
-        SUNNY,
-        RAIN,
-        STORM
-    }
 
     public static WeatherSystem Sigton
     {
@@ -43,31 +35,31 @@ public class WeatherSystem : MonoBehaviour
 
         GameEvents.Sigton.OnRainStart += () =>
         {
-            if (m_state != weatherState.RAIN)
+            if (m_state != WeatherState.RAIN)
             {
-                m_state = weatherState.RAIN;
+                m_state = WeatherState.RAIN;
                 startRain();
             }
         };
 
         GameEvents.Sigton.OnRainEnd += () =>
         {
-            m_state = weatherState.SUNNY;
+            m_state = WeatherState.SUNNY;
             endRain();
         };
 
         GameEvents.Sigton.OnStormStart += () =>
         {
-            if (m_state != weatherState.STORM)
+            if (m_state != WeatherState.STORM)
             {
-                m_state = weatherState.STORM;
+                m_state = WeatherState.STORM;
                 startStorm();
             }
         };
 
         GameEvents.Sigton.OnStormEnd += () =>
         {
-            m_state = weatherState.SUNNY;
+            m_state = WeatherState.SUNNY;
             endStorm();
         };
 
@@ -111,4 +103,11 @@ public class WeatherSystem : MonoBehaviour
     {
         heavyRain.Stop();
     }
+}
+
+public enum WeatherState
+{
+    SUNNY,
+    RAIN,
+    STORM
 }

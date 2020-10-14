@@ -28,14 +28,20 @@ public class Island : MonoBehaviour, IInteractableIsland
 
     //DATA VALUES
     //How much durability of this island decreases when nearby island destroyed.
-    public static int NEARBY_ISLAND_DESTROY_EFFECT = 20;
+    public static int NEARBY_ISLAND_DESTROY_EFFECT = 10;
+    //threshold that player can repair the island
     public static int DAMAGED_DURABILITY = 60;
+    //durability - DAMAGE_PER_DELTA_TIME every DELTA_TIME
+    public static int DELTA_TIME = 5;
+    public static int DAMAGE_PER_DELTA_TIME = 2;
     //public static int REPAIR_EFFECT = 50;
     static int MAX_DURABILITY = 100;
 
+    int delta_time = 0;
+
     public string MaterialType => "BuildingMaterial";
 
-    public int MaterialCost => 15;
+    public int MaterialCost => (int)Mathf.Round(10*(1-durability/100));
 
     public string InteractObjectType => "Island";
 
@@ -112,9 +118,16 @@ public class Island : MonoBehaviour, IInteractableIsland
 
     void reduceDurability()
     {
-        if(durability > 0)
+        if (durability > 0)
         {
-            durability -= (rainIntensity + 1);
+            delta_time++;
+            if (delta_time == DELTA_TIME)
+            {
+
+                durability -= (rainIntensity + DAMAGE_PER_DELTA_TIME);
+
+                delta_time = 0;
+            }
         }
         
     }
@@ -176,20 +189,19 @@ public class Island : MonoBehaviour, IInteractableIsland
 
     public void destroy()
     {
-        if (!playerHere)
+        if (playerHere)
         {
-            inactiveIsland.SetActive(true);
-            activeIsland.SetActive(false);
-            m_condition = IslandCondition.DESTROYED;
-            foreach (Island nearbyIsland in nearbyIslands)
-            {
-                nearbyIsland.onNearbyIslandDestroy();
-            }
-            IslandDestroyed.Invoke();
-        } else
-        {
-
+            //todo: 传送player 回家，写日记并开始新的一天
+            GameEvents.Sigton.onTheDestroyedIsland.Invoke();
         }
+        inactiveIsland.SetActive(true);
+        activeIsland.SetActive(false);
+        m_condition = IslandCondition.DESTROYED;
+        foreach (Island nearbyIsland in nearbyIslands)
+        {
+            nearbyIsland.onNearbyIslandDestroy();
+        }
+        IslandDestroyed.Invoke();
     }
 
     public void OnCollisionEnter(Collision collision)

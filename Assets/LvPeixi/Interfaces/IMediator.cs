@@ -15,9 +15,9 @@ public interface IMediator
     /// <param name="collector"></param>
     void StartResourceCollect(IInteractableResourceCollector collector);
     void EndInteract();
-    
     void StartAddIsland(IslandBuilder builder);
 
     void StartRestoreIsland(IInteractableIsland island);
     void StartProcessFood(IFoodProcess foodProcess);
+    void OpenDiary(Diary diary);
 }

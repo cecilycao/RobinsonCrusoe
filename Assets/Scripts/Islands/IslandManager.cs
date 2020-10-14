@@ -33,6 +33,15 @@ public class IslandManager : MonoBehaviour
         {
             NPCIslandSets = GetComponentsInChildren<NPCIslandSet>();
         }
+
+        GameEvents.Sigton.onNPCIslandAppear += () =>
+        {
+            NPCIslandAppear("NPC");
+        };
+        GameEvents.Sigton.onNPCIslandCombined += () =>
+        {
+            NPCIslandCombine("NPC");
+        };
     }
 
     // Update is called once per frame

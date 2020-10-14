@@ -29,6 +29,13 @@ public class GameEvents : MonoBehaviour
     /// 玩家站在需要修复的岛上时触发
     /// </summary>
     public Action<bool> onTheBrokenIsland;
+    /// <summary>
+    /// 玩家站在毁坏的岛上时触发
+    /// </summary>
+    public Action onTheDestroyedIsland;
+
+    public Action onNPCIslandAppear;
+    public Action onNPCIslandCombined;
 
     //----------Interactions-------------
     /// <summary>
@@ -48,12 +55,15 @@ public class GameEvents : MonoBehaviour
     public Action<IInteractable> onInteractStart;
     public Action onInteractEnd;
 
+    public Action OnDiaryStart;
+    public Action OnDiaryEnd;
+
     //----------Weather System--------------
     public Action OnRainStart;
     public Action OnRainEnd;
     public Action OnStormStart;
     public Action OnStormEnd;
-
+    
 
 
     public static GameEvents Sigton
