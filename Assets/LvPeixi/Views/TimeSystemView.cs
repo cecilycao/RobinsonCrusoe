@@ -11,22 +11,23 @@ public class TimeSystemView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //监视时间系统数值的变化
         GameEvents.Sigton.timeSystem
-             .Where(x=>x.IsDay)//过滤掉晚上的计时
+            .Throttle(TimeSpan.FromSeconds(0.1f))//过滤过密的数据请求
             .Subscribe(_data =>
             {
-                print(_data.DayCount + "" + _data.TimeCountdown);
+                print("IsDay:"+_data.IsDay+" Day:"+_data.DayCount + " Time:" + _data.TimeCountdown);
                 time.text = _data.TimeCountdown.ToString();
                 day.text = _data.DayCount.ToString();
             });
 
         GameEvents.Sigton.onDayStart += () =>
         {
-            //BlackScreenFadeOut();
+            BlackScreenFadeOut();
         };
         GameEvents.Sigton.onDayEnd += () =>
         {
-            //BlackScreenFadeIn();
+            BlackScreenFadeIn();
         };
     }
 
