@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 829202415644074483}
   - component: {fileID: 829202415644074482}
   m_Layer: 0
-  m_Name: ResourceCollector
+  m_Name: ResourceCollectorSample
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829202415644074481}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &829202415644074444
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: e43f1d0abeb773446ba62d2ae2bca91f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 829202415644074482}
-        m_MethodName: StartInteractWithPlayer
+        m_MethodName: StartContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -179,13 +179,13 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   sendOnPlayerExit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 829202415644074482}
-        m_MethodName: EndInteractWithPlayer
+        m_MethodName: EndContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

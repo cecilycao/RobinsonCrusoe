@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f57bb4f34ee25140b183f4bae38cde2, type: 2}
+  - {fileID: 2100000, guid: 7db08d22b4fecf347bed89bcc51590b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddf8d8ad1567ee4584860b2c2a911d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasFood: 0
 --- !u!1 &6946897761451127286
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,8 +134,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6946897761451127286}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.599998, y: 0, z: 9.799999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4733461873152624117}
@@ -169,7 +170,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2272403482934611387}
-        m_MethodName: StartInteractWithPlayer
+        m_MethodName: StartContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -183,7 +184,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2272403482934611387}
-        m_MethodName: EndInteractWithPlayer
+        m_MethodName: EndContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

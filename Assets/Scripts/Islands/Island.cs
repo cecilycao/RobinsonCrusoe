@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using System;
 using UniRx;
 
-public class Island : MonoBehaviour, IInteractableIsland
+public class Island : RestoreIslandSample
 {
     
     public bool isCore;
@@ -39,11 +39,11 @@ public class Island : MonoBehaviour, IInteractableIsland
 
     int delta_time = 0;
 
-    public string MaterialType => "BuildingMaterial";
+    public override string MaterialType => "BuildingMaterial";
 
-    public int MaterialCost => (int)Mathf.Round(10*(1-durability/100));
+    public override int MaterialCost => (int)Mathf.Round(10*(1-durability/100));
 
-    public string InteractObjectType => "Island";
+    public override string InteractObjectType => "Island";
 
     private void Awake()
     {
@@ -252,7 +252,7 @@ public class Island : MonoBehaviour, IInteractableIsland
         print("play island restore animation");
     }
 
-    public void StartInteractWithPlayer()
+    public override void StartContact()
     {
         playerHere = true;
         if (!isCore)
@@ -261,19 +261,32 @@ public class Island : MonoBehaviour, IInteractableIsland
             
             if (m_condition == IslandCondition.DAMAGED)
             {
-                Mediator.Sigton.StartRestoreIsland(this);
+                Mediator.Sigton.StartInteraction(this);
+                
             }
             
         }
     }
 
-    public void EndInteractWithPlayer()
+    public override void EndContact()
     {
         playerHere = false;
         if (!isCore)
         {
             Mediator.Sigton.EndInteract();
+            
         }
+    }
+
+    public override void StartInteract()
+    {
+        
+    }
+
+    public override void EndInteract(object result)
+    {
+        repair();
+        print("play island restore animation");
     }
 }
 

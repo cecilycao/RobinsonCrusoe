@@ -17,16 +17,6 @@ public class Diary : MonoBehaviour, IInteractable
 
     }
 
-    public void EndInteractWithPlayer()
-    {
-        OnDiaryClose();
-    }
-
-    public void StartInteractWithPlayer()
-    {
-        Mediator.Sigton.OpenDiary(this);
-    }
-
 
     public void OnDiaryOpen()
     {
@@ -38,5 +28,23 @@ public class Diary : MonoBehaviour, IInteractable
     public void OnDiaryClose()
     {
         DiaryManager.Instance.closeDiary();
+    }
+
+    public void StartContact()
+    {
+        Mediator.Sigton.OpenDiary(this);
+    }
+
+    public void EndContact()
+    {
+        OnDiaryClose();
+    }
+
+    public void StartInteract()
+    {
+    }
+
+    public void EndInteract(object result)
+    {
     }
 }

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System;
 using UniRx;
-
 /// <summary>
 /// GameEvents只负责两个系统之间传递数据，没有任何协调、判定
 /// </summary>
@@ -37,6 +37,11 @@ public class GameEvents : MonoBehaviour
     public Action onNPCIslandAppear;
     public Action onNPCIslandCombined;
 
+    /// 玩家站在坏掉并且沉没的岛上时触发
+    /// </summary>
+    public Action<Hashtable> onIslandSinkWhenPlayerOnIt;
+
+
     //----------Interactions-------------
     /// <summary>
     /// 对话展开时触发,需要一个string作为dialogID
@@ -63,8 +68,6 @@ public class GameEvents : MonoBehaviour
     public Action OnRainEnd;
     public Action OnStormStart;
     public Action OnStormEnd;
-    
-
 
     public static GameEvents Sigton
     {

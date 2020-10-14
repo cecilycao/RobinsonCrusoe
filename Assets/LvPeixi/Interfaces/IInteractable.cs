@@ -3,12 +3,21 @@ public interface IInteractable
 {
     string InteractObjectType { get; }
     /// <summary>
-    /// Player enter trigger时触发次方法
+    /// Player与物体接触时此方法
     /// </summary>
-    void StartInteractWithPlayer();
+    void StartContact();
     /// <summary>
-    /// Player exit trigger时触发次方法
+    /// Player与物体结束触发此方法
     /// </summary>
-    void EndInteractWithPlayer();
+    void EndContact();
+    /// <summary>
+    /// 玩家与物体开始互动时
+    /// </summary>
+    void StartInteract();
+    /// <summary>
+    /// 玩家和物体结束互动时
+    /// </summary>
+    /// <param name="result">互动</param>
+    void EndInteract(object result);
 }
 

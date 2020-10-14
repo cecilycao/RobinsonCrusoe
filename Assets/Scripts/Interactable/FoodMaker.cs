@@ -16,8 +16,7 @@ public class FoodMaker : MonoBehaviour, IInteractable
     {
 
     }
-
-    public void StartInteractWithPlayer()
+    public void StartContact()
     {
         if (true)
         {
@@ -25,9 +24,16 @@ public class FoodMaker : MonoBehaviour, IInteractable
             //Mediator.Sigton.StartProcessFood(this);
         }
     }
-
-    public void EndInteractWithPlayer()
+    public void EndContact()
     {
         //Mediator.Sigton.EndInteract();
+    }
+    public void StartInteract()
+    {
+        throw new System.NotImplementedException();
+    }
+    public void EndInteract(object result)
+    {
+        throw new System.NotImplementedException();
     }
 }

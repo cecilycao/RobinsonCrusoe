@@ -10,7 +10,7 @@ using UniRx;
 /// </summary>
 public class Mediator : MonoBehaviour,IMediator
 {
-    #region//private variables
+    #region//-----private variables-----
     static IMediator _instance;
     IInteractableNPC theCurrentInteractNPC;
     /// <summary>
@@ -20,10 +20,10 @@ public class Mediator : MonoBehaviour,IMediator
     /// <summary>
     /// 过滤掉多个密集请求
     /// </summary>
-    bool IsAtInteractState = false;
+    protected bool IsAtInteractState = false;
     #endregion
 
-    #region//initialize
+    #region//-----initialize-----
     public static IMediator Sigton
     {
         get => _instance;
@@ -46,37 +46,13 @@ public class Mediator : MonoBehaviour,IMediator
     #region//IMediator implement
     public void StartDialog(IInteractableNPC npc)
     {
-        if (!IsAtInteractState)
-        {
-            IsAtInteractState = true;
-            IDisposable waitForKeyboardInteractSingle = null;
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
-
-            waitForKeyboardInteractSingle = Observable.EveryUpdate()
-                .Where(x => Input.GetKeyDown(KeyCode.E))
-                .Subscribe(x =>
-                {
-                    theCurrentInteractNPC = npc;
-                    DialogManager.Singelton.StartDialog(npc.NPCName);
-                    npc.OnDialogStart();
-                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
-                    waitForKeyboardInteractSingle.Dispose();
-                });
-
-            GameEvents.Sigton.onInteractEnd += () =>
-            {
-                IsAtInteractState = false;
-                waitForKeyboardInteractSingle.Dispose();
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
-            };
-        }
+        
     }
     public void EndDialog()
     {
         if (theCurrentInteractNPC!= null)
         {
-            theCurrentInteractNPC.OnDialogEnd();
+            theCurrentInteractNPC.EndContact();
             theCurrentInteractNPC = null;
         }
         AssertExtension.NotNullRun(GameEvents.Sigton.onDialogEnd, () =>
@@ -93,37 +69,56 @@ public class Mediator : MonoBehaviour,IMediator
         if (!IsAtInteractState)
         {
             IsAtInteractState = true;
-
-            IDisposable waitForKeyboardInteractSingle = null;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
-            waitForKeyboardInteractSingle = Observable.EveryUpdate()
-                .Where(x => Input.GetKeyDown(KeyCode.E))
+
+            InputSystem.Singleton.OnInteractBtnPressed
+                .First()
                 .Subscribe(x =>
                 {
-                    collector.OnResourceCollectStart();
-                    AssertExtension.NotNullRun(GameEvents.Sigton.onResourceCollected, () =>
-                    {
-                        GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount);
-                    });
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在收集资源");
+                    collector.StartInteract();
+
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    //start fishing game
+                    GUIEvents.Singleton.PlayerStartFishing.OnNext(true);
+                    //set player interact state
                     playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
                     //end collect resource after 1 sec
-                    IDisposable delayEndCollectInteraction = null;
-                    delayEndCollectInteraction = Observable.Timer(TimeSpan.FromSeconds(1))
+                    Observable.Timer(TimeSpan.FromSeconds(1))
+                    .First()
                     .Subscribe(y =>
                     {
-                        collector.OnResourceCollectEnd();
                         playerInteract.PlayerEndInteraction();
                         GameEvents.Sigton.onInteractEnd();
-                        delayEndCollectInteraction.Dispose();
                     });
+                });
 
+            GUIEvents.Singleton.PlayerEndFishing
+                .First()
+                .Subscribe(x =>
+                {  
+                    if (x)
+                    {
+                        AssertExtension.NotNullRun(GameEvents.Sigton.onResourceCollected, () =>
+                        {
+                            GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount);
+                        });
+                    }
+                    else
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("什么也没有捞到");
+                        Observable.Timer(TimeSpan.FromSeconds(1))
+                            .First()
+                            .Subscribe(y =>
+                            {
+                                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                            });
+                    }
+                    collector.EndInteract((object)x);
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
                 IsAtInteractState = false;
-                waitForKeyboardInteractSingle.Dispose();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
             };
         }
@@ -142,21 +137,79 @@ public class Mediator : MonoBehaviour,IMediator
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("building material is not enough");
                 return;
             }
+            
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿"); 
+
+            InputSystem.Singleton.OnInteractBtnPressed
+                .First()
+                .Subscribe(x =>
+                {
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(2);
+                });
+
+            IDisposable theEventCompleteProgress = null;
+            theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
+                .Delay(TimeSpan.FromSeconds(2))
+                .First()
+                .Subscribe(x =>
+                {
+                    builder.OnIslandBuildEnd();
+                    inventory.BuildingMaterial.Value -= builder.MaterialCost;
+                    GameEvents.Sigton.onInteractEnd();
+                });
+                
+
+            InputSystem.Singleton.OnInteractBtnReleased
+                .First()
+                .Subscribe(x =>
+                {
+                    GameEvents.Sigton.onInteractEnd();
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
+                    theEventCompleteProgress.Dispose();
+                });
+
+            GameEvents.Sigton.onInteractEnd += () =>
+            {
+                IsAtInteractState = false;
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+            };
+        }
+    }
+    public void StartRestoreIsland(IInteractableIsland island)
+    {
+        
+    }
+    public void StartProcessFood(IFoodProcess foodProcess)
+    {
+        
+    }
+    public void EndInteract()
+    {
+        GameEvents.Sigton.onInteractEnd();
+    }
+    /// <summary>
+    /// 和NPC对话
+    /// </summary>
+    /// <param name="npc"></param>
+    public void StartInteraction(IInteractableNPC npc)
+    {
+        if (!IsAtInteractState)
+        {
+            IsAtInteractState = true;
             IDisposable waitForKeyboardInteractSingle = null;
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
+
             waitForKeyboardInteractSingle = Observable.EveryUpdate()
                 .Where(x => Input.GetKeyDown(KeyCode.E))
                 .Subscribe(x =>
                 {
-                    builder.OnIslandBuild();
-                    AssertExtension.NotNullRun(GameEvents.Sigton.onIslandCreated, () =>
-                    {
-                        GameEvents.Sigton.onIslandCreated.Invoke();
-                    });
+                    theCurrentInteractNPC = npc;
+                    DialogManager.Singelton.StartDialog(npc.NPCName);
+                    npc.StartInteract();
+                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
-
-                    GameEvents.Sigton.onInteractEnd();
-                    builder.OnIslandBuildEnd();
+                    waitForKeyboardInteractSingle.Dispose();
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
@@ -167,42 +220,134 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-    public void StartRestoreIsland(IInteractableIsland island)
+    /// <summary>
+    /// 收集资源
+    /// </summary>
+    /// <param name="collector"></param>
+    public void StartInteraction(IInteractableResourceCollector collector)
     {
         if (!IsAtInteractState)
         {
             IsAtInteractState = true;
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
 
-            //check player have enough resource?
-            var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
-            var playerBuildingMaterial = inventory.BuildingMaterial.Value;
-            if (playerBuildingMaterial < island.MaterialCost)
-            {
-                IsAtInteractState = false;
-                return;
-            }
-            //listen the interact key pressed event
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键修复浮岛");
-            IDisposable waitForKeyboardInteractEvent = null;
-            waitForKeyboardInteractEvent = InputSystem.Singleton.OnInteractBtnPressed
+            InputSystem.Singleton.OnInteractBtnPressed
+                .First()
                 .Subscribe(x =>
                 {
-                    island.OnIslandRestoreStart();
-                    inventory.BuildingMaterial.Value -= island.MaterialCost;
+                    collector.StartInteract();
 
-                    island.OnIslandRestoreEnd();
-                    GameEvents.Sigton.onInteractEnd();
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    //start fishing game
+                    GUIEvents.Singleton.PlayerStartFishing.OnNext(true);
+                    //set player interact state
+                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
+                    //end collect resource after 1 sec
+                    Observable.Timer(TimeSpan.FromSeconds(1))
+                    .First()
+                    .Subscribe(y =>
+                    {
+                        playerInteract.PlayerEndInteraction();
+                        GameEvents.Sigton.onInteractEnd();
+                    });
+                });
+
+            GUIEvents.Singleton.PlayerEndFishing
+                .First()
+                .Subscribe(x =>
+                {
+                    if (x)
+                    {
+                        AssertExtension.NotNullRun(GameEvents.Sigton.onResourceCollected, () =>
+                        {
+                            GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount);
+                        });
+                    }
+                    else
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("什么也没有捞到");
+                        Observable.Timer(TimeSpan.FromSeconds(1))
+                            .First()
+                            .Subscribe(y =>
+                            {
+                                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                            });
+                    }
+                    collector.EndInteract((object)x);
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
                 IsAtInteractState = false;
-                waitForKeyboardInteractEvent.Dispose();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
             };
         }
     }
-    public void StartProcessFood(IFoodProcess foodProcess)
+    /// <summary>
+    /// 新建浮岛
+    /// </summary>
+    /// <param name="builder"></param>
+    public void StartInteraction(IIslandBuilder builder)
+    {
+        if (!IsAtInteractState)
+        {
+            IsAtInteractState = true;
+            var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+            var playerBuildingMaterial = inventory.BuildingMaterial.Value;
+            if (playerBuildingMaterial < builder.MaterialCost)
+            {
+                IsAtInteractState = false;
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("building material is not enough");
+                return;
+            }
+
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
+
+            float buildIslandCostTime = GameConfig.Singleton.InteractionConfig["addIslandTimeCost"];
+
+            InputSystem.Singleton.OnInteractBtnPressed
+                .First()
+                .Subscribe(x =>
+                {
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
+                    builder.StartInteract();
+                });
+
+            IDisposable theEventCompleteProgress = null;
+            theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
+                .Delay(TimeSpan.FromSeconds(buildIslandCostTime))
+                .First()
+                .Subscribe(x =>
+                {
+                    inventory.BuildingMaterial.Value -= builder.MaterialCost;
+                    builder.EndInteract(true);
+                    GameEvents.Sigton.onInteractEnd();
+                });
+
+
+            InputSystem.Singleton.OnInteractBtnReleased
+                .First()
+                .Subscribe(x =>
+                {
+                    GameEvents.Sigton.onInteractEnd();
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
+                    theEventCompleteProgress.Dispose();
+                });
+
+            GameEvents.Sigton.onInteractEnd += () =>
+            {
+                IsAtInteractState = false;
+                builder.EndContact();
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+            };
+        }
+    }
+    /// <summary>
+    /// 加工食物
+    /// </summary>
+    /// <param name="foodProcess"></param>
+    public void StartInteraction(IFoodProcess foodProcess)
     {
         if (!IsAtInteractState)
         {
@@ -215,27 +360,120 @@ public class Mediator : MonoBehaviour,IMediator
                 IsAtInteractState = false;
                 return;
             }
+  
+            if (foodProcess.HasFood)
+            {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键吃食物");
+                InputSystem.Singleton.OnInteractBtnPressed
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        attr.Hunger.Value -= foodProcess.HungerRestore;
+                        foodProcess.EndInteract(false);
+                        GameEvents.Sigton.onInteractEnd();
+                    });
+            }
+            else
+            {
+                float processFoodCostTime = GameConfig.Singleton.InteractionConfig["processFoodTimeCost"];
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按住E键生产食物");
+                //listen the interact key pressed event
+                InputSystem.Singleton.OnInteractBtnPressed
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        foodProcess.StartInteract();
+                        GUIEvents.Singleton.InteractionProgressBar.OnNext(processFoodCostTime);
+                        GameEvents.Sigton.onInteractEnd();
+                    });
+
+                IDisposable theEventCompleteProgress = null;
+                theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
+                    .Delay(TimeSpan.FromSeconds(processFoodCostTime))
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        inventory.FoodMaterial.Value -= foodProcess.Cost;
+                        foodProcess.EndInteract(true);
+                        GameEvents.Sigton.onInteractEnd();
+                    });
+
+                InputSystem.Singleton.OnInteractBtnReleased
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
+                        GameEvents.Sigton.onInteractEnd();
+                        //foodProcess.EndInteract(true);
+                        theEventCompleteProgress.Dispose();
+                    });
+            }
+            GameEvents.Sigton.onInteractEnd += () =>
+            {
+                IsAtInteractState = false;
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+            };
+        }
+    }
+    /// <summary>
+    /// 维修岛屿
+    /// </summary>
+    /// <param name="island"></param>
+    public void StartInteraction(IInteractableIsland island)
+    {
+        if (!IsAtInteractState)
+        {
+            IsAtInteractState = true;
+            //-----get config----
+            float restoreIslandCostTime = GameConfig.Singleton.InteractionConfig["restoreIslandTimeCost"];
+
+            //check player have enough resource?
+            var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+            var playerBuildingMaterial = inventory.BuildingMaterial.Value;
+            if (playerBuildingMaterial < island.MaterialCost)
+            {
+                IsAtInteractState = false;
+                return;
+            }
             //listen the interact key pressed event
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键生产食物");
-            IDisposable waitForKeyboardInteractEvent = null;
-            waitForKeyboardInteractEvent = InputSystem.Singleton.OnInteractBtnPressed
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键修复浮岛");
+           
+            InputSystem.Singleton.OnInteractBtnPressed
+                .First()
                 .Subscribe(x =>
                 {
-                    foodProcess.OnStartProcessFood();
-                    inventory.FoodMaterial.Value -= foodProcess.Cost;
-                    attr.Hunger.Value -= foodProcess.HungerRestore;
-                    foodProcess.OnEndProcessFood();
+                    island.StartInteract();
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(restoreIslandCostTime);
+                    island.EndInteract(true);
                     GameEvents.Sigton.onInteractEnd();
+                });
+
+            IDisposable theEventCompleteProgress = null;
+            theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
+                .Delay(TimeSpan.FromSeconds(restoreIslandCostTime))
+                .First()
+                .Subscribe(x =>
+                {
+                    inventory.BuildingMaterial.Value -= island.MaterialCost;
+                    GameEvents.Sigton.onInteractEnd();
+                    island.EndInteract(true);
+                });
+            
+            InputSystem.Singleton.OnInteractBtnReleased
+                .First()
+                .Subscribe(x =>
+                {
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
                 IsAtInteractState = false;
-                waitForKeyboardInteractEvent.Dispose();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
             };
         }
     }
+
     public void OpenDiary(Diary diary)
     {
         if (!IsAtInteractState)
@@ -262,10 +500,7 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-    public void EndInteract()
-    {
-        GameEvents.Sigton.onInteractEnd();
-    }
+
     public IPlayerInteractPresenter PlayerInteract
     {
         set

@@ -5,10 +5,10 @@ using UniRx;
 
 public class InputSystem : MonoBehaviour, IKeyboardInput
 {
-    Subject<string> onInteractBtnPressed = new Subject<string>();
-    public Subject<string> OnInteractBtnPressed { get => onInteractBtnPressed; }
-
     static IKeyboardInput _instance;
+    Subject<string> onInteractBtnPressed = new Subject<string>();
+    Subject<string> onInteractBtnReleased = new Subject<string>();
+    Subject<string> onInteractBtnPressing = new Subject<string>();
     public static IKeyboardInput Singleton
     {
         get => _instance;
@@ -20,6 +20,12 @@ public class InputSystem : MonoBehaviour, IKeyboardInput
             }
         }
     }
+    #region//interface implement
+    public Subject<string> OnInteractBtnPressed { get => onInteractBtnPressed; }
+    public Subject<string> OnInteractBtnReleased { get => onInteractBtnReleased; }
+    public Subject<string> OnInteractBtnPressing { get => onInteractBtnPressing; }
+    #endregion
+
     private void Awake()
     {
         _instance = this;
@@ -31,6 +37,20 @@ public class InputSystem : MonoBehaviour, IKeyboardInput
             .Subscribe(x =>
             {
                 onInteractBtnPressed.OnNext("e");
+            });
+
+        Observable.EveryUpdate()
+            .Where(x => Input.GetButtonUp("Interact"))
+            .Subscribe(x =>
+            {
+                onInteractBtnReleased.OnNext("e");
+            });
+
+        Observable.EveryUpdate()
+            .Where(x => Input.GetButton("Interact"))
+            .Subscribe(x =>
+            {
+                onInteractBtnPressing.OnNext("e");
             });
     }
 }

@@ -44,7 +44,7 @@ public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
             .Where(x=>stateModel.playerState.Value == PlayerState.InteractState)
             .Subscribe(x =>
             {
-                print("interact action start");
+                //print("interact action start");
             });
 
         GameEvents.Sigton.onInteractEnd += () =>
@@ -58,7 +58,6 @@ public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
             {
                
                 inventory.FoodMaterial.Value += account;
-                print("player get food " + inventory.FoodMaterial.Value);
             }
             if (type == "BuildingMaterial")
             {
