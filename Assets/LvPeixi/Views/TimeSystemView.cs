@@ -16,18 +16,17 @@ public class TimeSystemView : MonoBehaviour
             .Throttle(TimeSpan.FromSeconds(0.1f))//过滤过密的数据请求
             .Subscribe(_data =>
             {
-                print("IsDay:"+_data.IsDay+" Day:"+_data.DayCount + " Time:" + _data.TimeCountdown);
                 time.text = _data.TimeCountdown.ToString();
                 day.text = _data.DayCount.ToString();
             });
 
         GameEvents.Sigton.onDayStart += () =>
         {
-            BlackScreenFadeOut();
+            //BlackScreenFadeOut();
         };
         GameEvents.Sigton.onDayEnd += () =>
         {
-            BlackScreenFadeIn();
+            //BlackScreenFadeIn();
         };
     }
 

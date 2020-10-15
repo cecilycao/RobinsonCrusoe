@@ -9,7 +9,9 @@ public class GameConfig
 {
     private static GameConfig config;
     private Dictionary<string, float> interactionConfig = new Dictionary<string, float>();
+    private Dictionary<string, float> playerConfig = new Dictionary<string, float>();
     public Dictionary<string,float> InteractionConfig { get => interactionConfig; }
+    public Dictionary<string, float> PlayerConfig => playerConfig;
     int t = 0;
    
     public static GameConfig Singleton
@@ -26,6 +28,7 @@ public class GameConfig
     public GameConfig()
     {
         JsonToFloat(ref interactionConfig, "InteractConfig.json");
+        JsonToFloat(ref playerConfig, "PlayerConfig.json");
     }
 
     /// <summary>
@@ -36,7 +39,10 @@ public class GameConfig
     void JsonToFloat(ref Dictionary<string, float> _floatDic,string jsonFileName)
     {
         string configJsonData = File.ReadAllText(Application.dataPath + "/GameConfig/"+ jsonFileName);
-        Assert.IsNotNull(configJsonData, "failed to find the json file" + jsonFileName);
+        if (configJsonData == null)
+        {
+            throw new System.Exception("failed to find the json file" + jsonFileName);
+        }
         JsonData _jsonData = JsonMapper.ToObject(configJsonData);
         foreach (JsonData v in _jsonData)
         {

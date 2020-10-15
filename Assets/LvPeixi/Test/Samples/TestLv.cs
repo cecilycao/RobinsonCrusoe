@@ -11,9 +11,11 @@ public class TestLv : MonoBehaviour
     void Start()
     {
         var config = GameConfig.Singleton.InteractionConfig;
-        print(config["positiveCollectTimeCost"]);
-        print(config["negativeCollectTimeCost"]);
-        print(config["addIslandTimeCost"]);
-        print(config["restoreIslandTimeCost"]);
+        GUIEvents.Singleton.Fatigue
+            .Where(y => y == 0)
+            .Subscribe(x =>
+            {
+                ///执行代码
+            });
     }
 }

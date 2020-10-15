@@ -9,32 +9,37 @@ public class ControlConsoleEditor : Editor
 {
     ControlConsole control;
     bool showGuiTest;
+    bool showPlayerTest;
+    bool showGameEventTest;
     private void OnEnable()
     {
         control = (ControlConsole)target;
     }
     public override void OnInspectorGUI()
     {
-        if (GUILayout.Button("食材+20"))
+        showPlayerTest = EditorGUILayout.Foldout(showPlayerTest, "玩家功能测试");
+        if (showPlayerTest)
+        {
+            if (GUILayout.Button("食材+20"))
         {
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             inventory.FoodMaterial.Value += 20;
         }
-
-        if (GUILayout.Button("建材+20"))
+            if (GUILayout.Button("建材+20"))
         {
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             inventory.BuildingMaterial.Value += 20;
         }
-        if (GUILayout.Button("疲劳+20"))
+            if (GUILayout.Button("疲劳+20"))
         {
             var attr = FindObjectOfType<PlayerAttributePresenter>();
             attr.Fatigue.Value += 20;
         }
-        if (GUILayout.Button("饥饿+20"))
+            if (GUILayout.Button("饥饿+20"))
         {
             var attr = FindObjectOfType<PlayerAttributePresenter>();
             attr.Hunger.Value += 20;
+        }
         }
 
         #region//-----Gui events&funtions test-----
@@ -47,6 +52,15 @@ public class ControlConsoleEditor : Editor
             }
         }
         #endregion
+
+        showGameEventTest = EditorGUILayout.Foldout(showGameEventTest, "游戏事件测试");
+        if (showGameEventTest)
+        {
+            if (GUILayout.Button("onDayStart.Invoke()"))
+            {
+                GameEvents.Sigton.onDayStart.Invoke();
+            }
+        }
     }
 }
 

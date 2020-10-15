@@ -18,9 +18,14 @@ public class Mediator : MonoBehaviour,IMediator
     /// </summary>
     IPlayerInteractPresenter playerInteract;
     /// <summary>
+    /// 调用玩家数值指令
+    /// </summary>
+    IPlayerAttribute playerAttribute;
+    /// <summary>
     /// 过滤掉多个密集请求
     /// </summary>
     protected bool IsAtInteractState = false;
+    private Dictionary<string, float> interactConfig;
     #endregion
 
     #region//-----initialize-----
@@ -40,6 +45,7 @@ public class Mediator : MonoBehaviour,IMediator
     {
         Sigton = this;
         Assert.IsNull(playerInteract, "Mediator.playerInteract is null");
+        interactConfig = GameConfig.Singleton.InteractionConfig;
     }
     #endregion
 
@@ -242,6 +248,10 @@ public class Mediator : MonoBehaviour,IMediator
                     GUIEvents.Singleton.PlayerStartFishing.OnNext(true);
                     //set player interact state
                     playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
+
+                    int fatigueIncrease = (int)interactConfig["positiveCollectFatigueIncrease"];
+                    playerAttribute.Fatigue.Value += fatigueIncrease;
+
                     //end collect resource after 1 sec
                     Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
@@ -303,7 +313,7 @@ public class Mediator : MonoBehaviour,IMediator
 
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
 
-            float buildIslandCostTime = GameConfig.Singleton.InteractionConfig["addIslandTimeCost"];
+            float buildIslandCostTime = interactConfig["addIslandTimeCost"];
 
             InputSystem.Singleton.OnInteractBtnPressed
                 .First()
@@ -320,6 +330,8 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    int fatigueIncrease = (int)interactConfig["addIslandFatigueIncrease"];
+                    playerAttribute.Fatigue.Value += fatigueIncrease;
                     inventory.BuildingMaterial.Value -= builder.MaterialCost;
                     builder.EndInteract(true);
                     GameEvents.Sigton.onInteractEnd();
@@ -368,14 +380,15 @@ public class Mediator : MonoBehaviour,IMediator
                     .First()
                     .Subscribe(x =>
                     {
-                        attr.Hunger.Value -= foodProcess.HungerRestore;
+                        int _hungerRes = (int)interactConfig["eatFoodHungerIncrease"];
+                        attr.Hunger.Value -= _hungerRes;
                         foodProcess.EndInteract(false);
                         GameEvents.Sigton.onInteractEnd();
                     });
             }
             else
             {
-                float processFoodCostTime = GameConfig.Singleton.InteractionConfig["processFoodTimeCost"];
+                float processFoodCostTime = interactConfig["processFoodTimeCost"];
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按住E键生产食物");
                 //listen the interact key pressed event
                 InputSystem.Singleton.OnInteractBtnPressed
@@ -394,6 +407,8 @@ public class Mediator : MonoBehaviour,IMediator
                     .Subscribe(x =>
                     {
                         inventory.FoodMaterial.Value -= foodProcess.Cost;
+                        int fatigueIncrease = (int)interactConfig["processFoodFatigeIncrease"];
+                        playerAttribute.Fatigue.Value += fatigueIncrease;
                         foodProcess.EndInteract(true);
                         GameEvents.Sigton.onInteractEnd();
                     });
@@ -425,7 +440,7 @@ public class Mediator : MonoBehaviour,IMediator
         {
             IsAtInteractState = true;
             //-----get config----
-            float restoreIslandCostTime = GameConfig.Singleton.InteractionConfig["restoreIslandTimeCost"];
+            float restoreIslandCostTime = interactConfig["restoreIslandTimeCost"];
 
             //check player have enough resource?
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
@@ -454,6 +469,8 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    int fatigueIncress = (int)interactConfig["restoreIslandFatigueIncrease"];
+                    playerAttribute.Fatigue.Value += fatigueIncress;
                     inventory.BuildingMaterial.Value -= island.MaterialCost;
                     GameEvents.Sigton.onInteractEnd();
                     island.EndInteract(true);
@@ -480,6 +497,17 @@ public class Mediator : MonoBehaviour,IMediator
             if (playerInteract == null)
             {
                 playerInteract = value;
+            }
+        }
+    }
+
+    public IPlayerAttribute PlayerAttribute
+    {
+        set
+        {
+            if (playerAttribute == null)
+            {
+                playerAttribute = value;
             }
         }
     }

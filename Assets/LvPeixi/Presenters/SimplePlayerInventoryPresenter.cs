@@ -5,7 +5,8 @@ using UniRx;
 
 public class SimplePlayerInventoryPresenter : MonoBehaviour
 {
-    public SimplePlayerInventoryModel model = new SimplePlayerInventoryModel();
+    [SerializeField]
+    private SimplePlayerInventoryModel model = new SimplePlayerInventoryModel();
     public ReactiveProperty<int> FoodMaterial 
     {
         get => model.foodMaterial;
@@ -21,5 +22,11 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
 
         GUIEvents.Singleton.FoodMaterial = model.foodMaterial;
         GUIEvents.Singleton.BuildingMaterial = model.buildingMaterial;
+    }
+    private void Start()
+    {
+        var config = GameConfig.Singleton.PlayerConfig;
+        model.buildingMaterialCeiling = (int)config["buildingMaterialCeiling"];
+        model.foodMaterialCeiling = (int)config["foodMaterialCeiling"];
     }
 }

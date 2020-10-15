@@ -19,23 +19,29 @@ public class PlayerHUDView : MonoBehaviour
             {
                 interactTipMsg.text = x;
             });
+
+        //监视玩家疲劳值
         GUIEvents.Singleton.Fatigue
             .Subscribe(x =>
             {
                 fatigue.text = x.ToString();
             });
+
+        //监视玩家食材
         GUIEvents.Singleton.FoodMaterial
             .Subscribe(x =>
             {
                 foodMaterial.text = x.ToString();
             });
 
+        //监视玩家建材
         GUIEvents.Singleton.BuildingMaterial
             .Subscribe(x =>
             {
                 buildingMaterial.text = x.ToString();
             });
-
+          
+        //监视玩家饥饿值
         GUIEvents.Singleton.Hunger
             .Subscribe(x =>
             {
@@ -43,3 +49,4 @@ public class PlayerHUDView : MonoBehaviour
             });
     }
 }
+    

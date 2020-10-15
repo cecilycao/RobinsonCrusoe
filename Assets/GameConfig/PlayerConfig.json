@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Key": "hungerCeiling",
+    "Value": 100.0,
+    "Description": "饥饿值上限初始值"
+  },
+  {
+    "Key": "fatigueCeiling",
+    "Value": 100.0,
+    "Description": "疲劳值上限初始值"
+  },
+  {
+    "Key": "fatigueInceasePerDay",
+    "Value": 2.0,
+    "Description": "每日增加的疲劳值下限"
+  },
+  {
+    "Key": "foodMaterialCeiling",
+    "Value": 60.0,
+    "Description": "食物上限"
+  },
+  {
+    "Key": "buildingMaterialCeiling",
+    "Value": 10.0,
+    "Description": "建材上限"
+  },
+  {
+    "Key": "fatigueIncreaseWhenTimeOut",
+    "Value": 1.0,
+    "Description": "时间耗尽后每秒增加的疲劳值"
+  }
+]

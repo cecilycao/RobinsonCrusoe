@@ -2,6 +2,7 @@
 public interface IMediator 
 {
     IPlayerInteractPresenter PlayerInteract { set; }
+    IPlayerAttribute PlayerAttribute { set; }
 
     /// <summary>
     /// 请求开始对话互动

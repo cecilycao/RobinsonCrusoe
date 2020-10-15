@@ -28,7 +28,6 @@ public class GUIEvents:MonoBehaviour,IGUIEvents
             }
         }
     }
-
     public ReactiveProperty<int> Fatigue
     {
         get => fatigue;
@@ -80,7 +79,6 @@ public class GUIEvents:MonoBehaviour,IGUIEvents
     public Subject<float> InteractionProgressBar { get => interactionProgressBar; }
     public Subject<bool> PlayerStartFishing { get => playerStartFishing; }
     public Subject<bool> PlayerEndFishing { get => playerEndFishing; }
-
     private void Awake()
     {
         _sig = this;
