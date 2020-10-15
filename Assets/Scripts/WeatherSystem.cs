@@ -6,9 +6,12 @@ public class WeatherSystem : MonoBehaviour
 {
     static WeatherSystem weatherSystem;
     public WeatherState m_state;
-    public ParticleSystem rain;
-    public ParticleSystem heavyRain;
-    public ParticleSystem storm;
+    public GameObject rain;
+    public GameObject storm;
+
+    public ParticleSystem[] rainParticles;
+    public ParticleSystem[] stormParticles;
+
 
     public static WeatherSystem Sigton
     {
@@ -30,8 +33,16 @@ public class WeatherSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rain.Stop();
-        heavyRain.Stop();
+        rainParticles = rain.GetComponentsInChildren<ParticleSystem>();
+        stormParticles = storm.GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem rain in rainParticles)
+        {
+            rain.Stop();
+        }
+        foreach (ParticleSystem storm in stormParticles)
+        {
+            storm.Stop();
+        }
 
         GameEvents.Sigton.OnRainStart += () =>
         {
@@ -86,22 +97,35 @@ public class WeatherSystem : MonoBehaviour
 
     void startRain()
     {
-        rain.Play();
+        foreach (ParticleSystem rain in rainParticles)
+        {
+            rain.Play();
+        }
+        
     }
 
     void startStorm()
     {
-        heavyRain.Play();
+        foreach (ParticleSystem storm in stormParticles)
+        {
+            storm.Play();
+        }
     }
 
     void endRain()
     {
-        rain.Stop();
+        foreach (ParticleSystem rain in rainParticles)
+        {
+            rain.Stop();
+        }
     }
 
     void endStorm()
     {
-        heavyRain.Stop();
+        foreach (ParticleSystem storm in stormParticles)
+        {
+            storm.Stop();
+        }
     }
 }
 

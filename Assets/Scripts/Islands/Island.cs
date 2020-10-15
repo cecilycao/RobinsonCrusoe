@@ -47,9 +47,11 @@ public class Island : RestoreIslandSample
 
     private void Awake()
     {
+        /*
         Collider collider = activeIsland.GetComponent<Collider>();
         ColliderBridge cb = collider.gameObject.AddComponent<ColliderBridge>();
         cb.Initialize(this);
+        */
     }
 
     private void OnEnable()
