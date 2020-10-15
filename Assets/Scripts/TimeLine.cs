@@ -19,7 +19,6 @@ public class TimeLine : MonoBehaviour
         {
             time = _data.TimeCountdown;
             day = _data.DayCount;
-            Debug.Log(day + " " + time);
             foreach(TimeEvent e in events)
             {
                 if(e.day == day && e.time == time)

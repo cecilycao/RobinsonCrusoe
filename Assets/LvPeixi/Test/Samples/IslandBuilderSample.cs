@@ -13,11 +13,14 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 
     public void EndContact()
     {
-        Mediator.Sigton.EndInteract();
+        
+        //Mediator.Sigton.EndInteract();
     }
 
     public void EndInteract(object result)
     {
+        GameEvents.Sigton.onIslandCreated.Invoke();
+        IslandManager.Instance.createIsland();
         print("island build end interact with player, start build a new island");
     }
 

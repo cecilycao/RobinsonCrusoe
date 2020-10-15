@@ -43,8 +43,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.599937
-  m_Center: {x: 0.044944286, y: 0, z: -0.060343504}
+  m_Radius: 1.8282591
+  m_Center: {x: 0.018850207, y: 0, z: -0.027725935}
 --- !u!114 &2850052132706802024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7133911537286979601}
-        m_MethodName: StartInteractWithPlayer
+        m_MethodName: StartContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7133911537286979601}
-        m_MethodName: EndInteractWithPlayer
+        m_MethodName: EndContact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -273,6 +273,7 @@ MonoBehaviour:
   nearbyIslands: []
   activeIsland: {fileID: 7133911536132335610}
   inactiveIsland: {fileID: 7133911535156715253}
+  rainIntensity: 0
   IslandDamaged:
     m_PersistentCalls:
       m_Calls: []
