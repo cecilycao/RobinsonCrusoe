@@ -9,9 +9,12 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
     [SerializeField]
     TimeSystemModel timeModel = new TimeSystemModel();
 
+    #region//-----implemet interace-----
     public float DayCount { get => timeModel.dayCount.Value; }
     public float TimeCountdown { get => timeModel.timeCountdown.Value; }
     public bool IsDay { get => timeModel.isDay.Value; }
+    #endregion
+
 
     private void Awake()
     {
@@ -26,12 +29,11 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
 
         NightCountStream();
 
-        //OnDayStateChanged();
-
         SendTimeSystemInfoToGuiEventsStream();
 
+        OnDayStart();
     }
-
+    #region-----private methods-----
     void DayCountStream()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))
@@ -43,8 +45,8 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
             timeModel.timeCountdown.Value = Mathf.Clamp(timeModel.timeCountdown.Value, 0, timeModel.dayLastTime);
             if (timeModel.timeCountdown.Value <= 0)
             {
-                timeModel.isDay.Value = false;
-                timeModel.timeCountdown.Value = timeModel.nightLastTime;
+                //timeModel.isDay.Value = false;
+                //timeModel.timeCountdown.Value = timeModel.nightLastTime;
             }
         });
     }
@@ -106,4 +108,9 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
          }); 
     }
 
+    void OnDayStart()
+    {
+        timeModel.dayCount.Value++;
+    }
+    #endregion
 }

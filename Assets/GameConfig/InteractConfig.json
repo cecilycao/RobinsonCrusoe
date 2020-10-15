@@ -2,12 +2,12 @@
   {
     "Key": "positiveCollectTimeCost",
     "Value": 2.0,
-    "Description": null
+    "Description": "主动收集花费时间"
   },
   {
     "Key": "negativeCollectTimeCost",
     "Value": 1.0,
-    "Description": null
+    "Description": "被动收集花费时间"
   },
   {
     "Key": "addIslandTimeCost",
@@ -27,6 +27,36 @@
   {
     "Key": "eatFoodTimeCost",
     "Value": 1.0,
-    "Description": null
+    "Description": "吃食物花费时间"
+  },
+  {
+    "Key": "addIslandFatigueIncrease",
+    "Value": 5.0,
+    "Description": "新建浮岛疲劳值上升"
+  },
+  {
+    "Key": "restoreIslandFatigueIncrease",
+    "Value": 5.0,
+    "Description": "修复浮岛疲劳值上升"
+  },
+  {
+    "Key": "processFoodFatigeIncrease",
+    "Value": 5.0,
+    "Description": "加工食品疲劳值上升"
+  },
+  {
+    "Key": "positiveCollectFatigueIncrease",
+    "Value": 5.0,
+    "Description": "主动收集疲劳值上升"
+  },
+  {
+    "Key": "negativeCollectFatigueIncrease",
+    "Value": 5.0,
+    "Description": "被动收集疲劳值上升"
+  },
+  {
+    "Key": "eatFoodHungerIncrease",
+    "Value": -5.0,
+    "Description": "吃食物疲劳值上升"
   }
 ]

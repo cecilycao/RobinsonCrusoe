@@ -356,14 +356,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bf7c260f4c0cc3c40b59145481530df6, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 0
+    volume: 1
     playerOnAwake: 0
     loop: 0
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2fb1bc5c8af5f244296f9b5bacf27fb5, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 0
+    volume: 1
+    playerOnAwake: 0
+    loop: 0
+  - clip: {fileID: 8300000, guid: ba4996db16c59a44682282fc5e77dc39, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
     playerOnAwake: 0
     loop: 0
 --- !u!1 &4272658639566289372
@@ -498,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeModel:
-    dayLastTime: 25
+    dayLastTime: 10
     nightLastTime: 5
     isActive: 0
 --- !u!114 &2817710857732659498
