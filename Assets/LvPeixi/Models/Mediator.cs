@@ -45,6 +45,9 @@ public class Mediator : MonoBehaviour,IMediator
     {
         Sigton = this;
         Assert.IsNull(playerInteract, "Mediator.playerInteract is null");
+    }
+    private void Start()
+    {
         interactConfig = GameConfig.Singleton.InteractionConfig;
     }
     #endregion
@@ -192,6 +195,7 @@ public class Mediator : MonoBehaviour,IMediator
     }
     public void EndInteract()
     {
+        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
         GameEvents.Sigton.onInteractEnd();
     }
     /// <summary>

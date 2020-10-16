@@ -6,71 +6,89 @@ using UniRx;
 
 public class AudioManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class SoundInfo
+    private  Dictionary<string, AudioInfo> audioSourceDic = new Dictionary<string, AudioInfo>();
+    private  Queue<AudioSource> audioSourceTemplateRepo = new Queue<AudioSource>();
+
+    private static AudioManager instance;
+    public static AudioManager Singleton
     {
-        public AudioClip clip;
-        public AudioMixerGroup mixerGroup;
-        [Range(0,1)]
-        public float volume = 0.5f;
-        public bool playerOnAwake = false;
-        public bool loop = false;
+        get => instance;
+        set
+        {
+            if (instance == null)
+            {
+                instance = value;
+            }
+        }
     }
-    [SerializeField]
-    private List<SoundInfo> sounds;
-    private static Dictionary<string, AudioSource> audioSourceDic = new Dictionary<string, AudioSource>();
     private void Awake()
+    {
+        instance = this;
+    }
+    private void Start()
     {
         InitAM();
     }
     void InitAM()
     {
-        for (int i = 0; i < sounds.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
-            GameObject _obj = new GameObject(sounds[i].clip.name);
+            GameObject _obj = new GameObject("AudioSourceTemplate" + i);
             _obj.transform.SetParent(transform);
             AudioSource audio = _obj.AddComponent<AudioSource>();
-
-            audio.clip = sounds[i].clip;
-            audio.outputAudioMixerGroup = sounds[i].mixerGroup;
-            audio.volume = sounds[i].volume;
-            audio.playOnAwake = sounds[i].playerOnAwake;
-            audio.loop = sounds[i].loop;
-
-            audioSourceDic.Add(sounds[i].clip.name, audio);
+            audioSourceTemplateRepo.Enqueue(audio);
         }
     }
 
-    public static void PlayerAudio(string audioClipName)
+    public void PlayAudio(string audioClipName)
     {
-        bool containsKey = audioSourceDic.ContainsKey(audioClipName);
+        var _config = GameConfig.Singleton.SoundConfig;
+        bool containsKey = _config.ContainsKey(audioClipName);
         if (!containsKey)
         {
-            Debug.LogError("Failed to find the AudioClip name" + audioClipName + " check if the name is correct");
+            Debug.LogError("Failed to find the AudioClip named " + audioClipName + " check if the name is correct");
             return;
         }
+        AudioInfo _info = _config[audioClipName];
 
-        AudioSource _audio = audioSourceDic[audioClipName];
-        if (_audio.isPlaying)
+        if (audioSourceTemplateRepo.Count > 0)
         {
-            _audio.Stop();
-            _audio.Play();
+            AudioSource _audioSource = audioSourceTemplateRepo.Dequeue();
+
+            //-----set audio source-----
+            _audioSource.clip = _info.clip;
+            _audioSource.volume = _info.volume;
+            _audioSource.Play();
+            //-----enquene the audio source after finishing the play
+            Observable.Timer(System.TimeSpan.FromSeconds(_info.clip.length))
+                .First()
+                .Subscribe(x =>
+                {
+                    audioSourceTemplateRepo.Enqueue(_audioSource);
+                });
         }
-        else
+        else//if the audio source template is not enough then create a new one
         {
-            _audio.Play();
+            GameObject _obj = new GameObject("AudioSourceTemplate" + audioSourceTemplateRepo.Count);
+            _obj.transform.SetParent(transform);
+            AudioSource audio = _obj.AddComponent<AudioSource>();
+            audioSourceTemplateRepo.Enqueue(audio);
         }
     }
-
-    public static void PauseAudio(string audioClipName)
+    
+    public void PauseAudio()
     {
-        bool containsKey = audioSourceDic.ContainsKey(audioClipName);
-        if (!containsKey)
-        {
-            Debug.LogError("Failed to find the AudioClip name" + audioClipName + " check if the name is correct");
-            return;
-        }
-        AudioSource _audio = audioSourceDic[audioClipName];
-        _audio.Stop();
+
     }
+}
+/// <summary>
+/// 音频配置储存格式
+/// </summary>
+public struct AudioInfo
+{
+    public AudioClip clip;
+    public string mixerGroup;
+    public float volume;
+    public bool playerOnAwake;
+    public bool loop;
 }

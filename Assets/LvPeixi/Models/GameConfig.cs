@@ -4,16 +4,19 @@ using LitJson;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 
 public class GameConfig 
 {
     private static GameConfig config;
     private Dictionary<string, float> interactionConfig = new Dictionary<string, float>();
     private Dictionary<string, float> playerConfig = new Dictionary<string, float>();
+    private Dictionary<string, AudioInfo> soundConfig = new Dictionary<string, AudioInfo>();
+
     public Dictionary<string,float> InteractionConfig { get => interactionConfig; }
     public Dictionary<string, float> PlayerConfig => playerConfig;
-    int t = 0;
-   
+    public Dictionary<string, AudioInfo> SoundConfig => soundConfig;
+
     public static GameConfig Singleton
     {
         set
@@ -29,6 +32,8 @@ public class GameConfig
     {
         JsonToFloat(ref interactionConfig, "InteractConfig.json");
         JsonToFloat(ref playerConfig, "PlayerConfig.json");
+
+        JsonToSoundInfo();
     }
 
     /// <summary>
@@ -48,6 +53,32 @@ public class GameConfig
         {
             var _temp = (float)(double)v["Value"];
             _floatDic.Add(v["Key"].ToString(), _temp);
+        }
+    }
+
+    void JsonToSoundInfo()
+    {
+        string configJsonData = File.ReadAllText(Application.dataPath + "/GameConfig/AudioConfig.json");
+
+        JsonData _jsonData = JsonMapper.ToObject(configJsonData);
+        foreach (JsonData item in _jsonData)
+        {
+            //Debug.Log(item["ClipName"].ToString());
+            //Debug.Log(item["AudioMixerGroup"].ToString());
+            //Debug.Log((double)item["Volume"]);
+            //Debug.Log((bool)item["PlayerOnAwake"]);
+            //Debug.Log((bool)item["Loop"]);
+
+            AudioInfo _audioInfo = new AudioInfo();
+    
+            AudioClip _audioClip = Resources.Load<AudioClip>("Audios/" + item["ClipName"].ToString());
+            _audioInfo.clip = _audioClip;
+            _audioInfo.mixerGroup = item["AudioMixerGroup"].ToString();
+            _audioInfo.volume = (float)(double)item["Volume"];
+            _audioInfo.playerOnAwake = (bool)item["PlayerOnAwake"];
+            _audioInfo.loop = (bool)item["Loop"];
+
+            soundConfig.Add(item["ClipName"].ToString(), _audioInfo);
         }
     }
 }

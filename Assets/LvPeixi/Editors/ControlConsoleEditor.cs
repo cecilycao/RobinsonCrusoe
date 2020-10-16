@@ -11,6 +11,7 @@ public class ControlConsoleEditor : Editor
     bool showGuiTest;
     bool showPlayerTest;
     bool showGameEventTest;
+    bool showAudioTest;
     private void OnEnable()
     {
         control = (ControlConsole)target;
@@ -64,6 +65,15 @@ public class ControlConsoleEditor : Editor
             if (GUILayout.Button("onDayEnd.Invoke()"))
             {
                 GameEvents.Sigton.onDayEnd.Invoke();
+            }
+        }
+
+        showAudioTest = EditorGUILayout.Foldout(showAudioTest, "声音测试");
+        if (showAudioTest)
+        {
+            if (GUILayout.Button("声音测试"))
+            {
+                AudioManager.Singleton.PlayAudio("Interact_islandRestoring");
             }
         }
     }
