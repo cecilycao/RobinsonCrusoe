@@ -6,27 +6,45 @@ using UniRx;
 
 public class Diary : MonoBehaviour, IInteractable
 {
-
+    bool canWriteDiary = false;
+    bool diaryOpen = false;
+    public int maxFatigue = 100;
     public string InteractObjectType => "Diary";
-
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        var config = GameConfig.Singleton.InteractionConfig;
+        GUIEvents.Singleton.Fatigue
+            .Where(y => y == maxFatigue)
+            .Subscribe(x =>
+            {
+                Debug.Log("Can Write Diary now.");
+                canWriteDiary = true;
+            });
     }
 
 
     public void OnDiaryOpen()
     {
-        //todo: can only do this(write diary) when day end
-        DiaryManager.Instance.createNewPage();
-
+        if (canWriteDiary)
+        {
+            
+            DiaryManager.Instance.createNewPage();
+            canWriteDiary = false;
+            diaryOpen = true;
+        }
     }
 
     public void OnDiaryClose()
     {
-        DiaryManager.Instance.closeDiary();
+        if (diaryOpen)
+        {
+            DiaryManager.Instance.closeDiary();
+            Debug.Log("Finish writing diary, one day end");
+            GameEvents.Sigton.onDayEnd.Invoke();
+            diaryOpen = false;
+        }
     }
 
     public void StartContact()
@@ -37,6 +55,7 @@ public class Diary : MonoBehaviour, IInteractable
     public void EndContact()
     {
         OnDiaryClose();
+        
     }
 
     public void StartInteract()
