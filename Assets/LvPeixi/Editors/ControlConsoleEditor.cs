@@ -60,6 +60,11 @@ public class ControlConsoleEditor : Editor
             {
                 GameEvents.Sigton.onDayStart.Invoke();
             }
+
+            if (GUILayout.Button("onDayEnd.Invoke()"))
+            {
+                GameEvents.Sigton.onDayEnd.Invoke();
+            }
         }
     }
 }

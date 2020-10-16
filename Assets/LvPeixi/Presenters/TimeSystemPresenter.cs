@@ -32,6 +32,8 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
         SendTimeSystemInfoToGuiEventsStream();
 
         OnDayStart();
+
+        OnDayEnd();
     }
     #region-----private methods-----
     void DayCountStream()
@@ -45,8 +47,7 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
             timeModel.timeCountdown.Value = Mathf.Clamp(timeModel.timeCountdown.Value, 0, timeModel.dayLastTime);
             if (timeModel.timeCountdown.Value <= 0)
             {
-                //timeModel.isDay.Value = false;
-                //timeModel.timeCountdown.Value = timeModel.nightLastTime;
+               
             }
         });
     }
@@ -62,9 +63,7 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
            timeModel.timeCountdown.Value = Mathf.Clamp(timeModel.timeCountdown.Value, 0, timeModel.dayLastTime);
            if (timeModel.timeCountdown.Value <= 0)
            {
-               timeModel.isDay.Value = true;
-               timeModel.dayCount.Value++;
-               timeModel.timeCountdown.Value = timeModel.dayLastTime;
+               GameEvents.Sigton.onDayStart();
            }
        });
     }
@@ -110,7 +109,21 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
 
     void OnDayStart()
     {
-        timeModel.dayCount.Value++;
+        GameEvents.Sigton.onDayStart += () =>
+        {
+            timeModel.dayCount.Value++;
+            timeModel.isDay.Value = true;
+            timeModel.timeCountdown.Value = timeModel.dayLastTime;
+        };
+        
+    }
+    void OnDayEnd()
+    {
+        GameEvents.Sigton.onDayEnd += () =>
+        {
+            timeModel.isDay.Value = false;
+            timeModel.timeCountdown.Value = timeModel.nightLastTime;
+        };
     }
     #endregion
 }

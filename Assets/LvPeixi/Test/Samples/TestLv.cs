@@ -7,6 +7,7 @@ using UniRx;
 
 public class TestLv : MonoBehaviour
 {
+    IDisposable test;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,15 @@ public class TestLv : MonoBehaviour
             .Subscribe(x =>
             {
                 ///执行代码
+            });
+
+  
+
+        Observable.EveryUpdate()
+            .Where(x => Input.GetKeyDown(KeyCode.T))
+            .Subscribe(x =>
+            {
+                
             });
     }
 }

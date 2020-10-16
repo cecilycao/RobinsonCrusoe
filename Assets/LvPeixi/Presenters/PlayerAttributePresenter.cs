@@ -8,7 +8,8 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     PlayerAttributeModel model = new PlayerAttributeModel();
 
     bool isAccmulatingFatigue = false;
-
+    IDisposable onAccumulateComplete = null;
+    IDisposable accumulateFatigue = null;
     #region//Property Block
     public ReactiveProperty<int> Fatigue
     {
@@ -38,19 +39,23 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     {
         #region-----When time is out, start to accumulate fatigue
         GameEvents.Sigton.timeSystem
-            .Where(y => y.TimeCountdown == 0&& !isAccmulatingFatigue )
+            .Delay(TimeSpan.FromSeconds(1))
+            .Where(y => y.TimeCountdown == 0 && !isAccmulatingFatigue && y.IsDay)
             .Subscribe(x =>
             {
+                print(x.IsDay);
                 AccumulateFatigue();
             });
         #endregion
 
         OnDayStart();
+
+        OnDayEnd();
     }
     void AccumulateFatigue()
     {
         isAccmulatingFatigue = true;
-        IDisposable accumulateFatigue = null;
+        print("is accumulating fatigue");
         int _fatigueAccmuSpeed = (int)GameConfig.Singleton.PlayerConfig["fatigueIncreaseWhenTimeOut"];
 
         accumulateFatigue = Observable.Interval(TimeSpan.FromSeconds(1))
@@ -65,8 +70,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
                 }
             }
             );
-
-        model.currentFatigue
+        onAccumulateComplete = model.currentFatigue
             .Where(x => x == model.ceilingFatigue)
             .Delay(TimeSpan.FromSeconds(1))
             .First()
@@ -84,6 +88,24 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             var _fatigeFloorIncrease = (int)GameConfig.Singleton.PlayerConfig["fatigueInceasePerDay"];
             model.floorFatige += _fatigeFloorIncrease;
             model.currentFatigue.Value = model.floorFatige;
+        };
+    }
+
+    void OnDayEnd()
+    {
+        GameEvents.Sigton.onDayEnd += () =>
+        {
+            isAccmulatingFatigue = false;
+            model.currentFatigue.Value = 0;
+
+            if (onAccumulateComplete != null)
+            {
+                onAccumulateComplete.Dispose();
+            }
+            if (accumulateFatigue != null)
+            {
+                accumulateFatigue.Dispose();
+            }
         };
     }
 }
