@@ -25,7 +25,7 @@ Material:
   m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 2500
   stringTagMap:
     RenderType: TransparentCutout
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 1168fa7a9fb6bf843ab8b9addb1d8bed, type: 3}
+        m_Texture: {fileID: 2800000, guid: 50a588fa3784e29469a86b881996841d, type: 3}
         m_Scale: {x: 0.25, y: 0.5}
         m_Offset: {x: 0.75, y: 0}
     - _BumpMap:
@@ -46,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1168fa7a9fb6bf843ab8b9addb1d8bed, type: 3}
+        m_Texture: {fileID: 2800000, guid: 50a588fa3784e29469a86b881996841d, type: 3}
         m_Scale: {x: 0.25, y: 0.5}
         m_Offset: {x: 0.75, y: 0}
     - _MetallicGlossMap:
@@ -65,7 +65,7 @@ Material:
     - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 1
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.024
     - _DstBlend: 0
     - _EnvironmentReflections: 1
