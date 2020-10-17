@@ -12,13 +12,15 @@ public class DiaryManager : MonoBehaviour
 
     
     public GameObject DiaryPanel;
+    public Animator JournalAnimator;
     public GameObject DiaryUI;
     public GameObject previousButton;
     public GameObject nextButton;
     public Image diaryUIImg;
     public Text dateText;
     public Text WeatherText;
-    public Text contentText;
+    public Text contentTextLeft;
+    public Text contentTextRight;
 
     List<DiaryPage> pageList = new List<DiaryPage>();
     int currentShowingIndex = 0;
@@ -88,6 +90,7 @@ public class DiaryManager : MonoBehaviour
 
         DiaryPanel.SetActive(false);
         DiaryUI.SetActive(false);
+        JournalAnimator.gameObject.SetActive(false);
 
     }
 
@@ -116,6 +119,18 @@ public class DiaryManager : MonoBehaviour
     }
 
     public void showDiary()
+    {
+        AssertExtension.NotNullRun(GameEvents.Sigton.OnDiaryStart, () =>
+        {
+            GameEvents.Sigton.OnDiaryStart.Invoke();
+        });
+        
+        JournalAnimator.gameObject.SetActive(true);
+        JournalAnimator.SetTrigger("OpenJournal");
+        
+    }
+
+    public void showContentAfterOpen()
     {
         DiaryPanel.SetActive(true);
         currentShowingIndex = pageList.Count - 1;
@@ -148,16 +163,22 @@ public class DiaryManager : MonoBehaviour
     void fillPgae(DiaryPage currentPage)
     {
         dateText.text = currentPage.getDate();
-        contentText.text = currentPage.getContent();
+        contentTextLeft.text = currentPage.getContentLeft();
+        contentTextRight.text = currentPage.getContentRight();
         WeatherText.text = currentPage.getWeather();
        
     }
 
     public void closeDiary()
     {
-        //GameEvents.Sigton.OnDiaryEnd.Invoke();
         DiaryPanel.SetActive(false);
+        JournalAnimator.gameObject.SetActive(false);
+        AssertExtension.NotNullRun(GameEvents.Sigton.OnDiaryEnd, () =>
+        {
+            GameEvents.Sigton.OnDiaryEnd.Invoke();
+        });
     }
+
 
     public void previousPage()
     {
@@ -240,9 +261,14 @@ public class DiaryPage
         return eventContent;
     }
 
-    public string getContent()
+    public string getContentLeft()
     {
-        return getFixedContentHead() + "\n" + getEventContent() + "\n" + getFixedContentFoot();
+        return getFixedContentHead();
+    }
+
+    public string getContentRight()
+    {
+        return getFixedContentFoot();
     }
 }
 
