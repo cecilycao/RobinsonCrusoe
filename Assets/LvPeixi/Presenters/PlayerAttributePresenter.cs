@@ -43,7 +43,6 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             .Where(y => y.TimeCountdown == 0 && !isAccmulatingFatigue && y.IsDay)
             .Subscribe(x =>
             {
-                print(x.IsDay);
                 AccumulateFatigue();
             });
         #endregion
