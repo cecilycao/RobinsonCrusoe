@@ -175,8 +175,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_A271762B: {r: 0, g: 0.067573525, b: 0.26415092, a: 0.90588236}
-    - Color_AFFD055F: {r: 0.7454045, g: 0.7454045, b: 0.7454045, a: 1}
-    - Color_E0824245: {r: 0.41985583, g: 0.7772397, b: 0.8018868, a: 0.41960785}
+    - Color_AFFD055F: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+    - Color_E0824245: {r: 0.21960784, g: 0.4392157, b: 0.4392157, a: 1}
     - _BASE_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -184,13 +184,13 @@ Material:
     - _DeepWater: {r: 0.3537736, g: 0.8167443, b: 1, a: 0.46666667}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LightColor: {r: 0.7454045, g: 0.7454045, b: 0.7454045, a: 1}
-    - _OceanColor: {r: 0.090196066, g: 0.5803921, b: 0.57254887, a: 0.78431374}
+    - _LightColor: {r: 0.3443396, g: 0.98012996, b: 1, a: 1}
+    - _OceanColor: {r: 0, g: 0.29492816, b: 0.3137255, a: 0.78431374}
     - _Ocean_Dir_Speed: {r: 1, g: 1, b: 0.005, a: 0}
     - _Offset: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.42653078, g: 0.55106723, b: 0.6698113, a: 1}
-    - _ShadowOffset: {r: 0.01, g: 0.01, b: 0, a: 0}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShadowOffset: {r: 0, g: 0, b: 0, a: 0}
     - _ShallowWater: {r: 0, g: 1, b: 0.850698, a: 0.98039216}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WaterColor: {r: 0, g: 0.6519661, b: 1, a: 0.6392157}
