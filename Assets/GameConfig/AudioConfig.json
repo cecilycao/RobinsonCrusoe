@@ -5,7 +5,7 @@
     "Volume": 1.0,
     "PlayerOnAwake": false,
     "Loop": false,
-    "PS": null
+    "PS": "修改完Excel后务必使用ExcelTool"
   },
   {
     "ClipName": "GameEvent_stormComing",
@@ -80,7 +80,7 @@
     "PS": null
   },
   {
-    "ClipName": "Player_FatigueValueStateChanged",
+    "ClipName": "Player_fatigueValueIncreased",
     "AudioMixerGroup": "Player",
     "Volume": 1.0,
     "PlayerOnAwake": false,
@@ -88,7 +88,7 @@
     "PS": null
   },
   {
-    "ClipName": "Player_hungerValueStateChanged",
+    "ClipName": "Player_hungerValueIncreased",
     "AudioMixerGroup": "Player",
     "Volume": 1.0,
     "PlayerOnAwake": false,

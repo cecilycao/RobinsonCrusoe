@@ -21,10 +21,6 @@ public class FishingGameView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Assert.IsNotNull(back);
-        Assert.IsNotNull(pointArea);
-        Assert.IsNotNull(pointers);
-
         GUIEvents.Singleton.PlayerStartFishing
             .Subscribe(x =>
             {

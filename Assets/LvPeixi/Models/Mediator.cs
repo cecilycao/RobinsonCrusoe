@@ -348,6 +348,7 @@ public class Mediator : MonoBehaviour,IMediator
                 {
                     GameEvents.Sigton.onInteractEnd();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
+                    AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                     theEventCompleteProgress.Dispose();
                 });
 
@@ -423,6 +424,7 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
                         GameEvents.Sigton.onInteractEnd();
+                        AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                         //foodProcess.EndInteract(true);
                         theEventCompleteProgress.Dispose();
                     });
@@ -461,6 +463,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    AudioManager.Singleton.PlayAudio("Interact_islandRestoring");
                     island.StartInteract();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(restoreIslandCostTime);
                     island.EndInteract(true);
@@ -473,23 +476,28 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    AudioManager.Singleton.PauseAudio("Interact_islandRestoring");
                     int fatigueIncress = (int)interactConfig["restoreIslandFatigueIncrease"];
                     playerAttribute.Fatigue.Value += fatigueIncress;
                     inventory.BuildingMaterial.Value -= island.MaterialCost;
+                    AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                     GameEvents.Sigton.onInteractEnd();
                     island.EndInteract(true);
                 });
-            
-            InputSystem.Singleton.OnInteractBtnReleased
+
+            IDisposable btnReleasedEvent = null;
+            btnReleasedEvent = InputSystem.Singleton.OnInteractBtnReleased
                 .First()
                 .Subscribe(x =>
                 {
+                    AudioManager.Singleton.PauseAudio("Interact_islandRestoring");
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
                 IsAtInteractState = false;
+                btnReleasedEvent.Dispose();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
             };
         }

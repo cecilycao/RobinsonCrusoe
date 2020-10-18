@@ -27,8 +27,6 @@ public class RestoreIslandSample : MonoBehaviour,IInteractableIsland
 
     public virtual void EndInteract(object result)
     {
-        print("play island restore animation");
+       
     }
-
-   
 }

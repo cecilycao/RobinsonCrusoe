@@ -71,9 +71,14 @@ public class ControlConsoleEditor : Editor
         showAudioTest = EditorGUILayout.Foldout(showAudioTest, "声音测试");
         if (showAudioTest)
         {
-            if (GUILayout.Button("声音测试"))
+            if (GUILayout.Button("声音播放测试"))
             {
                 AudioManager.Singleton.PlayAudio("Interact_islandRestoring");
+            }
+
+            if (GUILayout.Button("声音停止测试"))
+            {
+                AudioManager.Singleton.PauseAudio("Interact_islandRestoring");
             }
         }
     }

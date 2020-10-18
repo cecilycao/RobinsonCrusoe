@@ -7,8 +7,8 @@ using UniRx;
 public class AudioManager : MonoBehaviour
 {
     private  Dictionary<string, AudioInfo> audioSourceDic = new Dictionary<string, AudioInfo>();
-    private  Queue<AudioSource> audioSourceTemplateRepo = new Queue<AudioSource>();
-
+    private  Queue<AudioSource> audioSourceQueue = new Queue<AudioSource>();
+    private Queue<AudioSource> audioPlayingQueue = new Queue<AudioSource>();
     private static AudioManager instance;
     public static AudioManager Singleton
     {
@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
             GameObject _obj = new GameObject("AudioSourceTemplate" + i);
             _obj.transform.SetParent(transform);
             AudioSource audio = _obj.AddComponent<AudioSource>();
-            audioSourceTemplateRepo.Enqueue(audio);
+            audioSourceQueue.Enqueue(audio);
         }
     }
 
@@ -51,34 +51,42 @@ public class AudioManager : MonoBehaviour
         }
         AudioInfo _info = _config[audioClipName];
 
-        if (audioSourceTemplateRepo.Count > 0)
+        if (audioSourceQueue.Count > 0)
         {
-            AudioSource _audioSource = audioSourceTemplateRepo.Dequeue();
+            AudioSource _audioSource = audioSourceQueue.Dequeue();
 
             //-----set audio source-----
             _audioSource.clip = _info.clip;
             _audioSource.volume = _info.volume;
             _audioSource.Play();
+            audioPlayingQueue.Enqueue(_audioSource);
             //-----enquene the audio source after finishing the play
             Observable.Timer(System.TimeSpan.FromSeconds(_info.clip.length))
                 .First()
                 .Subscribe(x =>
                 {
-                    audioSourceTemplateRepo.Enqueue(_audioSource);
+                    _audioSource = audioPlayingQueue.Dequeue();
+                    audioSourceQueue.Enqueue(_audioSource);
                 });
         }
         else//if the audio source template is not enough then create a new one
         {
-            GameObject _obj = new GameObject("AudioSourceTemplate" + audioSourceTemplateRepo.Count);
+            GameObject _obj = new GameObject("AudioSourceTemplate" + audioSourceQueue.Count);
             _obj.transform.SetParent(transform);
             AudioSource audio = _obj.AddComponent<AudioSource>();
-            audioSourceTemplateRepo.Enqueue(audio);
+            audioSourceQueue.Enqueue(audio);
         }
     }
     
-    public void PauseAudio()
+    public void PauseAudio(string clipName)
     {
-
+        foreach (AudioSource item in audioPlayingQueue)
+        {
+            if (item.clip.name == clipName)
+            {
+                item.Stop();
+            }   
+        }
     }
 }
 /// <summary>
