@@ -72,8 +72,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8084263207977058094}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.01, y: 0, z: 26.6}
+  m_LocalRotation: {x: -0, y: -0.94110674, z: -0, w: 0.3381098}
+  m_LocalPosition: {x: -26.5, y: 0, z: -16.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8084263208142330580}
@@ -85,7 +85,7 @@ Transform:
   - {fileID: 1383075886135705936}
   m_Father: {fileID: 8084263207798630343}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -140.47601, z: 0}
 --- !u!114 &8084263207977058095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
   coreIslands: []
   normalIslands: []
   NPCName: NPC
-  appearPosition: {x: 23, y: 0, z: -10}
-  combinedPosition: {x: 3.01, y: 0, z: 26.6}
+  appearPosition: {x: -26.5, y: 0, z: -43.7}
+  combinedPosition: {x: -26.5, y: 0, z: -16.8}
 --- !u!1 &8084263209286751931
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,8 +127,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8084263209286751931}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.94110674, z: -0, w: 0.3381098}
+  m_LocalPosition: {x: -7.1, y: 0, z: 3.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1383075884896497851}
@@ -146,7 +146,7 @@ Transform:
   - {fileID: 1383075885356757860}
   m_Father: {fileID: 8084263207798630343}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -140.47601, z: 0}
 --- !u!114 &8084263209286751928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,17 +186,17 @@ PrefabInstance:
     - target: {fileID: 1605683130355095612, guid: 53b36a7dbe9079e409336ef240685fe6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.53
+      value: -10.39
       objectReference: {fileID: 0}
     - target: {fileID: 1605683130355095612, guid: 53b36a7dbe9079e409336ef240685fe6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 1605683130355095612, guid: 53b36a7dbe9079e409336ef240685fe6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.69
+      value: -3.4
       objectReference: {fileID: 0}
     - target: {fileID: 1605683130355095612, guid: 53b36a7dbe9079e409336ef240685fe6,
         type: 3}
@@ -526,6 +526,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -769,6 +774,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -912,6 +922,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -1055,6 +1070,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -1203,6 +1223,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -1857,6 +1882,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -1983,6 +2013,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -2131,6 +2166,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size
@@ -2542,6 +2582,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 7133911537286979600, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: IslandDamaged.m_PersistentCalls.m_Calls.Array.size

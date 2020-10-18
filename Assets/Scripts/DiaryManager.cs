@@ -89,7 +89,6 @@ public class DiaryManager : MonoBehaviour
         //todo：talk to npc
 
         DiaryPanel.SetActive(false);
-        DiaryUI.SetActive(false);
         JournalAnimator.gameObject.SetActive(false);
 
     }
@@ -134,7 +133,10 @@ public class DiaryManager : MonoBehaviour
     {
         DiaryPanel.SetActive(true);
         currentShowingIndex = pageList.Count - 1;
-        displayContent(currentShowingIndex);
+        if (currentShowingIndex >= 0)
+        {
+            displayContent(currentShowingIndex);
+        }
     }
 
     void displayContent(int pageIndex)
@@ -228,7 +230,7 @@ public class DiaryPage
 
     public string getDate()
     {
-        return day + "";
+        return "Day: " + day + "";
     }
 
     public string getWeather()

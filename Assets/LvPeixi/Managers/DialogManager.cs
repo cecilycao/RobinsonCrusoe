@@ -8,8 +8,11 @@ using Fungus;
 
 public class DialogManager : MonoBehaviour
 {
-    Flowchart flowchart;
     static DialogManager _instance;
+
+    int day = 0;
+    int dialogCount = 0;
+
     public static DialogManager Singelton
     {
         get => _instance;
@@ -21,18 +24,39 @@ public class DialogManager : MonoBehaviour
             }
         }
     }
+
+    private void Start()
+    {
+        GameEvents.Sigton.timeSystem
+        .Subscribe(_data =>
+        {
+            day = (int)_data.DayCount;
+            
+        });
+    }
+
     private void Awake()
     {
         _instance = this;
-        flowchart = GetComponentInChildren<Flowchart>();
-        Assert.IsNotNull(flowchart);
+        
     }
     public void StartDialog(string npc)
     {
-        flowchart.SendFungusMessage(npc);
+        dialogCount++;
+        //todo: get flowchart by npc name
+        Flowchart flowchart = GetComponentInChildren<Flowchart>();
+        Assert.IsNotNull(flowchart);
+        sendMessage(flowchart);
     }
     public void EndDialog()
     {
         Mediator.Sigton.EndDialog();
+    }
+
+    public void sendMessage(Flowchart flowchart)
+    {
+        string message = day + "-" + dialogCount;
+        Debug.Log("send to flowchart " + message);
+        flowchart.SendFungusMessage(message);
     }
 }
