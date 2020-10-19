@@ -1261,16 +1261,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1461494391302230647, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
+    - target: {fileID: 4249965680098807923, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
-      propertyPath: timeModel.dayLastTime
-      value: 120
+      propertyPath: endIntensity
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3454534946449024442, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
+    - target: {fileID: 4249965680098807923, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
-      propertyPath: timeModel.dayLastTime
-      value: 5
+      propertyPath: endRotation.x
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4249965680098807923, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
+        type: 3}
+      propertyPath: endRotation.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249965680098807923, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
+        type: 3}
+      propertyPath: endRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249965680098807923, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
+        type: 3}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 1655212377}
+    - target: {fileID: 4249965680098807923, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
+        type: 3}
+      propertyPath: dirLight
+      value: 
+      objectReference: {fileID: 1655212377}
     - target: {fileID: 8675821203183731929, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
       propertyPath: m_LocalPosition.x

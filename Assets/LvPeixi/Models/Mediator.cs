@@ -402,6 +402,7 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         foodProcess.StartInteract();
                         GUIEvents.Singleton.InteractionProgressBar.OnNext(processFoodCostTime);
+                        AudioManager.Singleton.PlayAudio("Interact_processingFood");
                         GameEvents.Sigton.onInteractEnd();
                     });
 
@@ -414,6 +415,7 @@ public class Mediator : MonoBehaviour,IMediator
                         inventory.FoodMaterial.Value -= foodProcess.Cost;
                         int fatigueIncrease = (int)interactConfig["processFoodFatigeIncrease"];
                         playerAttribute.Fatigue.Value += fatigueIncrease;
+                        AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                         foodProcess.EndInteract(true);
                         GameEvents.Sigton.onInteractEnd();
                     });
@@ -424,7 +426,7 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
                         GameEvents.Sigton.onInteractEnd();
-                        AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
+                        AudioManager.Singleton.PauseAudio("Interact_processingFood");
                         //foodProcess.EndInteract(true);
                         theEventCompleteProgress.Dispose();
                     });
