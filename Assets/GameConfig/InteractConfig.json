@@ -2,61 +2,103 @@
   {
     "Key": "positiveCollectTimeCost",
     "Value": 2.0,
-    "Description": "主动收集花费时间"
+    "Description": "主动收集花费时间",
+    "PS": "修改后使用ExcelTool"
   },
   {
     "Key": "negativeCollectTimeCost",
     "Value": 1.0,
-    "Description": "被动收集花费时间"
+    "Description": "被动收集花费时间",
+    "PS": null
   },
   {
     "Key": "addIslandTimeCost",
     "Value": 3.0,
-    "Description": "新增浮岛用时"
+    "Description": "新增浮岛用时",
+    "PS": null
   },
   {
     "Key": "restoreIslandTimeCost",
     "Value": 2.0,
-    "Description": "修复浮岛用时"
+    "Description": "修复浮岛用时",
+    "PS": null
   },
   {
     "Key": "processFoodTimeCost",
     "Value": 2.0,
-    "Description": "加工食物用时"
+    "Description": "加工食物用时",
+    "PS": null
   },
   {
     "Key": "eatFoodTimeCost",
     "Value": 1.0,
-    "Description": "吃食物花费时间"
+    "Description": "吃食物花费时间",
+    "PS": null
   },
   {
     "Key": "addIslandFatigueIncrease",
     "Value": 5.0,
-    "Description": "新建浮岛疲劳值上升"
+    "Description": "新建浮岛疲劳值上升",
+    "PS": null
   },
   {
     "Key": "restoreIslandFatigueIncrease",
     "Value": 5.0,
-    "Description": "修复浮岛疲劳值上升"
+    "Description": "修复浮岛疲劳值上升",
+    "PS": null
   },
   {
     "Key": "processFoodFatigeIncrease",
     "Value": 5.0,
-    "Description": "加工食品疲劳值上升"
+    "Description": "加工食品疲劳值上升",
+    "PS": null
   },
   {
     "Key": "positiveCollectFatigueIncrease",
     "Value": 5.0,
-    "Description": "主动收集疲劳值上升"
+    "Description": "主动收集疲劳值上升",
+    "PS": null
   },
   {
     "Key": "negativeCollectFatigueIncrease",
     "Value": 5.0,
-    "Description": "被动收集疲劳值上升"
+    "Description": "被动收集疲劳值上升",
+    "PS": null
   },
   {
     "Key": "eatFoodHungerIncrease",
     "Value": -5.0,
-    "Description": "吃食物疲劳值上升"
+    "Description": "吃食物疲劳值上升",
+    "PS": null
+  },
+  {
+    "Key": "fishGame_pointerMoveSpeed",
+    "Value": 10.0,
+    "Description": "小游戏指针移动速度",
+    "PS": null
+  },
+  {
+    "Key": "fishGame_pointAreaLengthMax",
+    "Value": 80.0,
+    "Description": "pointAreaLength的随机最大长度",
+    "PS": "pointArea见钓鱼小游戏图示.vsdx"
+  },
+  {
+    "Key": "fishGame_pointAreaLengthMin",
+    "Value": 20.0,
+    "Description": "pointAreaLength的随机最小长度",
+    "PS": "pointArea见钓鱼小游戏图示.vsdx"
+  },
+  {
+    "Key": "fishGame_diceIntervalTime",
+    "Value": 2.0,
+    "Description": "掷骰子的时间间隔",
+    "PS": "见钓鱼小游戏图示.vsdx"
+  },
+  {
+    "Key": "fishGame_diceTurnReusltPro",
+    "Value": 30.0,
+    "Description": "掷骰子结果为转向的概率",
+    "PS": "见钓鱼小游戏图示.vsdx"
   }
 ]

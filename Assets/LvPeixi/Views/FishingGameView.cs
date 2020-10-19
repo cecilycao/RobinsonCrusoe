@@ -14,24 +14,25 @@ public class FishingGameView : MonoBehaviour
     [SerializeField]
     GameObject pointers;
     [SerializeField]
-    float pointerMoveSpeed = 10;
+    private float pointerMoveSpeed = 10;
+
 
     System.IDisposable moveLoopMicrotine1;
     System.IDisposable moveLoopMicrotine2;
+    System.IDisposable randomMovePointer;
+
+    Dictionary<string,float> config;
     // Start is called before the first frame update
     void Start()
     {
-        Assert.IsNotNull(back);
-        Assert.IsNotNull(pointArea);
-        Assert.IsNotNull(pointers);
+        //-----get game config-----
+        config = GameConfig.Singleton.InteractionConfig;
 
         GUIEvents.Singleton.PlayerStartFishing
             .Subscribe(x =>
             {
                 RunFishGame(true);
             });
-            
-        
     }
     void ShowChildren(bool active)
     {
@@ -43,6 +44,7 @@ public class FishingGameView : MonoBehaviour
     {
         moveLoopMicrotine1.Dispose();
         moveLoopMicrotine2.Dispose();
+        randomMovePointer.Dispose();
         Observable.Timer(System.TimeSpan.FromSeconds(1))
             .First()
             .Subscribe(x =>
@@ -54,12 +56,14 @@ public class FishingGameView : MonoBehaviour
     {
         trans.localPosition = startPos;
         Vector3 target = endPos;
+        float _pointerMoveSpeed = config["fishGame_pointerMoveSpeed"];
+
         moveLoopMicrotine1 = Observable.EveryFixedUpdate()
             .Where(x => target == endPos)
             .Subscribe(x =>
             {
                 var dis_vec = target - trans.localPosition;
-                trans.localPosition += dis_vec.normalized * pointerMoveSpeed;
+                trans.localPosition += dis_vec.normalized * _pointerMoveSpeed;
                 float dis = dis_vec.sqrMagnitude;
                 if (dis <= 0.05f)
                 {
@@ -81,6 +85,27 @@ public class FishingGameView : MonoBehaviour
                     target = endPos;
                 }
             });
+
+        float _diceIntervalTime = config["fishGame_diceIntervalTime"];
+        float _diceTurnReusltPro = config["fishGame_diceTurnReusltPro"];
+
+        randomMovePointer = Observable.Interval(System.TimeSpan.FromSeconds(_diceIntervalTime))
+            .Subscribe(x =>
+            {
+                //-----dice-----
+                int _dice = Random.Range(1, 100);
+                if (_dice<= _diceTurnReusltPro)
+                {
+                    if (target == endPos)
+                    {
+                        target = startPos;
+                    }
+                    else
+                    {
+                        target = endPos;
+                    }
+                }
+            });          
     }
     void JudgePlayerScore(RectTransform pointer,Vector3 pointAreaStartPos,Vector3 pointAreaEndPos)
     {
@@ -92,6 +117,7 @@ public class FishingGameView : MonoBehaviour
                 if (pointer_x>pointAreaStartPos.x && pointer_x< pointAreaEndPos.x)
                 {
                     GUIEvents.Singleton.PlayerEndFishing.OnNext(true);
+                    AudioManager.Singleton.PlayAudio("Interact_positiveCollectResourceComplete");
                 }
                 else
                 {
@@ -107,7 +133,9 @@ public class FishingGameView : MonoBehaviour
         float _backLength = _backTrans.sizeDelta.x;
         RectTransform _pointAreaTrans = pointArea.GetComponent<RectTransform>();
         //-----set point area-----
-        float _pointAreaLength = Random.Range(20, 80);
+        float _pointAreaLengthMax = config["fishGame_pointAreaLengthMax"];
+        float _pointAreaLengthMin = config["fishGame_pointAreaLengthMin"];
+        float _pointAreaLength = Random.Range(_pointAreaLengthMin, _pointAreaLengthMax);
         var _pointAreaSize = _pointAreaTrans.sizeDelta;
         _pointAreaSize.x = _pointAreaLength;
         _pointAreaTrans.sizeDelta = _pointAreaSize;

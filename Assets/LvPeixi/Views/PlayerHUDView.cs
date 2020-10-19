@@ -24,6 +24,7 @@ public class PlayerHUDView : MonoBehaviour
             .Subscribe(x =>
             {
                 interactTipMsg.text = x;
+                AudioManager.Singleton.PlayAudio("Interact_startContactTipSound");
             });
 
         //监视玩家疲劳值
