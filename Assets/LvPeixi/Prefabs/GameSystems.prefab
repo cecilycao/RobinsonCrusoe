@@ -381,6 +381,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogManageSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 2383489288659386790, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: flowcharts.Array.data[0].NPCcomponent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2383489288659386790, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: flowcharts.Array.data[0].flowchart
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2383489288659386790, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: SelfDialogPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2383489288659386790, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: SelfDialogPlaceHolder
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7181332804456593563, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: m_LocalPosition.x
