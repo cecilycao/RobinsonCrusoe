@@ -7,6 +7,7 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
 {
     [SerializeField]
     NPCModel npcModel = new NPCModel();
+    public GameObject Icon;
     public string InteractObjectType { get => npcModel.interactObjectType; }
     public string NPCName { get => npcModel.npcName; }
     public int preference = 0;
@@ -29,4 +30,15 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     {
         
     }
+    public void ShowIcon()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        Icon.SetActive(true);
+    }
+
+    public void HideIcon()
+    {
+        Icon.SetActive(false);
+    }
+
 }

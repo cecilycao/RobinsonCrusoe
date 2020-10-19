@@ -65,4 +65,16 @@ public class Diary : MonoBehaviour, IInteractable
     public void EndInteract(object result)
     {
     }
+
+    public void ShowIcon()
+    {
+        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        //Icon.SetActive(true);
+    }
+
+    public void HideIcon()
+    {
+        //Icon.SetActive(false);
+    }
+
 }

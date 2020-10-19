@@ -15,6 +15,7 @@ public class Island : RestoreIslandSample
     public GameObject activeIsland;
     public GameObject inactiveIsland;
     public int rainIntensity = 0;
+    public GameObject Icon;
     //temp
     public UnityEvent IslandDamaged;
     public UnityEvent IslandDestroyed;
@@ -293,6 +294,18 @@ public class Island : RestoreIslandSample
         repair();
         print("play island restore animation");
     }
+
+    public override void ShowIcon()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        Icon.SetActive(true);
+    }
+
+    public override void HideIcon()
+    {
+        Icon.SetActive(false);
+    }
+
 }
 
 public enum IslandCondition

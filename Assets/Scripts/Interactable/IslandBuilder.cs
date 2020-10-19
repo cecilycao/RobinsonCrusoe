@@ -24,7 +24,7 @@ public class IslandBuilder : MonoBehaviour, IInteractable
         if (true)
         {
             //向Mediator通知要进行的互动行为
-            Mediator.Sigton.StartAddIsland(this);
+            //Mediator.Sigton.StartAddIsland(this);
         }
     }
 
@@ -42,4 +42,16 @@ public class IslandBuilder : MonoBehaviour, IInteractable
     {
         throw new System.NotImplementedException();
     }
+
+    public void ShowIcon()
+    {
+        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        //Icon.SetActive(true);
+    }
+
+    public void HideIcon()
+    {
+        //Icon.SetActive(false);
+    }
+
 }

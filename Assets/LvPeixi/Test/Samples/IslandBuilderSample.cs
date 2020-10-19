@@ -6,6 +6,7 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 {
     [SerializeField]
     private int materialCost = 15;
+    public GameObject Icon;
     [SerializeField]
     private string interactObjectType = "BuildMaterial";
     public int MaterialCost => materialCost;
@@ -31,6 +32,17 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 
     public void StartInteract()
     {
-        
     }
+
+    public void ShowIcon()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        Icon.SetActive(true);
+    }
+
+    public void HideIcon()
+    {
+        Icon.SetActive(false);
+    }
+
 }

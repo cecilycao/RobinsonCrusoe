@@ -10,11 +10,17 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
     private int hungerRestore = 5;
     [SerializeField]
     private bool hasFood = false;
+    public GameObject Icon;
     public string FoodMaterialType => materialType;
     public int Cost => cost;
     public int HungerRestore => hungerRestore;
     public string InteractObjectType => objectType;
     public bool HasFood => hasFood;
+
+    private void Update()
+    {
+        
+    }
 
     public void EndContact()
     {
@@ -45,4 +51,17 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
     {
         
     }
+
+    public void ShowIcon()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        Icon.SetActive(true);
+    }
+
+
+    public void HideIcon()
+    {
+        Icon.SetActive(false);
+    }
+
 }
