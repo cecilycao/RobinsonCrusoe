@@ -9,6 +9,7 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     NPCModel npcModel = new NPCModel();
     public string InteractObjectType { get => npcModel.interactObjectType; }
     public string NPCName { get => npcModel.npcName; }
+    public int preference = 0;
     public void StartContact()
     {
         Mediator.Sigton.StartInteraction(this);
@@ -19,7 +20,10 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     }
     public void StartInteract()
     {
-        
+        preference += 5;
+        //todo： 减玩家疲劳值 -10
+        var attr = FindObjectOfType<PlayerAttributePresenter>();
+        attr.Fatigue.Value -= 10;
     }
     public void EndInteract(object result)
     {

@@ -101,10 +101,7 @@ public class DiaryManager : MonoBehaviour
 
         pageList.Add(newPage);
         showDiary();
-        if (!DiaryUI.activeSelf)
-        {
-            DiaryUI.SetActive(true);
-        }
+
         //clear current info for next day
         //day and weather is alreay subscribed sp we don't need to modify it
         events.Clear();
@@ -119,6 +116,7 @@ public class DiaryManager : MonoBehaviour
 
     public void showDiary()
     {
+        Debug.Log("Show Diary");
         AssertExtension.NotNullRun(GameEvents.Sigton.OnDiaryStart, () =>
         {
             GameEvents.Sigton.OnDiaryStart.Invoke();
