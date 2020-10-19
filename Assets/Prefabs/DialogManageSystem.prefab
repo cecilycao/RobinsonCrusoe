@@ -48,10 +48,10 @@ MonoBehaviour:
   flowcharts:
   - NPCcomponent: {fileID: 0}
     flowchart: {fileID: 4148565478711010617}
-  playerFlowchart: {fileID: 0}
+  playerFlowchart: {fileID: 7733818437309126185}
   SelfDialogPanel: {fileID: 0}
   SelfDialogPlaceHolder: {fileID: 0}
-  fixDialogEndDay: 0
+  fixDialogEndDay: 7
 --- !u!1 &4148565478711010616
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4148565478711010618}
   - component: {fileID: 4148565478711010624}
   m_Layer: 0
-  m_Name: Flowchart
+  m_Name: AliceFlowchart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -11
-    y: 63
+    x: -103
+    y: 34
     width: 140
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 4148565478711010622}
   suppressBlockAutoSelect: 0
-  message: Alice
+  message: 
 --- !u!114 &4148565478711010620
 MonoBehaviour:
   m_ObjectHideFlags: 0
