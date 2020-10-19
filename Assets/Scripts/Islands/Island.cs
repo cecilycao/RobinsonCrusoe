@@ -194,6 +194,9 @@ public class Island : RestoreIslandSample
         if (playerHere)
         {
             //todo: 传送player 回家，写日记并开始新的一天
+            PlayerRespawn respawn = FindObjectOfType<PlayerRespawn>();
+            respawn.respawn();
+            //attr.gameObject.transform.position = 
             GameEvents.Sigton.onTheDestroyedIsland.Invoke();
         }
         inactiveIsland.SetActive(true);

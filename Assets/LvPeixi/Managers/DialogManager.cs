@@ -64,9 +64,7 @@ public class DialogManager : MonoBehaviour
     {
         
         Vector3 targetPos = Camera.main.WorldToScreenPoint(SelfDialogPlaceHolder.transform.position);
-        Debug.Log(targetPos.ToString());
         SelfDialogPanel.position = targetPos;
-        Debug.Log(SelfDialogPanel.position.ToString());
     }
     
     public void StartDialog(string npc)
