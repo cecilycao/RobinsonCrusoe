@@ -6,15 +6,25 @@ using UniRx;
 
 public class Diary : MonoBehaviour, IInteractable
 {
+    public GameObject Icon;
     bool canWriteDiary = false;
     bool diaryOpen = false;
     public int maxFatigue = 100;
     public string InteractObjectType => "Diary";
+    public Vector3 IconOffset = new Vector3(0, 7, 0);
 
     // Start is called before the first frame update
     void Start()
     {
+
+        Icon = FindObjectOfType<IconManager>().DiaryIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+
         var config = GameConfig.Singleton.InteractionConfig;
+        
         GUIEvents.Singleton.Fatigue
             .Where(y => y == maxFatigue)
             .Subscribe(x =>
@@ -24,6 +34,10 @@ public class Diary : MonoBehaviour, IInteractable
             });
     }
 
+    private void Update()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+    }
 
     public void OnDiaryOpen()
     {
@@ -68,13 +82,12 @@ public class Diary : MonoBehaviour, IInteractable
 
     public void ShowIcon()
     {
-        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-        //Icon.SetActive(true);
+        Icon.SetActive(true);
     }
 
     public void HideIcon()
     {
-        //Icon.SetActive(false);
+        Icon.SetActive(false);
     }
 
 }

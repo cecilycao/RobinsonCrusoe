@@ -11,6 +11,22 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     public string InteractObjectType { get => npcModel.interactObjectType; }
     public string NPCName { get => npcModel.npcName; }
     public int preference = 0;
+    public Vector3 IconOffset = new Vector3(0, 7, 0);
+
+    private void Start()
+    {
+        Icon = FindObjectOfType<IconManager>().NPCTalkIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+    }
+
+    private void Update()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+    }
+
     public void StartContact()
     {
         Mediator.Sigton.StartInteraction(this);
@@ -32,7 +48,6 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     }
     public void ShowIcon()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         Icon.SetActive(true);
     }
 

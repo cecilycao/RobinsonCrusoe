@@ -17,9 +17,20 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
     public string InteractObjectType => objectType;
     public bool HasFood => hasFood;
 
+    public Vector3 IconOffset = new Vector3(0, 7, 0);
+
+    private void Start()
+    {
+        Icon = FindObjectOfType<IconManager>().ProcessFoodIcon;
+        if(Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+    }
+
     private void Update()
     {
-        
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
     }
 
     public void EndContact()
@@ -54,7 +65,6 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 
     public void ShowIcon()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         Icon.SetActive(true);
     }
 

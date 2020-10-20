@@ -11,6 +11,21 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
     private string interactObjectType = "BuildMaterial";
     public int MaterialCost => materialCost;
     public string InteractObjectType => interactObjectType;
+    public Vector3 IconOffset = new Vector3(0, 7, 0);
+
+    private void Start()
+    {
+        Icon = FindObjectOfType<IconManager>().BuildIslandIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+    }
+
+    private void Update()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+    }
 
     public void EndContact()
     {
@@ -36,7 +51,6 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 
     public void ShowIcon()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         Icon.SetActive(true);
     }
 

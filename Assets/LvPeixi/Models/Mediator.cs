@@ -479,6 +479,7 @@ public class Mediator : MonoBehaviour,IMediator
             IsAtInteractState = true;
             IDisposable waitForKeyboardInteractSingle = null;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
+            diary.ShowIcon();
 
             waitForKeyboardInteractSingle = Observable.EveryUpdate()
                 .Where(x => Input.GetKeyDown(KeyCode.E))
@@ -487,6 +488,7 @@ public class Mediator : MonoBehaviour,IMediator
                     diary.OnDiaryOpen();
                     //playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    diary.HideIcon();
                     waitForKeyboardInteractSingle.Dispose();
                 });
 
@@ -495,6 +497,7 @@ public class Mediator : MonoBehaviour,IMediator
                 IsAtInteractState = false;
                 waitForKeyboardInteractSingle.Dispose();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                diary.HideIcon();
             };
         }
     }

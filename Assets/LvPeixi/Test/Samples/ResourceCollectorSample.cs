@@ -11,6 +11,22 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
     public int ResourceAccount { get => resourceAccount; }
     public string ResourceType { get => resourceType; }
     public string InteractObjectType { get => interactObjectType; }
+    public Vector3 IconOffset = new Vector3(0, 7, 0);
+
+    private void Start()
+    {
+        Icon = FindObjectOfType<IconManager>().CollectFoodIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+    }
+
+    private void Update()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+    }
+
     public void EndContact()
     {
         Mediator.Sigton.EndInteract();
@@ -41,7 +57,6 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
 
     public void ShowIcon()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         Icon.SetActive(true);
     }
 

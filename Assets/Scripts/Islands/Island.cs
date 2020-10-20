@@ -38,6 +38,8 @@ public class Island : RestoreIslandSample
     //public static int REPAIR_EFFECT = 50;
     static int MAX_DURABILITY = 100;
 
+    public Vector3 IconOffset = new Vector3(0, 7, 0);
+
     int delta_time = 0;
 
     public override string MaterialType => "BuildingMaterial";
@@ -64,6 +66,12 @@ public class Island : RestoreIslandSample
     //inactive at start
     void Start()
     {
+        Icon = FindObjectOfType<IconManager>().RepairIslandIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+
         GameEvents.Sigton.OnRainStart += () =>
         {
             rainIntensity = 1;
@@ -105,6 +113,8 @@ public class Island : RestoreIslandSample
     // Update is called once per frame
     void Update()
     {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+
         if (!isCore && m_condition != IslandCondition.DESTROYED)
         {
             
@@ -297,7 +307,6 @@ public class Island : RestoreIslandSample
 
     public override void ShowIcon()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         Icon.SetActive(true);
     }
 
