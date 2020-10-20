@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5019719960252751912}
   - component: {fileID: 5019719960252751915}
   - component: {fileID: 5019719960252751959}
-  - component: {fileID: 1616093694}
   - component: {fileID: 406300758}
+  - component: {fileID: 8605588824559645719}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -135,15 +135,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 83961f423ad4fdd45b69b07dfdc5d363, type: 2}
---- !u!45 &1616093694
-Skybox:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5019719960252751914}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: efe167f3bd06f1646ace7ab2a4756929, type: 2}
 --- !u!114 &406300758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +154,20 @@ MonoBehaviour:
   moveSpeed: 0
   maxPos: {x: 25, y: 40, z: -10}
   minPos: {x: -25, y: 40, z: -60}
+--- !u!114 &8605588824559645719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019719960252751914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: c049acbf823eb284eb8a8489ea03cc01, type: 2}
