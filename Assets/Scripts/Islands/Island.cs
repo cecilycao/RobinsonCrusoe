@@ -113,7 +113,7 @@ public class Island : RestoreIslandSample
     // Update is called once per frame
     void Update()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        
 
         if (!isCore && m_condition != IslandCondition.DESTROYED)
         {
@@ -125,7 +125,10 @@ public class Island : RestoreIslandSample
             } else if (durability <= DAMAGED_DURABILITY)
             {
                 damaged();
+
             }
+
+
         }
     }
 
@@ -195,6 +198,10 @@ public class Island : RestoreIslandSample
 
     public void damaged()
     {
+        if (playerHere)
+        {
+            Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        }
         m_condition = IslandCondition.DAMAGED;
         IslandDamaged.Invoke();
         //todo: change Island Texture
