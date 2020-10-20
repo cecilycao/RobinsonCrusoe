@@ -494,6 +494,7 @@ public class Mediator : MonoBehaviour,IMediator
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
+                diary.OnDiaryClose();
                 IsAtInteractState = false;
                 waitForKeyboardInteractSingle.Dispose();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");

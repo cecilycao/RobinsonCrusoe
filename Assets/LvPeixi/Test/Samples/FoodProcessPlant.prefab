@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4733461873152624117}
   - component: {fileID: 6199060963225104586}
   - component: {fileID: 6548799170541557026}
-  - component: {fileID: 7242587158499879263}
   - component: {fileID: 2272403482934611387}
+  - component: {fileID: 5807920642628435395}
   m_Layer: 0
   m_Name: FoodProcessPlant
   m_TagString: Untagged
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3920489633416230221}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7242587158499879263
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3920489633416230221}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2.4223924
-  m_Height: 6.503838
-  m_Direction: 1
-  m_Center: {x: 0.21067286, y: 2.1067326, z: 0}
 --- !u!114 &2272403482934611387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +96,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasFood: 0
+  Icon: {fileID: 0}
+  IconOffset: {x: 0, y: 7, z: 0}
+--- !u!65 &5807920642628435395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920489633416230221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5881333, y: 4.0393343, z: 1.5664954}
+  m_Center: {x: -0.22258496, y: 3.1229405, z: 1.6247523}
 --- !u!1 &6946897761451127286
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6946897761451127286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4733461873152624117}
@@ -153,8 +154,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5.408877
-  m_Center: {x: 0.19750643, y: 0, z: 0}
+  m_Radius: 3.1872807
+  m_Center: {x: -0.19076633, y: 2.5324035, z: 1.2889242}
 --- !u!114 &3171300845195789293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,12 +206,12 @@ PrefabInstance:
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
@@ -220,22 +221,22 @@ PrefabInstance:
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.2588191
       objectReference: {fileID: 0}
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9659258
       objectReference: {fileID: 0}
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
@@ -245,7 +246,7 @@ PrefabInstance:
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 353931549260557904, guid: f7b130c57cdf3974c89629a669c413dd,
         type: 3}

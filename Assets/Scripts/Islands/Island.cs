@@ -193,6 +193,7 @@ public class Island : RestoreIslandSample
     public void repair()
     {
         durability = 100;
+        m_condition = IslandCondition.CREATED;
         //todo: change Island Texture
     }
 
@@ -227,25 +228,25 @@ public class Island : RestoreIslandSample
         IslandDestroyed.Invoke();
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if(m_condition != IslandCondition.DESTROYED && collision.gameObject.tag == "Player")
-        {
-            playerHere = true;
-            if (m_condition == IslandCondition.DAMAGED)
-            {
-                //todo: enable repair
-            }
-        }
-    }
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if(m_condition != IslandCondition.DESTROYED && collision.gameObject.tag == "Player")
+    //    {
+    //        playerHere = true;
+    //        if (m_condition == IslandCondition.DAMAGED)
+    //        {
+    //            //todo: enable repair
+    //        }
+    //    }
+    //}
 
-    public void OnCollisionExit(Collision collision)
-    {
-        if (m_condition != IslandCondition.DESTROYED && collision.gameObject.tag == "Player" && playerHere)
-        {
-            playerHere = false;
-        }
-    }
+    //public void OnCollisionExit(Collision collision)
+    //{
+    //    if (m_condition != IslandCondition.DESTROYED && collision.gameObject.tag == "Player" && playerHere)
+    //    {
+    //        playerHere = false;
+    //    }
+    //}
 
     public bool isActive()
     {
@@ -262,7 +263,14 @@ public class Island : RestoreIslandSample
     private void OnDrawGizmos()
     {
         Vector3 offset = new Vector3(0, 0, -0.3f);
-        Handles.Label(transform.position + offset, "" + durability);
+        if (!playerHere)
+        {
+            Handles.Label(transform.position + offset, "" + durability);
+        } else
+        {
+            Handles.Label(transform.position + offset, "" + durability + " | Player");
+        }
+        
     }
 
     public void OnIslandRestoreStart()
@@ -284,6 +292,7 @@ public class Island : RestoreIslandSample
             
             if (m_condition == IslandCondition.DAMAGED)
             {
+                Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
                 Mediator.Sigton.StartInteraction(this);
                 
             }

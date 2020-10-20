@@ -63,12 +63,14 @@ public class Diary : MonoBehaviour, IInteractable
 
     public void StartContact()
     {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
         Mediator.Sigton.OpenDiary(this);
     }
 
     public void EndContact()
     {
-        OnDiaryClose();
+        Mediator.Sigton.EndInteract();
+        
         
     }
 
