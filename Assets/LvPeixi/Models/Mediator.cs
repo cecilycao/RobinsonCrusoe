@@ -252,9 +252,12 @@ public class Mediator : MonoBehaviour,IMediator
                     GUIEvents.Singleton.PlayerStartFishing.OnNext(true);
                     //set player interact state
                     playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
+                    //change player attribute
+                    int _fatigueChange = (int)interactConfig["positiveCollectFatigueIncrease"];
+                    playerAttribute.Fatigue.Value += _fatigueChange;
 
-                    int fatigueIncrease = (int)interactConfig["positiveCollectFatigueIncrease"];
-                    playerAttribute.Fatigue.Value += fatigueIncrease;
+                    var _hungerChange = (int)interactConfig["interact_positiveCollect_hungerDecrea_default"];
+                    playerAttribute.Hunger.Value += _hungerChange;
 
                     //end collect resource after 1 sec
                     Observable.Timer(TimeSpan.FromSeconds(1))
@@ -334,9 +337,15 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    //-----set player attribute
                     int fatigueIncrease = (int)interactConfig["addIslandFatigueIncrease"];
                     playerAttribute.Fatigue.Value += fatigueIncrease;
+
+                    var _hungerChange = (int)interactConfig["interact_addIsland_hungerDecrea_default"];
+                    playerAttribute.Hunger.Value += _hungerChange;
+
                     inventory.BuildingMaterial.Value -= builder.MaterialCost;
+
                     builder.EndInteract(true);
                     GameEvents.Sigton.onInteractEnd();
                 });
@@ -415,6 +424,9 @@ public class Mediator : MonoBehaviour,IMediator
                         inventory.FoodMaterial.Value -= foodProcess.Cost;
                         int fatigueIncrease = (int)interactConfig["processFoodFatigeIncrease"];
                         playerAttribute.Fatigue.Value += fatigueIncrease;
+                        var _hungerChanged = (int)interactConfig["interact_processFood_hungerDecrea_default"];
+                        playerAttribute.Hunger.Value -= _hungerChanged;
+
                         AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                         foodProcess.EndInteract(true);
                         GameEvents.Sigton.onInteractEnd();
@@ -481,6 +493,9 @@ public class Mediator : MonoBehaviour,IMediator
                     AudioManager.Singleton.PauseAudio("Interact_islandRestoring");
                     int fatigueIncress = (int)interactConfig["restoreIslandFatigueIncrease"];
                     playerAttribute.Fatigue.Value += fatigueIncress;
+                    var _hungerChange = (int)interactConfig["interact_restoreIsland_hungerDecrea_default"];
+                    playerAttribute.Hunger.Value += _hungerChange;
+
                     inventory.BuildingMaterial.Value -= island.MaterialCost;
                     AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                     GameEvents.Sigton.onInteractEnd();
@@ -554,4 +569,5 @@ public class Mediator : MonoBehaviour,IMediator
         }
     }
     #endregion
+
 }
