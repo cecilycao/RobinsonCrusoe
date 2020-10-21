@@ -12,6 +12,7 @@ public class GameConfig
     private Dictionary<string, float> interactionConfig = new Dictionary<string, float>();
     private Dictionary<string, float> playerConfig = new Dictionary<string, float>();
     private Dictionary<string, AudioInfo> soundConfig = new Dictionary<string, AudioInfo>();
+    private Dictionary<int, string> diaryData = new Dictionary<int, string>();
 
     public Dictionary<string,float> InteractionConfig { get => interactionConfig; }
     public Dictionary<string, float> PlayerConfig => playerConfig;
@@ -80,5 +81,10 @@ public class GameConfig
 
             soundConfig.Add(item["ClipName"].ToString(), _audioInfo);
         }
+    }
+
+    void JsonToDiaryData()
+    {
+
     }
 }
