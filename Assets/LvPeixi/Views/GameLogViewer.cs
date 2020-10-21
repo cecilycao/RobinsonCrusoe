@@ -16,7 +16,7 @@ public class GameLogViewer : MonoBehaviour
         startGameBtn.onClick.AsObservable()
             .Subscribe(x =>
             {
-                //start game
+                LoadManager.Singleton.LoadTheNextScene("Testor");
             });
 
         settingGameBtn.onClick.AsObservable()

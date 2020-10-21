@@ -72,6 +72,12 @@ public class ControlConsoleEditor : Editor
                 var timeModel = FindObjectOfType<TimeSystemPresenter>().timeModel;
                 Debug.Log(timeModel.dayLastTime);
             }
+
+            if (GUILayout.Button("获取最大疲劳值"))
+            {
+                var maxFatigue = GameConfig.Singleton.PlayerConfig["hungerCeiling"];
+                Debug.Log(maxFatigue);
+            }
         }
 
         showAudioTest = EditorGUILayout.Foldout(showAudioTest, "声音测试");

@@ -15,16 +15,16 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 
     private void Start()
     {
-        Icon = FindObjectOfType<IconManager>().BuildIslandIcon;
-        if (Icon == null)
-        {
-            Debug.LogError("Icon haven't been assigned to IconManager");
-        }
+        //Icon = FindObjectOfType<IconManager>().BuildIslandIcon;
+        //if (Icon == null)
+        //{
+        //    Debug.LogError("Icon haven't been assigned to IconManager");
+        //}
     }
 
     private void Update()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
     }
 
     public void EndContact()

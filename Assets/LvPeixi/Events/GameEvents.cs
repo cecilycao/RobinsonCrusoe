@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UniRx;
@@ -8,7 +9,68 @@ using UniRx;
 /// </summary>
 public class GameEvents : MonoBehaviour
 {
+    public enum EventDictionaryType
+    {
+        InteractEvent,
+        PlotEvent,
+        MechanismEvent
+    }
+
     static GameEvents events;
+
+    #region//Private variables
+    private Dictionary<string, Subject<SubjectArg>> interactEventDic = new Dictionary<string, Subject<SubjectArg>>();
+    private Dictionary<string, Subject<SubjectArg>> plotEventDic = new Dictionary<string, Subject<SubjectArg>>();
+    private Dictionary<string, Subject<SubjectArg>> mechanismEventDic = new Dictionary<string, Subject<SubjectArg>>();
+    private Dictionary<string, Subject<SubjectArg>> playerEventDic = new Dictionary<string, Subject<SubjectArg>>();
+    private Dictionary<string, Subject<SubjectArg>> propEventDic = new Dictionary<string, Subject<SubjectArg>>();
+
+    private Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>> eventDicManager = 
+        new Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>>();
+    #endregion
+
+    #region-----Public properties && methods
+    /// <summary>
+    /// 互动事件
+    /// </summary>
+    public Dictionary<string, Subject<SubjectArg>> InteractEventDictionary
+    {
+        get => interactEventDic;
+    }
+    /// <summary>
+    /// 剧情事件
+    /// </summary>
+    public Dictionary<string,Subject<SubjectArg>> PlotEventDictionary
+    {
+        get => plotEventDic;
+    }
+    /// <summary>
+    /// 游戏机制事件
+    /// </summary>
+    public Dictionary<string,Subject<SubjectArg>> MechanismEventDictionary
+    {
+        get => mechanismEventDic;
+    }
+    /// <summary>
+    /// 玩家事件
+    /// </summary>
+    public Dictionary<string, Subject<SubjectArg>> PlayerEventDictionary
+    {
+        get => playerEventDic;
+    }
+    /// <summary>
+    /// 道具事件
+    /// </summary>
+    public Dictionary<string, Subject<SubjectArg>> PropertyEventDictionay
+    {
+        get => propEventDic;
+    }
+    public void RegisterEvent(EventDictionaryType type,string eventKey)
+    {
+        var _theTargetDic = eventDicManager[type];
+        _theTargetDic.Add(eventKey,new Subject<SubjectArg>());
+    }
+    #endregion
 
     #region-----重要游戏事件-----
     public Action onGameStart;
@@ -80,7 +142,6 @@ public class GameEvents : MonoBehaviour
     public Action OnDiaryStart;
     public Action OnDiaryEnd;
 
-
     #region//----------Weather System--------------
 
     public Action OnRainStart;
@@ -103,9 +164,52 @@ public class GameEvents : MonoBehaviour
             }
         }
     }
+
     private void Awake()
     {
         events = this;
+
+        InitEventDicManager();
+
+        InitNecessaryEvents();  
     }
     #endregion
+    void InitEventDicManager()
+    {
+        eventDicManager.Add(EventDictionaryType.InteractEvent, interactEventDic);
+        eventDicManager.Add(EventDictionaryType.MechanismEvent, mechanismEventDic);
+        eventDicManager.Add(EventDictionaryType.PlotEvent, plotEventDic);
+    }
+
+    void InitNecessaryEvents()
+    {
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractBtnPressedWhenInteracting);
+
+        RegisterEvent(EventDictionaryType.PlotEvent,PlotEventTags.playerFirstSicked);
+        RegisterEvent(EventDictionaryType.PlotEvent, PlotEventTags.npcFirstSicked);
+    }
 }
+
+
+
+public struct SubjectArg
+{
+    /// <summary>
+    /// subject的名字
+    /// </summary>
+    string subjectName;
+    /// <summary>
+    /// 携带信息
+    /// </summary>
+    object subjectMes;
+    public SubjectArg(string m_subjectName):this()
+    {
+        subjectName = m_subjectName;
+    }
+    public SubjectArg(string m_subjectName,object m_subjectMes)
+    {
+        subjectName = m_subjectName;
+        subjectMes = m_subjectMes;
+    }
+}
+

@@ -21,16 +21,16 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 
     private void Start()
     {
-        Icon = FindObjectOfType<IconManager>().ProcessFoodIcon;
-        if(Icon == null)
-        {
-            Debug.LogError("Icon haven't been assigned to IconManager");
-        }
+        //Icon = FindObjectOfType<IconManager>().ProcessFoodIcon;
+        //if(Icon == null)
+        //{
+        //    Debug.LogError("Icon haven't been assigned to IconManager");
+        //}
     }
 
     private void Update()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
     }
 
     public void EndContact()

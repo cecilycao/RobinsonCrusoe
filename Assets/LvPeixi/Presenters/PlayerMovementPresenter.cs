@@ -34,7 +34,7 @@ public class PlayerMovementPresenter : MonoBehaviour
             .Subscribe(x =>
             {
                 Vector3 _direction = new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical"));
-                _direction = _direction.normalized;
+                _direction = -_direction.normalized; ;
                 Velocity.Value = _direction * moveSpeed;
                 velocity = Velocity.Value;
             });
