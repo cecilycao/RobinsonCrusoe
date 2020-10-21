@@ -1,7 +1,7 @@
 ﻿[
   {
     "Key": "positiveCollectTimeCost",
-    "Value": 2.0,
+    "Value": 1.0,
     "Description": "主动收集花费时间",
     "PS": "修改后使用ExcelTool"
   },
@@ -13,7 +13,7 @@
   },
   {
     "Key": "addIslandTimeCost",
-    "Value": 3.0,
+    "Value": 5.0,
     "Description": "新增浮岛用时",
     "PS": null
   },
@@ -25,7 +25,7 @@
   },
   {
     "Key": "processFoodTimeCost",
-    "Value": 2.0,
+    "Value": 1.0,
     "Description": "加工食物用时",
     "PS": null
   },
@@ -37,31 +37,31 @@
   },
   {
     "Key": "addIslandFatigueIncrease",
-    "Value": 5.0,
+    "Value": 15.0,
     "Description": "新建浮岛疲劳值上升",
     "PS": null
   },
   {
     "Key": "restoreIslandFatigueIncrease",
-    "Value": 5.0,
+    "Value": 15.0,
     "Description": "修复浮岛疲劳值上升",
     "PS": null
   },
   {
     "Key": "processFoodFatigeIncrease",
-    "Value": 5.0,
+    "Value": 15.0,
     "Description": "加工食品疲劳值上升",
     "PS": null
   },
   {
     "Key": "positiveCollectFatigueIncrease",
-    "Value": 5.0,
+    "Value": 15.0,
     "Description": "主动收集疲劳值上升",
     "PS": null
   },
   {
     "Key": "negativeCollectFatigueIncrease",
-    "Value": 5.0,
+    "Value": 15.0,
     "Description": "被动收集疲劳值上升",
     "PS": null
   },
@@ -69,6 +69,36 @@
     "Key": "eatFoodHungerIncrease",
     "Value": -5.0,
     "Description": "吃食物疲劳值上升",
+    "PS": null
+  },
+  {
+    "Key": "interact_addIsland_hungerDecrea_default",
+    "Value": -10.0,
+    "Description": "新建浮岛饥饿值变化",
+    "PS": null
+  },
+  {
+    "Key": "interact_restoreIsland_hungerDecrea_default",
+    "Value": -10.0,
+    "Description": "维修浮岛饥饿值变化",
+    "PS": null
+  },
+  {
+    "Key": "interact_processFood_hungerDecrea_default",
+    "Value": -10.0,
+    "Description": "加工食物饥饿值变化",
+    "PS": null
+  },
+  {
+    "Key": "interact_positiveCollect_hungerDecrea_default",
+    "Value": -10.0,
+    "Description": "主动收集饥饿值变化",
+    "PS": null
+  },
+  {
+    "Key": "interact_negativeCollect_hungerDecrea_default",
+    "Value": -10.0,
+    "Description": "被动收集饥饿值变化",
     "PS": null
   },
   {
@@ -100,5 +130,17 @@
     "Value": 30.0,
     "Description": "掷骰子结果为转向的概率",
     "PS": "见钓鱼小游戏图示.vsdx"
+  },
+  {
+    "Key": "eatFood_hungerDec_default",
+    "Value": -30.0,
+    "Description": "吃东西Hunger值减少量",
+    "PS": null
+  },
+  {
+    "Key": "interact_makeFoodMaterialCost_default",
+    "Value": -4.0,
+    "Description": "制作食物消耗的食材",
+    "PS": null
   }
 ]

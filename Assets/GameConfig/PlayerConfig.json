@@ -28,5 +28,20 @@
     "Key": "fatigueIncreaseWhenTimeOut",
     "Value": 1.0,
     "Description": "时间耗尽后每秒增加的疲劳值"
+  },
+  {
+    "Key": "playerAttr_defaultHungerAccumulateSpeed",
+    "Value": -1.0,
+    "Description": "玩家初始饥饿增长速度"
+  },
+  {
+    "Key": "playerAttr_hungerValue_start",
+    "Value": 60.0,
+    "Description": "玩家初始饥饿值"
+  },
+  {
+    "Key": "playerAttr_fatigueValue_start",
+    "Value": 0.0,
+    "Description": "玩家初始疲劳值"
   }
 ]

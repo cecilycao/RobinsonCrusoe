@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UniRx;
 using System;
 
@@ -10,6 +12,15 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     bool isAccmulatingFatigue = false;
     IDisposable onAccumulateComplete = null;
     IDisposable accumulateFatigue = null;
+    IDisposable accumulateHunger = null;
+    Dictionary<string,float> config;
+
+    [Header("-----Test block-----")]
+    [SerializeField]
+    int t_Hunger;
+    [SerializeField]
+    int t_Fatigue;
+
     #region//Property Block
     public ReactiveProperty<int> Fatigue
     {
@@ -37,6 +48,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     }
     void Start()
     {
+        Configurate();
         #region-----When time is out, start to accumulate fatigue
         GameEvents.Sigton.timeSystem
             .Delay(TimeSpan.FromSeconds(1))
@@ -50,6 +62,9 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         OnDayStart();
 
         OnDayEnd();
+
+        TestProperty();
+
     }
     void AccumulateFatigue()
     {
@@ -87,6 +102,8 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             var _fatigeFloorIncrease = (int)GameConfig.Singleton.PlayerConfig["fatigueInceasePerDay"];
             model.floorFatige += _fatigeFloorIncrease;
             model.currentFatigue.Value = model.floorFatige;
+
+            HungerDec();
         };
     }
 
@@ -105,6 +122,39 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             {
                 accumulateFatigue.Dispose();
             }
+
+            accumulateHunger.Dispose();
         };
+    }
+
+    void Configurate()
+    {
+        config = GameConfig.Singleton.PlayerConfig;
+        model.hunger.Value = (int)config["playerAttr_hungerValue_start"];
+        model.currentFatigue.Value = (int)config["playerAttr_fatigueValue_start"];
+    }
+
+    void HungerDec()
+    {
+        accumulateHunger = Observable.Interval(TimeSpan.FromSeconds(1))
+            .Subscribe(x =>
+            {
+                var hungerAccumulateSpeed = (int)config["playerAttr_defaultHungerAccumulateSpeed"];
+                model.hunger.Value += hungerAccumulateSpeed;
+            });
+    }
+
+    void TestProperty()
+    {
+        model.currentFatigue
+            .Subscribe(x =>
+            {
+                t_Fatigue = x;
+            });
+        model.hunger
+            .Subscribe(x =>
+            {
+                t_Hunger = x;
+            });
     }
 }
