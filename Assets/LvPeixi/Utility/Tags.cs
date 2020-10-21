@@ -13,3 +13,15 @@ public class SceneTags
     public const string gameSystem = "GameSystem";
     public const string loadingScene = "LoadingScene";
 }
+
+public class InteractEventTags
+{
+    public const string onInteractBtnPressedWhenInteracting = "onInteractBtnPressedWhenInteracting";
+    public const string onInteractBtnReleasedWhenInteracting = "onInteractBtnReleasedWhenInteracting";
+}
+
+public class PlotEventTags
+{
+    public const string npcFirstSicked = "npcFirstSicked";
+    public const string playerFirstSicked = "playerFirstSicked";
+}
