@@ -19,5 +19,15 @@ public interface IInteractable
     /// </summary>
     /// <param name="result">互动</param>
     void EndInteract(object result);
+    /// <summary>
+    /// 显示互动图标
+    /// </summary>
+    /// <param name="result">互动</param>
+    void ShowIcon();
+    /// <summary>
+    /// 隐藏互动图标
+    /// </summary>
+    /// <param name="result">互动</param>
+    void HideIcon();
 }
 

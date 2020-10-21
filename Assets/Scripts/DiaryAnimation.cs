@@ -17,8 +17,13 @@ public class DiaryAnimation : MonoBehaviour
         
     }
 
-    public void onAnimationEnd()
+    public void onOpenAnimationEnd()
     {
         m_manager.showContentAfterOpen();
+    }
+
+    public void onCloseAnimationEnd()
+    {
+        m_manager.hideContentAfterClose();
     }
 }

@@ -29,4 +29,15 @@ public class RestoreIslandSample : MonoBehaviour,IInteractableIsland
     {
        
     }
+
+    public virtual void ShowIcon()
+    {
+
+    }
+
+    public virtual void HideIcon()
+    {
+
+    }
+
 }

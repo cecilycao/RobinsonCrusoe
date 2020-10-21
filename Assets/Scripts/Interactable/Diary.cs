@@ -6,15 +6,25 @@ using UniRx;
 
 public class Diary : MonoBehaviour, IInteractable
 {
+    public GameObject Icon;
     bool canWriteDiary = false;
     bool diaryOpen = false;
     public int maxFatigue = 100;
     public string InteractObjectType => "Diary";
+    public Vector3 IconOffset = new Vector3(0, 7, 0);
 
     // Start is called before the first frame update
     void Start()
     {
+
+        Icon = FindObjectOfType<IconManager>().DiaryIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+
         var config = GameConfig.Singleton.InteractionConfig;
+        
         GUIEvents.Singleton.Fatigue
             .Where(y => y == maxFatigue)
             .Subscribe(x =>
@@ -24,6 +34,10 @@ public class Diary : MonoBehaviour, IInteractable
             });
     }
 
+    private void Update()
+    {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+    }
 
     public void OnDiaryOpen()
     {
@@ -43,18 +57,21 @@ public class Diary : MonoBehaviour, IInteractable
             DiaryManager.Instance.closeDiary();
             Debug.Log("Finish writing diary, one day end");
             GameEvents.Sigton.onDayEnd.Invoke();
+            GameEvents.Sigton.onDayStart.Invoke();
             diaryOpen = false;
         }
     }
 
     public void StartContact()
     {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
         Mediator.Sigton.OpenDiary(this);
     }
 
     public void EndContact()
     {
-        OnDiaryClose();
+        Mediator.Sigton.EndInteract();
+        
         
     }
 
@@ -65,4 +82,15 @@ public class Diary : MonoBehaviour, IInteractable
     public void EndInteract(object result)
     {
     }
+
+    public void ShowIcon()
+    {
+        Icon.SetActive(true);
+    }
+
+    public void HideIcon()
+    {
+        Icon.SetActive(false);
+    }
+
 }

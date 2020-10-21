@@ -84,12 +84,10 @@ public class DiaryManager : MonoBehaviour
         {
             Debug.Log("Receive event stand on the destroyed island");
             events.Add(WritableEvents.ISLAND_DESTROYED);
-            createNewPage();
         };
         //todo：talk to npc
 
         DiaryPanel.SetActive(false);
-        DiaryUI.SetActive(false);
         JournalAnimator.gameObject.SetActive(false);
 
     }
@@ -102,10 +100,7 @@ public class DiaryManager : MonoBehaviour
 
         pageList.Add(newPage);
         showDiary();
-        if (!DiaryUI.activeSelf)
-        {
-            DiaryUI.SetActive(true);
-        }
+
         //clear current info for next day
         //day and weather is alreay subscribed sp we don't need to modify it
         events.Clear();
@@ -120,11 +115,12 @@ public class DiaryManager : MonoBehaviour
 
     public void showDiary()
     {
+        Debug.Log("Show Diary");
         AssertExtension.NotNullRun(GameEvents.Sigton.OnDiaryStart, () =>
         {
             GameEvents.Sigton.OnDiaryStart.Invoke();
         });
-        
+        DiaryUI.SetActive(false);
         JournalAnimator.gameObject.SetActive(true);
         JournalAnimator.SetTrigger("OpenJournal");
         
@@ -134,7 +130,10 @@ public class DiaryManager : MonoBehaviour
     {
         DiaryPanel.SetActive(true);
         currentShowingIndex = pageList.Count - 1;
-        displayContent(currentShowingIndex);
+        if (currentShowingIndex >= 0)
+        {
+            displayContent(currentShowingIndex);
+        }
     }
 
     void displayContent(int pageIndex)
@@ -171,12 +170,23 @@ public class DiaryManager : MonoBehaviour
 
     public void closeDiary()
     {
+        Debug.Log("Close Diary");
+        JournalAnimator.SetTrigger("CloseJournal");
         DiaryPanel.SetActive(false);
+
+    }
+
+    public void hideContentAfterClose()
+    {
+        Debug.Log("Close Diary2");
         JournalAnimator.gameObject.SetActive(false);
+        DiaryUI.SetActive(true);
+
         AssertExtension.NotNullRun(GameEvents.Sigton.OnDiaryEnd, () =>
         {
             GameEvents.Sigton.OnDiaryEnd.Invoke();
         });
+        
     }
 
 
@@ -211,7 +221,11 @@ public class DiaryPage
     public DiaryPage(int day, List<WeatherState> weathers, WeatherState currentWeather, List<WritableEvents> events)
     {
         this.day = day;
-        this.events = events;
+        this.events = new List<WritableEvents>();
+        foreach (WritableEvents e in events)
+        {
+            this.events.Add(e);
+        }
         if (weathers.Contains(WeatherState.STORM) || currentWeather == WeatherState.STORM)
         {
             weather = WeatherState.STORM;
@@ -228,7 +242,7 @@ public class DiaryPage
 
     public string getDate()
     {
-        return day + "";
+        return "Day: " + day + "";
     }
 
     public string getWeather()
@@ -257,13 +271,13 @@ public class DiaryPage
         {
             eventContent += e.ToString();
         }
-           
+        Debug.Log("events: " + eventContent);
         return eventContent;
     }
 
     public string getContentLeft()
     {
-        return getFixedContentHead();
+        return getFixedContentHead() + getEventContent();
     }
 
     public string getContentRight()
