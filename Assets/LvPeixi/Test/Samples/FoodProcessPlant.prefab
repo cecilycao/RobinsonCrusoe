@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6548799170541557026}
   - component: {fileID: 2272403482934611387}
   - component: {fileID: 5807920642628435395}
+  - component: {fileID: 8713565705483164691}
   m_Layer: 0
   m_Name: FoodProcessPlant
   m_TagString: Untagged
@@ -107,10 +108,24 @@ BoxCollider:
   m_GameObject: {fileID: 3920489633416230221}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3.5881333, y: 4.0393343, z: 1.5664954}
   m_Center: {x: -0.22258496, y: 3.1229405, z: 1.6247523}
+--- !u!136 &8713565705483164691
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920489633416230221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.3326592
+  m_Height: 5.0233383
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 2.3801723}
 --- !u!1 &6946897761451127286
 GameObject:
   m_ObjectHideFlags: 0

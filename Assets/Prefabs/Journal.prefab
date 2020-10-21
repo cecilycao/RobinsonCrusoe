@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1645784871548846543}
   - component: {fileID: 1645784871548846537}
   - component: {fileID: 1645784871548846536}
+  - component: {fileID: 8705466551027320766}
   m_Layer: 0
   m_Name: Journal
   m_TagString: Untagged
@@ -43,7 +44,7 @@ BoxCollider:
   m_GameObject: {fileID: 1645784871548846542}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 5.413346, y: 3.8547487, z: 2.2753086}
   m_Center: {x: 0.20192504, y: 3.3225813, z: 2.0567586}
@@ -60,8 +61,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  maxFatigue: 0
+  canWriteDiary: 0
   IconOffset: {x: -3, y: 7, z: 0}
+--- !u!136 &8705466551027320766
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645784871548846542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3.103656
+  m_Height: 6.554554
+  m_Direction: 1
+  m_Center: {x: 0.86253476, y: 3.6376572, z: 3.212608}
 --- !u!1 &1645784871687674222
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Prop_motorhome
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073164826296893377, guid: c12abfa5070fb394eb9c95b0a0cb50bb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455436069549331463, guid: c12abfa5070fb394eb9c95b0a0cb50bb,
         type: 3}

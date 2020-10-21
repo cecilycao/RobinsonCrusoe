@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1627427820847461643}
   - component: {fileID: 8629811946763622867}
   - component: {fileID: 3444792200494434124}
+  - component: {fileID: 6253467453677286943}
   m_Layer: 0
   m_Name: IslandBuilder
   m_TagString: Untagged
@@ -108,10 +109,24 @@ BoxCollider:
   m_GameObject: {fileID: 1627427820847461638}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 5.0380497, y: 2.1981869, z: 1.3468256}
   m_Center: {x: -0.086707115, y: -0.09909344, z: -0.1734128}
+--- !u!136 &6253467453677286943
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627427820847461638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.4149075
+  m_Height: 5.3757114
+  m_Direction: 1
+  m_Center: {x: 0.08102083, y: 0, z: 0.9505887}
 --- !u!1 &1627427822453230397
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +227,11 @@ PrefabInstance:
     - target: {fileID: 2906415227803906327, guid: 5ae8180fee765504abac0058736d8dc9,
         type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020677554916542061, guid: 5ae8180fee765504abac0058736d8dc9,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7253364018771351187, guid: 5ae8180fee765504abac0058736d8dc9,

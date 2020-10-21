@@ -10,7 +10,7 @@ public class Diary : MonoBehaviour, IInteractable
 
     public bool canWriteDiary = false;
     bool diaryOpen = false;
-    public int maxFatigue = 100;
+    int maxFatigue;
     public string InteractObjectType => "Diary";
     public Vector3 IconOffset = new Vector3(0, 7, 0);
 
@@ -22,9 +22,11 @@ public class Diary : MonoBehaviour, IInteractable
         {
             Debug.LogError("Icon haven't been assigned to IconManager");
         }
+        maxFatigue = (int)GameConfig.Singleton.PlayerConfig["hungerCeiling"];
+        Debug.Log("Can write diary at fatigue: " + maxFatigue);
 
         var config = GameConfig.Singleton.InteractionConfig;
-        
+
         GUIEvents.Singleton.Fatigue
             .Where(y => y == maxFatigue)
             .Subscribe(x =>
