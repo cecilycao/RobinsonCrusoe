@@ -66,6 +66,12 @@ public class ControlConsoleEditor : Editor
             {
                 GameEvents.Sigton.onDayEnd.Invoke();
             }
+
+            if (GUILayout.Button("获得一天时长测试"))
+            {
+                var timeModel = FindObjectOfType<TimeSystemPresenter>().timeModel;
+                Debug.Log(timeModel.dayLastTime);
+            }
         }
 
         showAudioTest = EditorGUILayout.Foldout(showAudioTest, "声音测试");
