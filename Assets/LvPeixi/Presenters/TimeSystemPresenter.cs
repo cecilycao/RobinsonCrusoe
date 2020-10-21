@@ -7,7 +7,7 @@ using System;
 public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
 {
     [SerializeField]
-    TimeSystemModel timeModel = new TimeSystemModel();
+    public TimeSystemModel timeModel = new TimeSystemModel();
 
     #region//-----implemet interace-----
     public float DayCount { get => timeModel.dayCount.Value; }
