@@ -74,7 +74,7 @@
   {
     "ClipName": "Interact_startContactTipSound",
     "AudioMixerGroup": "Interact",
-    "Volume": 1.0,
+    "Volume": 0.25,
     "PlayerOnAwake": false,
     "Loop": false,
     "PS": null

@@ -166,6 +166,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .Where(x => Input.GetKeyDown(KeyCode.E))
                 .Subscribe(x =>
                 {
+                    
                     theCurrentInteractNPC = npc;
                     DialogManager.Singelton.StartDialog(npc.NPCName);
                     npc.StartInteract();
@@ -213,6 +214,8 @@ public class Mediator : MonoBehaviour,IMediator
 
                     var _hungerChange = (int)interactConfig["interact_positiveCollect_hungerDecrea_default"];
                     playerAttribute.Hunger.Value += _hungerChange;
+
+                    SendMesOutSideOnInteractBtnPressed();
 
                     //end collect resource after 1 sec
                     Observable.Timer(TimeSpan.FromSeconds(1))
@@ -283,7 +286,8 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");
+                    SendMesOutSideOnInteractBtnPressed();
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");                 
                     builder.HideIcon();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
                     builder.StartInteract();
@@ -371,6 +375,7 @@ public class Mediator : MonoBehaviour,IMediator
                     .First()
                     .Subscribe(x =>
                     {
+                        SendMesOutSideOnInteractBtnPressed();
                         foodProcess.HideIcon();
                         foodProcess.StartInteract();
                         GUIEvents.Singleton.InteractionProgressBar.OnNext(processFoodCostTime);
@@ -442,6 +447,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    SendMesOutSideOnInteractBtnPressed();
                     island.HideIcon();
                     AudioManager.Singleton.PlayAudio("Interact_islandRestoring");
                     island.StartInteract();
@@ -541,4 +547,11 @@ public class Mediator : MonoBehaviour,IMediator
     }
     #endregion
 
+
+    #region//-----private methods
+    void SendMesOutSideOnInteractBtnPressed()
+    {
+        GameEvents.Sigton.InteractEventDictionary["onInteractBtnPressedWhenInteracting"].OnNext(new SubjectArg("ResourceCollect"));
+    }
+    #endregion
 }

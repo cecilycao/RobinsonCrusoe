@@ -9,7 +9,9 @@ public class GameEventAudioViewer : MonoBehaviour
     int previousFatigue = 0;
     private void Start()
     {
-        WhenHungerValueIncreased();     
+        WhenHungerValueIncreased();
+
+        OnInteractBtnReleasedWhenPressed();
     }
     void WhenHungerValueIncreased()
     {
@@ -28,6 +30,14 @@ public class GameEventAudioViewer : MonoBehaviour
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("Player_FatigueValueIncreased");
+            });
+    }
+    void OnInteractBtnReleasedWhenPressed()
+    {
+        GameEvents.Sigton.InteractEventDictionary["onInteractBtnPressedWhenInteracting"]
+            .Subscribe(x =>
+            {
+                AudioManager.Singleton.PlayAudio("Interact_startContactTipSound");
             });
     }
 }

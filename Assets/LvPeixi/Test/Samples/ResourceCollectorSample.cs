@@ -15,16 +15,16 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
 
     private void Start()
     {
-        Icon = FindObjectOfType<IconManager>().CollectFoodIcon;
-        if (Icon == null)
-        {
-            Debug.LogError("Icon haven't been assigned to IconManager");
-        }
+        //Icon = FindObjectOfType<IconManager>().CollectFoodIcon;
+        //if (Icon == null)
+        //{
+        //    Debug.LogError("Icon haven't been assigned to IconManager");
+        //}
     }
 
     private void Update()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
     }
 
     public void EndContact()
@@ -57,12 +57,12 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
 
     public void ShowIcon()
     {
-        Icon.SetActive(true);
+        //Icon.SetActive(true);
     }
 
     public void HideIcon()
     {
-        Icon.SetActive(false);
+        //Icon.SetActive(false);
     }
 
 }

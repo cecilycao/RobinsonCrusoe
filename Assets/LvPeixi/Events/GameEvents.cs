@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UniRx;
@@ -8,7 +9,14 @@ using UniRx;
 /// </summary>
 public class GameEvents : MonoBehaviour
 {
+    
     static GameEvents events;
+
+    private Dictionary<string, Subject<SubjectArg>> interactEventDic = new Dictionary<string, Subject<SubjectArg>>();
+    public Dictionary<string, Subject<SubjectArg>> InteractEventDictionary
+    {
+        get => interactEventDic;
+    }
 
     #region-----重要游戏事件-----
     public Action onGameStart;
@@ -103,9 +111,35 @@ public class GameEvents : MonoBehaviour
             }
         }
     }
+
+
     private void Awake()
     {
         events = this;
+        interactEventDic.Add("onInteractBtnPressedWhenInteracting", new Subject<SubjectArg>());     
     }
     #endregion
+    
 }
+
+public struct SubjectArg
+{
+    /// <summary>
+    /// subject的名字
+    /// </summary>
+    string subjectName;
+    /// <summary>
+    /// 携带信息
+    /// </summary>
+    object subjectMes;
+    public SubjectArg(string m_subjectName):this()
+    {
+        subjectName = m_subjectName;
+    }
+    public SubjectArg(string m_subjectName,object m_subjectMes)
+    {
+        subjectName = m_subjectName;
+        subjectMes = m_subjectMes;
+    }
+}
+
