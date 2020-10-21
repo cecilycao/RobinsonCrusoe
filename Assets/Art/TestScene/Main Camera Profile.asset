@@ -20,8 +20,8 @@ MonoBehaviour:
     min: -100
     max: 100
   tint:
-    m_OverrideState: 0
-    m_Value: 100
+    m_OverrideState: 1
+    m_Value: 0
     min: -100
     max: 100
 --- !u!114 &-7253324174369945730
@@ -59,7 +59,7 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: -20
+    m_Value: -30
     min: -100
     max: 100
 --- !u!114 &-2221176484196528966
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: -0.696
+    m_Value: -0.3
     min: -1
     max: 1
   xMultiplier:
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
     max: 1
   response:
     m_OverrideState: 0
-    m_Value: 0.8
+    m_Value: 1
     min: 0
     max: 1
   texture:
@@ -237,7 +237,7 @@ MonoBehaviour:
     m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.3
     min: 0
     max: 1
   clamp:
@@ -270,12 +270,12 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0.3
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.4
     min: 0.01
     max: 1
   rounded:
@@ -297,6 +297,6 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.4
     min: 0
     max: 1
