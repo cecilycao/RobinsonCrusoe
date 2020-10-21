@@ -73,12 +73,12 @@ public class ControlConsoleEditor : Editor
         {
             if (GUILayout.Button("声音播放测试"))
             {
-                AudioManager.Singleton.PlayAudio("Interact_islandRestoring");
+                AudioManager.Singleton.PlayAudio("GameEvent_rainDay");
             }
 
             if (GUILayout.Button("声音停止测试"))
             {
-                AudioManager.Singleton.PauseAudio("Interact_islandRestoring");
+                AudioManager.Singleton.PauseAudio("GameEvent_rainDay");
             }
         }
     }

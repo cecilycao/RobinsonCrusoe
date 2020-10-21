@@ -186,6 +186,7 @@ public class DiaryManager : MonoBehaviour
         {
             GameEvents.Sigton.OnDiaryEnd.Invoke();
         });
+        
     }
 
 

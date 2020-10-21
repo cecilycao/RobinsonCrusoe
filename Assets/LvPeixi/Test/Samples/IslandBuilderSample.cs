@@ -42,6 +42,7 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 
     public void StartContact()
     {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
         Mediator.Sigton.StartInteraction(this);
     }
 

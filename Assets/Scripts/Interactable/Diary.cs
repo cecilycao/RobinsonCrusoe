@@ -57,6 +57,7 @@ public class Diary : MonoBehaviour, IInteractable
             DiaryManager.Instance.closeDiary();
             Debug.Log("Finish writing diary, one day end");
             GameEvents.Sigton.onDayEnd.Invoke();
+            GameEvents.Sigton.onDayStart.Invoke();
             diaryOpen = false;
         }
     }

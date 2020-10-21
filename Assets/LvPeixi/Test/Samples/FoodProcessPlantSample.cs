@@ -55,6 +55,7 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 
     public void StartContact()
     {
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
         Mediator.Sigton.StartInteraction(this);
     }
 
