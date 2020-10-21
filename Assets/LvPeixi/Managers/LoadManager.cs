@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UniRx;
+using System;
 
 public class LoadManager:MonoBehaviour 
 {
@@ -21,7 +22,9 @@ public class LoadManager:MonoBehaviour
 
     private static string theCurrentScene = "GameLog";
     private static string theNextScene = "Testor";
-    private static float loadProgress = 0;
+    private ReactiveProperty<float> loadProgress = new ReactiveProperty<float>(0);
+
+    public float progress;
     private void Awake()
     {
         Singleton = this;
@@ -34,21 +37,35 @@ public class LoadManager:MonoBehaviour
     {
         get => theNextScene;
     }
-    public float LoadProgress
+    public ReactiveProperty<float> LoadProgress
     {
         get => loadProgress;
     }
 
     public void LoadTheNextScene(string sceneName)
     {
+        SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(theCurrentScene);
-        AsyncOperation asyncOperation =  SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation asyncOperation =  SceneManager.LoadSceneAsync(sceneName,LoadSceneMode.Additive);
 
+        asyncOperation.allowSceneActivation = false;
+        
         System.IDisposable asyncLoadMicrotine = null;
         asyncLoadMicrotine = Observable.EveryUpdate()
             .Subscribe(x =>
             {
-                loadProgress = asyncOperation.progress;
-            });
+                loadProgress.Value = asyncOperation.progress;
+                if (asyncOperation.progress >= .9f)
+                {
+                    Observable.Timer(TimeSpan.FromSeconds(2))
+                     .First()
+                     .Subscribe(y =>
+                     {
+                         SceneManager.UnloadSceneAsync("LoadingScene");
+                         asyncOperation.allowSceneActivation = true;
+                     }).AddTo(this);
+                    asyncLoadMicrotine.Dispose();
+                }
+            }).AddTo(this);
     }
 }

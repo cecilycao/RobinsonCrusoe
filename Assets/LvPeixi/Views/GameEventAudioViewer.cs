@@ -9,8 +9,7 @@ public class GameEventAudioViewer : MonoBehaviour
     int previousFatigue = 0;
     private void Start()
     {
-        WhenHungerValueIncreased();
-            
+        WhenHungerValueIncreased();     
     }
     void WhenHungerValueIncreased()
     {
