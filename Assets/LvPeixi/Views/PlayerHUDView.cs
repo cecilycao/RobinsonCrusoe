@@ -20,6 +20,15 @@ public class PlayerHUDView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Observable.Timer(System.TimeSpan.FromMilliseconds(10))
+          .Subscribe(x =>
+          {
+              WatchPlayerAttr();
+          });
+    }
+    void WatchPlayerAttr()
+    {
+      
         GUIEvents.Singleton.BroadcastInteractTipMessage
             .Subscribe(x =>
             {
@@ -58,7 +67,6 @@ public class PlayerHUDView : MonoBehaviour
                 float _value = x / maxBuildingMaterial;
                 buildingMaterialSlider.value = _value;
             });
-          
     }
 }
     

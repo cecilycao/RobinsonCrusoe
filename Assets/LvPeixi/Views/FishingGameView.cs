@@ -29,6 +29,7 @@ public class FishingGameView : MonoBehaviour
         config = GameConfig.Singleton.InteractionConfig;
 
         GUIEvents.Singleton.PlayerStartFishing
+            .Throttle(System.TimeSpan.FromSeconds(1))
             .Subscribe(x =>
             {
                 RunFishGame(true);
@@ -94,7 +95,7 @@ public class FishingGameView : MonoBehaviour
             {
                 //-----dice-----
                 int _dice = Random.Range(1, 100);
-                if (_dice<= _diceTurnReusltPro)
+                if (_dice <= _diceTurnReusltPro)
                 {
                     if (target == endPos)
                     {
@@ -105,7 +106,7 @@ public class FishingGameView : MonoBehaviour
                         target = endPos;
                     }
                 }
-            });          
+            });
     }
     void JudgePlayerScore(RectTransform pointer,Vector3 pointAreaStartPos,Vector3 pointAreaEndPos)
     {

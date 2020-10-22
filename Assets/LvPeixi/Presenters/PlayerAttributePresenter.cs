@@ -44,15 +44,14 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         }
     }
     #endregion
-    // Start is called before the first frame update
-    private void Awake()
+
+    private void OnEnable()
     {
-        GUIEvents.Singleton.Fatigue = model.currentFatigue;
-        GUIEvents.Singleton.Hunger = model.hunger;
-        Mediator.Sigton.PlayerAttribute = this;
+     
     }
     void Start()
     {
+
         Configurate();
         #region-----When time is out, start to accumulate fatigue
         GameEvents.Sigton.timeSystem
@@ -77,8 +76,11 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     }
     void AccumulateFatigue()
     {
+        if (isAccmulatingFatigue)
+        {
+            return;
+        }
         isAccmulatingFatigue = true;
-        print("is accumulating fatigue");
         int _fatigueAccmuSpeed = (int)GameConfig.Singleton.PlayerConfig["fatigueIncreaseWhenTimeOut"];
 
         accumulateFatigue = Observable.Interval(TimeSpan.FromSeconds(1))
@@ -143,6 +145,10 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         config = GameConfig.Singleton.PlayerConfig;
         model.hunger.Value = (int)config["playerAttr_hungerValue_start"];
         model.currentFatigue.Value = (int)config["playerAttr_fatigueValue_start"];
+
+        GUIEvents.Singleton.Hunger = model.hunger;
+        GUIEvents.Singleton.Fatigue = model.currentFatigue;
+        Mediator.Sigton.PlayerAttribute = this;
     }
 
     void HungerDec()

@@ -186,7 +186,7 @@ public class Mediator : MonoBehaviour,IMediator
         }
     }
     /// <summary>
-    /// 收集资源
+    /// 主动收集资源，发起钓鱼小游戏
     /// </summary>
     /// <param name="collector"></param>
     public void StartInteraction(IInteractableResourceCollector collector)
@@ -219,13 +219,13 @@ public class Mediator : MonoBehaviour,IMediator
                     SendMesOutSideOnInteractBtnPressed();
 
                     //end collect resource after 1 sec
-                    Observable.Timer(TimeSpan.FromSeconds(1))
-                    .First()
-                    .Subscribe(y =>
-                    {
-                        playerInteract.PlayerEndInteraction();
-                        GameEvents.Sigton.onInteractEnd();
-                    });
+                    //Observable.Timer(TimeSpan.FromSeconds(1))
+                    //.First()
+                    //.Subscribe(y =>
+                    //{
+                    //    playerInteract.PlayerEndInteraction();
+                    //    GameEvents.Sigton.onInteractEnd();
+                    //});
                 });
 
             GUIEvents.Singleton.PlayerEndFishing

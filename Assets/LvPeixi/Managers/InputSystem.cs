@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UniRx;
 
 public class InputSystem : MonoBehaviour, IKeyboardInput
@@ -34,6 +35,7 @@ public class InputSystem : MonoBehaviour, IKeyboardInput
     {
         Observable.EveryUpdate()
             .Where(x => Input.GetKeyDown(KeyCode.E))
+            .Throttle(TimeSpan.FromMilliseconds(5))
             .Subscribe(x =>
             {
                 onInteractBtnPressed.OnNext("e");
@@ -41,6 +43,7 @@ public class InputSystem : MonoBehaviour, IKeyboardInput
 
         Observable.EveryUpdate()
             .Where(x => Input.GetButtonUp("Interact"))
+            .Throttle(TimeSpan.FromMilliseconds(5))
             .Subscribe(x =>
             {
                 onInteractBtnReleased.OnNext("e");

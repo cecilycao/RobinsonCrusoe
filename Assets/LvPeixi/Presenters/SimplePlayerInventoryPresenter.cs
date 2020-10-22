@@ -20,12 +20,13 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
         model.foodMaterial.Value = 0;
         model.buildingMaterial.Value = 0;
 
-        GUIEvents.Singleton.FoodMaterial = model.foodMaterial;
-        GUIEvents.Singleton.BuildingMaterial = model.buildingMaterial;
+       
     }
     private void Start()
     {
         var config = GameConfig.Singleton.PlayerConfig;
+        GUIEvents.Singleton.FoodMaterial = model.foodMaterial;
+        GUIEvents.Singleton.BuildingMaterial = model.buildingMaterial;
         model.buildingMaterialCeiling = (int)config["buildingMaterialCeiling"];
         model.foodMaterialCeiling = (int)config["foodMaterialCeiling"];
     }
