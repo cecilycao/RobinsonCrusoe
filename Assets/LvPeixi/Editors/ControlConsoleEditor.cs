@@ -78,6 +78,11 @@ public class ControlConsoleEditor : Editor
                 var maxFatigue = GameConfig.Singleton.PlayerConfig["hungerCeiling"];
                 Debug.Log(maxFatigue);
             }
+
+            if (GUILayout.Button("清空时间"))
+            {
+                
+            }
         }
 
         showAudioTest = EditorGUILayout.Foldout(showAudioTest, "声音测试");

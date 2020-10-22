@@ -81,7 +81,7 @@ public class GUIEvents:MonoBehaviour,IGUIEvents
     public Subject<bool> PlayerEndFishing { get => playerEndFishing; }
     private void Awake()
     {
-        _sig = this;
+        //Singleton = this;
     }
 
 }

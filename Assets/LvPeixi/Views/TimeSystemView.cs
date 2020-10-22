@@ -22,11 +22,11 @@ public class TimeSystemView : MonoBehaviour
 
         GameEvents.Sigton.onDayStart += () =>
         {
-            //BlackScreenFadeOut();
+            BlackScreenFadeOut();
         };
         GameEvents.Sigton.onDayEnd += () =>
         {
-            //BlackScreenFadeIn();
+            BlackScreenFadeIn();
         };
     }
 

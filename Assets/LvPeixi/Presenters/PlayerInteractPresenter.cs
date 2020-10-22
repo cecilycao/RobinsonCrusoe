@@ -22,8 +22,14 @@ public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
         stateModel.playerState.Value = PlayerState.InteractState;
         playerInteractBehavior[interact]();
     }
-    void PlayerCollectBehavior() { }
-    void PlayerDialogBehavior() { }
+    void PlayerCollectBehavior() 
+    { 
+        
+    }
+    void PlayerDialogBehavior() 
+    {
+    
+    }
     #endregion
 
     private void Init()
@@ -44,7 +50,7 @@ public class PlayerInteractPresenter : MonoBehaviour,IPlayerInteractPresenter
             .Where(x=>stateModel.playerState.Value == PlayerState.InteractState)
             .Subscribe(x =>
             {
-                //print("interact action start");
+                
             });
 
         GameEvents.Sigton.onInteractEnd += () =>
