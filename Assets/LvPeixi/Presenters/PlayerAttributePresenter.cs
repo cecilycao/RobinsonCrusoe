@@ -122,8 +122,10 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             {
                 accumulateFatigue.Dispose();
             }
-
-            accumulateHunger.Dispose();
+            AssertExtension.NotNullRun(accumulateHunger, () =>
+            {
+                accumulateHunger.Dispose();
+            });
         };
     }
 
