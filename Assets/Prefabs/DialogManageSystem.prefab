@@ -46,9 +46,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6e94126fcbb814ca83fbb80f9ab643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dialogflowcharts: []
+  Dialogflowcharts:
+  - NPCcomponent: {fileID: 0}
+    flowchart: {fileID: 4148565478711010617}
   SelfDialogs: []
   fixDialogEndDay: 7
+  ValidMessages:
+  - default
+  - 5-1
+  - 5-2
+  - 5-3
+  - 5-default
+  - 6-1
+  - 6-2
+  - 6-default
+  - 7-1
+  - 7-2
+  - 7-default
+  - 5/1
+  - 5/2
+  - 5/default
+  - 10/1
+  - 10/2
+  - 10/default
   day: 0
   time: 0
   dialogCount: 0
@@ -102,19 +122,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 191, y: 130}
+  scrollPos: {x: 41.2391, y: 76.55932}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
-  zoom: 1
+  blockViewHeight: 424
+  zoom: 0.85000014
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 4148565478711010622}
+  selectedBlocks: []
   selectedCommands: []
   variables: []
   description: 
@@ -1056,7 +1075,7 @@ MonoBehaviour:
   scrollPos: {x: 170, y: 200}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
+  blockViewHeight: 435
   zoom: 1
   scrollViewRect:
     serializedVersion: 2

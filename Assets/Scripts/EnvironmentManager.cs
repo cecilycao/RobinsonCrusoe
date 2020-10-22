@@ -26,10 +26,10 @@ public class EnvironmentManager : MonoBehaviour
             {
                 case "ENV_Morning2Night_Anim":
                     Day2Night = clip;
-                    Debug.Log("Day2Night length: " + clip.length);
+                    //Debug.Log("Day2Night length: " + clip.length);
                     break;
                 case "ENV_Sunny2Rain2Storm_Anim":
-                    Debug.Log("Sunny2Rain length: " + clip.length);
+                    //Debug.Log("Sunny2Rain length: " + clip.length);
                     Sunny2Rain = clip;
                     break;
             }

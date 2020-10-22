@@ -22,9 +22,13 @@ public class SelfDialog : MonoBehaviour
         return NPCcomponent.NPCName;
     }
 
+    public void sendMessage(string message)
+    {
+        flowchart.SendFungusMessage(message);
+    }
     public void sendMessageToFlowchart(int day, int time)
     {
-        string message = day + "";
+        string message = day + "-" + time;
         flowchart.SendFungusMessage(message);
     }
 
