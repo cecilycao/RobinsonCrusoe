@@ -15,11 +15,15 @@ public class DialogManager : MonoBehaviour
 {
     static DialogManager _instance;
 
-    public CharacterFlowchart[] flowcharts;
-    public Flowchart playerFlowchart;
+    public CharacterFlowchart[] Dialogflowcharts;
+    public SelfDialog[] SelfDialogs;
+    //public Flowchart playerFlowchart;
+    /*
     public RectTransform SelfDialogPanel;
     public GameObject SelfDialogPlaceHolder;
-
+    public RectTransform NPCDialogPanel;
+    public GameObject NPCDialogPlaceHolder;
+    */
     [Tooltip("固定对话（不受到好感度影响）的最后一天")]
     public int fixDialogEndDay;
     
@@ -47,31 +51,41 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        Assert.IsNotNull(playerFlowchart);
+        foreach (SelfDialog dialog in SelfDialogs)
+        {
+            Assert.IsNotNull(dialog.flowchart);
+        }
 
         GameEvents.Sigton.timeSystem
         .Subscribe(_data =>
         {
             day = (int)_data.DayCount;
             time = (int)_data.TimeCountdown;
-            sendMessage(playerFlowchart, day.ToString());
+            foreach (SelfDialog dialog in SelfDialogs)
+            {
+                dialog.sendMessageToFlowchart(day, time);
+            }
+            //sendMessage(playerFlowchart, day.ToString());
             //reset dialog count everyday
             dialogCount = 0;
         });
     }
 
+    /*
     private void Update()
     {
         
-        Vector3 targetPos = Camera.main.WorldToScreenPoint(SelfDialogPlaceHolder.transform.position);
-        SelfDialogPanel.position = targetPos;
-    }
+        Vector3 targetPosPlayer = Camera.main.WorldToScreenPoint(SelfDialogPlaceHolder.transform.position);
+        SelfDialogPanel.position = targetPosPlayer;
+        Vector3 targetPosNPC = Camera.main.WorldToScreenPoint(NPCDialogPlaceHolder.transform.position);
+        NPCDialogPanel.position = targetPosNPC;
+    }*/
     
     public void StartDialog(string npc)
     {
         dialogCount++;
         
-        foreach(CharacterFlowchart item in flowcharts)
+        foreach(CharacterFlowchart item in Dialogflowcharts)
         {
             if(item.getName() == npc)
             {
@@ -101,10 +115,6 @@ public class DialogManager : MonoBehaviour
         item.flowchart.SendFungusMessage(message);
     }
 
-    public void sendMessage(Flowchart flowchart, string message)
-    {
-        flowchart.SendFungusMessage(message);
-    }
 }
 
 [Serializable]
@@ -118,3 +128,4 @@ public class CharacterFlowchart
         return NPCcomponent.NPCName;
     }
 }
+
