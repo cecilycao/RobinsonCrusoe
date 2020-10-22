@@ -13,13 +13,16 @@ public class TestLv : MonoBehaviour
     {
         var config = GameConfig.Singleton.InteractionConfig;
 
-  
-
-        Observable.EveryUpdate()
-            .Where(x => Input.GetKeyDown(KeyCode.T))
+        GameEvents.Sigton.onHungerReachMax
             .Subscribe(x =>
             {
-                
+                print("饥饿值达到最大");
+            });
+
+        GameEvents.Sigton.onFatigueReachMax
+            .Subscribe(x =>
+            {
+                print("疲劳值达到最大");
             });
     }
 }

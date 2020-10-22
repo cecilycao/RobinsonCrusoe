@@ -25,3 +25,8 @@ public class PlotEventTags
     public const string npcFirstSicked = "npcFirstSicked";
     public const string playerFirstSicked = "playerFirstSicked";
 }
+public class PlayerEventTags
+{
+    public const string onFatigueReachMax = "onFatigueReachMax";
+    public const string onHungerReachMax = "onHungerReachMax";
+}

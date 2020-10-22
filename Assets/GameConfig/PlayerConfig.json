@@ -16,12 +16,12 @@
   },
   {
     "Key": "foodMaterialCeiling",
-    "Value": 60.0,
+    "Value": 10.0,
     "Description": "食物上限"
   },
   {
     "Key": "buildingMaterialCeiling",
-    "Value": 10.0,
+    "Value": 50.0,
     "Description": "建材上限"
   },
   {
