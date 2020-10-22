@@ -44,15 +44,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events:
-  - day: 1
-    time: 25
+  - day: 3
+    time: 119
     timeEvent: 0
-  - day: 1
-    time: 5
+  - day: 3
+    time: 20
     timeEvent: 1
-  - day: 2
-    time: 25
+  - day: 5
+    time: 120
     timeEvent: 4
-  - day: 2
-    time: 10
+  - day: 5
+    time: 119
     timeEvent: 5
+  - day: 5
+    time: 119
+    timeEvent: 5
+  - day: 5
+    time: 119
+    timeEvent: 5
+  - day: 16
+    time: 119
+    timeEvent: 2
+  - day: 16
+    time: 10
+    timeEvent: 3
