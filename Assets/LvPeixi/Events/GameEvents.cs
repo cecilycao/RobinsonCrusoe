@@ -70,6 +70,16 @@ public class GameEvents : MonoBehaviour
         var _theTargetDic = eventDicManager[type];
         _theTargetDic.Add(eventKey,new Subject<SubjectArg>());
     }
+
+    public void GetEvent(EventDictionaryType type,string eventKey)
+    {
+
+    }
+
+    public void GetEvent(string eventKey)
+    {
+
+    }
     #endregion
 
     #region-----重要游戏事件-----
@@ -78,6 +88,9 @@ public class GameEvents : MonoBehaviour
     public Action onDayStart;
     public Action onDayEnd;
     public Subject<ITimeSystemData> timeSystem = new Subject<ITimeSystemData>();
+
+    public Subject<int> onFatigueReachMax = new Subject<int>();
+    public Subject<int> onHungerReachMax = new Subject<int>();
     #endregion
 
     #region//----------浮岛事件-----------
@@ -187,7 +200,10 @@ public class GameEvents : MonoBehaviour
 
         RegisterEvent(EventDictionaryType.PlotEvent,PlotEventTags.playerFirstSicked);
         RegisterEvent(EventDictionaryType.PlotEvent, PlotEventTags.npcFirstSicked);
+        RegisterEvent(EventDictionaryType.PlotEvent, PlayerEventTags.onFatigueReachMax);
+        
     }
+
 }
 
 

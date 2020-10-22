@@ -28,6 +28,11 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         set
         {
             model.currentFatigue.Value = Mathf.Clamp(model.currentFatigue.Value, 0, model.ceilingFatigue);
+            Debug.Log("currentFatigue: " + model.currentFatigue.Value);
+            if (model.currentFatigue.Value >= model.ceilingFatigue)
+            {
+                GameEvents.Sigton.onFatigueReachMax.OnNext(model.currentFatigue.Value);
+            }
         }
     }
     public ReactiveProperty<int> Hunger
@@ -35,7 +40,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         get => model.hunger;
         set
         {
-            model.hunger.Value= Mathf.Clamp(model.hunger.Value, 0, model.ceilingHunger);
+            model.hunger.Value = Mathf.Clamp(model.hunger.Value, 0, 100);
         }
     }
     #endregion
@@ -64,6 +69,10 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         OnDayEnd();
 
         TestProperty();
+
+        OnFatigueChanged();
+
+        OnHungerChanged();
 
     }
     void AccumulateFatigue()
@@ -157,6 +166,27 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             .Subscribe(x =>
             {
                 t_Hunger = x;
+            });
+    }
+
+    void OnFatigueChanged()
+    {
+        model.currentFatigue
+            .Subscribe(x =>
+            {
+                if (x>=100)
+                {
+                    GameEvents.Sigton.onFatigueReachMax.OnNext(x);
+                }
+            });
+    }
+
+    void OnHungerChanged()
+    {
+        model.hunger
+            .Subscribe(x =>
+            {
+       
             });
     }
 }
