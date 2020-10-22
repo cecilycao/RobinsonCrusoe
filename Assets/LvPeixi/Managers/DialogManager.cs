@@ -26,9 +26,12 @@ public class DialogManager : MonoBehaviour
     */
     [Tooltip("固定对话（不受到好感度影响）的最后一天")]
     public int fixDialogEndDay;
-    
+
+    [SerializeField]
     int day = 0;
+    [SerializeField]
     int time = 0;
+    [SerializeField]
     int dialogCount = 0;
 
     public static DialogManager Singelton

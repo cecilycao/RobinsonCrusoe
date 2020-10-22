@@ -367,7 +367,7 @@ MonoBehaviour:
   NPCcomponent: {fileID: 0}
   flowchart: {fileID: 0}
   DialogPanel: {fileID: 0}
-  DialogPlaceHolder: {fileID: 0}
+  DialogPlaceHolder: {fileID: 6939420047496146610}
 --- !u!1 &6939420047496146610
 GameObject:
   m_ObjectHideFlags: 0

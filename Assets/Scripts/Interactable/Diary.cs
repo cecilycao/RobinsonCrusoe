@@ -22,10 +22,9 @@ public class Diary : MonoBehaviour, IInteractable
         {
             Debug.LogError("Icon haven't been assigned to IconManager");
         }
-        maxFatigue = (int)GameConfig.Singleton.PlayerConfig["hungerCeiling"];
-        Debug.Log("Can write diary at fatigue: " + maxFatigue);
 
-        var config = GameConfig.Singleton.InteractionConfig;
+        maxFatigue = (int)GameConfig.Singleton.PlayerConfig["fatigueCeiling"];
+        Debug.Log("Can write diary at fatigue: " + maxFatigue);
 
         GUIEvents.Singleton.Fatigue
             .Where(y => y == maxFatigue)
