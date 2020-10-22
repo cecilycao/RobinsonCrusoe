@@ -851,6 +851,18 @@ MonoBehaviour:
   parentBlock: {fileID: 71145525}
   suppressBlockAutoSelect: 0
   waitForFrames: 1
+--- !u!114 &71145552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4148565478711010617, guid: 74716178b7b2d2940a0bf284cb4773bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 71145519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71145523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &71145553 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7733818437309126185, guid: 74716178b7b2d2940a0bf284cb4773bd,
@@ -2760,7 +2772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 912177900}
+  selectedFlowchart: {fileID: 71145552}
 --- !u!4 &1159029869
 Transform:
   m_ObjectHideFlags: 1
@@ -6470,111 +6482,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TimeLine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[0].time
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[0].day
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[1].day
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[1].time
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[2].day
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[2].time
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[3].day
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[3].time
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[4].day
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[4].time
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[4].timeEvent
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[5].day
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[5].time
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[5].timeEvent
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[6].day
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[6].time
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[6].timeEvent
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[7].day
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[7].time
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
-      propertyPath: events.Array.data[7].timeEvent
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03341d039a5b2148b81a6eb9cf326c2, type: 3}

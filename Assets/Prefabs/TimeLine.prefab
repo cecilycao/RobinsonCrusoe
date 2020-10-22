@@ -48,7 +48,7 @@ MonoBehaviour:
     time: 119
     timeEvent: 0
   - day: 3
-    time: 20
+    time: 5
     timeEvent: 1
   - day: 5
     time: 120
@@ -56,15 +56,9 @@ MonoBehaviour:
   - day: 5
     time: 119
     timeEvent: 5
-  - day: 5
-    time: 119
-    timeEvent: 5
-  - day: 5
-    time: 119
-    timeEvent: 5
   - day: 16
     time: 119
     timeEvent: 2
   - day: 16
-    time: 10
+    time: 5
     timeEvent: 3
