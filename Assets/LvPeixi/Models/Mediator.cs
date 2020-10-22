@@ -196,6 +196,7 @@ public class Mediator : MonoBehaviour,IMediator
             IsAtInteractState = true;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
             collector.ShowIcon();
+        
             InputSystem.Singleton.OnInteractBtnPressed
                 .First()
                 .Subscribe(x =>
@@ -255,6 +256,7 @@ public class Mediator : MonoBehaviour,IMediator
             {
                 IsAtInteractState = false;
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                playerInteract.PlayerEndInteraction();
                 collector.HideIcon();
             };
         }
