@@ -79,9 +79,10 @@ public class ControlConsoleEditor : Editor
                 Debug.Log(maxFatigue);
             }
 
-            if (GUILayout.Button("清空时间"))
+            if (GUILayout.Button("关上日记本"))
             {
-                
+                var diarymanager = FindObjectOfType<DiaryManager>();
+                diarymanager.hideContentAfterClose();
             }
         }
 

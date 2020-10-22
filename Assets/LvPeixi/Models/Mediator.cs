@@ -250,6 +250,7 @@ public class Mediator : MonoBehaviour,IMediator
                             });
                     }
                     collector.EndInteract((object)x);
+                    GameEvents.Sigton.onInteractEnd.Invoke();
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>

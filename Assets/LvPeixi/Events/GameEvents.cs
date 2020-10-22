@@ -151,7 +151,7 @@ public class GameEvents : MonoBehaviour
     /// </summary>
     public Action onPlayerRest;
     #endregion
-    
+
     public Action OnDiaryStart;
     public Action OnDiaryEnd;
 
