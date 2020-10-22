@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class EnvironmentManager : MonoBehaviour
 {
     Animator EnvironmentAnimator;
     AnimationClip Day2Night;
     AnimationClip Sunny2Rain;
-
+    public bool Sunny2Rainy = false;
+    public bool Rainy2Sunny = false;
+    public float rainVal;
+    public float rainChangeDuration = 1.0f;
     float DayLength = 120;
 
     // Start is called before the first frame update
@@ -55,31 +59,69 @@ public class EnvironmentManager : MonoBehaviour
         GameEvents.Sigton.OnRainStart += () =>
         {
             Debug.Log("Rain Start......");
-            EnvironmentAnimator.SetBool("isRain", true);
+            Rainy2Sunny = false;
+            Sunny2Rainy = true;
         };
 
         GameEvents.Sigton.OnRainEnd += () =>
         {
             Debug.Log("Rain End......");
-            EnvironmentAnimator.SetBool("isRain", false);
+            Sunny2Rainy = false;
+            Rainy2Sunny = true;
         };
 
         GameEvents.Sigton.OnStormStart += () =>
         {
             Debug.Log("Storm Start......");
-            EnvironmentAnimator.SetBool("isStorm", true);
+            Rainy2Sunny = false;
+            Sunny2Rainy = true;
         };
 
         GameEvents.Sigton.OnStormEnd += () =>
         {
             Debug.Log("Storm End......");
-            EnvironmentAnimator.SetBool("isStorm", false);
+            Sunny2Rainy = false;
+            Rainy2Sunny = true;
         };
+
+        GameEvents.Sigton.timeSystem
+            .Subscribe(_data =>
+            {
+                EnvironmentAnimator.SetFloat("DayLength", _data.TimeCountdown/DayLength);
+
+            });
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Sunny2Rainy)
+        {
+            rainVal += Time.deltaTime / rainChangeDuration;
+            
+            EnvironmentAnimator.SetFloat("RainStrength", rainVal);
+            if(rainVal >= 1)
+            {
+                rainVal = 1;
+                Sunny2Rainy = false;
+            }
+
+        }
+        if (Rainy2Sunny)
+        {
+            rainVal -= Time.deltaTime / rainChangeDuration;
+
+            EnvironmentAnimator.SetFloat("RainStrength", rainVal);
+            if (rainVal <= 0)
+            {
+                rainVal = 0;
+                Rainy2Sunny = false;
+            }
+        }
+    }
+
+    void changeNum()
+    {
+
     }
 }
