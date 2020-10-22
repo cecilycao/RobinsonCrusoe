@@ -11315,6 +11315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
+      propertyPath: myContents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
       propertyPath: DiaryUI
       value: 
       objectReference: {fileID: 1742635082}
@@ -11333,6 +11338,84 @@ PrefabInstance:
       propertyPath: contentTextRight
       value: 
       objectReference: {fileID: 2038084401}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[0].day
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[0].content
+      value: "\u6E05\u7406\u6E14\u7F51\uFF0C\u9493\u9C7C\uFF0C\u505A\u5403\u7684\u3002
+        \u6211\u4E0D\u60F3\u518D\u5403\u4EFB\u4F55\u4E1C\u897F\u4E86\u3002 \u6211\u7684\u80C3\u90E8\u5728\u6D88\u5316\u6A61\u80F6\u53E3\u611F\u7684\u9C7C\u3002
+        \u867D\u7136\u6709\u9971\u8179\u611F\uFF0C\u4F46\u4E5F\u4E0D\u60F3\u518D\u5403\u66F4\u591A\u4E86\u3002
+        \u6211\u5FC5\u987B\u8981\u5199\u70B9\u4E1C\u897F\u4FDD\u6301\u7406\u667A\u3002\u5E78\u597D\u6628\u5929\u635E\u5230\u7684\u7B14\u8FD8\u80FD\u7528\u3002 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[1].day
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[1].content
+      value: "\u6E05\u7406\u6E14\u7F51\uFF0C\u9493\u9C7C\uFF0C\u505A\u5403\u7684\u3002
+        \u6211\u89C9\u5F97\u6211\u66F4\u5BB9\u6613\u611F\u5230\u75B2\u60EB\u4E86\uFF0C\u4EFF\u4F5B\u4E00\u5929\u53EA\u6709\u4E00\u5206\u949F\u957F\u3002
+        \u4E86\u65E0\u65B0\u610F\u3002 \u81EA\u6BCF\u5929\u90FD\u5728\u91CD\u590D\u4E0A\u4E00\u5929\u7684\u5FAA\u73AF\u3002
+        \u75B2\u5026\u548C\u9965\u997F\u8FEB\u4F7F\u6211\u7684\u8EAB\u4F53\u53BB\u751F\u5B58\uFF0C\u4F46\u8FD9\u4E00\u5207\u7684\u610F\u4E49\u662F\u4EC0\u4E48\uFF1F "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[2].day
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[2].content
+      value: "\u6E05\u7406\u6E14\u7F51\uFF0C\u9493\u9C7C\uFF0C\u505A\u5403\u7684\u3002
+        \u5C11\u89C1\u7684\u9634\u96E8\u5929\u3002\u6E7F\u51B7\u7684\u6C34\u96FE\u5F88\u7CDF\u7CD5\u3002\u201C\u5927\u98CE\u66B4\u201D\u8981\u6765\u4E86\u3002
+        \u5927\u6982\u8FD8\u670923\uFF08\u5212\u6389\uFF0915\uFF08\u5212\u6389\uFF0912\u5929\u5DE6\u53F3\u3002 
+        \u5C9B\u5757\u5728\u9010\u6E10\u53D7\u635F\u3002 \u4E3A\u4E86\u751F\u5B58\uFF0C\u6211\u4E0D\u5F97\u4E0D\u4FEE\u597D\u6211\u7684\u5C9B\u5757 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[3].content
+      value: "\u8DDD\u79BB\u201C\u5927\u98CE\u66B4\u201D\u8FD8\u670912\u5929 \u6E05\u7406\u6E14\u7F51\uFF0C\u9493\u9C7C\uFF0C\u505A\u5403\u7684\u3002
+        \u4F46\u5176\u5B9E\u6211\u77E5\u9053\u3002\u6211\u7684\u5783\u573E\u5C9B\u4E0D\u591F\u5927\u3002\u6CA1\u5E0C\u671B\u4E86\u3002
+        \u4E3A\u4E86\u62B5\u5FA1\u201C\u5927\u98CE\u66B4\u201D\uFF0C\u6211\u53EA\u80FD\u589E\u52A0\u6211\u7684\u5C9B\u5757\uFF0C\u4F46\u9700\u8981\u7684\u592A\u591A\u4E86\u3002
+        \u5DF2\u7ECF\u6CA1\u6709\u5E0C\u671B\u4E86\u3002 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[3].day
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[4].day
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[4].content
+      value: "\u6211\u4E0D\u6562\u76F8\u4FE1\u2026\u2026\u6211\u7ADF\u7136\u9047\u5230\u4E86\u53E6\u4E00\u4E2A\u5783\u573E\u5C9B\u3002
+        \u5C9B\u4E0A\u7684\u7537\u4EBA\u5782\u7740\u5934\u4E00\u8A00\u4E0D\u53D1\uFF0C\u773C\u7736\u51F9\u7684\u5389\u5BB3\u3002
+        \u4ED6\u751A\u81F3\u8FDE\u8BDD\u90FD\u8BF4\u4E0D\u51FA\u6765\u3002 \u4E0D\u7BA1\u600E\u6837\uFF0C\u6709\u4E86\u4ED6\u7684\u5C9B\u5757\uFF0C\u4E5F\u8BB8\u8FD8\u80FD\u591F\u597D\u597D\u5E94\u5BF9\u201C\u5927\u98CE\u66B4\u201D\u2026\u2026 "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[5].day
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[5].content
+      value: "\u6E05\u7406\u6E14\u7F51\uFF0C\u9493\u9C7C\uFF0C\u505A\u5403\u7684\u3002
+        \u6211\u8FD8\u662F\u6CA1\u80FD\u548C\u4ED6\u642D\u4E0A\u8BDD\u3002\u4E5F\u8BB8\u662F\u5F92\u52B3\u3002
+        \u4E0D\u8FC7\u90A3\u4E2A\u7537\u4EBA\u4F3C\u4E4E\u4E5F\u6709\u4E9B\u754F\u60E7\u6211\u3002
+        \u5199\u65E5\u8BB0\u524D\u6211\u7167\u4E86\u7167\u955C\u5B50\uFF0C\u9634\u68EE\u53EF\u6015\u7684\u8138\u988A\u770B\u8D77\u6765\u548C\u4ED6\u5982\u51FA\u4E00\u8F99\u3002
+        \u4E5F\u8BB8\u4E0D\u4E45\u4EE5\u540E\u6211\u4E5F\u4F1A\u548C\u90A3\u4E2A\u4EBA\u4E00\u6837\u3002 "
+      objectReference: {fileID: 0}
     - target: {fileID: 4000733716468849162, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
       propertyPath: m_Name
@@ -11831,6 +11914,11 @@ PrefabInstance:
       propertyPath: setSayDialog
       value: 
       objectReference: {fileID: 2069716379}
+    - target: {fileID: 1461494391302230647, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
+        type: 3}
+      propertyPath: timeModel.dayLastTime
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1765816446772690598, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
       propertyPath: SelfDialogPanel

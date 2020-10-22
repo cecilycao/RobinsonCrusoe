@@ -21,6 +21,8 @@ public class DiaryManager : MonoBehaviour
     public Text WeatherText;
     public Text contentTextLeft;
     public Text contentTextRight;
+    public List<DiaryContent> myContents;
+    
 
     List<DiaryPage> pageList = new List<DiaryPage>();
     int currentShowingIndex = 0;
@@ -186,7 +188,7 @@ public class DiaryManager : MonoBehaviour
         {
             GameEvents.Sigton.OnDiaryEnd.Invoke();
         });
-        
+
     }
 
 
@@ -252,7 +254,15 @@ public class DiaryPage
 
     public string getFixedContentHead()
     {
-        return "FixContent Day" + day;
+        foreach(DiaryContent content in DiaryManager.Instance.myContents)
+        {
+            if(content.day == day)
+            {
+                return content.content;
+            }
+        }
+        
+        return "didnt find content for day" + day;
     }
 
     public string getFixedContentFoot()
@@ -288,9 +298,20 @@ public class DiaryPage
 
 public enum WritableEvents
 {
+    NONE,
     ISLAND_DESTROYED,
     ISLAND_CREATED,
     TALK_TO_NPC_SATISFIED_0,
     TALK_TO_NPC_SATISFIED_1,
-    TALK_TO_NPC_SATISFIED_2
+    TALK_TO_NPC_SATISFIED_2,
+    RESUCE_BY_NPC,
+
+}
+
+[Serializable]
+public class DiaryContent{
+
+    public int day;
+    public WritableEvents myEvent;
+    public string content;
 }
