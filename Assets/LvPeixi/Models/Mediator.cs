@@ -293,6 +293,7 @@ public class Mediator : MonoBehaviour,IMediator
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");                 
                     builder.HideIcon();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
+                    AudioManager.Singleton.PlayAudio("Interact_islandBuilding");
                     builder.StartInteract();
                 });
 
@@ -302,6 +303,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
                     //-----set player attribute
                     int fatigueIncrease = (int)interactConfig["addIslandFatigueIncrease"];
                     playerAttribute.Fatigue.Value += fatigueIncrease;
@@ -320,6 +322,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
                     GameEvents.Sigton.onInteractEnd();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
                     AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
@@ -350,6 +353,14 @@ public class Mediator : MonoBehaviour,IMediator
             if (inventory.FoodMaterial.Value < foodProcess.Cost)
             {
                 IsAtInteractState = false;
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("没有足够的食材加工食物");
+                Observable.Timer(TimeSpan.FromSeconds(2))
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    });
+
                 return;
             }
   

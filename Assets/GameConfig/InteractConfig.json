@@ -145,19 +145,19 @@
   },
   {
     "Key": "fishGame_pointerMoveSpeed",
-    "Value": 10.0,
+    "Value": 6.0,
     "Description": "小游戏指针移动速度",
     "PS": null
   },
   {
     "Key": "fishGame_pointAreaLengthMax",
-    "Value": 80.0,
+    "Value": 150.0,
     "Description": "pointAreaLength的随机最大长度",
     "PS": "pointArea见钓鱼小游戏图示.vsdx"
   },
   {
     "Key": "fishGame_pointAreaLengthMin",
-    "Value": 20.0,
+    "Value": 75.0,
     "Description": "pointAreaLength的随机最小长度",
     "PS": "pointArea见钓鱼小游戏图示.vsdx"
   },
@@ -173,5 +173,4 @@
     "Description": "掷骰子结果为转向的概率",
     "PS": "见钓鱼小游戏图示.vsdx"
   }
-  
 ]

@@ -30,3 +30,8 @@ public class PlayerEventTags
     public const string onFatigueReachMax = "onFatigueReachMax";
     public const string onHungerReachMax = "onHungerReachMax";
 }
+
+public class MechanismEventTags
+{
+    public const string onDayTimeOut = "onDayTimeOut";
+}

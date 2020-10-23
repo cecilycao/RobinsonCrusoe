@@ -26,7 +26,7 @@
   {
     "ClipName": "Interact_build_restoreIsland_processFoodComplete",
     "AudioMixerGroup": "GameEvent",
-    "Volume": 1.0,
+    "Volume": 0.5,
     "PlayerOnAwake": false,
     "Loop": false,
     "PS": null
@@ -50,7 +50,7 @@
   {
     "ClipName": "Interact_positiveCollectResourceComplete",
     "AudioMixerGroup": "Interact",
-    "Volume": 1.0,
+    "Volume": 0.5,
     "PlayerOnAwake": false,
     "Loop": false,
     "PS": null

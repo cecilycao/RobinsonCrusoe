@@ -52,8 +52,11 @@ public class GameConfig
         JsonData _jsonData = JsonMapper.ToObject(configJsonData);
         foreach (JsonData v in _jsonData)
         {
-            var _temp = (float)(double)v["Value"];
-            _floatDic.Add(v["Key"].ToString(), _temp);
+            if (v != null)
+            {
+                var _temp = (float)(double)v["Value"];
+                _floatDic.Add(v["Key"].ToString(), _temp);
+            }
         }
     }
 
