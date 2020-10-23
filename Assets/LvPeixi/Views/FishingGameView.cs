@@ -32,6 +32,7 @@ public class FishingGameView : MonoBehaviour
             .Throttle(System.TimeSpan.FromSeconds(1))
             .Subscribe(x =>
             {
+                print("收到开始钓鱼游戏的信号");
                 RunFishGame(true);
             });
     }

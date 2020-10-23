@@ -71,14 +71,14 @@ public class GameEvents : MonoBehaviour
         _theTargetDic.Add(eventKey,new Subject<SubjectArg>());
     }
 
-    public void GetEvent(EventDictionaryType type,string eventKey)
+    public object GetEvent(EventDictionaryType type,string eventKey)
     {
-
+        return 1;
     }
 
-    public void GetEvent(string eventKey)
+    public object GetEvent(string eventKey)
     {
-
+        return 1;
     }
     #endregion
 
@@ -210,7 +210,6 @@ public class GameEvents : MonoBehaviour
     }
 
 }
-
 
 
 public struct SubjectArg
