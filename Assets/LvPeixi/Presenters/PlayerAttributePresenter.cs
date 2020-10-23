@@ -84,11 +84,11 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         int _fatigueAccmuSpeed = (int)GameConfig.Singleton.PlayerConfig["fatigueIncreaseWhenTimeOut"];
 
         accumulateFatigue = Observable.Interval(TimeSpan.FromSeconds(1))
-            .Where(y => model.currentFatigue.Value < model.ceilingFatigue)
+            .Where(y => model.currentFatigue.Value < 100)
             .Subscribe(x =>
             {
                 model.currentFatigue.Value = model.currentFatigue.Value + _fatigueAccmuSpeed;
-                if (model.currentFatigue.Value >= model.ceilingFatigue)
+                if (model.currentFatigue.Value >= 100)
                 {
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我已经筋疲力尽了");
                     accumulateFatigue.Dispose();
@@ -96,7 +96,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             }
             );
         onAccumulateComplete = model.currentFatigue
-            .Where(x => x == model.ceilingFatigue)
+            .Where(x => x == 100)
             .Delay(TimeSpan.FromSeconds(1))
             .First()
             .Subscribe(y =>

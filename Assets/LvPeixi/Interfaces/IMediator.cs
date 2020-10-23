@@ -14,7 +14,7 @@ public interface IMediator
     /// 请求开始收集互动
     /// </summary>
     /// <param name="collector"></param>
-    void StartResourceCollect(IInteractableResourceCollector collector);
+    //void StartResourceCollect(IInteractableResourceCollector collector);
     void EndInteract();
 
     void StartRestoreIsland(IInteractableIsland island);

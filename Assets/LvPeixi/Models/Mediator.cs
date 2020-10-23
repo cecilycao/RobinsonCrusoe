@@ -73,69 +73,6 @@ public class Mediator : MonoBehaviour,IMediator
             GameEvents.Sigton.onInteractEnd.Invoke();
         });
     }
-    public void StartResourceCollect(IInteractableResourceCollector collector)
-    {
-        if (!IsAtInteractState)
-        {
-            IsAtInteractState = true;
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
-            collector.ShowIcon();
-
-            InputSystem.Singleton.OnInteractBtnPressed
-                .First()
-                .Subscribe(x =>
-                {
-                    collector.StartInteract();
-
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
-                    collector.HideIcon();
-                    //start fishing game
-                    GUIEvents.Singleton.PlayerStartFishing.OnNext(true);
-                    //set player interact state
-                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
-                    //end collect resource after 1 sec
-                    Observable.Timer(TimeSpan.FromSeconds(1))
-                    .First()
-                    .Subscribe(y =>
-                    {
-                        playerInteract.PlayerEndInteraction();
-                        GameEvents.Sigton.onInteractEnd();
-                    });
-                });
-
-            GUIEvents.Singleton.PlayerEndFishing
-                .First()
-                .Subscribe(x =>
-                {  
-                    if (x)
-                    {
-                        AssertExtension.NotNullRun(GameEvents.Sigton.onResourceCollected, () =>
-                        {
-                            GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount);
-                        });
-                    }
-                    else
-                    {
-                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("什么也没有捞到");
-                        Observable.Timer(TimeSpan.FromSeconds(1))
-                            .First()
-                            .Subscribe(y =>
-                            {
-                                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
-                            });
-                    }
-                    collector.EndInteract((object)x);
-                });
-
-            GameEvents.Sigton.onInteractEnd += () =>
-            {
-                IsAtInteractState = false;
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
-                collector.HideIcon();
-            };
-        }
-    }
-    
     public void StartRestoreIsland(IInteractableIsland island)
     {
         
@@ -506,7 +443,6 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-
     public void OpenDiary(Diary diary)
     {
         if (!IsAtInteractState)
@@ -537,7 +473,6 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-
     public IPlayerInteractPresenter PlayerInteract
     {
         set
@@ -548,7 +483,6 @@ public class Mediator : MonoBehaviour,IMediator
             }
         }
     }
-
     public IPlayerAttribute PlayerAttribute
     {
         set
@@ -560,7 +494,6 @@ public class Mediator : MonoBehaviour,IMediator
         }
     }
     #endregion
-
 
     #region//-----private methods
     void SendMesOutSideOnInteractBtnPressed()

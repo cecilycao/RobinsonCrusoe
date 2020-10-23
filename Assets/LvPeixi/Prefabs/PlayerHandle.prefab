@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model:
-    ceilingFatigue: 20
+    ceilingFatigue: 100
     floorFatige: 0
     ceilingHunger: 100
   t_Hunger: 0
