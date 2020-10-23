@@ -561,7 +561,6 @@ public class Mediator : MonoBehaviour,IMediator
     }
     #endregion
 
-
     #region//-----private methods
     void SendMesOutSideOnInteractBtnPressed()
     {

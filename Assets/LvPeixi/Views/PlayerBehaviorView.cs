@@ -69,7 +69,7 @@ public class PlayerBehaviorView : MonoBehaviour
     }
     void UpdateAnimator()
     {
-        anim.SetBool("isWalk", isWalk);
+        anim.SetBool("IsWalk", isWalk);
     }
     void UpdateTexture()
     {
