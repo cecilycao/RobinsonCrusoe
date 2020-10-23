@@ -8,11 +8,11 @@ public class EnvironmentManager : MonoBehaviour
     Animator EnvironmentAnimator;
     AnimationClip Day2Night;
     AnimationClip Sunny2Rain;
-    public bool Sunny2Rainy = false;
-    public bool Rainy2Sunny = false;
+
     public float rainVal;
     public float rainChangeDuration = 1.0f;
     float DayLength = 120;
+    float targetRainStrength = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -59,29 +59,25 @@ public class EnvironmentManager : MonoBehaviour
         GameEvents.Sigton.OnRainStart += () =>
         {
             Debug.Log("Rain Start......");
-            Rainy2Sunny = false;
-            Sunny2Rainy = true;
+            targetRainStrength = 0.5f;
         };
 
         GameEvents.Sigton.OnRainEnd += () =>
         {
             Debug.Log("Rain End......");
-            Sunny2Rainy = false;
-            Rainy2Sunny = true;
+            targetRainStrength = 0.0f;
         };
 
         GameEvents.Sigton.OnStormStart += () =>
         {
             Debug.Log("Storm Start......");
-            Rainy2Sunny = false;
-            Sunny2Rainy = true;
+            targetRainStrength = 1.0f;
         };
 
         GameEvents.Sigton.OnStormEnd += () =>
         {
             Debug.Log("Storm End......");
-            Sunny2Rainy = false;
-            Rainy2Sunny = true;
+            targetRainStrength = 0.0f;
         };
 
         GameEvents.Sigton.timeSystem
@@ -95,27 +91,18 @@ public class EnvironmentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Sunny2Rainy)
+        if (EnvironmentAnimator.GetFloat("RainStrength") < targetRainStrength)
         {
-            rainVal += Time.deltaTime / rainChangeDuration;
-            
-            EnvironmentAnimator.SetFloat("RainStrength", rainVal);
-            if(rainVal >= 1)
+            EnvironmentAnimator.SetFloat("RainStrength", EnvironmentAnimator.GetFloat("RainStrength") + Time.deltaTime / rainChangeDuration);
+            if(EnvironmentAnimator.GetFloat("RainStrength") >= targetRainStrength)
             {
-                rainVal = 1;
-                Sunny2Rainy = false;
+                EnvironmentAnimator.SetFloat("RainStrength", targetRainStrength);
             }
-
-        }
-        if (Rainy2Sunny)
-        {
-            rainVal -= Time.deltaTime / rainChangeDuration;
-
-            EnvironmentAnimator.SetFloat("RainStrength", rainVal);
-            if (rainVal <= 0)
+        } else if (EnvironmentAnimator.GetFloat("RainStrength") > targetRainStrength) {
+            EnvironmentAnimator.SetFloat("RainStrength", EnvironmentAnimator.GetFloat("RainStrength") - Time.deltaTime / rainChangeDuration);
+            if (EnvironmentAnimator.GetFloat("RainStrength") <= targetRainStrength)
             {
-                rainVal = 0;
-                Rainy2Sunny = false;
+                EnvironmentAnimator.SetFloat("RainStrength", targetRainStrength);
             }
         }
     }
