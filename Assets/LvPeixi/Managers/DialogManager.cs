@@ -62,19 +62,26 @@ public class DialogManager : MonoBehaviour
             Assert.IsNotNull(dialog.flowchart);
         }
 
+        int newDay;
+
         GameEvents.Sigton.timeSystem
         .Subscribe(_data =>
         {
-            day = (int)_data.DayCount;
+            newDay = (int)_data.DayCount;
             time = (int)_data.TimeCountdown;
-
+            //reset dialog count everyday
+            if(newDay != day)
+            {
+                dialogCount = 0;
+                day = newDay;
+            }
+            
             foreach (SelfDialog dialog in SelfDialogs)
             {
                 dialog.sendMessageToFlowchart(day, time);
             }
             
-            //reset dialog count everyday
-            dialogCount = 0;
+            
         });
     }
 
@@ -91,7 +98,7 @@ public class DialogManager : MonoBehaviour
     public void StartDialog(string npc)
     {
         dialogCount++;
-        Debug.Log("Start dialog with " + npc);
+        Debug.Log("Start dialog " + dialogCount + "with " + npc);
         foreach(CharacterFlowchart item in Dialogflowcharts)
         {
             if(item.getName() == npc)
@@ -125,6 +132,11 @@ public class DialogManager : MonoBehaviour
             {
                 message = "10" + "/" + dialogCount;
             } 
+        }
+        if (ValidMessages.Contains(message))
+        {
+            //a valid dialog, not default
+            item.NPCcomponent.addPreference();
         }
         message = processMessage(message);
         Debug.Log("send to flowchart " + message);

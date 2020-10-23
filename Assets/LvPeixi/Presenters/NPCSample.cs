@@ -10,8 +10,11 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     public GameObject Icon;
     public string InteractObjectType { get => npcModel.interactObjectType; }
     public string NPCName { get => npcModel.npcName; }
+    public static int PREFERENCE_EACH_DIALOG = 5;
     public int preference = 0;
     public Vector3 IconOffset = new Vector3(0, 7, 0);
+
+    int day;
 
     private void Start()
     {
@@ -20,6 +23,11 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
         //{
         //    Debug.LogError("Icon haven't been assigned to IconManager");
         //}
+        GameEvents.Sigton.timeSystem
+            .Subscribe(_data =>
+            {
+                day = (int)_data.DayCount;
+            });
     }
 
     private void Update()
@@ -37,7 +45,7 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     }
     public void StartInteract()
     {
-        preference += 5;
+
         //todo： 减玩家疲劳值 -10
         var attr = FindObjectOfType<PlayerAttributePresenter>();
         attr.Fatigue.Value -= 10;
@@ -56,4 +64,11 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
         Icon.SetActive(false);
     }
 
+    public void addPreference()
+    {
+        if (day > 7)
+        {
+            preference += PREFERENCE_EACH_DIALOG;
+        }
+    }
 }
