@@ -15,7 +15,6 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
     public bool IsDay { get => timeModel.isDay.Value; }
     #endregion
 
-
     private void Awake()
     {
         timeModel.timeCountdown = new ReactiveProperty<float>(timeModel.dayLastTime);
@@ -47,7 +46,8 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
             timeModel.timeCountdown.Value = Mathf.Clamp(timeModel.timeCountdown.Value, 0, timeModel.dayLastTime);
             if (timeModel.timeCountdown.Value <= 0)
             {
-               
+                timeModel.isActive = false;
+                GameEvents.Sigton.MechanismEventDictionary[MechanismEventTags.onDayTimeOut].OnNext(new SubjectArg());
             }
         });
     }
@@ -111,6 +111,7 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
     {
         GameEvents.Sigton.onDayStart += () =>
         {
+            timeModel.isActive = true;
             timeModel.dayCount.Value++;
             timeModel.isDay.Value = true;
             timeModel.timeCountdown.Value = timeModel.dayLastTime;
@@ -121,6 +122,7 @@ public class TimeSystemPresenter : MonoBehaviour, ITimeSystemData
     {
         GameEvents.Sigton.onDayEnd += () =>
         {
+            timeModel.isActive = true;
             timeModel.isDay.Value = false;
             timeModel.timeCountdown.Value = timeModel.nightLastTime;
         };

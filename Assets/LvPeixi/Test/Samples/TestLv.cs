@@ -24,5 +24,11 @@ public class TestLv : MonoBehaviour
             {
                 print("疲劳值达到最大");
             });
+
+        GameEvents.Sigton.MechanismEventDictionary[MechanismEventTags.onDayTimeOut]
+            .Subscribe(x =>
+            {
+                print("白天时间结束");
+            });
     }
 }

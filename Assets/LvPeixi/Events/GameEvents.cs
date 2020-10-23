@@ -201,6 +201,8 @@ public class GameEvents : MonoBehaviour
         RegisterEvent(EventDictionaryType.PlotEvent,PlotEventTags.playerFirstSicked);
         RegisterEvent(EventDictionaryType.PlotEvent, PlotEventTags.npcFirstSicked);
         RegisterEvent(EventDictionaryType.PlotEvent, PlayerEventTags.onFatigueReachMax);
+
+        RegisterEvent(EventDictionaryType.MechanismEvent, MechanismEventTags.onDayTimeOut);
         
     }
 

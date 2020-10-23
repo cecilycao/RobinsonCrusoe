@@ -64,7 +64,7 @@ public class PlayerBehaviorView : MonoBehaviour
          .Subscribe(x =>
          {
              var _velocity = new Vector3(movement.Velocity.Value.x, rigid.velocity.y, movement.Velocity.Value.z);
-             rigid.velocity = _velocity;
+             rigid.velocity = -_velocity;
          });
     }
     void UpdateAnimator()
