@@ -26,6 +26,12 @@ public class Mediator : MonoBehaviour,IMediator
     /// </summary>
     protected bool IsAtInteractState = false;
     private Dictionary<string, float> interactConfig;
+
+    [Header("-----TEST BLOCK-----")]
+    [Header("主动收集的次数")]
+    public int positiveCollectPerformTime = 0;
+    [Header("玩家正在接触的交互道具")]
+    public string theInteractObject = "None";
     #endregion
 
     #region//-----initialize-----
@@ -94,6 +100,7 @@ public class Mediator : MonoBehaviour,IMediator
     {
         if (!IsAtInteractState)
         {
+ 
             IsAtInteractState = true;
             IDisposable waitForKeyboardInteractSingle = null;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
@@ -130,6 +137,18 @@ public class Mediator : MonoBehaviour,IMediator
     {
         if (!IsAtInteractState)
         {
+            if (CheckPlayerFatigue())
+            {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                Observable.Timer(TimeSpan.FromSeconds(1))
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    });
+                return;
+            }
+
             IsAtInteractState = true;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
             collector.ShowIcon();
@@ -200,6 +219,90 @@ public class Mediator : MonoBehaviour,IMediator
         }
     }
     /// <summary>
+    /// 收集建材，只需要按住不放即可
+    /// </summary>
+    /// <param name="collector"></param>
+    public void StartInteraction(IBuildingResourceCollector collector)
+    {
+         if (!IsAtInteractState)
+        {
+            if (CheckPlayerFatigue())
+            {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                Observable.Timer(TimeSpan.FromSeconds(1))
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    });
+                return;
+            }
+
+            IsAtInteractState = true;
+            collector.ShowIcon();
+
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集建材");
+
+            float buildIslandCostTime = interactConfig["addIslandTimeCost"];
+
+            InputSystem.Singleton.OnInteractBtnPressed
+                .First()
+                .Subscribe(x =>
+                {
+                    SendMesOutSideOnInteractBtnPressed();
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");
+                    collector.HideIcon();
+                    GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
+                    AudioManager.Singleton.PlayAudio("Interact_islandBuilding");
+                    collector.StartInteract();
+                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
+                });
+
+            IDisposable theEventCompleteProgress = null;
+            theEventCompleteProgress = InputSystem.Singleton.OnInteractBtnPressed
+                .Delay(TimeSpan.FromSeconds(buildIslandCostTime))
+                .First()
+                .Subscribe(x =>
+                {
+                    AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
+                    //-----set player attribute
+                    int fatigueIncrease = (int)interactConfig["addIslandFatigueIncrease"];
+                    playerAttribute.Fatigue.Value += fatigueIncrease;
+
+                    var _hungerChange = (int)interactConfig["interact_addIsland_hungerDecrea_default"];
+                    playerAttribute.Hunger.Value += _hungerChange;
+
+                    //inventory.BuildingMaterial.Value -= builder.MaterialCost;
+
+                    collector.EndInteract(true);
+                    GameEvents.Sigton.onInteractEnd();
+                });
+
+
+            InputSystem.Singleton.OnInteractBtnReleased
+                .First()
+                .Subscribe(x =>
+                {
+                    AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
+                    GameEvents.Sigton.onInteractEnd();
+                    //GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
+                    SendMesOutSideInteractBtnReleased("Cancel_building_island");
+                    AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
+                    theEventCompleteProgress.Dispose();
+                });
+
+            GameEvents.Sigton.onInteractEnd += () =>
+            {
+                IsAtInteractState = false;
+                collector.EndInteract(true);
+                playerInteract.PlayerEndInteraction();
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                collector.HideIcon();
+            };
+        }
+    }
+
+    /// <summary>
     /// 新建浮岛
     /// </summary>
     /// <param name="builder"></param>
@@ -207,6 +310,18 @@ public class Mediator : MonoBehaviour,IMediator
     {
         if (!IsAtInteractState)
         {
+            if (CheckPlayerFatigue())
+            {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                Observable.Timer(TimeSpan.FromSeconds(1))
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    });
+                return;
+            }
+
             IsAtInteractState = true;
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             var playerBuildingMaterial = inventory.BuildingMaterial.Value;
@@ -232,6 +347,7 @@ public class Mediator : MonoBehaviour,IMediator
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
                     AudioManager.Singleton.PlayAudio("Interact_islandBuilding");
                     builder.StartInteract();
+                    playerInteract.PlayerStartInteraction(PlayerInteractionType.Collect);
                 });
 
             IDisposable theEventCompleteProgress = null;
@@ -261,7 +377,8 @@ public class Mediator : MonoBehaviour,IMediator
                 {
                     AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
                     GameEvents.Sigton.onInteractEnd();
-                    GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
+                    //GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
+                    SendMesOutSideInteractBtnReleased("Cancel_building_island");
                     AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                     theEventCompleteProgress.Dispose();
                 });
@@ -270,6 +387,7 @@ public class Mediator : MonoBehaviour,IMediator
             {
                 IsAtInteractState = false;
                 builder.EndContact();
+                playerInteract.PlayerEndInteraction();
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
                 builder.HideIcon();
             };
@@ -283,11 +401,23 @@ public class Mediator : MonoBehaviour,IMediator
     {
         if (!IsAtInteractState)
         {
+            if (CheckPlayerFatigue())
+            {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                Observable.Timer(TimeSpan.FromSeconds(1))
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    });
+                return;
+            }
             IsAtInteractState = true;
             var attr = FindObjectOfType<PlayerAttributePresenter>();
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             //check player has enough food material?
-            if (inventory.FoodMaterial.Value < foodProcess.Cost)
+            var hasEnoughFoodMaterial = inventory.FoodMaterial.Value >= foodProcess.Cost;
+            if (!hasEnoughFoodMaterial)
             {
                 IsAtInteractState = false;
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("没有足够的食材加工食物");
@@ -297,8 +427,6 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
                     });
-
-                return;
             }
   
             if (foodProcess.HasFood)
@@ -310,14 +438,19 @@ public class Mediator : MonoBehaviour,IMediator
                     .Subscribe(x =>
                     {
                         foodProcess.HideIcon();
-                        int _hungerRes = (int)interactConfig["eatFoodHungerIncrease"];
+                        int _hungerRes = (int)interactConfig["eatFood_hungerDec_default"];
                         attr.Hunger.Value -= _hungerRes;
+                        attr.Fatigue.Value -= 10;
                         foodProcess.EndInteract(false);
                         GameEvents.Sigton.onInteractEnd();
                     });
             }
             else
             {
+                if (inventory.FoodMaterial.Value < foodProcess.Cost)
+                {
+                    return;
+                }
                 float processFoodCostTime = interactConfig["processFoodTimeCost"];
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按住E键生产食物");
                 foodProcess.ShowIcon();
@@ -378,6 +511,17 @@ public class Mediator : MonoBehaviour,IMediator
     {
         if (!IsAtInteractState)
         {
+            if (CheckPlayerFatigue())
+            {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                Observable.Timer(TimeSpan.FromSeconds(1))
+                    .First()
+                    .Subscribe(x =>
+                    {
+                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                    });
+                return;
+            }
             IsAtInteractState = true;
             //-----get config----
             float restoreIslandCostTime = interactConfig["restoreIslandTimeCost"];
@@ -499,6 +643,17 @@ public class Mediator : MonoBehaviour,IMediator
     void SendMesOutSideOnInteractBtnPressed()
     {
         GameEvents.Sigton.InteractEventDictionary["onInteractBtnPressedWhenInteracting"].OnNext(new SubjectArg("ResourceCollect"));
+    }
+
+    void SendMesOutSideInteractBtnReleased(string mes)
+    {
+        string _eventKey = InteractEventTags.onInteractBtnReleasedWhenInteracting;
+        GameEvents.Sigton.InteractEventDictionary[_eventKey].OnNext(new SubjectArg(mes));
+    }
+
+    bool CheckPlayerFatigue()
+    {
+        return playerAttribute.Fatigue.Value >= 100;
     }
     #endregion
 }

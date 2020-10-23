@@ -35,3 +35,14 @@ public class MechanismEventTags
 {
     public const string onDayTimeOut = "onDayTimeOut";
 }
+
+/// <summary>
+/// 更加方便获取interact config value
+/// </summary>
+public class InteractConfigKeys
+{
+    /// <summary>
+    /// 加工食物饥饿值变化(默认值)
+    /// </summary>
+    public const string interact_processFood_hungerDecrea_default = "interact_processFood_hungerDecrea_default";
+}

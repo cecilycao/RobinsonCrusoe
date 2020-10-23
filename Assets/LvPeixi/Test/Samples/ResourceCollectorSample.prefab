@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 829202415644074483}
   - component: {fileID: 829202415644074482}
   - component: {fileID: 4827313958643235495}
+  - component: {fileID: 987663124945327168}
   m_Layer: 0
   m_Name: ResourceCollectorSample
   m_TagString: Untagged
@@ -104,14 +105,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829202415644074481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df5800eccbc66234db067dde481e1c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  resourceAccount: 15
-  resourceType: FoodMaterial
+  resourceAccount: 100
+  resourceType: BuildingMaterial
   interactObjectType: ResourceCollector
   IconOffset: {x: 0, y: 7, z: 0}
 --- !u!136 &4827313958643235495
@@ -128,6 +129,23 @@ CapsuleCollider:
   m_Height: 5.3165565
   m_Direction: 1
   m_Center: {x: -0.16597462, y: 0, z: -0.24922681}
+--- !u!114 &987663124945327168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829202415644074481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783d900c7171cce43b3c1ade7ed75fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 0}
+  resourceAccount: 15
+  resourceType: BuildingMaterial
+  interactObjectType: ResourceCollector
+  IconOffset: {x: 0, y: 7, z: 0}
 --- !u!1 &829202416774331862
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +206,7 @@ MonoBehaviour:
   sendOnPlayerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 829202415644074482}
+      - m_Target: {fileID: 987663124945327168}
         m_MethodName: StartContact
         m_Mode: 1
         m_Arguments:
@@ -202,7 +220,7 @@ MonoBehaviour:
   sendOnPlayerExit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 829202415644074482}
+      - m_Target: {fileID: 987663124945327168}
         m_MethodName: EndContact
         m_Mode: 1
         m_Arguments:
@@ -260,6 +278,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5596070173877756559, guid: df3cdd09e0031044e91b4ce1e81c4718,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5fe104aec7a84884c994990eda573b2c, type: 2}
     - target: {fileID: 8915034493407994383, guid: df3cdd09e0031044e91b4ce1e81c4718,
         type: 3}
       propertyPath: m_Name

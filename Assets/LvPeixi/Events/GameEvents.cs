@@ -24,6 +24,8 @@ public class GameEvents : MonoBehaviour
     private Dictionary<string, Subject<SubjectArg>> mechanismEventDic = new Dictionary<string, Subject<SubjectArg>>();
     private Dictionary<string, Subject<SubjectArg>> playerEventDic = new Dictionary<string, Subject<SubjectArg>>();
     private Dictionary<string, Subject<SubjectArg>> propEventDic = new Dictionary<string, Subject<SubjectArg>>();
+    private Hashtable playerEventTab = new Hashtable();
+
 
     private Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>> eventDicManager = 
         new Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>>();
@@ -71,14 +73,14 @@ public class GameEvents : MonoBehaviour
         _theTargetDic.Add(eventKey,new Subject<SubjectArg>());
     }
 
-    public void GetEvent(EventDictionaryType type,string eventKey)
+    public object GetEvent(EventDictionaryType type,string eventKey)
     {
-
+        return 1;
     }
 
-    public void GetEvent(string eventKey)
+    public object GetEvent(string eventKey)
     {
-
+        return 1;
     }
     #endregion
 
@@ -200,6 +202,7 @@ public class GameEvents : MonoBehaviour
     void InitNecessaryEvents()
     {
         RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractBtnPressedWhenInteracting);
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractBtnReleasedWhenInteracting);
 
         RegisterEvent(EventDictionaryType.PlotEvent,PlotEventTags.playerFirstSicked);
         RegisterEvent(EventDictionaryType.PlotEvent, PlotEventTags.npcFirstSicked);
@@ -210,9 +213,6 @@ public class GameEvents : MonoBehaviour
     }
 
 }
-
-
-
 public struct SubjectArg
 {
     /// <summary>

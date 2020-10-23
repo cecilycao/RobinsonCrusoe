@@ -35,7 +35,7 @@ public class InputSystem : MonoBehaviour, IKeyboardInput
     {
         Observable.EveryUpdate()
             .Where(x => Input.GetKeyDown(KeyCode.E))
-            .Throttle(TimeSpan.FromMilliseconds(5))
+            .Throttle(TimeSpan.FromMilliseconds(50))
             .Subscribe(x =>
             {
                 onInteractBtnPressed.OnNext("e");
@@ -43,7 +43,7 @@ public class InputSystem : MonoBehaviour, IKeyboardInput
 
         Observable.EveryUpdate()
             .Where(x => Input.GetButtonUp("Interact"))
-            .Throttle(TimeSpan.FromMilliseconds(5))
+            .Throttle(TimeSpan.FromMilliseconds(50))
             .Subscribe(x =>
             {
                 onInteractBtnReleased.OnNext("e");

@@ -153,7 +153,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
 
     void HungerDec()
     {
-        accumulateHunger = Observable.Interval(TimeSpan.FromSeconds(1))
+        accumulateHunger = Observable.Interval(TimeSpan.FromSeconds(3))
             .Subscribe(x =>
             {
                 var hungerAccumulateSpeed = (int)config["playerAttr_defaultHungerAccumulateSpeed"];
