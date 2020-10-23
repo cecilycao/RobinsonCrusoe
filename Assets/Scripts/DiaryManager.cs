@@ -22,7 +22,8 @@ public class DiaryManager : MonoBehaviour
     public Text contentTextLeft;
     public Text contentTextRight;
     public List<DiaryContent> myContents;
-    
+
+    public NPCSample myNPC;
 
     List<DiaryPage> pageList = new List<DiaryPage>();
     int currentShowingIndex = 0;
@@ -76,11 +77,11 @@ public class DiaryManager : MonoBehaviour
         };
 
         //events: island created, island destroyed, talk to npc
-        GameEvents.Sigton.onIslandCreated += () =>
-        {
-            Debug.Log("Receive event create island");
-            events.Add(WritableEvents.ISLAND_CREATED);
-        };
+        //GameEvents.Sigton.onIslandCreated += () =>
+        //{
+        //    Debug.Log("Receive event create island");
+        //    events.Add(WritableEvents.ISLAND_CREATED);
+        //};
         //todo: island broken
         GameEvents.Sigton.onTheDestroyedIsland += () =>
         {
@@ -88,6 +89,7 @@ public class DiaryManager : MonoBehaviour
             events.Add(WritableEvents.ISLAND_DESTROYED);
         };
         //todo：talk to npc
+
 
         DiaryPanel.SetActive(false);
         JournalAnimator.gameObject.SetActive(false);
@@ -254,20 +256,38 @@ public class DiaryPage
 
     public string getFixedContentHead()
     {
-        foreach(DiaryContent content in DiaryManager.Instance.myContents)
+        if (DiaryManager.Instance.myNPC.preference == 0)
         {
-            if(content.day == day)
+            foreach (DiaryContent content in DiaryManager.Instance.myContents)
             {
-                return content.content;
+                if (content.day == day)
+                {
+                    return content.content;
+                }
             }
+        } else
+        {
+            //好感度
         }
+
+        
         
         return "didnt find content for day" + day;
     }
 
     public string getFixedContentFoot()
     {
-        return "FixContent Day" + day;
+        if (events.Contains(WritableEvents.ISLAND_DESTROYED))
+        {
+            foreach (DiaryContent content in DiaryManager.Instance.myContents)
+            {
+                if (content.myEvent == WritableEvents.ISLAND_DESTROYED)
+                {
+                    return content.content;
+                }
+            }
+        }
+        return "";
     }
 
     public string getEventContent()
