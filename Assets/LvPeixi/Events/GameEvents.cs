@@ -91,6 +91,9 @@ public class GameEvents : MonoBehaviour
 
     public Subject<int> onFatigueReachMax = new Subject<int>();
     public Subject<int> onHungerReachMax = new Subject<int>();
+
+    public Subject<int> onNPCSicked = new Subject<int>();
+    public Subject<int> onPlayerSicked = new Subject<int>();
     #endregion
 
     #region//----------浮岛事件-----------

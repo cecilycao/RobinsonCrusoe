@@ -11,7 +11,7 @@ public class PlayerBehaviorView : MonoBehaviour
     public Texture2D[] texture2Ds;
     [SerializeField]
     Vector3 direction;
-
+    [SerializeField]
     bool isWalk;
 
     private void Awake()
@@ -34,11 +34,13 @@ public class PlayerBehaviorView : MonoBehaviour
         UpdateTexture();
 
         UpdateRigidbodyWhenWalking();
+
+        UpdateAnimator();
     }
 
     private void Update()
     {
-        //UpdateRigidbodyWhenWalking();
+       
     }
     float FilterVelocityData(float axisSpeed)
     {
@@ -69,7 +71,11 @@ public class PlayerBehaviorView : MonoBehaviour
     }
     void UpdateAnimator()
     {
-        anim.SetBool("IsWalk", isWalk);
+        Observable.EveryUpdate()
+            .Subscribe(x =>
+            {
+                anim.SetBool("IsWalk", isWalk);
+            });
     }
     void UpdateTexture()
     {
@@ -108,11 +114,7 @@ public class PlayerBehaviorView : MonoBehaviour
             .Where(x => isWalk)
             .Subscribe(x =>
             {
-               
-
                 UpdateAnimator();
-
-               
             });
     }
     void IsIdling()
@@ -130,8 +132,7 @@ public class PlayerBehaviorView : MonoBehaviour
             .Subscribe(x =>
             {
                 isWalk = x.sqrMagnitude > 0.1f;
-                UpdateAnimator();
-                
+                UpdateAnimator();         
             });
     }  
     void SetMaterialTex(int textNum)

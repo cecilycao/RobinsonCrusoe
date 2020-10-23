@@ -11,24 +11,15 @@ public class TestLv : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var config = GameConfig.Singleton.InteractionConfig;
-
-        GameEvents.Sigton.onHungerReachMax
+        GameEvents.Sigton.onNPCSicked
+             .Subscribe(x =>
+             {
+                 print("触发NPC生病事件");
+             });
+        GameEvents.Sigton.onPlayerSicked
             .Subscribe(x =>
             {
-                print("饥饿值达到最大");
-            });
-
-        GameEvents.Sigton.onFatigueReachMax
-            .Subscribe(x =>
-            {
-                print("疲劳值达到最大");
-            });
-
-        GameEvents.Sigton.MechanismEventDictionary[MechanismEventTags.onDayTimeOut]
-            .Subscribe(x =>
-            {
-                print("白天时间结束");
+                print("触发玩家生病事件");
             });
     }
 }
