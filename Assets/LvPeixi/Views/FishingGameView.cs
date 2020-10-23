@@ -43,9 +43,19 @@ public class FishingGameView : MonoBehaviour
     }
     void EndFishGame()
     {
-        moveLoopMicrotine1.Dispose();
-        moveLoopMicrotine2.Dispose();
-        randomMovePointer.Dispose();
+        if (moveLoopMicrotine1 != null)
+        {
+            moveLoopMicrotine1.Dispose();
+        }
+        if (moveLoopMicrotine1 != null)
+        {
+            moveLoopMicrotine2.Dispose();
+        }
+        if (randomMovePointer != null)
+        {
+            randomMovePointer.Dispose();
+        }
+        
         Observable.Timer(System.TimeSpan.FromSeconds(1))
             .First()
             .Subscribe(x =>
