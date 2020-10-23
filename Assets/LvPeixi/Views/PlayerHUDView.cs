@@ -7,8 +7,6 @@ using UniRx;
 public class PlayerHUDView : MonoBehaviour
 {
     public Text interactTipMsg;
-    public Text foodMaterial;
-    public Text buildingMaterial;
     [SerializeField]
     private Slider fatigueSlider;
     [SerializeField]
@@ -20,11 +18,16 @@ public class PlayerHUDView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitComponents();
         Observable.Timer(System.TimeSpan.FromMilliseconds(10))
           .Subscribe(x =>
           {
               WatchPlayerAttr();
           });
+    }
+    void InitComponents()
+    {
+        interactTipMsg.text = "";
     }
     void WatchPlayerAttr()
     {

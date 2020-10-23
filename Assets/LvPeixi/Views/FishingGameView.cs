@@ -16,6 +16,16 @@ public class FishingGameView : MonoBehaviour
     [SerializeField]
     private float pointerMoveSpeed = 10;
 
+    [Header("-----TEST VARIABLE BLOCK-----")]
+    [SerializeField]
+    [Header("钓鱼小游戏运行次数")]
+    int runTimesInReality;
+    [SerializeField]
+    [Header("收到信号的次数")]
+    int receiveSignalTime;
+
+    [SerializeField]
+    bool isActive;
 
     System.IDisposable moveLoopMicrotine1;
     System.IDisposable moveLoopMicrotine2;
@@ -30,9 +40,11 @@ public class FishingGameView : MonoBehaviour
 
         GUIEvents.Singleton.PlayerStartFishing
             .Throttle(System.TimeSpan.FromSeconds(1))
+            .Where(x=>!isActive)
             .Subscribe(x =>
             {
-                print("收到开始钓鱼游戏的信号");
+                isActive = true;
+                receiveSignalTime++;
                 RunFishGame(true);
             });
     }
@@ -44,6 +56,7 @@ public class FishingGameView : MonoBehaviour
     }
     void EndFishGame()
     {
+        runTimesInReality++;
         if (moveLoopMicrotine1 != null)
         {
             moveLoopMicrotine1.Dispose();
@@ -62,6 +75,7 @@ public class FishingGameView : MonoBehaviour
             .Subscribe(x =>
             {
                 ShowChildren(false);
+                isActive = false;
             });
     }
     void PointerLoopMoving(RectTransform trans, Vector3 startPos,Vector3 endPos)
@@ -140,6 +154,7 @@ public class FishingGameView : MonoBehaviour
     }
     void RunFishGame(bool active)
     {
+        
         ShowChildren(active);
         RectTransform _backTrans = back.GetComponent<RectTransform>();
         float _backLength = _backTrans.sizeDelta.x;
