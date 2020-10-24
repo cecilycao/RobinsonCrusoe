@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollector
 {
@@ -16,6 +17,7 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
     public int ResourceAccount_Build => resourceAccount_buildingMaterial;
 
     public Vector3 IconOffset = new Vector3(0, 7, 0);
+    bool isSick = false;
 
     private void Start()
     {
@@ -24,25 +26,50 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
         {
             Debug.LogError("Icon haven't been assigned to IconManager");
         }
+        GameEvents.Sigton.onNPCSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onNPCSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
+        GameEvents.Sigton.onPlayerSicked
+             .Subscribe(x =>
+             {
+                 isSick = true;
+             });
+        GameEvents.Sigton.onPlayerSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
     }
 
     private void Update()
     {
-        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
     }
 
     public void EndContact()
     {
-        Mediator.Sigton.EndInteract();
+        if (!isSick)
+        {
+            Mediator.Sigton.EndInteract();
+        }
     }
 
     public void EndInteract(object result)
     {
+
         bool _res = (bool)result;
         if (_res)
         {
             resourceAccount_foodMaterial = 0;
         }
+        
     }
 
     public void StartInteract()
@@ -52,7 +79,8 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
 
     public void StartContact()
     {
-        if (resourceAccount_foodMaterial > 0)
+
+        if (resourceAccount_foodMaterial > 0 && !isSick)
         {
             //向Mediator通知要进行的互动行为
             Mediator.Sigton.StartInteraction(this);

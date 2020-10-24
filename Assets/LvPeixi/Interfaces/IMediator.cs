@@ -20,6 +20,7 @@ public interface IMediator
     void StartRestoreIsland(IInteractableIsland island);
     void StartProcessFood(IFoodProcess foodProcess);
     void OpenDiary(Diary diary);
+    void playerSick();
 
     void StartInteraction(IInteractableNPC npc);
     void StartInteraction(IInteractableResourceCollector collector);

@@ -141,6 +141,8 @@ public class GameEvents : MonoBehaviour
 
     public Subject<int> onNPCSicked = new Subject<int>();
     public Subject<int> onPlayerSicked = new Subject<int>();
+    public Subject<int> onNPCSickedEnd = new Subject<int>();
+    public Subject<int> onPlayerSickedEnd = new Subject<int>();
     #endregion
 
     #region//----------浮岛事件-----------

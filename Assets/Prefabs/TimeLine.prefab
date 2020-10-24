@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3290894170588567284}
   - component: {fileID: 3290894170588567291}
+  - component: {fileID: 2873460278682133223}
   m_Layer: 0
   m_Name: TimeLine
   m_TagString: Untagged
@@ -62,3 +63,17 @@ MonoBehaviour:
   - day: 16
     time: 5
     timeEvent: 3
+--- !u!114 &2873460278682133223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290894170588567285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b4001d9d65f7842892064a6c65c9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCSickedDay: 7
+  PlayerSickedDay: 13

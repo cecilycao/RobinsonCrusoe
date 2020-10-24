@@ -30,7 +30,7 @@ public class TimeSystemView : MonoBehaviour
         };
     }
 
-    void BlackScreenFadeOut()
+    public void BlackScreenFadeOut()
     {
         IDisposable fadeInMircotine = null;
         Color _color = new Color();
@@ -48,7 +48,7 @@ public class TimeSystemView : MonoBehaviour
             });
     }
 
-    void BlackScreenFadeIn()
+    public void BlackScreenFadeIn()
     {
         IDisposable fadeInMircotine = null;
         Color _color = new Color();

@@ -13,6 +13,7 @@ public class Island : RestoreIslandSample
     public bool initialActive = false;
     public Island[] nearbyIslands;
     public GameObject activeIsland;
+    public GameObject damagedIsland;
     public GameObject inactiveIsland;
     public int rainIntensity = 0;
     public GameObject Icon;
@@ -26,6 +27,7 @@ public class Island : RestoreIslandSample
     [SerializeField]
     int durability;
     bool playerHere;
+    bool isSick = false;
 
     //DATA VALUES
     //How much durability of this island decreases when nearby island destroyed.
@@ -71,6 +73,29 @@ public class Island : RestoreIslandSample
         {
             Debug.LogError("Icon haven't been assigned to IconManager");
         }
+
+        GameEvents.Sigton.onNPCSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onNPCSickedEnd
+         .Subscribe(x =>
+         {
+             isSick = false;
+         });
+        GameEvents.Sigton.onPlayerSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onPlayerSickedEnd
+         .Subscribe(x =>
+         {
+             isSick = false;
+         });
+
+
 
         GameEvents.Sigton.OnRainStart += () =>
         {
@@ -151,14 +176,17 @@ public class Island : RestoreIslandSample
     private void initializeActiveIsland()
     {
         activeIsland.SetActive(true);
+        damagedIsland.SetActive(false);
         inactiveIsland.SetActive(false);
         durability = MAX_DURABILITY;
         m_condition = IslandCondition.CREATED;
+
     }
 
     private void initializeInactiveIsland()
     {
         activeIsland.SetActive(false);
+        damagedIsland.SetActive(false);
         inactiveIsland.SetActive(true);
         durability = 0;
         m_condition = IslandCondition.DESTROYED;
@@ -193,6 +221,8 @@ public class Island : RestoreIslandSample
     public void repair()
     {
         durability = 100;
+        damagedIsland.SetActive(false);
+        activeIsland.SetActive(true);
         m_condition = IslandCondition.CREATED;
         //todo: change Island Texture
     }
@@ -204,6 +234,8 @@ public class Island : RestoreIslandSample
             Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
         }
         m_condition = IslandCondition.DAMAGED;
+        activeIsland.SetActive(false);
+        damagedIsland.SetActive(true);
         IslandDamaged.Invoke();
         //todo: change Island Texture
     }
@@ -286,10 +318,9 @@ public class Island : RestoreIslandSample
     public override void StartContact()
     {
         playerHere = true;
-        if (!isCore)
+        //Can not interact while sick
+        if (!isCore && !isSick)
         {
-            print("Enter Island Space " + this.name);
-            
             if (m_condition == IslandCondition.DAMAGED)
             {
                 Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
@@ -303,7 +334,7 @@ public class Island : RestoreIslandSample
     public override void EndContact()
     {
         playerHere = false;
-        if (!isCore)
+        if (!isCore && !isSick)
         {
             Mediator.Sigton.EndInteract();
             

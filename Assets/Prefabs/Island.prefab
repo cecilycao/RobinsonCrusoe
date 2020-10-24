@@ -160,6 +160,7 @@ Transform:
   - {fileID: 7133911535156715254}
   - {fileID: 2251506267100735620}
   - {fileID: 6082758475312640469}
+  - {fileID: 7013928645557795441}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -178,9 +179,11 @@ MonoBehaviour:
   isCore: 0
   initialActive: 0
   nearbyIslands: []
-  activeIsland: {fileID: 7555045328217953904}
+  activeIsland: {fileID: 6387408821234894927}
+  damagedIsland: {fileID: 7677642168660299134}
   inactiveIsland: {fileID: 7133911535156715253}
   rainIntensity: 0
+  Icon: {fileID: 0}
   IslandDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -189,6 +192,51 @@ MonoBehaviour:
       m_Calls: []
   m_condition: 0
   durability: 0
+  IconOffset: {x: 0, y: 7, z: 0}
+--- !u!1 &7864032956645512260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7013928645557795441}
+  - component: {fileID: 1697147805581477589}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7013928645557795441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7864032956645512260}
+  m_LocalRotation: {x: 0, y: -0.9396926, z: 0, w: 0.34202018}
+  m_LocalPosition: {x: -1.0126953, y: 0.6935692, z: -1.34375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7133911537286979602}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -140, z: 0}
+--- !u!65 &1697147805581477589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7864032956645512260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.0251584, y: 1.6768007, z: 7.0411377}
+  m_Center: {x: 0.01932269, y: -1.0700774, z: -1.9371843}
 --- !u!1001 &5894981217195857672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,22 +299,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 678790461261356871, guid: b25ce9f57e685494397b391247ccf075,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4113976264885846392, guid: b25ce9f57e685494397b391247ccf075,
         type: 3}
       propertyPath: m_Name
       value: Island_Model
       objectReference: {fileID: 0}
+    - target: {fileID: 4270354663771052662, guid: b25ce9f57e685494397b391247ccf075,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b25ce9f57e685494397b391247ccf075, type: 3}
---- !u!1 &7555045328217953904 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4113976264885846392, guid: b25ce9f57e685494397b391247ccf075,
-    type: 3}
-  m_PrefabInstance: {fileID: 5894981217195857672}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6082758475312640469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 406839874617779933, guid: b25ce9f57e685494397b391247ccf075,
+    type: 3}
+  m_PrefabInstance: {fileID: 5894981217195857672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6387408821234894927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 678790461261356871, guid: b25ce9f57e685494397b391247ccf075,
+    type: 3}
+  m_PrefabInstance: {fileID: 5894981217195857672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7677642168660299134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4270354663771052662, guid: b25ce9f57e685494397b391247ccf075,
     type: 3}
   m_PrefabInstance: {fileID: 5894981217195857672}
   m_PrefabAsset: {fileID: 0}

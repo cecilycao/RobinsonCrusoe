@@ -337,7 +337,7 @@ public class Mediator : MonoBehaviour,IMediator
             if (playerBuildingMaterial < builder.MaterialCost)
             {
                 IsAtInteractState = false;
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("building material is not enough");
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("创建浮岛所需的建材不够");
                 return;
             }
 
@@ -626,6 +626,12 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
+
+    public void playerSick()
+    {
+        playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
+    }
+
     public IPlayerInteractPresenter PlayerInteract
     {
         set

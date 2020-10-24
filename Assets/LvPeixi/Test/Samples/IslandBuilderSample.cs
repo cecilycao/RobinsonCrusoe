@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 {
@@ -12,25 +13,48 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
     public int MaterialCost => materialCost;
     public string InteractObjectType => interactObjectType;
     public Vector3 IconOffset = new Vector3(0, 7, 0);
+    bool isSick = false;
 
     private void Start()
     {
-        //Icon = FindObjectOfType<IconManager>().BuildIslandIcon;
-        //if (Icon == null)
-        //{
-        //    Debug.LogError("Icon haven't been assigned to IconManager");
-        //}
+        Icon = FindObjectOfType<IconManager>().BuildIslandIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+        GameEvents.Sigton.onNPCSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onNPCSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
+        GameEvents.Sigton.onPlayerSicked
+             .Subscribe(x =>
+             {
+                 isSick = true;
+             });
+        GameEvents.Sigton.onPlayerSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
     }
 
     private void Update()
     {
-        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
     }
 
     public void EndContact()
     {
-        
-        //Mediator.Sigton.EndInteract();
+        if (!isSick)
+        {
+            //Mediator.Sigton.EndInteract();
+        }
     }
 
     public void EndInteract(object result)
@@ -42,8 +66,11 @@ public class IslandBuilderSample : MonoBehaviour,IIslandBuilder
 
     public void StartContact()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
-        Mediator.Sigton.StartInteraction(this);
+        if (!isSick)
+        {
+            Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+            Mediator.Sigton.StartInteraction(this);
+        }
     }
 
     public void StartInteract()

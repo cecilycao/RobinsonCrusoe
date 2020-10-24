@@ -206,7 +206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1845059226102902210
 Transform:
   m_ObjectHideFlags: 0
@@ -233,6 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b4001d9d65f7842892064a6c65c9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCSickedDay: 7
+  PlayerSickedDay: 13
 --- !u!1 &4908920369272161284
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a3112c1f523fe49a16e600e79073de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positiveCollectPerformTime: 0
+  theInteractObject: None
 --- !u!1 &8436937378816520063
 GameObject:
   m_ObjectHideFlags: 0
