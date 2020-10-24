@@ -57,11 +57,6 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (SelfDialog dialog in SelfDialogs)
-        {
-            Assert.IsNotNull(dialog.flowchart);
-        }
-
         int newDay;
 
         GameEvents.Sigton.timeSystem
@@ -83,6 +78,8 @@ public class DialogManager : MonoBehaviour
             
             
         });
+
+
     }
 
     /*

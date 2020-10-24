@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 {
@@ -16,21 +17,41 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
     public int HungerRestore => hungerRestore;
     public string InteractObjectType => objectType;
     public bool HasFood => hasFood;
-
+    bool isSick = false;
     public Vector3 IconOffset = new Vector3(0, 7, 0);
 
     private void Start()
     {
-        //Icon = FindObjectOfType<IconManager>().ProcessFoodIcon;
-        //if(Icon == null)
-        //{
-        //    Debug.LogError("Icon haven't been assigned to IconManager");
-        //}
+        Icon = FindObjectOfType<IconManager>().ProcessFoodIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
+        GameEvents.Sigton.onNPCSicked
+             .Subscribe(x =>
+             {
+                 isSick = true;
+             });
+        GameEvents.Sigton.onNPCSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
+        GameEvents.Sigton.onPlayerSicked
+             .Subscribe(x =>
+             {
+                 isSick = true;
+             });
+        GameEvents.Sigton.onPlayerSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
     }
 
     private void Update()
     {
-        //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
     }
 
     public void EndContact()
@@ -40,7 +61,10 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 
     public void EndInteract(object result)
     {
-        hasFood = (bool)result;
+        if (!isSick)
+        {
+            hasFood = (bool)result;
+        }
     }
 
     public void OnEndProcessFood()
@@ -55,8 +79,11 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 
     public void StartContact()
     {
-        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
-        Mediator.Sigton.StartInteraction(this);
+        if (!isSick)
+        {
+            Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+            Mediator.Sigton.StartInteraction(this);
+        }
     }
 
     public void StartInteract()

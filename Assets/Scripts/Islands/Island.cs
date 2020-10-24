@@ -26,6 +26,7 @@ public class Island : RestoreIslandSample
     [SerializeField]
     int durability;
     bool playerHere;
+    bool isSick = false;
 
     //DATA VALUES
     //How much durability of this island decreases when nearby island destroyed.
@@ -71,6 +72,29 @@ public class Island : RestoreIslandSample
         {
             Debug.LogError("Icon haven't been assigned to IconManager");
         }
+
+        GameEvents.Sigton.onNPCSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onNPCSickedEnd
+         .Subscribe(x =>
+         {
+             isSick = false;
+         });
+        GameEvents.Sigton.onPlayerSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onPlayerSickedEnd
+         .Subscribe(x =>
+         {
+             isSick = false;
+         });
+
+
 
         GameEvents.Sigton.OnRainStart += () =>
         {
@@ -286,10 +310,9 @@ public class Island : RestoreIslandSample
     public override void StartContact()
     {
         playerHere = true;
-        if (!isCore)
+        //Can not interact while sick
+        if (!isCore && !isSick)
         {
-            print("Enter Island Space " + this.name);
-            
             if (m_condition == IslandCondition.DAMAGED)
             {
                 Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
@@ -303,7 +326,7 @@ public class Island : RestoreIslandSample
     public override void EndContact()
     {
         playerHere = false;
-        if (!isCore)
+        if (!isCore && !isSick)
         {
             Mediator.Sigton.EndInteract();
             

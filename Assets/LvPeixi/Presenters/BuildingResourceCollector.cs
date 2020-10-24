@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class BuildingResourceCollector : MonoBehaviour,IBuildingResourceCollector
 {
@@ -12,6 +13,7 @@ public class BuildingResourceCollector : MonoBehaviour,IBuildingResourceCollecto
     public string ResourceType { get => resourceType; }
     public string InteractObjectType { get => interactObjectType; }
     public Vector3 IconOffset = new Vector3(0, 7, 0);
+    bool isSick = false;
 
     private void Start()
     {
@@ -24,6 +26,27 @@ public class BuildingResourceCollector : MonoBehaviour,IBuildingResourceCollecto
         {
             resourceAccount = 15;
         };
+
+        GameEvents.Sigton.onNPCSicked
+             .Subscribe(x =>
+             {
+                 isSick = true;
+             });
+        GameEvents.Sigton.onNPCSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
+        GameEvents.Sigton.onPlayerSicked
+             .Subscribe(x =>
+             {
+                 isSick = true;
+             });
+        GameEvents.Sigton.onPlayerSickedEnd
+             .Subscribe(x =>
+             {
+                 isSick = false;
+             });
     }
 
     private void Update()
@@ -33,7 +56,10 @@ public class BuildingResourceCollector : MonoBehaviour,IBuildingResourceCollecto
 
     public void EndContact()
     {
-        Mediator.Sigton.EndInteract();
+        if (!isSick)
+        {
+            Mediator.Sigton.EndInteract();
+        }
     }
 
     public void EndInteract(object result)
@@ -52,7 +78,7 @@ public class BuildingResourceCollector : MonoBehaviour,IBuildingResourceCollecto
 
     public void StartContact()
     {
-        if (resourceAccount > 0)
+        if (resourceAccount > 0 && !isSick)
         {
             //向Mediator通知要进行的互动行为
             Mediator.Sigton.StartInteraction(this);

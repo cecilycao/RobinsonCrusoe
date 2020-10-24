@@ -13,6 +13,7 @@ public class Diary : MonoBehaviour, IInteractable
     //int maxFatigue;
     public string InteractObjectType => "Diary";
     public Vector3 IconOffset = new Vector3(0, 7, 0);
+    bool isSick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,26 @@ public class Diary : MonoBehaviour, IInteractable
             Debug.LogError("Icon haven't been assigned to IconManager");
         }
 
-        //maxFatigue = (int)GameConfig.Singleton.PlayerConfig["fatigueCeiling"];
-        //Debug.Log("Can write diary at fatigue: " + maxFatigue);
+        GameEvents.Sigton.onNPCSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onNPCSickedEnd
+         .Subscribe(x =>
+         {
+             isSick = false;
+         });
+        GameEvents.Sigton.onPlayerSicked
+         .Subscribe(x =>
+         {
+             isSick = true;
+         });
+        GameEvents.Sigton.onPlayerSickedEnd
+         .Subscribe(x =>
+         {
+             isSick = false;
+         });
 
         GameEvents.Sigton.onFatigueReachMax
             .Subscribe(x =>
@@ -61,7 +80,7 @@ public class Diary : MonoBehaviour, IInteractable
 
     public void StartContact()
     {
-        if (canWriteDiary)
+        if (canWriteDiary && !isSick)
         {
 
             Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
@@ -71,7 +90,10 @@ public class Diary : MonoBehaviour, IInteractable
 
     public void EndContact()
     {
-        Mediator.Sigton.EndInteract();
+        if (!isSick)
+        {
+            Mediator.Sigton.EndInteract();
+        }
         
         
     }
