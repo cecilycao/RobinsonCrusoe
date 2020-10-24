@@ -15,7 +15,7 @@ public class BuildingResourceCollector : MonoBehaviour,IBuildingResourceCollecto
 
     private void Start()
     {
-        Icon = FindObjectOfType<IconManager>().CollectFoodIcon;
+        Icon = FindObjectOfType<IconManager>().CollectGarbageIcon;
         if (Icon == null)
         {
             Debug.LogError("Icon haven't been assigned to IconManager");
