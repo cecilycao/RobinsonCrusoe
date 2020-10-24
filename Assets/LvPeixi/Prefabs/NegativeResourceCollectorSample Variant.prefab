@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 829202415644074481, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
       propertyPath: m_Name
-      value: BuildingResourceCollectorSample
+      value: NegativeResourceCollectorSample Variant
       objectReference: {fileID: 0}
     - target: {fileID: 829202415644074481, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}

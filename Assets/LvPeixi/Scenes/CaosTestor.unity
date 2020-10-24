@@ -940,7 +940,7 @@ PrefabInstance:
     - target: {fileID: 736885112305429371, guid: fa825c1109f83b84eb59495efbbe936e,
         type: 3}
       propertyPath: m_Name
-      value: FishPointSample
+      value: PositiveResourceCollector
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa825c1109f83b84eb59495efbbe936e, type: 3}
@@ -6222,7 +6222,7 @@ PrefabInstance:
     - target: {fileID: 1665276354015276011, guid: bfa68a3219fdb7a45a38e66b9a70f624,
         type: 3}
       propertyPath: m_Name
-      value: BuildingResourceCollectorSample
+      value: NegativeResourceCollectorSample Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfa68a3219fdb7a45a38e66b9a70f624, type: 3}

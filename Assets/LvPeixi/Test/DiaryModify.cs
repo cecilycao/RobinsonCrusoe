@@ -24,15 +24,17 @@ public class DiaryModify : MonoBehaviour
             ResourceCollectorSample[] collectors = FindObjectsOfType<ResourceCollectorSample>();
             foreach (ResourceCollectorSample item in collectors)
             {
-                item.resourceAccount = 25;
+                int _build = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.posCollect_buildingMat_defaut];
+                int _food = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.posCollect_foodMat_defaut];
+                item.resourceAccount_foodMaterial = _food;
+                item.resourceAccount_buildingMaterial = _build;
             }
-        };
-            
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            int neg_build = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.negCollect_buildingMat_default];
+            int neg_food = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.negCollect_foodMat_default];
+            var negativeCollector = FindObjectOfType<NegativeResourceCollector>();
+            negativeCollector.resourceAccount_buildingMaterial = neg_build;
+            negativeCollector.resourceAccount_foodMaterial = neg_food;
+        };     
     }
 }

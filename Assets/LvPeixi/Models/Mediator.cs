@@ -150,7 +150,7 @@ public class Mediator : MonoBehaviour,IMediator
             }
 
             IsAtInteractState = true;
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集食材");
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
             collector.ShowIcon();
         
             InputSystem.Singleton.OnInteractBtnPressed
@@ -192,7 +192,13 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         AssertExtension.NotNullRun(GameEvents.Sigton.onResourceCollected, () =>
                         {
-                            GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount);
+                            //GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount_Food);
+                            var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+
+                            int _food = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.posCollect_foodMat_defaut];
+                            int _build = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.posCollect_buildingMat_defaut];
+                            inventory.FoodMaterial.Value += _food;
+                            inventory.BuildingMaterial.Value += _build;
                         });
                     }
                     else
@@ -219,10 +225,10 @@ public class Mediator : MonoBehaviour,IMediator
         }
     }
     /// <summary>
-    /// 收集建材，只需要按住不放即可
+    /// 被动收集，只需要按住不放即可
     /// </summary>
     /// <param name="collector"></param>
-    public void StartInteraction(IBuildingResourceCollector collector)
+    public void StartInteraction(INegativeResourceCollector collector)
     {
          if (!IsAtInteractState)
         {
@@ -272,8 +278,11 @@ public class Mediator : MonoBehaviour,IMediator
                     var _hungerChange = (int)interactConfig["interact_negativeCollect_hungerDecrea_default"];
                     playerAttribute.Hunger.Value += _hungerChange;
 
-                    inventory.BuildingMaterial.Value += collector.ResourceAccount;
-                    print(collector.ResourceAccount);
+                    int _build = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.negCollect_buildingMat_default];
+                    int _food = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.negCollect_foodMat_default];
+
+                    inventory.BuildingMaterial.Value += _build;
+                    inventory.FoodMaterial.Value += _food;
 
                     collector.EndInteract(true);
                     GameEvents.Sigton.onInteractEnd();

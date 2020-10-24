@@ -8,7 +8,9 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
     [SerializeField]
     private SimplePlayerInventoryModel model = new SimplePlayerInventoryModel();
     [SerializeField]
-    int food_test;
+    int foodMaterial_test;
+    [SerializeField]
+    int buildMaterial_test;
 
     public ReactiveProperty<int> FoodMaterial 
     {
@@ -36,7 +38,7 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
         model.foodMaterial
             .Subscribe(x =>
             {
-                food_test = x;
+                foodMaterial_test = x;
             });
     }
 }

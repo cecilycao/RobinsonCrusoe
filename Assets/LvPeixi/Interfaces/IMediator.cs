@@ -26,5 +26,5 @@ public interface IMediator
     void StartInteraction(IIslandBuilder island);
     void StartInteraction(IFoodProcess foodProcess);
     void StartInteraction(IInteractableIsland island);
-    void StartInteraction(IBuildingResourceCollector collector);
+    void StartInteraction(INegativeResourceCollector collector);
 }

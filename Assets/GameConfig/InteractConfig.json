@@ -68,7 +68,7 @@
   {
     "Key": "interact_processFood_hungerDecrea_default",
     "Value": -10.0,
-    "Description": "加工食物饥饿值变化",
+    "Description": "加工食物饥饿值变化(默认值)",
     "PS": null
   },
   {
@@ -114,15 +114,27 @@
     "PS": null
   },
   {
+    "Key": "positiveCollectFatigueIncrease",
+    "Value": 15.0,
+    "Description": "主动收集疲劳值变化",
+    "PS": null
+  },
+  {
     "Key": "positiveCollectTimeCost",
     "Value": 1.0,
     "Description": "主动收集花费时间",
     "PS": null
   },
   {
-    "Key": "positiveCollectFatigueIncrease",
-    "Value": 15.0,
-    "Description": "主动收集疲劳值变化",
+    "Key": "interact_positiveCollect_buildingMaterialResourceCollectValue_default",
+    "Value": 4.0,
+    "Description": "主动收集建材收集量",
+    "PS": null
+  },
+  {
+    "Key": "interact_positiveCollect_foodMaterialResourceCollectValue_default",
+    "Value": 3.0,
+    "Description": "主动收集食材材收集量",
     "PS": null
   },
   {
@@ -135,6 +147,18 @@
     "Key": "negativeCollectFatigueIncrease",
     "Value": 15.0,
     "Description": "被动收集疲劳值变化",
+    "PS": null
+  },
+  {
+    "Key": "interact_negativeCollect_buildingMaterialResourceCollectValue_default",
+    "Value": 15.0,
+    "Description": "被动收集建材值",
+    "PS": null
+  },
+  {
+    "Key": "interact_negativeCollect_foodMaterialResourceCollectValue_default",
+    "Value": 5.0,
+    "Description": "被动收集食材材值",
     "PS": null
   },
   {
