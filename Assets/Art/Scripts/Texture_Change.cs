@@ -27,6 +27,13 @@ public class Texture_Change : MonoBehaviour
         Animator PlayerAnim = PlayerMeshRender.GetComponent<Animator>();
         PlayerAnim.SetBool("IsWalk", false);
     }
+
+    public GameObject Island;
+    public Transform parent;
+    public void Creat()
+    {
+        Instantiate(Island, parent);
+    }
 }
 
 [CustomEditor(typeof(Texture_Change))]
@@ -39,6 +46,9 @@ public class Texture_Change_Editor : Editor {
         }
         if(GUILayout.Button("IDLE")) {
             myScript.IDLE_Texture();
+        }
+        if(GUILayout.Button("CreatIsland")) {
+            myScript.Creat();
         }
     }
 }
