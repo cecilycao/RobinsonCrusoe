@@ -9,13 +9,7 @@ using UniRx;
 /// </summary>
 public class GameEvents : MonoBehaviour
 {
-    public enum EventDictionaryType
-    {
-        InteractEvent,
-        PlotEvent,
-        MechanismEvent,
-        PlayerEvent
-    }
+    
 
     static GameEvents events;
 
@@ -26,6 +20,7 @@ public class GameEvents : MonoBehaviour
     private Dictionary<string, Subject<SubjectArg>> playerEventDic = new Dictionary<string, Subject<SubjectArg>>();
     private Dictionary<string, Subject<SubjectArg>> propEventDic = new Dictionary<string, Subject<SubjectArg>>();
     private Hashtable playerEventTab = new Hashtable();
+    private Hashtable interactEventTab = new Hashtable();
 
     private Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>> eventDicManager = 
         new Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>>();
@@ -79,6 +74,7 @@ public class GameEvents : MonoBehaviour
         switch (type)
         {
             case EventDictionaryType.InteractEvent:
+                interactEventTab.Add(eventKey, new Subject<SubjectArg>());
                 break;
             case EventDictionaryType.PlotEvent:
                 break;
@@ -102,6 +98,7 @@ public class GameEvents : MonoBehaviour
         switch (type)
         {
             case EventDictionaryType.InteractEvent:
+                interactEventTab.Add(eventKey, eventObject);
                 break;
             case EventDictionaryType.PlotEvent:
                 break;
@@ -114,16 +111,16 @@ public class GameEvents : MonoBehaviour
                 break;
         }
     }
-    public object GetEvent(EventDictionaryType type,string eventKey)
-    {
-        return 1;
-    }
 
     public T GetEvent<T>(string eventKey)
     {
         if (playerEventTab.ContainsKey(eventKey))
         {
             return (T)playerEventTab[eventKey];
+        }
+        if (interactEventTab.ContainsKey(eventKey))
+        {
+            return (T)interactEventTab[eventKey];
         }
         throw new Exception("Failed to find the event named" + eventKey + " ,inquire the Tags scripts or excels about");  
     }
@@ -262,21 +259,28 @@ public class GameEvents : MonoBehaviour
 public struct SubjectArg
 {
     /// <summary>
-    /// subject的名字
+    /// 发信人的签名
     /// </summary>
-    string subjectName;
+    public string senderSignature;
     /// <summary>
     /// 携带信息
     /// </summary>
-    object subjectMes;
+    public object subjectMes;
     public SubjectArg(string m_subjectName):this()
     {
-        subjectName = m_subjectName;
+        senderSignature = m_subjectName;
     }
     public SubjectArg(string m_subjectName,object m_subjectMes)
     {
-        subjectName = m_subjectName;
+        senderSignature = m_subjectName;
         subjectMes = m_subjectMes;
     }
+}
+public enum EventDictionaryType
+{
+    InteractEvent,
+    PlotEvent,
+    MechanismEvent,
+    PlayerEvent
 }
 

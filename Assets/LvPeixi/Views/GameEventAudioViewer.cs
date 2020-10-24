@@ -9,9 +9,20 @@ public class GameEventAudioViewer : MonoBehaviour
     int previousFatigue = 0;
     private void Start()
     {
-        WhenHungerValueIncreased();
+        DelayStart();
+    }
 
-        OnInteractBtnReleasedWhenPressed();
+    void DelayStart()
+    {
+        Observable.Timer(System.TimeSpan.FromMilliseconds(50))
+            .Subscribe(x =>
+            {
+                WhenHungerValueIncreased();
+
+                OnInteractBtnReleasedWhenPressed();
+
+                OnInteractComplete();
+            });
     }
     void WhenHungerValueIncreased()
     {
@@ -38,6 +49,34 @@ public class GameEventAudioViewer : MonoBehaviour
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("Interact_startContactTipSound");
+            });
+    }
+
+    void OnInteractComplete()
+    {
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.interact_onInteractionCompleted)
+            .Subscribe(x =>
+            {
+                if (x.subjectMes is InteractableObjectType)
+                {
+                     var msg = (InteractableObjectType)x.subjectMes;
+
+                    if (msg == InteractableObjectType.IslandBuilder ||
+                        msg == InteractableObjectType.Island ||
+                        msg == InteractableObjectType.FoodProcessPlant
+                        )
+                    {
+                        AudioManager.Singleton.PlayAudio(AudioConfigKeys.Interact_build_restoreIsland_processFoodComplete);
+                    }
+                    if (msg == InteractableObjectType.PositiveCollect)
+                    {
+                        AudioManager.Singleton.PlayAudio(AudioConfigKeys.Interact_positiveCollectResourceComplete);
+                    }
+                    if (msg == InteractableObjectType.NegativeCollect)
+                    {
+                        AudioManager.Singleton.PlayAudio(AudioConfigKeys.Interact_resourceCollectComplete);
+                    }
+                }
             });
     }
 }

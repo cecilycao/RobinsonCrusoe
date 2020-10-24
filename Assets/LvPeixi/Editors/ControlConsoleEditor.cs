@@ -38,10 +38,15 @@ public class ControlConsoleEditor : Editor
             attr.Fatigue.Value += 20;
         }
             if (GUILayout.Button("饥饿+20"))
-        {
-            var attr = FindObjectOfType<PlayerAttributePresenter>();
-            attr.Hunger.Value += 20;
-        }
+            {
+                var attr = FindObjectOfType<PlayerAttributePresenter>();
+                attr.Hunger.Value += 20;
+            }
+            if (GUILayout.Button("饥饿-20"))
+            {
+                var attr = FindObjectOfType<PlayerAttributePresenter>();
+                attr.Hunger.Value -= 20;
+            }
             if (GUILayout.Button("毒性+2"))
             {
                 GameEvents.Sigton.GetEvent<ReactiveProperty<int>>(PlayerEventTags.onPoisonChanged)

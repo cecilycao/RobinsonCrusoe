@@ -17,6 +17,8 @@ public class PlayerHUDView : MonoBehaviour
     private Slider foodMaterialSlider;
     [SerializeField]
     private Slider buildingMaterialSlider;
+
+    public GameObject gameEndUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,11 @@ public class PlayerHUDView : MonoBehaviour
           {
               WatchPlayerAttr();
           });
+
+        GameEvents.Sigton.onGameEnd += () =>
+        {
+            gameEndUI.SetActive(true);
+        };
     }
     void InitComponents()
     {

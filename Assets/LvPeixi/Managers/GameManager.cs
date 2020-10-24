@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         GameConfig.Singleton = new GameConfig();
         GUIEvents.Singleton = new GUIEvents();
+  
     }
+
     private void Start()
     {
         GameEvents.Sigton.onGameEnd += () =>

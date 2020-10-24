@@ -32,12 +32,7 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
     }
     void OnPlayerCancelBuilding()
     {
-        GameEvents.Sigton.InteractEventDictionary[InteractEventTags.onInteractBtnReleasedWhenInteracting]
-            .Subscribe(x =>
-            {
-                playCancelTimes++;
-                OnProgressBarCompleted();
-            });
+
     }
     void TickInteractionProgressBar(float time)
     {

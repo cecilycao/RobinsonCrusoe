@@ -151,7 +151,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
 
         GUIEvents.Singleton.Hunger = model.hunger;
         GUIEvents.Singleton.Fatigue = model.currentFatigue;
-        GameEvents.Sigton.RegisterEvent(GameEvents.EventDictionaryType.PlayerEvent, PlayerEventTags.onPoisonChanged, model.poison);
+        GameEvents.Sigton.RegisterEvent(EventDictionaryType.PlayerEvent, PlayerEventTags.onPoisonChanged, model.poison);
         Mediator.Sigton.PlayerAttribute = this;
     }
 
@@ -197,30 +197,41 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     }
 
     void OnHungerChanged()
+        
     {
         model.hunger
-            .Where(x=>x==0)
+            .Where(x => x <= 0)
+            .First()
             .Subscribe(x =>
             {
+
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太饿了，需要食物");
             });
         model.hunger
-            .Where(x => x == 0)
+            .Where(x => x <= 0)
             .Delay(TimeSpan.FromSeconds(2))
+            .First()
             .Subscribe(x =>
             {
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
             });
 
         model.hunger
-            .Where(x => x == 0)
-            .Delay(TimeSpan.FromSeconds(15))
+            .Where(x => x <= 0)
+            .Delay(TimeSpan.FromSeconds(20))
+            .First()
             .Subscribe(x =>
             {
-                if (model.hunger.Value == 0)
+                if (model.hunger.Value <= 0)
                 {
-                    GameEvents.Sigton.onDayEnd.Invoke();
+                    GameEvents.Sigton.onGameEnd.Invoke();
                 }
+            });
+
+        Observable.Interval(TimeSpan.FromSeconds(3))
+            .Subscribe(x =>
+            {
+                Hunger.Value--;
             });
     }
 

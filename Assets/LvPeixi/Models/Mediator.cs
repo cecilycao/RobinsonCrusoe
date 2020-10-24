@@ -60,6 +60,7 @@ public class Mediator : MonoBehaviour,IMediator
     }
     private void Start()
     {
+        GameEvents.Sigton.RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.interact_onInteractionCompleted);
         interactConfig = GameConfig.Singleton.InteractionConfig;
     }
     #endregion
@@ -219,6 +220,12 @@ public class Mediator : MonoBehaviour,IMediator
                             });
                     }
                     collector.EndInteract((object)x);
+
+                    GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.interact_onInteractionCompleted)
+                        .OnNext(new SubjectArg(this.name,
+                            InteractableObjectType.PositiveCollect
+                        ));
+
                     GameEvents.Sigton.onInteractEnd.Invoke();
                 });
 
@@ -261,7 +268,7 @@ public class Mediator : MonoBehaviour,IMediator
             IsAtInteractState = true;
             collector.ShowIcon();
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集建材");
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
 
             float buildIslandCostTime = interactConfig["addIslandTimeCost"];
 
@@ -269,7 +276,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .Subscribe(x =>
                 {
                     SendMesOutSideOnInteractBtnPressed();
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在收集建材");
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在收集资源");
                     collector.HideIcon();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
                     //AudioManager.Singleton.PlayAudio("Interact_islandBuilding");
@@ -298,6 +305,8 @@ public class Mediator : MonoBehaviour,IMediator
                     inventory.FoodMaterial.Value += _food;
 
                     collector.EndInteract(true);
+
+                    SendMesOutOnInteractCompleted(new SubjectArg("msg from negcollect", InteractableObjectType.NegativeCollect));
                     GameEvents.Sigton.onInteractEnd();
                 });
 
@@ -321,6 +330,9 @@ public class Mediator : MonoBehaviour,IMediator
                 collector.HideIcon();
                 theInteractObject = "None";
                 ReleaseAllWatch();
+
+                
+
             };
         }
     }
@@ -376,7 +388,6 @@ public class Mediator : MonoBehaviour,IMediator
             watchInteractCompleted =
             InputSystem.Singleton.OnInteractBtnPressed
                 .Delay(TimeSpan.FromSeconds(buildIslandCostTime))
-                .First()
                 .Subscribe(x =>
                 {
                     AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
@@ -390,12 +401,14 @@ public class Mediator : MonoBehaviour,IMediator
                     inventory.BuildingMaterial.Value -= builder.MaterialCost;
 
                     builder.EndInteract(true);
+
+                    SendMesOutOnInteractCompleted(new SubjectArg(name, InteractableObjectType.IslandBuilder));
+
                     GameEvents.Sigton.onInteractEnd();
                 });
 
-
+            watchInteractBtnReleased = 
             InputSystem.Singleton.OnInteractBtnReleased
-                .First()
                 .Subscribe(x =>
                 {
                     AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
@@ -426,21 +439,11 @@ public class Mediator : MonoBehaviour,IMediator
         if (!IsAtInteractState)
         {
             theInteractObject = "FoodProcessPlant";
-            if (CheckPlayerFatigue())
-            {
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
-                Observable.Timer(TimeSpan.FromSeconds(1))
-                    .First()
-                    .Subscribe(x =>
-                    {
-                        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
-                    });
-                return;
-            }
+       
             IsAtInteractState = true;
             var attr = FindObjectOfType<PlayerAttributePresenter>();
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
-            foodProcess.ShowIcon();
+            
             //check player has enough food material?
             var hasEnoughFoodMaterial = inventory.FoodMaterial.Value >= 4;
             if (!hasEnoughFoodMaterial)
@@ -473,6 +476,17 @@ public class Mediator : MonoBehaviour,IMediator
             }
             else
             {
+                if (CheckPlayerFatigue())
+                {
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                    Observable.Timer(TimeSpan.FromSeconds(1))
+                        .First()
+                        .Subscribe(x =>
+                        {
+                            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+                        });
+                    return;
+                }
                 if (inventory.FoodMaterial.Value < 4)
                 {
                     return;
@@ -505,7 +519,8 @@ public class Mediator : MonoBehaviour,IMediator
                         playerAttribute.Fatigue.Value += fatigueIncrease;
                         //var _hungerChanged = (int)interactConfig["interact_processFood_hungerDecrea_default"];
                         //playerAttribute.Hunger.Value -= _hungerChanged;
-                        AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
+                        //AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
+                        SendMesOutOnInteractCompleted(new SubjectArg("msg from food process", InteractableObjectType.FoodProcessPlant));
                         foodProcess.EndInteract(true);
                         GameEvents.Sigton.onInteractEnd();
                     });
@@ -602,7 +617,6 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
-                    AudioManager.Singleton.PauseAudio("Interact_islandRestoring");
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
                     GameEvents.Sigton.onInteractEnd();
                 });
@@ -624,7 +638,7 @@ public class Mediator : MonoBehaviour,IMediator
             theInteractObject = "Diary";
             IsAtInteractState = true;
 
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键休息");
             diary.ShowIcon();
 
             watchInteractBtnPressed = Observable.EveryUpdate()
@@ -688,6 +702,11 @@ public class Mediator : MonoBehaviour,IMediator
         string _eventKey = InteractEventTags.onInteractBtnReleasedWhenInteracting;
         GameEvents.Sigton.InteractEventDictionary[_eventKey].OnNext(new SubjectArg(mes));
     }
+    void SendMesOutOnInteractCompleted(SubjectArg subjectArg)
+    {
+        var _eventKey = InteractEventTags.interact_onInteractionCompleted;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey).OnNext(subjectArg);
+    }
 
     void ReleaseAllWatch()
     {
@@ -710,4 +729,14 @@ public class Mediator : MonoBehaviour,IMediator
         return playerAttribute.Fatigue.Value >= 100;
     }
     #endregion
+}
+
+public enum InteractableObjectType
+{
+    NPC,
+    PositiveCollect,
+    NegativeCollect,
+    Island,
+    IslandBuilder,
+    FoodProcessPlant
 }
