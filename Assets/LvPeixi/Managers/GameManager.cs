@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour, IGameManager
     }
     private void Start()
     {
-       
+        GameEvents.Sigton.onGameEnd += () =>
+        {
+
+        };
     }
 }

@@ -45,7 +45,7 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
         isActive = true;
         slider.gameObject.SetActive(true);
  
-        float _progress = 1;
+        float _progress = 0;
         Vector3 _playerPosInWorld = GameObject.Find("PlayerHandle").transform.position;
         Vector3 _playerPosInScreen = Camera.main.WorldToScreenPoint(_playerPosInWorld);
 
@@ -55,7 +55,7 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
         progressMircotine = Observable.EveryUpdate()
             .Subscribe(x =>
             {
-                _progress -= Time.deltaTime / time;
+                _progress += Time.deltaTime / time;
                 _progress = Mathf.Clamp(_progress, 0, time);
                 slider.value = _progress;
                 if (_progress<=0)

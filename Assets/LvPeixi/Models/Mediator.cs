@@ -476,8 +476,8 @@ public class Mediator : MonoBehaviour,IMediator
                         inventory.FoodMaterial.Value -= foodProcess.Cost;
                         int fatigueIncrease = (int)interactConfig["processFoodFatigeIncrease"];
                         playerAttribute.Fatigue.Value += fatigueIncrease;
-                        var _hungerChanged = (int)interactConfig["interact_processFood_hungerDecrea_default"];
-                        playerAttribute.Hunger.Value -= _hungerChanged;
+                        //var _hungerChanged = (int)interactConfig["interact_processFood_hungerDecrea_default"];
+                        //playerAttribute.Hunger.Value -= _hungerChanged;
 
                         AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                         foodProcess.EndInteract(true);
