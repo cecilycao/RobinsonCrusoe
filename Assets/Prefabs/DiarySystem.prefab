@@ -87,19 +87,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 38fb69338d588b64ea5f2c219db3056b, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 6c03276022df1734d90a16193d5621d6, type: 3}
+    m_FontSize: 55
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 54
+    m_MinSize: 5
+    m_MaxSize: 55
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Weather
+  m_Text: Sunny
 --- !u!1 &4000733715647878132
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,8 +135,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.78700006}
-  m_AnchoredPosition: {x: -420, y: 171}
-  m_SizeDelta: {x: -1223.083, y: -460.32318}
+  m_AnchoredPosition: {x: -420, y: 144.8}
+  m_SizeDelta: {x: -1223.083, y: -512.812}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4000733715647878128
 CanvasRenderer:
@@ -166,19 +166,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 38fb69338d588b64ea5f2c219db3056b, type: 3}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: 6c03276022df1734d90a16193d5621d6, type: 3}
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 50
+    m_MaxSize: 55
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.72
-  m_Text: "\u7CDF\u7CD5\u7684\u9634\u96E8\u5929\uFF0C\u7A7A\u6C14\u4E2D\u5F25\u6F2B\u7740\u6E7F\u51B7\u7684\u6C34\u96FE\u3002\r\n\u68C0\u67E5\u4E86\u4E00\u8D9F\u6D77\u5CB8\uFF0C\u5C9B\u5757\u88AB\u6D77\u6C34\u4FB5\u8680\u7740\u3002\u6211\u4E0D\u5F97\u4E0D\u7740\u624B\u4FEE\u590D\u7834\u635F\u7684\u90E8\u5206\u3002\r\n\n"
+    m_LineSpacing: 0.9
+  m_Text: "\u8FD8\u6CA1\u6709\u4EFB\u4F55\u5185\u5BB9\u54E6\n\n"
 --- !u!114 &4000733715647878130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,8 +307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 749, y: -293}
-  m_SizeDelta: {x: 1106, y: 71}
+  m_AnchoredPosition: {x: 749, y: -265.4}
+  m_SizeDelta: {x: 1106, y: 126.2518}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4000733716094273958
 CanvasRenderer:
@@ -338,19 +338,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 38fb69338d588b64ea5f2c219db3056b, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 6c03276022df1734d90a16193d5621d6, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 50
+    m_MinSize: 8
+    m_MaxSize: 80
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Date
+  m_Text: Day 0
 --- !u!1 &4000733716468849162
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +487,8 @@ MonoBehaviour:
   WeatherText: {fileID: 4000733715325908721}
   contentTextLeft: {fileID: 0}
   contentTextRight: {fileID: 0}
+  myContents: []
+  myNPC: {fileID: 0}
 --- !u!1 &4000733717325296255
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d14df7a1ce753604292ceaa7775f7380, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c5a834f696047742b01e2478dff9ca1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1064,8 +1066,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.78700006}
-  m_AnchoredPosition: {x: 236, y: 171}
-  m_SizeDelta: {x: -1237.1223, y: -460.32318}
+  m_AnchoredPosition: {x: 236, y: 144.8}
+  m_SizeDelta: {x: -1237.1223, y: -512.812}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7621035960906614590
 CanvasRenderer:
@@ -1095,19 +1097,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 38fb69338d588b64ea5f2c219db3056b, type: 3}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: 6c03276022df1734d90a16193d5621d6, type: 3}
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 50
+    m_MaxSize: 55
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.72
-  m_Text: "\u5165\u591C\u65F6\uFF0C\u8FDC\u5904\u4F20\u6765\u4E86\u4F4E\u6C89\u6C79\u6D8C\u7684\u6F6E\u9E23\u58F0\u2026\u2026\u53EF\u6015\u7684\u5927\u98CE\u66B4\u4F3C\u4E4E\u8981\u6765\u4E86\u3002\u4F46\u613F\u662F\u6211\u7684\u4F30\u6D4B\u5931\u8BEF\u3002\r\n"
+    m_LineSpacing: 0.9
+  m_Text: "\u4ECA\u5929\u4F1A\u662F\u600E\u6837\u7684\u4E00\u5929\u5462\r\n"
 --- !u!114 &4291418474673649381
 MonoBehaviour:
   m_ObjectHideFlags: 0
