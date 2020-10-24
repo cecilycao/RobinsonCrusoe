@@ -12,6 +12,8 @@ public class PlayerHUDView : MonoBehaviour
     [SerializeField]
     private Slider hungerSlider;
     [SerializeField]
+    private Slider poisonSlider;
+    [SerializeField]
     private Slider foodMaterialSlider;
     [SerializeField]
     private Slider buildingMaterialSlider;
@@ -69,6 +71,13 @@ public class PlayerHUDView : MonoBehaviour
                 float maxBuildingMaterial = GameConfig.Singleton.PlayerConfig["buildingMaterialCeiling"];
                 float _value = x / maxBuildingMaterial;
                 buildingMaterialSlider.value = _value;
+            });
+
+        GameEvents.Sigton.GetEvent<ReactiveProperty<int>>(PlayerEventTags.onPoisonChanged)
+            .Subscribe(x =>
+            {
+                float _value = x / 100.0f;
+                poisonSlider.value = _value;
             });
     }
 }

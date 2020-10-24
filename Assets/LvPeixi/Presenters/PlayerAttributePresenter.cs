@@ -47,7 +47,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
 
     private void OnEnable()
     {
-     
+        
     }
     void Start()
     {
@@ -111,6 +111,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         GameEvents.Sigton.onDayStart += () =>
         {
             var _fatigeFloorIncrease = (int)GameConfig.Singleton.PlayerConfig["fatigueInceasePerDay"];
+            model.poison.Value += _fatigeFloorIncrease;
             model.floorFatige += _fatigeFloorIncrease;
             model.currentFatigue.Value = model.floorFatige;
 
@@ -148,6 +149,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
 
         GUIEvents.Singleton.Hunger = model.hunger;
         GUIEvents.Singleton.Fatigue = model.currentFatigue;
+        GameEvents.Sigton.RegisterEvent(GameEvents.EventDictionaryType.PlayerEvent, PlayerEventTags.onPoisonChanged, model.poison);
         Mediator.Sigton.PlayerAttribute = this;
     }
 

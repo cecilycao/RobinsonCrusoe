@@ -7,6 +7,8 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
 {
     [SerializeField]
     private SimplePlayerInventoryModel model = new SimplePlayerInventoryModel();
+
+
     [SerializeField]
     int foodMaterial_test;
     [SerializeField]
@@ -40,5 +42,7 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
             {
                 foodMaterial_test = x;
             });
+
+
     }
 }
