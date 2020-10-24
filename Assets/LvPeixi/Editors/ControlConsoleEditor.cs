@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UniRx;
 
 [CustomEditor(typeof(ControlConsole))]
 public class ControlConsoleEditor : Editor
@@ -41,6 +42,11 @@ public class ControlConsoleEditor : Editor
             var attr = FindObjectOfType<PlayerAttributePresenter>();
             attr.Hunger.Value += 20;
         }
+            if (GUILayout.Button("毒性+2"))
+            {
+                GameEvents.Sigton.GetEvent<ReactiveProperty<int>>(PlayerEventTags.onPoisonChanged)
+                    .Value += 2;
+            }
         }
 
         #region//-----Gui events&funtions test-----

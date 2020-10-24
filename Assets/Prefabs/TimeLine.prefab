@@ -77,3 +77,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCSickedDay: 7
   PlayerSickedDay: 13
+  NPCHelpPreference: 20
+  playerFlowchart: {fileID: 0}

@@ -13,7 +13,8 @@ public class GameEvents : MonoBehaviour
     {
         InteractEvent,
         PlotEvent,
-        MechanismEvent
+        MechanismEvent,
+        PlayerEvent
     }
 
     static GameEvents events;
@@ -25,7 +26,6 @@ public class GameEvents : MonoBehaviour
     private Dictionary<string, Subject<SubjectArg>> playerEventDic = new Dictionary<string, Subject<SubjectArg>>();
     private Dictionary<string, Subject<SubjectArg>> propEventDic = new Dictionary<string, Subject<SubjectArg>>();
     private Hashtable playerEventTab = new Hashtable();
-
 
     private Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>> eventDicManager = 
         new Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>>();
@@ -67,20 +67,65 @@ public class GameEvents : MonoBehaviour
     {
         get => propEventDic;
     }
+    /// <summary>
+    /// 默认注册event类型为Subject<SubjectArg>
+    /// </summary>
+    /// <param name="type">event注册位置</param>
+    /// <param name="eventKey">event注册键值</param>
     public void RegisterEvent(EventDictionaryType type,string eventKey)
     {
         var _theTargetDic = eventDicManager[type];
         _theTargetDic.Add(eventKey,new Subject<SubjectArg>());
+        switch (type)
+        {
+            case EventDictionaryType.InteractEvent:
+                break;
+            case EventDictionaryType.PlotEvent:
+                break;
+            case EventDictionaryType.MechanismEvent:
+                break;
+            case EventDictionaryType.PlayerEvent:
+                playerEventTab.Add(eventKey, new Subject<SubjectArg>());
+                break;
+            default:
+                break;
+        }
     }
-
+    /// <summary>
+    /// 指定注册event类型
+    /// </summary>
+    /// <param name="type">event注册位置</param>
+    /// <param name="eventKey">event注册键值</param>
+    /// <param name="eventObject">指定event实列</param>
+    public void RegisterEvent(EventDictionaryType type,string eventKey,object eventObject)
+    {
+        switch (type)
+        {
+            case EventDictionaryType.InteractEvent:
+                break;
+            case EventDictionaryType.PlotEvent:
+                break;
+            case EventDictionaryType.MechanismEvent:
+                break;
+            case EventDictionaryType.PlayerEvent:
+                playerEventTab.Add(eventKey, eventObject);
+                break;
+            default:
+                break;
+        }
+    }
     public object GetEvent(EventDictionaryType type,string eventKey)
     {
         return 1;
     }
 
-    public object GetEvent(string eventKey)
+    public T GetEvent<T>(string eventKey)
     {
-        return 1;
+        if (playerEventTab.ContainsKey(eventKey))
+        {
+            return (T)playerEventTab[eventKey];
+        }
+        throw new Exception("Failed to find the event named" + eventKey + " ,inquire the Tags scripts or excels about");  
     }
     #endregion
 
@@ -210,8 +255,7 @@ public class GameEvents : MonoBehaviour
         RegisterEvent(EventDictionaryType.PlotEvent, PlotEventTags.npcFirstSicked);
         RegisterEvent(EventDictionaryType.PlotEvent, PlayerEventTags.onFatigueReachMax);
 
-        RegisterEvent(EventDictionaryType.MechanismEvent, MechanismEventTags.onDayTimeOut);
-        
+        RegisterEvent(EventDictionaryType.MechanismEvent, MechanismEventTags.onDayTimeOut);  
     }
 
 }

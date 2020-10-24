@@ -56,15 +56,17 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 
     public void EndContact()
     {
-        Mediator.Sigton.EndInteract();
+        if (!isSick)
+        {
+            Mediator.Sigton.EndInteract();
+        }
     }
 
     public void EndInteract(object result)
     {
-        if (!isSick)
-        {
-            hasFood = (bool)result;
-        }
+
+        hasFood = (bool)result;
+        
     }
 
     public void OnEndProcessFood()
