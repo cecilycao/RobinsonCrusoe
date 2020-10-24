@@ -58,7 +58,7 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
                 _progress += Time.deltaTime / time;
                 _progress = Mathf.Clamp(_progress, 0, time);
                 slider.value = _progress;
-                if (_progress<=0)
+                if (_progress>=1)
                 {
                     OnProgressBarCompleted();
                 }

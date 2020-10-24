@@ -48,13 +48,13 @@
     "PS": null
   },
   {
-    "Key": "interact_restoreIsland_hungerDecrea_default",
+    "Key": "interact_restoreIsland_hungerChange_default",
     "Value": -10.0,
     "Description": "维修浮岛饥饿值变化",
     "PS": null
   },
   {
-    "Key": "restoreIslandFatigueIncrease",
+    "Key": "interact_restoreIsland_fatigueChange_defalut",
     "Value": 15.0,
     "Description": "修复浮岛疲劳值变化",
     "PS": null

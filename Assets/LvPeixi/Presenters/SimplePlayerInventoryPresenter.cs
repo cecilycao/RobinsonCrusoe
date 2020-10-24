@@ -42,6 +42,12 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
             {
                 foodMaterial_test = x;
             });
+        model.buildingMaterial
+            .Subscribe(x =>
+            {
+                buildMaterial_test = x;
+            });
+                
 
 
     }

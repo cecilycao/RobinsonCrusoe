@@ -52,4 +52,6 @@ public class InteractConfigKeys
     public const string posCollect_foodMat_defaut = "interact_positiveCollect_foodMaterialResourceCollectValue_default";
     public const string negCollect_buildingMat_default = "interact_negativeCollect_buildingMaterialResourceCollectValue_default";
     public const string negCollect_foodMat_default = "interact_negativeCollect_foodMaterialResourceCollectValue_default";
+    public const string restoreIsland_fatigueChange_default = "interact_restoreIsland_fatigueChange_defalut";
+    public const string restoreIsland_hungerChange_default = "interact_restoreIsland_hungerChange_default";
 }

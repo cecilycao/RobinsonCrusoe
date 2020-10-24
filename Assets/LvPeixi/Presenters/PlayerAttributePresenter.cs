@@ -20,6 +20,8 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     int t_Hunger;
     [SerializeField]
     int t_Fatigue;
+    [SerializeField]
+    int t_Poison;
 
     #region//Property Block
     public ReactiveProperty<int> Fatigue
@@ -175,6 +177,11 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             {
                 t_Hunger = x;
             });
+        model.poison
+            .Subscribe(x =>
+            {
+                t_Poison = x;
+            });
     }
 
     void OnFatigueChanged()
@@ -216,4 +223,5 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
                 }
             });
     }
+
 }

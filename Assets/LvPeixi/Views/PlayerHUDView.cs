@@ -76,6 +76,7 @@ public class PlayerHUDView : MonoBehaviour
         GameEvents.Sigton.GetEvent<ReactiveProperty<int>>(PlayerEventTags.onPoisonChanged)
             .Subscribe(x =>
             {
+
                 float _value = x / 100.0f;
                 poisonSlider.value = _value;
             });
