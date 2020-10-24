@@ -38,7 +38,7 @@ public class Island : RestoreIslandSample
     public static int DELTA_TIME = 5;
     public static int DAMAGE_PER_DELTA_TIME = 2;
     //public static int REPAIR_EFFECT = 50;
-    static int MAX_DURABILITY = 100;
+    public int MAX_DURABILITY = 100;
 
     public Vector3 IconOffset = new Vector3(0, 7, 0);
 
@@ -252,6 +252,7 @@ public class Island : RestoreIslandSample
         }
         inactiveIsland.SetActive(true);
         activeIsland.SetActive(false);
+        damagedIsland.SetActive(false);
         m_condition = IslandCondition.DESTROYED;
         foreach (Island nearbyIsland in nearbyIslands)
         {

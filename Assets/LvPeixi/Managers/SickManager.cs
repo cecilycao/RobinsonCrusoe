@@ -35,10 +35,12 @@ public class SickManager : MonoBehaviour
                 if (NPC.preference >= NPCHelpPreference)
                 {
                     playerFlowchart.SendFungusMessage("PlayerSickWithHelp");
+                    DiaryManager.Instance.isPlayerSaved = true;
                 }
                 else
                 {
                     playerFlowchart.SendFungusMessage("PlayerSick");
+                    DiaryManager.Instance.isPlayerSaved = false;
                 }
                 GameEvents.Sigton.onPlayerSicked.OnNext(PlayerSickedDay);
             });
