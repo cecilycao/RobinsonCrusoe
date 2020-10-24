@@ -43,17 +43,47 @@ public class SickUIManager : MonoBehaviour
 
     void showPlayerSickUI()
     {
+        view.BlackScreenFadeIn();
         PlayerSickUI.SetActive(true);
         StartCoroutine(finishShowPlayerSickUI());
     }
+
 
     IEnumerator finishShowPlayerSickUI()
     {
         yield return new WaitForSeconds(1);
         yield return new WaitForSeconds(duration);
         PlayerSickUI.SetActive(false);
-        view.BlackScreenFadeOut();
-        yield return new WaitForSeconds(1);
+        DiaryManager.Instance.createNewPage();
+        yield return new WaitForSeconds(3);
+        //todo: do it on diraymanager maybe
+        GameEvents.Sigton.onDayEnd.Invoke();
+        
+        //yield return new WaitForSeconds(1);
+        
     }
 
+    void showPlayerSickUIWithHelp()
+    {
+        view.BlackScreenFadeIn();
+        PlayerSickUI.SetActive(true);
+
+        //StartCoroutine(finishShowPlayerSickUINoHelp());
+    }
+
+    void finishShowPlayerSickWithHelp()
+    {
+        StartCoroutine(finishShowPlayerSickUIWithHelpHelper());
+    }
+    IEnumerator finishShowPlayerSickUIWithHelpHelper()
+    {
+        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(duration);
+        PlayerSickUI.SetActive(false);
+        DiaryManager.Instance.createNewPage();
+        yield return new WaitForSeconds(3);
+        //todo: do it on diraymanager maybe
+        GameEvents.Sigton.onDayEnd.Invoke();
+
+    }
 }

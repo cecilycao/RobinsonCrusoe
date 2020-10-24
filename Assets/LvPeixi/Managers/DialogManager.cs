@@ -164,7 +164,7 @@ public class DialogManager : MonoBehaviour
             return newMsg;
         }
     }
-
+    
 }
 
 [Serializable]

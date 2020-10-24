@@ -617,6 +617,12 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
+
+    public void playerSick()
+    {
+        playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
+    }
+
     public IPlayerInteractPresenter PlayerInteract
     {
         set
