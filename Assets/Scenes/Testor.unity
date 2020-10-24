@@ -8714,6 +8714,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1610845554954002074, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610845554954002074, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1708495778937025429, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
         type: 3}
       propertyPath: m_Name
@@ -8867,6 +8877,16 @@ PrefabInstance:
     - target: {fileID: 4911498348726258025, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917641601174602684, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917641601174602684, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5193008941557284693, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
@@ -10897,6 +10917,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076820164}
   m_CullTransparentMesh: 0
+--- !u!1 &2090663505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8666213667909364123, guid: 44171255910239342a57767886f74b0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8666213667177732042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2093215142
 GameObject:
   m_ObjectHideFlags: 0
@@ -11160,11 +11186,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2873460278682133223, guid: e03341d039a5b2148b81a6eb9cf326c2,
         type: 3}
-      propertyPath: PlayerSickedDay
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2873460278682133223, guid: e03341d039a5b2148b81a6eb9cf326c2,
-        type: 3}
       propertyPath: playerFlowchart
       value: 
       objectReference: {fileID: 71145553}
@@ -11389,7 +11410,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DiaryUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2090663505}
     - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
       propertyPath: JournalAnimator
@@ -12031,6 +12052,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1981634568}
+    - target: {fileID: 8666213667117844932, guid: 44171255910239342a57767886f74b0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8666213667117844954, guid: 44171255910239342a57767886f74b0a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12041,6 +12067,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2001005440}
+    - target: {fileID: 8666213667285681326, guid: 44171255910239342a57767886f74b0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8666213667832281265, guid: 44171255910239342a57767886f74b0a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12056,6 +12087,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1981634568}
+    - target: {fileID: 8666213668458695141, guid: 44171255910239342a57767886f74b0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44171255910239342a57767886f74b0a, type: 3}
 --- !u!1001 &8675821202120207853
