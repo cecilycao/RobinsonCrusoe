@@ -114,7 +114,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
         {
             var _fatigeFloorIncrease = (int)GameConfig.Singleton.PlayerConfig["fatigueInceasePerDay"];
             model.poison.Value += _fatigeFloorIncrease;
-            model.floorFatige += _fatigeFloorIncrease;
+            model.floorFatige = model.poison.Value;
             model.currentFatigue.Value = model.floorFatige;
 
             HungerDec();
