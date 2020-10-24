@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 829202415644074481, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
       propertyPath: m_Name
-      value: BuildingResourceCollectorSample Variant
+      value: NegativeResourceCollectorSample Variant
       objectReference: {fileID: 0}
     - target: {fileID: 829202415644074481, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
@@ -86,16 +86,6 @@ PrefabInstance:
         type: 3}
       propertyPath: resourceAccount
       value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5776172776118320184, guid: a5b095d630a4cf640991baea2125d176,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6516139844242899763, guid: a5b095d630a4cf640991baea2125d176,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7817217773830554547, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}

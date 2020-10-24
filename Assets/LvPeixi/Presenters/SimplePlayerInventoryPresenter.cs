@@ -7,6 +7,11 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
 {
     [SerializeField]
     private SimplePlayerInventoryModel model = new SimplePlayerInventoryModel();
+    [SerializeField]
+    int foodMaterial_test;
+    [SerializeField]
+    int buildMaterial_test;
+
     public ReactiveProperty<int> FoodMaterial 
     {
         get => model.foodMaterial;
@@ -29,5 +34,11 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
         GUIEvents.Singleton.BuildingMaterial = model.buildingMaterial;
         model.buildingMaterialCeiling = (int)config["buildingMaterialCeiling"];
         model.foodMaterialCeiling = (int)config["foodMaterialCeiling"];
+
+        model.foodMaterial
+            .Subscribe(x =>
+            {
+                foodMaterial_test = x;
+            });
     }
 }

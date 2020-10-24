@@ -6,12 +6,16 @@ using UniRx;
 public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollector
 {
     public GameObject Icon;
-    public int resourceAccount = 15;
+    public int resourceAccount_foodMaterial = 3;
+    public int resourceAccount_buildingMaterial = 4;
     public string resourceType = "FoodMaterial";
     public string interactObjectType = "ResourceCollector";
-    public int ResourceAccount { get => resourceAccount; }
+    public int ResourceAccount_Food { get => resourceAccount_foodMaterial; }
     public string ResourceType { get => resourceType; }
     public string InteractObjectType { get => interactObjectType; }
+
+    public int ResourceAccount_Build => resourceAccount_buildingMaterial;
+
     public Vector3 IconOffset = new Vector3(0, 7, 0);
     bool isSick = false;
 
@@ -63,7 +67,7 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
         bool _res = (bool)result;
         if (_res)
         {
-            resourceAccount = 0;
+            resourceAccount_foodMaterial = 0;
         }
         
     }
@@ -75,7 +79,8 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
 
     public void StartContact()
     {
-        if (resourceAccount > 0 && !isSick)
+
+        if (resourceAccount_foodMaterial > 0 && !isSick)
         {
             //向Mediator通知要进行的互动行为
             Mediator.Sigton.StartInteraction(this);

@@ -1,5 +1,6 @@
 ﻿
-public interface IBuildingResourceCollector :IInteractable
+public interface INegativeResourceCollector :IInteractable
 {
-    int ResourceAccount { get; }
+    int ResourceAccount_buildingMat { get; }
+    int ResourceAccount_foodMat { get; }
 }

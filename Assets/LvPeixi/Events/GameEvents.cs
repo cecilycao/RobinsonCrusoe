@@ -92,7 +92,7 @@ public class GameEvents : MonoBehaviour
     public Subject<ITimeSystemData> timeSystem = new Subject<ITimeSystemData>();
 
     public Subject<int> onFatigueReachMax = new Subject<int>();
-    public Subject<int> onHungerReachMax = new Subject<int>();
+    public Subject<int> onHungerReachZero = new Subject<int>();
 
     public Subject<int> onNPCSicked = new Subject<int>();
     public Subject<int> onPlayerSicked = new Subject<int>();

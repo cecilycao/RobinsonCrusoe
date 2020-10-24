@@ -44,5 +44,9 @@ public class InteractConfigKeys
     /// <summary>
     /// 加工食物饥饿值变化(默认值)
     /// </summary>
-    public const string interact_processFood_hungerDecrea_default = "interact_processFood_hungerDecrea_default";
+    public const string processFood_hungerDecrea_default = "interact_processFood_hungerDecrea_default";
+    public const string posCollect_buildingMat_defaut = "interact_positiveCollect_buildingMaterialResourceCollectValue_default";
+    public const string posCollect_foodMat_defaut = "interact_positiveCollect_foodMaterialResourceCollectValue_default";
+    public const string negCollect_buildingMat_default = "interact_negativeCollect_buildingMaterialResourceCollectValue_default";
+    public const string negCollect_foodMat_default = "interact_negativeCollect_foodMaterialResourceCollectValue_default";
 }

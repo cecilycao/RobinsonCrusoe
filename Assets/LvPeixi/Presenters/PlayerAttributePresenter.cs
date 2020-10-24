@@ -190,9 +190,28 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     void OnHungerChanged()
     {
         model.hunger
+            .Where(x=>x==0)
             .Subscribe(x =>
             {
-       
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太饿了，需要食物");
+            });
+        model.hunger
+            .Where(x => x == 0)
+            .Delay(TimeSpan.FromSeconds(2))
+            .Subscribe(x =>
+            {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
+            });
+
+        model.hunger
+            .Where(x => x == 0)
+            .Delay(TimeSpan.FromSeconds(15))
+            .Subscribe(x =>
+            {
+                if (model.hunger.Value == 0)
+                {
+                    GameEvents.Sigton.onDayEnd.Invoke();
+                }
             });
     }
 }

@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 736885112305429368}
   - component: {fileID: 4847573416688463917}
   m_Layer: 0
-  m_Name: FishPointSample
+  m_Name: PositiveResourceCollector
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
