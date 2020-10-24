@@ -184,6 +184,10 @@ MonoBehaviour:
   inactiveIsland: {fileID: 7133911535156715253}
   rainIntensity: 0
   Icon: {fileID: 0}
+  CreateIslandEffect: {fileID: 5415618180223849277, guid: 8138e97357cf4924d95aa3c242bdf0e0,
+    type: 3}
+  ShipwreckedEffect: {fileID: 1618127752192398300, guid: 8b31629476b51d24c99d686869d4485d,
+    type: 3}
   IslandDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -192,6 +196,7 @@ MonoBehaviour:
       m_Calls: []
   m_condition: 0
   durability: 0
+  MAX_DURABILITY: 100
   IconOffset: {x: 0, y: 7, z: 0}
 --- !u!1 &7864032956645512260
 GameObject:
