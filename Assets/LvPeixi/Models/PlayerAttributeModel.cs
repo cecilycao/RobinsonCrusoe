@@ -9,6 +9,7 @@ public class PlayerAttributeModel
 {
     public ReactiveProperty<int> currentFatigue = new ReactiveProperty<int>(0);
     public ReactiveProperty<int> hunger = new ReactiveProperty<int>();
+    public ReactiveProperty<int> poison = new ReactiveProperty<int>(0);
     [Header("-----疲劳值上限-----")]
     public int ceilingFatigue = 100;
     [Header("-----疲劳值下限-----")]

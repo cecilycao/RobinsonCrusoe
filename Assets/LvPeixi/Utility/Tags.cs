@@ -29,6 +29,9 @@ public class PlayerEventTags
 {
     public const string onFatigueReachMax = "onFatigueReachMax";
     public const string onHungerReachMax = "onHungerReachMax";
+    public const string onFatigueValueIncreased = "onFatigueValueIncreased";
+    public const string onHungerValueIncreased = "onHungerValueIncreased";
+    public const string onPoisonChanged = "playerAttr_onPoisonChanged";
 }
 
 public class MechanismEventTags
