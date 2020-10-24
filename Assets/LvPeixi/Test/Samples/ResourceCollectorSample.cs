@@ -15,11 +15,11 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
 
     private void Start()
     {
-        //Icon = FindObjectOfType<IconManager>().CollectFoodIcon;
-        //if (Icon == null)
-        //{
-        //    Debug.LogError("Icon haven't been assigned to IconManager");
-        //}
+        Icon = FindObjectOfType<IconManager>().CollectFoodIcon;
+        if (Icon == null)
+        {
+            Debug.LogError("Icon haven't been assigned to IconManager");
+        }
     }
 
     private void Update()
