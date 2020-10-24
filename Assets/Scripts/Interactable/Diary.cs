@@ -14,6 +14,7 @@ public class Diary : MonoBehaviour, IInteractable
     public string InteractObjectType => "Diary";
     public Vector3 IconOffset = new Vector3(0, 7, 0);
     bool isSick = false;
+    bool playerWrite = false;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,16 @@ public class Diary : MonoBehaviour, IInteractable
                 Debug.Log("Can Write Diary now.");
                 canWriteDiary = true;
             });
+
+        GameEvents.Sigton.OnDiaryEnd += () =>
+        {
+            if (playerWrite)
+            {
+                Debug.Log("Finish writing diary, one day end");
+                GameEvents.Sigton.onDayEnd.Invoke();
+                playerWrite = false;
+            }
+        };
     }
 
     private void Update()
@@ -72,8 +83,6 @@ public class Diary : MonoBehaviour, IInteractable
         if (diaryOpen)
         {
             DiaryManager.Instance.closeDiary();
-            Debug.Log("Finish writing diary, one day end");
-            GameEvents.Sigton.onDayEnd.Invoke();
             diaryOpen = false;
         }
     }
@@ -82,7 +91,7 @@ public class Diary : MonoBehaviour, IInteractable
     {
         if (canWriteDiary && !isSick)
         {
-
+            playerWrite = true;
             Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
             Mediator.Sigton.OpenDiary(this);
         }

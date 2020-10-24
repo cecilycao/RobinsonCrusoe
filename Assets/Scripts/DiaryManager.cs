@@ -23,6 +23,9 @@ public class DiaryManager : MonoBehaviour
     public Text contentTextRight;
     public List<DiaryContent> myContents;
 
+    public bool isPlayerSaved;
+    public int PlayerSickDay;
+
     public NPCSample myNPC;
 
     List<DiaryPage> pageList = new List<DiaryPage>();
@@ -49,6 +52,7 @@ public class DiaryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerSickDay = FindObjectOfType<SickManager>().PlayerSickedDay;
         //day
         GameEvents.Sigton.timeSystem
         .Subscribe(_data =>
@@ -256,7 +260,9 @@ public class DiaryPage
 
     public string getFixedContentHead()
     {
-        if (DiaryManager.Instance.myNPC.preference == 0)
+        int preference = DiaryManager.Instance.myNPC.preference;
+        
+        if ((day < DiaryManager.Instance.PlayerSickDay && preference == 0) || day > DiaryManager.Instance.PlayerSickDay + 1)
         {
             foreach (DiaryContent content in DiaryManager.Instance.myContents)
             {
@@ -265,9 +271,36 @@ public class DiaryPage
                     return content.content;
                 }
             }
-        } else
+        } else if (day < DiaryManager.Instance.PlayerSickDay)
         {
-            //好感度
+            foreach (DiaryContent content in DiaryManager.Instance.myContents)
+            {
+                if (content.preference == preference)
+                {
+                    return content.content;
+                }
+            }
+        } 
+        else
+        {
+            foreach (DiaryContent content in DiaryManager.Instance.myContents)
+            {
+                if (content.day == day)
+                {
+                    if(content.myEvent == WritableEvents.RESUCE_BY_NPC)
+                    {
+                        if (events.Contains(WritableEvents.RESUCE_BY_NPC))
+                        {
+                            return content.content;
+                        }
+                    }
+                    else
+                    {
+                        return content.content;
+                    }
+                    
+                }
+            }
         }
 
         
@@ -307,7 +340,7 @@ public class DiaryPage
 
     public string getContentLeft()
     {
-        return getFixedContentHead() + getEventContent();
+        return getFixedContentHead();
     }
 
     public string getContentRight()
@@ -321,17 +354,17 @@ public enum WritableEvents
     NONE,
     ISLAND_DESTROYED,
     ISLAND_CREATED,
-    TALK_TO_NPC_SATISFIED_0,
-    TALK_TO_NPC_SATISFIED_1,
-    TALK_TO_NPC_SATISFIED_2,
     RESUCE_BY_NPC,
+    NOT_RESUCE_BY_NPC
 
 }
 
 [Serializable]
 public class DiaryContent{
 
-    public int day;
+    public int day = -1;
+    public int preference = -1;
     public WritableEvents myEvent;
+    
     public string content;
 }
