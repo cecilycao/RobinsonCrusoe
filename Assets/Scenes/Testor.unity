@@ -695,6 +695,11 @@ PrefabInstance:
       propertyPath: setSayDialog
       value: 
       objectReference: {fileID: 2069716379}
+    - target: {fileID: 7733818437309126185, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7997298211573082004, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
@@ -5015,7 +5020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 170
   indentLevel: 0
-  targetObject: {fileID: 0}
+  targetObject: {fileID: 8666213667177732043}
   methodName: finishShowPlayerSickWithHelp
   delay: 0
 --- !u!114 &71145679
@@ -5355,7 +5360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 156
   indentLevel: 0
-  targetObject: {fileID: 0}
+  targetObject: {fileID: 8666213667177732043}
   methodName: showPlayerSickUIWithHelp
   delay: 0
 --- !u!114 &71145695
@@ -5399,7 +5404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 130
   indentLevel: 0
-  targetObject: {fileID: 0}
+  targetObject: {fileID: 8666213667177732043}
   methodName: showPlayerSickUI
   delay: 0
 --- !u!114 &71145697
@@ -7831,7 +7836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 912177900}
+  selectedFlowchart: {fileID: 71145553}
 --- !u!4 &1159029869
 Transform:
   m_ObjectHideFlags: 1
@@ -12063,6 +12068,11 @@ PrefabInstance:
       propertyPath: flowchart
       value: 
       objectReference: {fileID: 912177900}
+    - target: {fileID: 6238069468217817149, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.26
+      objectReference: {fileID: 0}
     - target: {fileID: 6902195067098745882, guid: 6f689525796d90349b19bd9d6a26645d,
         type: 3}
       propertyPath: m_Enabled
@@ -12146,7 +12156,7 @@ PrefabInstance:
     - target: {fileID: 8084263207977058094, guid: 6f689525796d90349b19bd9d6a26645d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084263207977058095, guid: 6f689525796d90349b19bd9d6a26645d,
         type: 3}
@@ -12354,6 +12364,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44171255910239342a57767886f74b0a, type: 3}
+--- !u!1 &8666213667177732043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8666213668361676036, guid: 44171255910239342a57767886f74b0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8666213667177732042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8675821202120207853
 PrefabInstance:
   m_ObjectHideFlags: 0
