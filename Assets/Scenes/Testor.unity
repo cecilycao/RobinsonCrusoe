@@ -6314,6 +6314,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685907714}
   m_CullTransparentMesh: 0
+--- !u!1 &740695358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8685079700481729329, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1620611666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &748988338
 GameObject:
   m_ObjectHideFlags: 0
@@ -9045,6 +9051,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7129140358734767698, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7417108654108965666, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -9064,6 +9075,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997396973330566420, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -858
       objectReference: {fileID: 0}
     - target: {fileID: 8585142176182252089, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
         type: 3}
@@ -9291,12 +9307,6 @@ Avatar:
     m_HasTranslationDoF: 0
     m_HasExtraRoot: 0
     m_SkeletonHasParents: 1
---- !u!1 &1742635082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7129140358734767698, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1620611666}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1761135907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1645784871548846543, guid: 9709474b002d2a7429279b80ac88f0a5,
@@ -11700,7 +11710,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DiaryUI
       value: 
-      objectReference: {fileID: 1742635082}
+      objectReference: {fileID: 740695358}
     - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
       propertyPath: JournalAnimator
