@@ -13,6 +13,7 @@ public class Island : RestoreIslandSample
     public bool initialActive = false;
     public Island[] nearbyIslands;
     public GameObject activeIsland;
+    public GameObject damagedIsland;
     public GameObject inactiveIsland;
     public int rainIntensity = 0;
     public GameObject Icon;
@@ -175,14 +176,17 @@ public class Island : RestoreIslandSample
     private void initializeActiveIsland()
     {
         activeIsland.SetActive(true);
+        damagedIsland.SetActive(false);
         inactiveIsland.SetActive(false);
         durability = MAX_DURABILITY;
         m_condition = IslandCondition.CREATED;
+
     }
 
     private void initializeInactiveIsland()
     {
         activeIsland.SetActive(false);
+        damagedIsland.SetActive(false);
         inactiveIsland.SetActive(true);
         durability = 0;
         m_condition = IslandCondition.DESTROYED;
@@ -217,6 +221,8 @@ public class Island : RestoreIslandSample
     public void repair()
     {
         durability = 100;
+        damagedIsland.SetActive(false);
+        activeIsland.SetActive(true);
         m_condition = IslandCondition.CREATED;
         //todo: change Island Texture
     }
@@ -228,6 +234,8 @@ public class Island : RestoreIslandSample
             Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
         }
         m_condition = IslandCondition.DAMAGED;
+        activeIsland.SetActive(false);
+        damagedIsland.SetActive(true);
         IslandDamaged.Invoke();
         //todo: change Island Texture
     }

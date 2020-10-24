@@ -179,7 +179,8 @@ MonoBehaviour:
   isCore: 0
   initialActive: 0
   nearbyIslands: []
-  activeIsland: {fileID: 7555045328217953904}
+  activeIsland: {fileID: 6387408821234894927}
+  damagedIsland: {fileID: 7677642168660299134}
   inactiveIsland: {fileID: 7133911535156715253}
   rainIntensity: 0
   Icon: {fileID: 0}
@@ -315,15 +316,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b25ce9f57e685494397b391247ccf075, type: 3}
---- !u!1 &7555045328217953904 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4113976264885846392, guid: b25ce9f57e685494397b391247ccf075,
-    type: 3}
-  m_PrefabInstance: {fileID: 5894981217195857672}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6082758475312640469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 406839874617779933, guid: b25ce9f57e685494397b391247ccf075,
+    type: 3}
+  m_PrefabInstance: {fileID: 5894981217195857672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6387408821234894927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 678790461261356871, guid: b25ce9f57e685494397b391247ccf075,
+    type: 3}
+  m_PrefabInstance: {fileID: 5894981217195857672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7677642168660299134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4270354663771052662, guid: b25ce9f57e685494397b391247ccf075,
     type: 3}
   m_PrefabInstance: {fileID: 5894981217195857672}
   m_PrefabAsset: {fileID: 0}
