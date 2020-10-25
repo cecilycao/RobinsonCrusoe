@@ -1632,6 +1632,11 @@ PrefabInstance:
       propertyPath: nearbyIslands.Array.data[2]
       value: 
       objectReference: {fileID: 1383075885274730114}
+    - target: {fileID: 7133911537286979601, guid: 88c6a9446ec0c9347b4e315acf55d03e,
+        type: 3}
+      propertyPath: isCore
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133911537286979602, guid: 88c6a9446ec0c9347b4e315acf55d03e,
         type: 3}
       propertyPath: m_LocalPosition.x

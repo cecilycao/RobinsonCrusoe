@@ -121,14 +121,15 @@ public class DialogManager : MonoBehaviour
             
         } else
         {
-            if (item.NPCcomponent.preference <= 5)
-            {
-                message = "5" + "/" + dialogCount;
-            }
-            else //if (item.NPCcomponent.preference <= 10)
-            {
-                message = "10" + "/" + dialogCount;
-            } 
+            //if (item.NPCcomponent.preference == 5)
+            //{
+            //    message = "5" + "/" + dialogCount;
+            //}
+            //else if (item.NPCcomponent.preference == 10)
+            //{
+            //    message = "10" + "/" + dialogCount;
+            //} 
+            message = item.NPCcomponent.preference + "/" + dialogCount;
         }
         if (ValidMessages.Contains(message))
         {
