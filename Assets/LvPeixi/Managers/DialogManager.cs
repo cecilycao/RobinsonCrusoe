@@ -115,26 +115,39 @@ public class DialogManager : MonoBehaviour
     {
         Assert.IsNotNull(item.flowchart);
         string message = "";
-        if (day <= fixDialogEndDay)
+        if (day <= fixDialogEndDay || day > SickManager.Instance.PlayerSickedDay + 1)
         {
+            //按照日期分配对话 0-7 and 15 - 
             message = day + "-" + dialogCount;
             
-        } else
+        } else if(day <= SickManager.Instance.PlayerSickedDay)
         {
-            //if (item.NPCcomponent.preference == 5)
-            //{
-            //    message = "5" + "/" + dialogCount;
-            //}
-            //else if (item.NPCcomponent.preference == 10)
-            //{
-            //    message = "10" + "/" + dialogCount;
-            //} 
+            //按照好感度分配对话
             message = item.NPCcomponent.preference + "/" + dialogCount;
+        } else if(day == SickManager.Instance.PlayerSickedDay + 1)
+        {
+            //按照是否救助分配对话
+            if (SickManager.Instance.isPlayerSaved)
+            {
+                message = (SickManager.Instance.PlayerSickedDay + 1) + "notSavedDefault";
+            } else
+            {
+                if (dialogCount == 1)
+                {
+                    message = (SickManager.Instance.PlayerSickedDay + 1) + "Saved";
+                }
+                else
+                {
+                    message = (SickManager.Instance.PlayerSickedDay + 1) + "SavedDefault";
+                }
+            }
         }
-        if (ValidMessages.Contains(message))
+        if (ValidMessages.Contains(message) && dialogCount == 1)
         {
             //a valid dialog, not default
             item.NPCcomponent.addPreference();
+            var attr = FindObjectOfType<PlayerAttributePresenter>();
+            attr.Fatigue.Value -= 10;
         }
         message = processMessage(message);
         Debug.Log("send to flowchart " + message);

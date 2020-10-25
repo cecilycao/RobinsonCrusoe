@@ -24,9 +24,6 @@ public class DiaryManager : MonoBehaviour
     public Text contentTextRight;
     public List<DiaryContent> myContents;
 
-    public bool isPlayerSaved;
-    public int PlayerSickDay;
-
     public NPCSample myNPC;
 
     List<DiaryPage> pageList = new List<DiaryPage>();
@@ -53,7 +50,6 @@ public class DiaryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerSickDay = FindObjectOfType<SickManager>().PlayerSickedDay;
         //day
         GameEvents.Sigton.timeSystem
         .Subscribe(_data =>
@@ -284,7 +280,7 @@ public class DiaryPage
     {
         int preference = DiaryManager.Instance.myNPC.preference;
         
-        if ((day < DiaryManager.Instance.PlayerSickDay && preference == 0) || day > DiaryManager.Instance.PlayerSickDay + 1)
+        if ((day < SickManager.Instance.PlayerSickedDay && preference == 0) || day > SickManager.Instance.PlayerSickedDay + 1)
         {
             foreach (DiaryContent content in DiaryManager.Instance.myContents)
             {
@@ -293,7 +289,7 @@ public class DiaryPage
                     return content.content;
                 }
             }
-        } else if (day < DiaryManager.Instance.PlayerSickDay)
+        } else if (day < SickManager.Instance.PlayerSickedDay)
         {
             foreach (DiaryContent content in DiaryManager.Instance.myContents)
             {
@@ -309,16 +305,21 @@ public class DiaryPage
             {
                 if (content.day == day)
                 {
+                    
                     if(content.myEvent == WritableEvents.RESUCE_BY_NPC)
                     {
-                        if (events.Contains(WritableEvents.RESUCE_BY_NPC))
+                        if (SickManager.Instance.isPlayerSaved)
                         {
                             return content.content;
                         }
+                        
                     }
                     else
                     {
-                        return content.content;
+                        if (!SickManager.Instance.isPlayerSaved)
+                        {
+                            return content.content;
+                        }
                     }
                     
                 }
