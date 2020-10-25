@@ -21,6 +21,7 @@ public class GameEvents : MonoBehaviour
     private Dictionary<string, Subject<SubjectArg>> propEventDic = new Dictionary<string, Subject<SubjectArg>>();
     private Hashtable playerEventTab = new Hashtable();
     private Hashtable interactEventTab = new Hashtable();
+    private Hashtable mechanismEventTab = new Hashtable();
 
     private Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>> eventDicManager = 
         new Dictionary<EventDictionaryType, Dictionary<string, Subject<SubjectArg>>>();
@@ -79,6 +80,7 @@ public class GameEvents : MonoBehaviour
             case EventDictionaryType.PlotEvent:
                 break;
             case EventDictionaryType.MechanismEvent:
+                mechanismEventTab.Add(eventKey, new Subject<SubjectArg>());
                 break;
             case EventDictionaryType.PlayerEvent:
                 playerEventTab.Add(eventKey, new Subject<SubjectArg>());
@@ -121,6 +123,10 @@ public class GameEvents : MonoBehaviour
         if (interactEventTab.ContainsKey(eventKey))
         {
             return (T)interactEventTab[eventKey];
+        }
+        if (mechanismEventTab.ContainsKey(eventKey))
+        {
+            return (T)mechanismEventTab[eventKey];
         }
         throw new Exception("Failed to find the event named" + eventKey + " ,inquire the Tags scripts or excels about");  
     }

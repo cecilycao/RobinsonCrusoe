@@ -21,5 +21,12 @@ public class TestLv : MonoBehaviour
             {
                 print("触发玩家生病事件");
             });
+
+        test =
+            Observable.Timer(TimeSpan.FromSeconds(2))
+            .Subscribe(x =>
+            {
+                test.Dispose();
+            });
     }
 }

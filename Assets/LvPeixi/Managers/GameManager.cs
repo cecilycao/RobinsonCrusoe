@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         GameEvents.Sigton.onGameEnd += () =>
         {
-            print("玩家被饿死了，游戏结束");
+          
         };
     }
 }

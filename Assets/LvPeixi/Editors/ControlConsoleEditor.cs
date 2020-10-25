@@ -23,15 +23,34 @@ public class ControlConsoleEditor : Editor
         if (showPlayerTest)
         {
             if (GUILayout.Button("食材+20"))
-        {
-            var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
-            inventory.FoodMaterial.Value += 20;
-        }
+            {
+                var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+                 inventory.FoodMaterial.Value += 20;
+            }
+            if (GUILayout.Button("食材-20"))
+            {
+
+            }
+            if (GUILayout.Button("建材-20"))
+            {
+
+            }
             if (GUILayout.Button("建材+20"))
         {
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             inventory.BuildingMaterial.Value += 20;
         }
+            if (GUILayout.Button("食材-20"))
+            {
+                var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+                inventory.FoodMaterial.Value -= 20;
+            }
+            if (GUILayout.Button("建材-20"))
+            {
+                var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
+                inventory.BuildingMaterial.Value -= 20;
+            }
+
             if (GUILayout.Button("疲劳+20"))
         {
             var attr = FindObjectOfType<PlayerAttributePresenter>();
@@ -94,6 +113,26 @@ public class ControlConsoleEditor : Editor
             {
                 var diarymanager = FindObjectOfType<DiaryManager>();
                 diarymanager.hideContentAfterClose();
+            }
+
+            if (GUILayout.Button("获取当前场景中的浮岛数量"))
+            {
+                int coreIsland = IslandManager.Instance.m_islandSet.coreIslands.Count;
+                int normal = 0;
+                foreach (var item in IslandManager.Instance.m_islandSet.normalIslands)
+                {
+                    if (item.isActive())
+                    {
+                        normal++;
+                    }
+                }
+                int all = coreIsland + normal;
+                Debug.Log("当前场景中有浮岛:" + all);
+            }
+
+            if (GUILayout.Button("Game Over"))
+            {
+                GameEvents.Sigton.onGameEnd();
             }
         }
 

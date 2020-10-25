@@ -37,18 +37,30 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
         model.buildingMaterialCeiling = (int)config["buildingMaterialCeiling"];
         model.foodMaterialCeiling = (int)config["foodMaterialCeiling"];
 
+        
+
         model.foodMaterial
             .Subscribe(x =>
             {
                 foodMaterial_test = x;
+            });
+
+        model.foodMaterial
+            .Where(x => x <= 0)
+            .Subscribe(x =>
+            {
+                model.foodMaterial.Value = Mathf.Clamp(model.foodMaterial.Value, 0, model.foodMaterialCeiling);
             });
         model.buildingMaterial
             .Subscribe(x =>
             {
                 buildMaterial_test = x;
             });
-                
-
-
+        model.buildingMaterial
+            .Where(x => x <= 0)
+            .Subscribe(x =>
+            {
+                model.foodMaterial.Value = Mathf.Clamp(model.buildingMaterial.Value, 0, model.buildingMaterialCeiling);
+            });
     }
 }

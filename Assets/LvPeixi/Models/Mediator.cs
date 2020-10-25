@@ -181,15 +181,6 @@ public class Mediator : MonoBehaviour,IMediator
                     playerAttribute.Hunger.Value += _hungerChange;
 
                     SendMesOutSideOnInteractBtnPressed();
-
-                    //end collect resource after 1 sec
-                    //Observable.Timer(TimeSpan.FromSeconds(1))
-                    //.First()
-                    //.Subscribe(y =>
-                    //{
-                    //    playerInteract.PlayerEndInteraction();
-                    //    GameEvents.Sigton.onInteractEnd();
-                    //});
                 });
 
             GUIEvents.Singleton.PlayerEndFishing
@@ -200,7 +191,6 @@ public class Mediator : MonoBehaviour,IMediator
                     {
                         AssertExtension.NotNullRun(GameEvents.Sigton.onResourceCollected, () =>
                         {
-                            //GameEvents.Sigton.onResourceCollected.Invoke(collector.ResourceType, collector.ResourceAccount_Food);
                             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
 
                             int _food = (int)GameConfig.Singleton.InteractionConfig[InteractConfigKeys.posCollect_foodMat_defaut];
@@ -219,7 +209,7 @@ public class Mediator : MonoBehaviour,IMediator
                                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
                             });
                     }
-                    collector.EndInteract((object)x);
+                    //collector.EndInteract((object)x);
 
                     GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.interact_onInteractionCompleted)
                         .OnNext(new SubjectArg(this.name,

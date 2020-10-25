@@ -28,16 +28,15 @@ public class PlayerHUDView : MonoBehaviour
           .Subscribe(x =>
           {
               WatchPlayerAttr();
-          });
 
-        GameEvents.Sigton.onGameEnd += () =>
-        {
-            badEndUI.SetActive(true);
-        };
+              WathcGameEnd();
+          });  
     }
     void InitComponents()
     {
         interactTipMsg.text = "";
+        badEndUI.SetActive(false);
+        happyEndUI.SetActive(false);
     }
     void WatchPlayerAttr()
     {
@@ -87,6 +86,22 @@ public class PlayerHUDView : MonoBehaviour
 
                 float _value = x / 100.0f;
                 poisonSlider.value = _value;
+            });
+    }
+
+    void WathcGameEnd()
+    {
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>("onHappyEnd")
+            .Subscribe(x =>
+            {
+                happyEndUI.SetActive(true);
+            });
+
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>("onBadEnd")
+            .Subscribe(x =>
+            {
+                print("enter bad end");
+                badEndUI.SetActive(true);
             });
     }
 }
