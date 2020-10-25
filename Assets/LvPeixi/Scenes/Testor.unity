@@ -6897,6 +6897,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1610845554411192400, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.11894274
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610845554411192400, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.11894274
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610845554411192400, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1610845554954002074, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7081,6 +7096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHUD (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340709369622564329, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6745643407620330038, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
         type: 3}
