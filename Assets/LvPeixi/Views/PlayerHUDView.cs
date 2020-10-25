@@ -18,7 +18,8 @@ public class PlayerHUDView : MonoBehaviour
     [SerializeField]
     private Slider buildingMaterialSlider;
 
-    public GameObject gameEndUI;
+    public GameObject badEndUI;
+    public GameObject happyEndUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class PlayerHUDView : MonoBehaviour
 
         GameEvents.Sigton.onGameEnd += () =>
         {
-            gameEndUI.SetActive(true);
+            badEndUI.SetActive(true);
         };
     }
     void InitComponents()

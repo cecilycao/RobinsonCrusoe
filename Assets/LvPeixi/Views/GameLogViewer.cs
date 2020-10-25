@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UniRx;
 
 public class GameLogViewer : MonoBehaviour
@@ -16,13 +17,14 @@ public class GameLogViewer : MonoBehaviour
         startGameBtn.onClick.AsObservable()
             .Subscribe(x =>
             {
-                LoadManager.Singleton.LoadTheNextScene("Testor");
+               // LoadManager.Singleton.LoadTheNextScene("Testor");
+                SceneManager.LoadSceneAsync("Testor");
             });
 
         settingGameBtn.onClick.AsObservable()
             .Subscribe(x =>
             {
-                print("Setting panel is not completed");
+                Application.Quit();
             });
     }
 }

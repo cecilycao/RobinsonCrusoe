@@ -8858,6 +8858,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHUD (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6745643407620330038, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8585142176519105293, guid: d1807fc3d2ee0964aaaa4d2a043384b6,
         type: 3}
       propertyPath: m_AnchorMin.x
