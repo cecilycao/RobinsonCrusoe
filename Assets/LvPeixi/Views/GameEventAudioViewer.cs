@@ -45,7 +45,7 @@ public class GameEventAudioViewer : MonoBehaviour
     }
     void OnInteractBtnReleasedWhenPressed()
     {
-        GameEvents.Sigton.InteractEventDictionary["onInteractBtnPressedWhenInteracting"]
+        GameEvents.Sigton.InteractEventDictionary[InteractEventTags.onInteractBtnPressed]
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("Interact_startContactTipSound");
@@ -54,7 +54,7 @@ public class GameEventAudioViewer : MonoBehaviour
 
     void OnInteractComplete()
     {
-        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.interact_onInteractionCompleted)
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onInteractionCompleted)
             .Subscribe(x =>
             {
                 if (x.subjectMes is InteractableObjectType)

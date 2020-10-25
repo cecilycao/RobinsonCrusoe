@@ -16,9 +16,30 @@ public class SceneTags
 
 public class InteractEventTags
 {
-    public const string onInteractBtnPressedWhenInteracting = "onInteractBtnPressedWhenInteracting";
-    public const string onInteractBtnReleasedWhenInteracting = "onInteractBtnReleasedWhenInteracting";
-    public const string interact_onInteractionCompleted = "interact_onInteractionCompleted";
+    /// <summary>
+    /// 与道具互动时，玩家按下Interact key时触发此Subject
+    /// </summary>
+    public const string onInteractBtnPressed = "interact_onInteractBtnPressed";
+    /// <summary>
+    /// 与道具互动时，玩家松开Interact key时触发此Subject
+    /// </summary>
+    public const string onInteractBtnReleased = "interact_onInteractBtnReleased";
+    /// <summary>
+    /// 玩家和道具接触时触发此Subject
+    /// </summary>
+    public const string onPlayerContactStarted = "interact_onPlayerContactStarted";
+    /// <summary>
+    /// 玩家和道具脱离接触时触发此Subject
+    /// </summary>
+    public const string onPlayerContactEnded = "interact_onPlayerContactEnded";
+    /// <summary>
+    /// 玩家成功完成互动行为时触发此Subject
+    /// </summary>
+    public const string onInteractionCompleted = "interact_onInteractionCompleted";
+    /// <summary>
+    /// 发送玩家在心中的独白
+    /// </summary>
+    public const string showMonologue = "interact_showMonologue";
 }
 
 public class PlotEventTags
@@ -28,7 +49,7 @@ public class PlotEventTags
 }
 public class PlayerEventTags
 {
-    public const string onFatigueReachMax = "onFatigueReachMax";
+    public const string onFatigueReachMax = "playerAttr_onFatigueReachMax";
     public const string onHungerReachMax = "onHungerReachMax";
     public const string onFatigueValueIncreased = "onFatigueValueIncreased";
     public const string onHungerValueIncreased = "onHungerValueIncreased";

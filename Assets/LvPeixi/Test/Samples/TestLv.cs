@@ -28,5 +28,72 @@ public class TestLv : MonoBehaviour
             {
                 test.Dispose();
             });
+
+
+        OnPlayerContactStarted();
+
+        OnContactEnd();
+
+        OnInterctBtnPressed();
+
+        OnInteractBtnReleased();
+
+        OnInteractionEnd();
+
+        SendMonologue();
+    }
+    void OnPlayerContactStarted()
+    {
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onPlayerContactStarted)
+         .Subscribe(x =>
+         {
+             //print(x.senderSignature);
+         });
+    }
+
+    void OnInterctBtnPressed()
+    {
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onInteractBtnPressed)
+            .Subscribe(x =>
+            {
+                //print(x.senderSignature);
+            });
+    }
+
+    void OnInteractBtnReleased()
+    {
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onInteractBtnReleased)
+            .Subscribe(x =>
+            {
+                //print(x.senderSignature);
+            });
+    }
+
+    void OnInteractionEnd()
+    {
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onInteractionCompleted)
+            .Subscribe(x =>
+            {
+                //print(x.senderSignature);
+            });
+    }
+
+    void OnContactEnd()
+    {
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onPlayerContactEnded)
+            .Subscribe(x =>
+            {
+                //print(x.senderSignature);
+            });
+    }
+
+    void SendMonologue()
+    {
+        //获取showMonologue事件subject
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.showMonologue)
+            .Subscribe(x =>
+            {
+                print(x.senderSignature);
+            });
     }
 }

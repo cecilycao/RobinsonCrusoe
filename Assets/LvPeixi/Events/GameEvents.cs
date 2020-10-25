@@ -251,8 +251,12 @@ public class GameEvents : MonoBehaviour
 
     void InitNecessaryEvents()
     {
-        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractBtnPressedWhenInteracting);
-        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractBtnReleasedWhenInteracting);
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractBtnPressed);
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractBtnReleased);
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onInteractionCompleted);
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onPlayerContactStarted);
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.onPlayerContactEnded);
+        RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.showMonologue);
 
         RegisterEvent(EventDictionaryType.PlotEvent,PlotEventTags.playerFirstSicked);
         RegisterEvent(EventDictionaryType.PlotEvent, PlotEventTags.npcFirstSicked);

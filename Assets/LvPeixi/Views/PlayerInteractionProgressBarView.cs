@@ -32,7 +32,11 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
     }
     void OnPlayerCancelBuilding()
     {
-
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onInteractBtnReleased)
+            .Subscribe(x =>
+            {
+                OnProgressBarCompleted();
+            });
     }
     void TickInteractionProgressBar(float time)
     {
@@ -59,7 +63,6 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
                 }
             });       
     }
-
     void OnProgressBarCompleted()
     {
         closeOperTime++;

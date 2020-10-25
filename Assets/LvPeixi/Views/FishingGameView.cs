@@ -61,7 +61,7 @@ public class FishingGameView : MonoBehaviour
         {
             moveLoopMicrotine1.Dispose();
         }
-        if (moveLoopMicrotine1 != null)
+        if (moveLoopMicrotine2 != null)
         {
             moveLoopMicrotine2.Dispose();
         }
@@ -69,13 +69,13 @@ public class FishingGameView : MonoBehaviour
         {
             randomMovePointer.Dispose();
         }
-        
+   
         Observable.Timer(System.TimeSpan.FromSeconds(1))
             .First()
             .Subscribe(x =>
             {
-                ShowChildren(false);
                 isActive = false;
+                ShowChildren(false);
             });
     }
     void PointerLoopMoving(RectTransform trans, Vector3 startPos,Vector3 endPos)

@@ -1241,6 +1241,11 @@ PrefabInstance:
       propertyPath: nodeRect.y
       value: 423.49222
       objectReference: {fileID: 0}
+    - target: {fileID: 9130756443922882508, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9152385166723585362, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
@@ -6687,7 +6692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 912177900}
+  selectedFlowchart: {fileID: 71145553}
 --- !u!4 &1159029869
 Transform:
   m_ObjectHideFlags: 1
@@ -10032,6 +10037,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733717325296254, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -69.00012
       objectReference: {fileID: 0}
     - target: {fileID: 4000733717325296255, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}

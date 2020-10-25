@@ -149,6 +149,12 @@ public class ControlConsoleEditor : Editor
                 AudioManager.Singleton.PauseAudio("GameEvent_rainDay");
             }
         }
+
+        GUILayout.Label("-----临时测试-----");
+        if (GUILayout.Button("临时测试"))
+        {
+            
+        }
     }
 }
 

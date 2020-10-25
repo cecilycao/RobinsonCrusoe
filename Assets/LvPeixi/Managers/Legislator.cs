@@ -5,7 +5,6 @@ using UniRx;
 
 public class Legislator : MonoBehaviour
 {
-
     // Start is called before the first frame update
     private void Awake()
     {

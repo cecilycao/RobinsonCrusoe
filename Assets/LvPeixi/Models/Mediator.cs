@@ -4,6 +4,7 @@ using UnityEngine.Assertions;
 using UnityEngine;
 using System;
 using UniRx;
+using Fungus;
 
 /// <summary>
 /// Mediator负责多个系统之间协调、判定
@@ -52,15 +53,19 @@ public class Mediator : MonoBehaviour,IMediator
             }
         }
     }
-   
+
+    SayDialog say;
     private void Awake()
     {
         Sigton = this;
         Assert.IsNull(playerInteract, "Mediator.playerInteract is null");
     }
+    private void OnEnable()
+    {
+       
+    }
     private void Start()
     {
-        GameEvents.Sigton.RegisterEvent(EventDictionaryType.InteractEvent, InteractEventTags.interact_onInteractionCompleted);
         interactConfig = GameConfig.Singleton.InteractionConfig;
     }
     #endregion
@@ -86,10 +91,6 @@ public class Mediator : MonoBehaviour,IMediator
             GameEvents.Sigton.onInteractEnd.Invoke();
         });
     }
-    public void StartRestoreIsland(IInteractableIsland island)
-    {
-        
-    }
     public void StartProcessFood(IFoodProcess foodProcess)
     {
         
@@ -107,17 +108,19 @@ public class Mediator : MonoBehaviour,IMediator
     {
         if (!IsAtInteractState)
         {
+            SendMesOnContactStart("mes from chat with" + npc.NPCName, InteractableObjectType.NPC);
             theInteractObject = "NPC";
             IsAtInteractState = true;
             IDisposable waitForKeyboardInteractSingle = null;
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键对话");
+            SendMonologue("按下E键对话");
             npc.ShowIcon();
 
             waitForKeyboardInteractSingle = Observable.EveryUpdate()
                 .Where(x => Input.GetKeyDown(KeyCode.E))
                 .Subscribe(x =>
                 {
-                    
+                    SendMesOutSideOnInteractBtnPressed("msg from chat with"+ npc.NPCName,InteractableObjectType.NPC);
                     theCurrentInteractNPC = npc;
                     DialogManager.Singelton.StartDialog(npc.NPCName);
                     npc.StartInteract();
@@ -145,10 +148,13 @@ public class Mediator : MonoBehaviour,IMediator
     {
         if (!IsAtInteractState)
         {
-            theInteractObject = "PositiveCollector";
+            
             if (CheckPlayerFatigue())
             {
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                SendMesOnContactStart("positive collect too much fatigue", new Hashtable {
+                    { "enoughFaitgue",false },
+                    {"type",InteractableObjectType.PositiveCollect }
+                });
                 Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
                     .Subscribe(x =>
@@ -159,12 +165,15 @@ public class Mediator : MonoBehaviour,IMediator
             }
 
             IsAtInteractState = true;
+            SendMesOnContactStart("msg from positve collect contact start", InteractableObjectType.PositiveCollect);
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
+            SendMonologue("按下E键收集资源");
             collector.ShowIcon();
         
             watchInteractBtnPressed = InputSystem.Singleton.OnInteractBtnPressed
                 .Subscribe(x =>
                 {
+                    SendMesOutSideOnInteractBtnPressed("msg from pos collect pressed", InteractableObjectType.PositiveCollect);
                     collector.StartInteract();
 
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
@@ -179,8 +188,6 @@ public class Mediator : MonoBehaviour,IMediator
 
                     var _hungerChange = (int)interactConfig["interact_positiveCollect_hungerDecrea_default"];
                     playerAttribute.Hunger.Value += _hungerChange;
-
-                    SendMesOutSideOnInteractBtnPressed();
                 });
 
             GUIEvents.Singleton.PlayerEndFishing
@@ -202,6 +209,7 @@ public class Mediator : MonoBehaviour,IMediator
                     else
                     {
                         GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("什么也没有捞到");
+                        SendMonologue("真可惜，什么也没有捞到");
                         Observable.Timer(TimeSpan.FromSeconds(1))
                             .First()
                             .Subscribe(y =>
@@ -209,13 +217,8 @@ public class Mediator : MonoBehaviour,IMediator
                                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
                             });
                     }
-                    //collector.EndInteract((object)x);
-
-                    GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.interact_onInteractionCompleted)
-                        .OnNext(new SubjectArg(this.name,
-                            InteractableObjectType.PositiveCollect
-                        ));
-
+                    SendMesOutOnInteractCompleted("msg from pos collect completed", InteractableObjectType.PositiveCollect);
+                    SendMesOnContactEnd("msg from pos collect contact end", InteractableObjectType.PositiveCollect);
                     GameEvents.Sigton.onInteractEnd.Invoke();
                 });
 
@@ -246,6 +249,7 @@ public class Mediator : MonoBehaviour,IMediator
             if (CheckPlayerFatigue())
             {
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                SendMonologue("我太累了，不想干");
                 Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
                     .Subscribe(x =>
@@ -258,15 +262,14 @@ public class Mediator : MonoBehaviour,IMediator
             IsAtInteractState = true;
             collector.ShowIcon();
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
-            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键收集资源");
 
             float buildIslandCostTime = interactConfig["addIslandTimeCost"];
-
+            SendMesOnContactStart("msg from neg collect contact start", InteractableObjectType.NegativeCollect);
+            SendMonologue("按下E键收集资源");
             watchInteractBtnPressed = InputSystem.Singleton.OnInteractBtnPressed
                 .Subscribe(x =>
                 {
-                    SendMesOutSideOnInteractBtnPressed();
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在收集资源");
+                    SendMesOutSideOnInteractBtnPressed("msg from negative collect pressed",InteractableObjectType.NegativeCollect);
                     collector.HideIcon();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
                     //AudioManager.Singleton.PlayAudio("Interact_islandBuilding");
@@ -296,7 +299,7 @@ public class Mediator : MonoBehaviour,IMediator
 
                     collector.EndInteract(true);
 
-                    SendMesOutOnInteractCompleted(new SubjectArg("msg from negcollect", InteractableObjectType.NegativeCollect));
+                    SendMesOutOnInteractCompleted("msg from negcollect completed", InteractableObjectType.NegativeCollect);
                     GameEvents.Sigton.onInteractEnd();
                 });
 
@@ -307,12 +310,13 @@ public class Mediator : MonoBehaviour,IMediator
                 {
                     AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
                     GameEvents.Sigton.onInteractEnd();
-                    SendMesOutSideInteractBtnReleased("Cancel_building_island");
+                    SendMesOutSideInteractBtnReleased("msg from negative collect released",InteractableObjectType.NegativeCollect);
                     AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                 });
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
+                SendMesOnContactEnd("msg from negative contact end", InteractableObjectType.NegativeCollect);
                 IsAtInteractState = false;
                 collector.EndInteract(false);
                 playerInteract.PlayerEndInteraction();
@@ -320,9 +324,6 @@ public class Mediator : MonoBehaviour,IMediator
                 collector.HideIcon();
                 theInteractObject = "None";
                 ReleaseAllWatch();
-
-                
-
             };
         }
     }
@@ -338,6 +339,7 @@ public class Mediator : MonoBehaviour,IMediator
             if (CheckPlayerFatigue())
             {
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                SendMonologue("我太累了，不想干");
                 Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
                     .Subscribe(x =>
@@ -350,14 +352,19 @@ public class Mediator : MonoBehaviour,IMediator
             IsAtInteractState = true;
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
             var playerBuildingMaterial = inventory.BuildingMaterial.Value;
+
+            SendMesOnContactStart("from builder contact start", InteractableObjectType.IslandBuilder);
+
             if (playerBuildingMaterial < builder.MaterialCost)
             {
                 IsAtInteractState = false;
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("创建浮岛所需的建材不够");
+                SendMonologue("创建浮岛所需的建材不够");
                 return;
             }
 
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键创建岛屿");
+            SendMonologue("按下E键创建岛屿");
             builder.ShowIcon();
 
             float buildIslandCostTime = interactConfig["addIslandTimeCost"];
@@ -366,8 +373,9 @@ public class Mediator : MonoBehaviour,IMediator
             InputSystem.Singleton.OnInteractBtnPressed
                 .Subscribe(x =>
                 {
-                    SendMesOutSideOnInteractBtnPressed();
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("正在建造新浮岛");
+                    SendMesOutSideOnInteractBtnPressed("msg from island builder",InteractableObjectType.IslandBuilder);
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我正在建造新浮岛");
+                    SendMonologue("我正在建造新浮岛");
                     builder.HideIcon();
                     GUIEvents.Singleton.InteractionProgressBar.OnNext(buildIslandCostTime);
                     AudioManager.Singleton.PlayAudio("Interact_islandBuilding");
@@ -392,7 +400,7 @@ public class Mediator : MonoBehaviour,IMediator
 
                     builder.EndInteract(true);
 
-                    SendMesOutOnInteractCompleted(new SubjectArg(name, InteractableObjectType.IslandBuilder));
+                    SendMesOutOnInteractCompleted("msg from island builder", InteractableObjectType.IslandBuilder);
 
                     GameEvents.Sigton.onInteractEnd();
                 });
@@ -404,7 +412,7 @@ public class Mediator : MonoBehaviour,IMediator
                     AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
                     GameEvents.Sigton.onInteractEnd();
                     //GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
-                    SendMesOutSideInteractBtnReleased("Cancel_building_island");
+                    SendMesOutSideInteractBtnReleased("msg from island builder",InteractableObjectType.IslandBuilder);
                     AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                 });
 
@@ -439,7 +447,9 @@ public class Mediator : MonoBehaviour,IMediator
             if (!hasEnoughFoodMaterial)
             {
                 IsAtInteractState = false;
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("没有足够的食材加工食物");
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我没有足够的食材加工食物");
+                SendMonologue("我没有足够的食材加工食物");
+
                 Observable.Timer(TimeSpan.FromSeconds(2))
                     .First()
                     .Subscribe(x =>
@@ -451,6 +461,7 @@ public class Mediator : MonoBehaviour,IMediator
             if (foodProcess.HasFood)
             {
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键吃食物");
+                SendMonologue("按下E键吃食物");
                 foodProcess.ShowIcon();
                 watchInteractBtnPressed = 
                 InputSystem.Singleton.OnInteractBtnPressed
@@ -483,6 +494,7 @@ public class Mediator : MonoBehaviour,IMediator
                 }
                 float processFoodCostTime = interactConfig["processFoodTimeCost"];
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按住E键生产食物");
+                SendMonologue("按住E键生产食物");
                 foodProcess.ShowIcon();
                 //listen the interact key pressed event
                 watchInteractBtnPressed =
@@ -491,7 +503,7 @@ public class Mediator : MonoBehaviour,IMediator
                     .Subscribe(x =>
                     {
                         print("start process food");
-                        SendMesOutSideOnInteractBtnPressed();
+                        SendMesOutSideOnInteractBtnPressed("msg from food process plant",InteractableObjectType.FoodProcessPlant);
                         foodProcess.HideIcon();
                         foodProcess.StartInteract();
                         GUIEvents.Singleton.InteractionProgressBar.OnNext(processFoodCostTime);
@@ -507,10 +519,7 @@ public class Mediator : MonoBehaviour,IMediator
                         inventory.FoodMaterial.Value -= 4;
                         int fatigueIncrease = (int)interactConfig["processFoodFatigeIncrease"];
                         playerAttribute.Fatigue.Value += fatigueIncrease;
-                        //var _hungerChanged = (int)interactConfig["interact_processFood_hungerDecrea_default"];
-                        //playerAttribute.Hunger.Value -= _hungerChanged;
-                        //AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
-                        SendMesOutOnInteractCompleted(new SubjectArg("msg from food process", InteractableObjectType.FoodProcessPlant));
+                        SendMesOutOnInteractCompleted("msg from food process", InteractableObjectType.FoodProcessPlant);
                         foodProcess.EndInteract(true);
                         GameEvents.Sigton.onInteractEnd();
                     });
@@ -548,6 +557,7 @@ public class Mediator : MonoBehaviour,IMediator
             {
                 theInteractObject = "Island";
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                SendMonologue("我太累了，不想干");
                 Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
                     .Subscribe(x =>
@@ -570,6 +580,7 @@ public class Mediator : MonoBehaviour,IMediator
             }
             //listen the interact key pressed event
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键修复浮岛");
+            SendMonologue("按下E键修复浮岛");
             island.ShowIcon();
            
             watchInteractBtnPressed =
@@ -577,7 +588,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
-                    SendMesOutSideOnInteractBtnPressed();
+                    SendMesOutSideOnInteractBtnPressed("msg from restroe island",InteractableObjectType.Island);
                     island.HideIcon();
                     AudioManager.Singleton.PlayAudio("Interact_islandRestoring");
                     island.StartInteract();
@@ -629,6 +640,7 @@ public class Mediator : MonoBehaviour,IMediator
             IsAtInteractState = true;
 
             GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键休息");
+            SendMonologue("按下E键休息");
             diary.ShowIcon();
 
             watchInteractBtnPressed = Observable.EveryUpdate()
@@ -653,12 +665,10 @@ public class Mediator : MonoBehaviour,IMediator
             };
         }
     }
-
     public void playerSick()
     {
         playerInteract.PlayerStartInteraction(PlayerInteractionType.Dialog);
     }
-
     public IPlayerInteractPresenter PlayerInteract
     {
         set
@@ -682,22 +692,47 @@ public class Mediator : MonoBehaviour,IMediator
     #endregion
 
     #region//-----private methods
-    void SendMesOutSideOnInteractBtnPressed()
+    void SendMesOutSideOnInteractBtnPressed(string signature,InteractableObjectType type)
     {
-        GameEvents.Sigton.InteractEventDictionary["onInteractBtnPressedWhenInteracting"].OnNext(new SubjectArg("ResourceCollect"));
+        var _eventKey = InteractEventTags.onInteractBtnPressed;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey)
+            .OnNext(new SubjectArg(signature,type));
     }
-
-    void SendMesOutSideInteractBtnReleased(string mes)
+    void SendMesOutSideInteractBtnReleased(string signature,InteractableObjectType type)
     {
-        string _eventKey = InteractEventTags.onInteractBtnReleasedWhenInteracting;
-        GameEvents.Sigton.InteractEventDictionary[_eventKey].OnNext(new SubjectArg(mes));
+        string _eventKey = InteractEventTags.onInteractBtnReleased;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey)
+            .OnNext(new SubjectArg(signature,type));
     }
-    void SendMesOutOnInteractCompleted(SubjectArg subjectArg)
+    void SendMesOutOnInteractCompleted(string singature, InteractableObjectType type)
     {
-        var _eventKey = InteractEventTags.interact_onInteractionCompleted;
-        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey).OnNext(subjectArg);
+        var _eventKey = InteractEventTags.onInteractionCompleted;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey)
+            .OnNext(new SubjectArg(singature, type));
     }
-
+    void SendMesOnContactStart(string singnature, InteractableObjectType type)
+    {
+        var _eventKey = InteractEventTags.onPlayerContactStarted;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey)
+            .OnNext(new SubjectArg(singnature, type));
+    }
+    void SendMesOnContactStart(string signature,object mes)
+    {
+        var _eventKey = InteractEventTags.onPlayerContactStarted;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey)
+            .OnNext(new SubjectArg(signature, mes));
+    }
+    void SendMesOnContactEnd(string sigatrue, InteractableObjectType type)
+    {
+        var _eventKey = InteractEventTags.onPlayerContactEnded;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey)
+            .OnNext(new SubjectArg(sigatrue, type));
+    }
+    void SendMonologue(string monologue)
+    {
+        string _eventKey = InteractEventTags.showMonologue;
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(_eventKey).OnNext(new SubjectArg(monologue));
+    }
     void ReleaseAllWatch()
     {
         if (watchInteractBtnPressed != null)
