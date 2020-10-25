@@ -35,6 +35,14 @@ public class DiaryModify : MonoBehaviour
             var negativeCollector = FindObjectOfType<NegativeResourceCollector>();
             negativeCollector.resourceAccount_buildingMaterial = neg_build;
             negativeCollector.resourceAccount_foodMaterial = neg_food;
-        };     
+        };
+
+        InitIcons();
+    }
+    void InitIcons()
+    {
+        var iconManagers = FindObjectOfType<IconManager>();
+        var negativeCollector = FindObjectOfType<NegativeResourceCollector>();
+       
     }
 }

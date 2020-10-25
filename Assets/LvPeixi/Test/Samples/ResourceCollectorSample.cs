@@ -89,12 +89,12 @@ public class ResourceCollectorSample : MonoBehaviour,IInteractableResourceCollec
 
     public void ShowIcon()
     {
-        //Icon.SetActive(true);
+        Icon.SetActive(true);
     }
 
     public void HideIcon()
     {
-        //Icon.SetActive(false);
+        Icon.SetActive(false);
     }
 
 }
