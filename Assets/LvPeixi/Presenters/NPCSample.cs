@@ -45,10 +45,8 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
     }
     public void StartInteract()
     {
-
-        //todo： 减玩家疲劳值 -10
-        var attr = FindObjectOfType<PlayerAttributePresenter>();
-        attr.Fatigue.Value -= 10;
+        
+        
     }
     public void EndInteract(object result)
     {

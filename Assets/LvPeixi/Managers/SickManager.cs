@@ -6,10 +6,26 @@ using Fungus;
 
 public class SickManager : MonoBehaviour
 {
+    private static SickManager _instance;
+    public static SickManager Instance { get { return _instance; } }
+
     public int NPCSickedDay = 7;
     public int PlayerSickedDay = 13;
     public int NPCHelpPreference = 20;
+    public bool isPlayerSaved;
     public Flowchart playerFlowchart;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +51,12 @@ public class SickManager : MonoBehaviour
                 if (NPC.preference >= NPCHelpPreference)
                 {
                     playerFlowchart.SendFungusMessage("PlayerSickWithHelp");
-                    DiaryManager.Instance.isPlayerSaved = true;
+                    isPlayerSaved = true;
                 }
                 else
                 {
                     playerFlowchart.SendFungusMessage("PlayerSick");
-                    DiaryManager.Instance.isPlayerSaved = false;
+                    isPlayerSaved = false;
                 }
                 GameEvents.Sigton.onPlayerSicked.OnNext(PlayerSickedDay);
             });
