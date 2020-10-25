@@ -10969,6 +10969,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1545655030794939375, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3039574519386788222, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
       propertyPath: m_Text
@@ -11169,22 +11174,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000733717325296251, guid: a97b981c21bac9e468be26c2e5f72b8f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000733717325296251, guid: a97b981c21bac9e468be26c2e5f72b8f,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d14df7a1ce753604292ceaa7775f7380,
-        type: 3}
-    - target: {fileID: 4000733717325296251, guid: a97b981c21bac9e468be26c2e5f72b8f,
-        type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4000733717325296255, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
       propertyPath: m_IsActive
@@ -11209,6 +11198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 182.56262
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274660770422063683, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6635731062499396506, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
