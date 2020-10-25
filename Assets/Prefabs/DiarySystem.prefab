@@ -241,7 +241,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6c03276022df1734d90a16193d5621d6, type: 3}
-    m_FontSize: 55
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
@@ -710,8 +710,6 @@ MonoBehaviour:
       \u2014\u2014\u201C\u5927\u98CE\u66B4\u201D\u4F3C\u4E4E\u9A6C\u4E0A\u8981\u6765\u4E86\u3002
       \u6211\u5E0C\u671B\u6211\u51C6\u5907\u597D\u4E86\u3002\uFF08\u5212\u6389\uFF09
       \u6211\u4EEC\u5DF2\u7ECF\u51C6\u5907\u597D\u4E86\u3002"
-  isPlayerSaved: 0
-  PlayerSickDay: 0
   myNPC: {fileID: 0}
 --- !u!1 &4000733717325296255
 GameObject:
@@ -1323,7 +1321,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6c03276022df1734d90a16193d5621d6, type: 3}
-    m_FontSize: 55
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
