@@ -28,15 +28,26 @@ public class SickUIManager : MonoBehaviour
     {
         view.BlackScreenFadeIn();
         
-        StartCoroutine(finishShowNPCSickUI());
+        StartCoroutine(ShowNPCSickUICouroutine());
     }
 
-    IEnumerator finishShowNPCSickUI()
+    IEnumerator ShowNPCSickUICouroutine()
     {
         yield return new WaitForSeconds(1);
         NPCSickUI.SetActive(true);
-        yield return new WaitForSeconds(duration);
+        //yield return new WaitForSeconds(duration);
+        
+    }
+
+    void finishShowNPCSickUI()
+    {
         NPCSickUI.SetActive(false);
+        StartCoroutine(finishShowNPCSickUICouroutine());
+    }
+
+    IEnumerator finishShowNPCSickUICouroutine()
+    {
+        yield return new WaitForSeconds(1);
         view.BlackScreenFadeOut();
         yield return new WaitForSeconds(1);
     }
