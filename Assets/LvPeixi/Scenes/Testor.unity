@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &101531 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7036572159493938281, guid: 74716178b7b2d2940a0bf284cb4773bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 71145519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &13738102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,7 +472,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 2069716379}
+      objectReference: {fileID: 871100144}
     - target: {fileID: 645590192503948299, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
@@ -481,7 +487,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 2069716379}
+      objectReference: {fileID: 871100144}
     - target: {fileID: 1175744050700758187, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
@@ -505,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 1444162753773510138, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
-      value: 433.13043
+      value: 434.22934
       objectReference: {fileID: 0}
     - target: {fileID: 1444162753773510138, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -521,7 +527,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 157170853}
+      objectReference: {fileID: 959824968}
     - target: {fileID: 1771613675927784165, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
@@ -582,6 +588,11 @@ PrefabInstance:
       propertyPath: SelfDialogs.Array.data[1]
       value: 
       objectReference: {fileID: 341078959}
+    - target: {fileID: 2441259490737119599, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: targetObject
+      value: 
+      objectReference: {fileID: 8666213667177732043}
     - target: {fileID: 2479627087208514837, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
@@ -606,12 +617,12 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 2069716379}
+      objectReference: {fileID: 871100144}
     - target: {fileID: 3376580311024516126, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 2069716379}
+      objectReference: {fileID: 871100144}
     - target: {fileID: 3649040676405497301, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: eventHandler
@@ -788,7 +799,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 157170853}
+      objectReference: {fileID: 959824968}
     - target: {fileID: 4346949433599860408, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: targetObject
@@ -843,7 +854,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 157170853}
+      objectReference: {fileID: 959824968}
     - target: {fileID: 5096614842135733056, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
@@ -908,7 +919,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 2069716379}
+      objectReference: {fileID: 871100144}
     - target: {fileID: 5857051526134454370, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
@@ -1005,7 +1016,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 2069716379}
+      objectReference: {fileID: 871100144}
     - target: {fileID: 6399362095377281078, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.y
@@ -1055,7 +1066,7 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
-      objectReference: {fileID: 2069716379}
+      objectReference: {fileID: 871100144}
     - target: {fileID: 7124134384607738449, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
@@ -1687,7 +1698,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 306.17242
     y: -5.5005417
-    width: 71.17647
+    width: 71.95122
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1834,7 +1845,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 409.29022
     y: -6.676979
-    width: 101.764694
+    width: 102.43901
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1988,7 +1999,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.29031
     y: 69.028854
-    width: 68.823524
+    width: 69.51219
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2245,7 +2256,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 13.218048
     y: -401.7621
-    width: 82.89473
+    width: 78.57143
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2412,7 +2423,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 208.46674
     y: 144.20526
-    width: 70
+    width: 70.731705
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2701,7 +2712,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 114.172806
     y: 206.85231
-    width: 66.47058
+    width: 67.073166
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2857,7 +2868,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.2313
     y: 209.1465
-    width: 67.64706
+    width: 68.29268
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3148,7 +3159,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.17276
     y: 274.26382
-    width: 72.352936
+    width: 73.17072
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3307,7 +3318,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.05508
     y: 286.91095
-    width: 73.5294
+    width: 74.390236
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3545,7 +3556,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 205.29034
     y: 74.55826
-    width: 70
+    width: 70.731705
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3699,7 +3710,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 204.17279
     y: -6.6769333
-    width: 70
+    width: 70.731705
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3853,7 +3864,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.29047
     y: -10.676933
-    width: 68.823524
+    width: 69.51219
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3893,7 +3904,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145611
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3938,7 +3949,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145613
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3955,7 +3966,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 346.5
     y: 48.5
-    width: 78.94736
+    width: 79.67033
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4009,7 +4020,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145616
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4054,7 +4065,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145618
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4071,7 +4082,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 458.5
     y: 50.5
-    width: 77.63157
+    width: 78.57143
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4125,7 +4136,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145621
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4170,7 +4181,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145623
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4187,7 +4198,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 228.5
     y: 53.5
-    width: 78.94736
+    width: 79.67033
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4241,7 +4252,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145626
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4286,7 +4297,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145628
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4303,7 +4314,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 108.5
     y: 52.5
-    width: 77.63157
+    width: 78.57143
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4357,7 +4368,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145631
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4402,7 +4413,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145633
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4419,7 +4430,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -1
     y: 52.5
-    width: 77.63157
+    width: 77.47253
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4553,7 +4564,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145664
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4598,7 +4609,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145670
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4647,7 +4658,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 351
     y: -99.5
-    width: 176.31575
+    width: 179.67032
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4880,7 +4891,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145703
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4925,7 +4936,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145705
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4970,7 +4981,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145707
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -5015,7 +5026,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 2069716379}
+  setSayDialog: {fileID: 871100144}
 --- !u!114 &71145709
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -5087,7 +5098,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 139.5
     y: -96.5
-    width: 156.57892
+    width: 159.8901
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -6385,7 +6396,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 157170853}
+  setSayDialog: {fileID: 959824968}
 --- !u!114 &749963619
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6430,7 +6441,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 157170853}
+  setSayDialog: {fileID: 959824968}
 --- !u!114 &749963621
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6475,7 +6486,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 157170853}
+  setSayDialog: {fileID: 959824968}
 --- !u!114 &749963623
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6548,7 +6559,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 157170853}
+  setSayDialog: {fileID: 959824968}
 --- !u!114 &749963640
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6593,7 +6604,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 157170853}
+  setSayDialog: {fileID: 959824968}
 --- !u!114 &749963642
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6638,7 +6649,7 @@ MonoBehaviour:
   waitForClick: 0
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 157170853}
+  setSayDialog: {fileID: 959824968}
 --- !u!114 &749963644
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6851,6 +6862,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838626960}
   m_CullTransparentMesh: 0
+--- !u!114 &871100144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8483896120348560080, guid: 74716178b7b2d2940a0bf284cb4773bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 71145519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0bbe22c246e4c78ad8e9816cbae9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &899038986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1228300884659282423, guid: 757d3a738686eef40a15dc4c3fa91e6d,
@@ -6936,6 +6959,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rainVal: 0
   rainChangeDuration: 1
+--- !u!114 &959824968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1714117550699082720, guid: 74716178b7b2d2940a0bf284cb4773bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 71145519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0bbe22c246e4c78ad8e9816cbae9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1083354181
 GameObject:
   m_ObjectHideFlags: 0
@@ -7154,7 +7189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 71145553}
+  selectedFlowchart: {fileID: 912177900}
 --- !u!4 &1159029869
 Transform:
   m_ObjectHideFlags: 1
@@ -7264,6 +7299,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195367232}
   m_CullTransparentMesh: 0
+--- !u!224 &1205486102 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4624805593108428664, guid: 74716178b7b2d2940a0bf284cb4773bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 71145519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1245421465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10718,7 +10759,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DialogPanel
       value: 
-      objectReference: {fileID: 1930373986}
+      objectReference: {fileID: 1205486102}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e091aaba34357a841b34339de1320c5d, type: 3}
 --- !u!1001 &8084263208625114182
@@ -10802,7 +10843,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DialogPanel
       value: 
-      objectReference: {fileID: 2017398809}
+      objectReference: {fileID: 101531}
     - target: {fileID: 3485627421951907650, guid: 6f689525796d90349b19bd9d6a26645d,
         type: 3}
       propertyPath: flowchart
@@ -10917,6 +10958,51 @@ PrefabInstance:
         type: 3}
       propertyPath: Icon
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396017312604533028, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 23.221691
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396017312604533028, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 5.0411077
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396017312604533028, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 17.53748
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600635751261008226, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 8.82616
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600635751261008226, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 8.553771
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600635751261008226, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 2.56228
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600635751261008226, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 8.678534
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600635751261008226, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 14.5143
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600635751261008226, guid: 6f689525796d90349b19bd9d6a26645d,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 7.4331994
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f689525796d90349b19bd9d6a26645d, type: 3}
