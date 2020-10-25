@@ -22,7 +22,10 @@ public class FoodProcessPlantSample : MonoBehaviour,IFoodProcess
 
     private void Start()
     {
-        Icon = FindObjectOfType<IconManager>().ProcessFoodIcon;
+        if (Icon == null)
+        {
+            Icon = FindObjectOfType<IconManager>().ProcessFoodIcon;
+        }
         if (Icon == null)
         {
             Debug.LogError("Icon haven't been assigned to IconManager");
