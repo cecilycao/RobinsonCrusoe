@@ -17,6 +17,8 @@ public class Island : RestoreIslandSample
     public GameObject inactiveIsland;
     public int rainIntensity = 0;
     public GameObject Icon;
+    public GameObject CreateIslandEffect;
+    public GameObject ShipwreckedEffect;
     //temp
     public UnityEvent IslandDamaged;
     public UnityEvent IslandDestroyed;
@@ -129,7 +131,7 @@ public class Island : RestoreIslandSample
             }
             else
             {
-                create();
+                createIsland();
             }
         }
 
@@ -192,13 +194,28 @@ public class Island : RestoreIslandSample
         m_condition = IslandCondition.DESTROYED;
     }
 
+
+    //create Island with create Effect
     public void create()
     {
+        GameObject createEffect = Instantiate(CreateIslandEffect, transform);
+        StartCoroutine(createIslandCoroutine(createEffect));
+    }
 
+    IEnumerator createIslandCoroutine(GameObject createEffect)
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(createEffect);
+        createIsland();
+
+    }
+
+    //create island
+    public void createIsland()
+    {
         initializeActiveIsland();
         if (!isCore)
         {
-            //InvokeRepeating("tempTimer", 0.0f, 1.0f);
             GameEvents.Sigton.timeSystem
                 .Subscribe(_data =>
                 {
@@ -224,7 +241,7 @@ public class Island : RestoreIslandSample
         damagedIsland.SetActive(false);
         activeIsland.SetActive(true);
         m_condition = IslandCondition.CREATED;
-        //todo: change Island Texture
+        
     }
 
     public void damaged()
@@ -242,44 +259,32 @@ public class Island : RestoreIslandSample
 
     public void destroy()
     {
+        m_condition = IslandCondition.DESTROYED;
         if (playerHere)
         {
-            //todo: 传送player 回家，写日记并开始新的一天
             PlayerRespawn respawn = FindObjectOfType<PlayerRespawn>();
             respawn.respawn();
-            //attr.gameObject.transform.position = 
             GameEvents.Sigton.onTheDestroyedIsland.Invoke();
         }
-        inactiveIsland.SetActive(true);
         activeIsland.SetActive(false);
         damagedIsland.SetActive(false);
-        m_condition = IslandCondition.DESTROYED;
+        inactiveIsland.SetActive(true);
+        GameObject destroyEffect = Instantiate(ShipwreckedEffect, transform);
+
+        StartCoroutine(destroyIsland(destroyEffect));
+    }
+
+    IEnumerator destroyIsland(GameObject destroyEffect)
+    {
+        yield return new WaitForSeconds(4);
+        Destroy(destroyEffect);
+        
         foreach (Island nearbyIsland in nearbyIslands)
         {
             nearbyIsland.onNearbyIslandDestroy();
         }
         IslandDestroyed.Invoke();
     }
-
-    //public void OnCollisionEnter(Collision collision)
-    //{
-    //    if(m_condition != IslandCondition.DESTROYED && collision.gameObject.tag == "Player")
-    //    {
-    //        playerHere = true;
-    //        if (m_condition == IslandCondition.DAMAGED)
-    //        {
-    //            //todo: enable repair
-    //        }
-    //    }
-    //}
-
-    //public void OnCollisionExit(Collision collision)
-    //{
-    //    if (m_condition != IslandCondition.DESTROYED && collision.gameObject.tag == "Player" && playerHere)
-    //    {
-    //        playerHere = false;
-    //    }
-    //}
 
     public bool isActive()
     {

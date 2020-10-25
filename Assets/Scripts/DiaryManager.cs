@@ -14,6 +14,7 @@ public class DiaryManager : MonoBehaviour
     public GameObject DiaryPanel;
     public Animator JournalAnimator;
     public GameObject DiaryUI;
+    public GameObject TeachingManual;
     public GameObject previousButton;
     public GameObject nextButton;
     public Image diaryUIImg;
@@ -94,6 +95,8 @@ public class DiaryManager : MonoBehaviour
         };
         //todo：talk to npc
 
+        DiaryPage firstPage = new DiaryPage();
+        pageList.Add(firstPage);
 
         DiaryPanel.SetActive(false);
         JournalAnimator.gameObject.SetActive(false);
@@ -141,17 +144,23 @@ public class DiaryManager : MonoBehaviour
         if (currentShowingIndex >= 0)
         {
             displayContent(currentShowingIndex);
-        }
+        } 
     }
 
     void displayContent(int pageIndex)
     {
-        if(pageIndex == 0)
+        //Set previous/next buttons
+        Debug.Log("Display content for page index:" + pageIndex);
+        Debug.Log("Current Page Count:" + pageList.Count);
+        if (pageIndex == 0)
         {
             previousButton.SetActive(false);
             if (pageList.Count <= 1)
             {
                 nextButton.SetActive(false);
+            } else
+            {
+                nextButton.SetActive(true);
             }
             
         } else if (pageIndex == pageList.Count - 1)
@@ -163,8 +172,16 @@ public class DiaryManager : MonoBehaviour
             previousButton.SetActive(true);
             nextButton.SetActive(true);
         }
-        DiaryPage currentPage = pageList[pageIndex];
-        fillPgae(currentPage);
+        if (pageIndex == 0)
+        {
+            TeachingManual.SetActive(true);
+        }
+        else
+        {
+            TeachingManual.SetActive(false);
+            DiaryPage currentPage = pageList[pageIndex];
+            fillPgae(currentPage);
+        }
     }
 
     void fillPgae(DiaryPage currentPage)
@@ -225,6 +242,11 @@ public class DiaryPage
     public int day;
     WeatherState weather;
     List<WritableEvents> events;
+
+    public DiaryPage()
+    {
+
+    }
 
     public DiaryPage(int day, List<WeatherState> weathers, WeatherState currentWeather, List<WritableEvents> events)
     {
