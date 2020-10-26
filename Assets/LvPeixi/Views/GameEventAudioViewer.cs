@@ -7,6 +7,8 @@ public class GameEventAudioViewer : MonoBehaviour
 {
     int previousHunger = 0;
     int previousFatigue = 0;
+
+    bool hungerAudioStartPlay = false;
     private void Start()
     {
         DelayStart();
@@ -27,7 +29,7 @@ public class GameEventAudioViewer : MonoBehaviour
     void WhenHungerValueIncreased()
     {
         GUIEvents.Singleton.Hunger
-        .Where(x => x > previousHunger)
+        .Where(x => x < previousHunger)
         .Subscribe(x =>
         {
             AudioManager.Singleton.PlayAudio("Player_hungerValueIncreased");
@@ -51,7 +53,6 @@ public class GameEventAudioViewer : MonoBehaviour
                 AudioManager.Singleton.PlayAudio("Interact_startContactTipSound");
             });
     }
-
     void OnInteractComplete()
     {
         GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.onInteractionCompleted)
