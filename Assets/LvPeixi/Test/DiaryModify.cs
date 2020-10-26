@@ -81,6 +81,13 @@ public class DiaryModify : MonoBehaviour
             });
 
         GameEvents.Sigton.timeSystem
+            .Where(x => x.DayCount == 5)
+            .Subscribe(x =>
+            {
+                AudioManager.Singleton.PlayAudio("BGM_02");
+            });
+
+        GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount == 7)
             .Subscribe(x =>
             {

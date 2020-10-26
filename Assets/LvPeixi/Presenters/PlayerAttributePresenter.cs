@@ -13,6 +13,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
     IDisposable onAccumulateComplete = null;
     IDisposable accumulateFatigue = null;
     IDisposable accumulateHunger = null;
+    IDisposable watchPlayerDied = null;
     Dictionary<string,float> config;
 
     [Header("-----Test block-----")]
@@ -216,16 +217,17 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
                 GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("");
             });
 
+        watchPlayerDied =
         model.hunger
             .Where(x => x <= 0)
             .Delay(TimeSpan.FromSeconds(20))
-            .First()
             .Subscribe(x =>
             {
                 if (model.hunger.Value <= 0)
                 {
                     GameEvents.Sigton.onGameEnd.Invoke();
                 }
+                watchPlayerDied.Dispose();
             });
 
         Observable.Interval(TimeSpan.FromSeconds(3))

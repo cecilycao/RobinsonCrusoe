@@ -460,20 +460,20 @@ public class Mediator : MonoBehaviour,IMediator
   
             if (foodProcess.HasFood)
             {
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键吃食物");
-                SendMonologue("按下E键吃食物");
-                foodProcess.ShowIcon();
-                watchInteractBtnPressed = 
-                InputSystem.Singleton.OnInteractBtnPressed
-                    .Subscribe(x =>
-                    {
-                        foodProcess.HideIcon();
-                        int _hungerRes = (int)interactConfig["eatFood_hungerDec_default"];
-                        attr.Hunger.Value -= _hungerRes;
-                        attr.Fatigue.Value -= 10;
-                        foodProcess.EndInteract(false);
-                        GameEvents.Sigton.onInteractEnd();
-                    });
+                //GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键吃食物");
+                //SendMonologue("按下E键吃食物");
+                //foodProcess.ShowIcon();
+                //watchInteractBtnPressed = 
+                //InputSystem.Singleton.OnInteractBtnPressed
+                //    .Subscribe(x =>
+                //    {
+                //        foodProcess.HideIcon();
+                //        int _hungerRes = (int)interactConfig["eatFood_hungerDec_default"];
+                //        attr.Hunger.Value -= _hungerRes;
+                //        attr.Fatigue.Value -= 10;
+                //        foodProcess.EndInteract(false);
+                //        GameEvents.Sigton.onInteractEnd();
+                //    });
             }
             else
             {
@@ -520,6 +520,11 @@ public class Mediator : MonoBehaviour,IMediator
                         int fatigueIncrease = (int)interactConfig["processFoodFatigeIncrease"];
                         playerAttribute.Fatigue.Value += fatigueIncrease;
                         SendMesOutOnInteractCompleted("msg from food process", InteractableObjectType.FoodProcessPlant);
+
+                        foodProcess.HideIcon();
+                        int _hungerRes = (int)interactConfig["eatFood_hungerDec_default"];
+                        attr.Hunger.Value -= _hungerRes;
+
                         foodProcess.EndInteract(true);
                         GameEvents.Sigton.onInteractEnd();
                     });
