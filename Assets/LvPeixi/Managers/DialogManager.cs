@@ -38,6 +38,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     int dialogCount = 0;
 
+    bool[] locks = new bool[15];
+
     public static DialogManager Singelton
     {
         get => _instance;
@@ -58,7 +60,6 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-
         int newDay;
         playerFlowchart = null;
         foreach (SelfDialog dialog in SelfDialogs)
@@ -89,6 +90,7 @@ public class DialogManager : MonoBehaviour
         });
 
         GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.showMonologue)
+            .Throttle(TimeSpan.FromSeconds(0.1f))
             .Subscribe(x =>
             {
                 print(x.senderSignature);
@@ -97,34 +99,34 @@ public class DialogManager : MonoBehaviour
                 switch (x.senderSignature)
                 {
                     case "按下E键对话":
-                        playerFlowchart.SendFungusMessage("ShowPrompt");
+                            playerFlowchart.SendFungusMessage("ShowPrompt");
                         break;
                     case "按下E键收集资源":
-                        playerFlowchart.SendFungusMessage("ShowPrompt1");
+                            playerFlowchart.SendFungusMessage("ShowPrompt1");
                         break;
                     case "按住E键生产食物":
-                        playerFlowchart.SendFungusMessage("ShowPrompt2");
-                        break;
+                            playerFlowchart.SendFungusMessage("ShowPrompt2");
+                        break;                
                     case "按下E键修复浮岛":
-                        playerFlowchart.SendFungusMessage("ShowPrompt3");
+                            playerFlowchart.SendFungusMessage("ShowPrompt3");
                         break;
                     case "按下E键休息":
-                        playerFlowchart.SendFungusMessage("ShowPrompt4");
+                            playerFlowchart.SendFungusMessage("ShowPrompt4");
                         break;
                     case "我太累了，不想干":
-                        playerFlowchart.SendFungusMessage("ShowPrompt5");
+                            playerFlowchart.SendFungusMessage("ShowPrompt5");
                         break;
                     case "我没有足够的食材加工食物":
-                        playerFlowchart.SendFungusMessage("ShowPrompt6");
+                            playerFlowchart.SendFungusMessage("ShowPrompt6");
                         break;
                     case "真可惜，什么也没有捞到":
-                        playerFlowchart.SendFungusMessage("ShowPrompt7");
+                            playerFlowchart.SendFungusMessage("ShowPrompt7");
                         break;
                     case "创建浮岛所需的建材不够":
-                        playerFlowchart.SendFungusMessage("ShowPrompt8");
+                            playerFlowchart.SendFungusMessage("ShowPrompt8");
                         break;
                     case "按下E键创建岛屿":
-                        playerFlowchart.SendFungusMessage("ShowPrompt8");
+                            playerFlowchart.SendFungusMessage("ShowPrompt9");
                         break;
                     default:
                         break;

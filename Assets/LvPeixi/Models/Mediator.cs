@@ -210,7 +210,7 @@ public class Mediator : MonoBehaviour,IMediator
                     else
                     {
                         GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("什么也没有捞到");
-                        SendMonologue("真可惜，什么也没有捞到");
+                        SendMonologue("什么也没有捞到");
                         Observable.Timer(TimeSpan.FromSeconds(1))
                             .First()
                             .Subscribe(y =>
@@ -249,8 +249,8 @@ public class Mediator : MonoBehaviour,IMediator
             theInteractObject = "NegativeCollector";
             if (CheckPlayerFatigue())
             {
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
-                SendMonologue("我太累了，不想干");
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，该休息了");
+                SendMonologue("我太累了，该休息了");
                 Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
                     .Subscribe(x =>
@@ -339,8 +339,8 @@ public class Mediator : MonoBehaviour,IMediator
             theInteractObject = "IslandBuilder";
             if (CheckPlayerFatigue())
             {
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
-                SendMonologue("我太累了，不想干");
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，该休息了");
+                SendMonologue("我太累了，该休息了");
                 Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
                     .Subscribe(x =>
@@ -462,7 +462,7 @@ public class Mediator : MonoBehaviour,IMediator
          
                 if (CheckPlayerFatigue())
                 {
-                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
+                    GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，该休息了");
                     Observable.Timer(TimeSpan.FromSeconds(1))
                         .First()
                         .Subscribe(x =>
@@ -544,8 +544,8 @@ public class Mediator : MonoBehaviour,IMediator
             if (CheckPlayerFatigue())
             {
                 theInteractObject = "Island";
-                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
-                SendMonologue("我太累了，不想干");
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，该休息了");
+                SendMonologue("我太累了，该休息了");
                 Observable.Timer(TimeSpan.FromSeconds(1))
                     .First()
                     .Subscribe(x =>

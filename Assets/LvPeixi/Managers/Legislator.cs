@@ -18,7 +18,7 @@ public class Legislator : MonoBehaviour
         };
 
         GameEvents.Sigton.timeSystem
-            .Where(x => x.DayCount == 16)
+            .Where(x => x.DayCount > 16)
             .Subscribe(x =>
             {
                 GameEnd();
