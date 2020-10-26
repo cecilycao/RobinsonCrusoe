@@ -24,17 +24,17 @@ public class FX_Controller : MonoBehaviour {
     }
 }
 
-[CustomEditor(typeof(FX_Controller))]               //很重要
-public class FX_Controller_Editor : Editor {
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
-        FX_Controller myScript = (FX_Controller)target;
-        if(GUILayout.Button("Stop Particle")) {
-            myScript.StopParticle();
-        }
-        if(GUILayout.Button("Play Particle")) {
-            myScript.PlayParticle();
-        }
-    }
-}
+//[CustomEditor(typeof(FX_Controller))]               //很重要
+//public class FX_Controller_Editor : Editor {
+//    public override void OnInspectorGUI() {
+//        DrawDefaultInspector();
+//        FX_Controller myScript = (FX_Controller)target;
+//        if(GUILayout.Button("Stop Particle")) {
+//            myScript.StopParticle();
+//        }
+//        if(GUILayout.Button("Play Particle")) {
+//            myScript.PlayParticle();
+//        }
+//    }
+//}
 

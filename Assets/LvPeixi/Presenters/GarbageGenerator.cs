@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-using UnityEditor;
+//using UnityEditor;
 
 public class GarbageGenerator : MonoBehaviour
 {
@@ -74,8 +74,8 @@ public class GarbageGenerator : MonoBehaviour
         };
     }
 
-    private void OnDrawGizmos()
-    {
-        Handles.DrawDottedLine(transform.position, garbageDes.position,5);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Handles.DrawDottedLine(transform.position, garbageDes.position,5);
+    //}
 }

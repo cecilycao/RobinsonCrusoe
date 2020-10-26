@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
@@ -298,18 +298,18 @@ public class Island : RestoreIslandSample
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Vector3 offset = new Vector3(0, 0, -0.3f);
-        if (!playerHere)
-        {
-            Handles.Label(transform.position + offset, "" + durability);
-        } else
-        {
-            Handles.Label(transform.position + offset, "" + durability + " | Player");
-        }
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 offset = new Vector3(0, 0, -0.3f);
+    //    if (!playerHere)
+    //    {
+    //        Handles.Label(transform.position + offset, "" + durability);
+    //    } else
+    //    {
+    //        Handles.Label(transform.position + offset, "" + durability + " | Player");
+    //    }
         
-    }
+    //}
 
     public void OnIslandRestoreStart()
     {
