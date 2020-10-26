@@ -1032,7 +1032,7 @@ PrefabInstance:
     - target: {fileID: 7595597129961114007, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.y
-      value: 347.3366
+      value: 346.1171
       objectReference: {fileID: 0}
     - target: {fileID: 7610585575338442376, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1167,7 +1167,7 @@ PrefabInstance:
     - target: {fileID: 8378360829612198715, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.y
-      value: 601.86865
+      value: 600.55286
       objectReference: {fileID: 0}
     - target: {fileID: 8501853453485961001, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1642,7 +1642,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 306.17242
     y: -6.5994425
-    width: 71.95122
+    width: 71
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1789,7 +1789,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 409.29022
     y: -6.676979
-    width: 102.43901
+    width: 102
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1943,7 +1943,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.29031
     y: 69.028854
-    width: 69.51219
+    width: 69
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2342,8 +2342,8 @@ MonoBehaviour:
   indentLevel: 0
   storyText: "\u5C31\u7B97\u6709\u94B1\u4E5F\u2026\u2026\u82B1\u4E0D\u51FA\u53BB\u5427\u3002"
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 71145520}
+  portrait: {fileID: 21300000, guid: 7b4ab967c4b87f84a91b0f9eae18372b, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2369,8 +2369,8 @@ MonoBehaviour:
   indentLevel: 0
   storyText: "\u5443\u2026\u2026\u6551\u52A9\u8981\u6536\u8D39\u5417\uFF1F"
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 2026216644}
+  portrait: {fileID: 21300000, guid: d78066381cd6a5a4fac53f09b6782723, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -2396,7 +2396,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 208.46674
     y: 144.20526
-    width: 70.731705
+    width: 70
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2685,7 +2685,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 114.172806
     y: 206.85231
-    width: 67.073166
+    width: 67
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2841,7 +2841,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.2313
     y: 209.1465
-    width: 68.29268
+    width: 68
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2981,8 +2981,8 @@ MonoBehaviour:
   indentLevel: 0
   storyText: "\u5514\uFF0C\u4F60\u8BF4\u7684\u5BF9\u3002"
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 2026216644}
+  portrait: {fileID: 21300000, guid: d78066381cd6a5a4fac53f09b6782723, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -3132,7 +3132,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.17276
     y: 274.26382
-    width: 73.17073
+    width: 74
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3291,7 +3291,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.05508
     y: 286.91095
-    width: 74.39024
+    width: 75
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3574,7 +3574,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 205.29034
     y: 74.55826
-    width: 70.731705
+    width: 70
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3728,7 +3728,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 204.17279
     y: -6.6769333
-    width: 70.731705
+    width: 70
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3882,7 +3882,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 112.389366
     y: -11.775834
-    width: 69.51219
+    width: 69
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7915,7 +7915,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Icon
       value: 
-      objectReference: {fileID: 1749644141}
+      objectReference: {fileID: 1856996586}
     - target: {fileID: 1665276354015275988, guid: bfa68a3219fdb7a45a38e66b9a70f624,
         type: 3}
       propertyPath: m_LocalPosition.x
