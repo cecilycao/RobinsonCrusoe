@@ -42,7 +42,7 @@ public class Island : RestoreIslandSample
     //public static int REPAIR_EFFECT = 50;
     public int MAX_DURABILITY = 100;
 
-    public Vector3 IconOffset = new Vector3(0, 7, 0);
+    public Vector3 IconOffset = new Vector3(0, 5, 0);
 
     int delta_time = 0;
 
@@ -70,12 +70,15 @@ public class Island : RestoreIslandSample
     //inactive at start
     void Start()
     {
-        Icon = FindObjectOfType<IconManager>().RepairIslandIcon;
+        IconManager iconManager = FindObjectOfType<IconManager>();
+        GameObject IconPrefab = FindObjectOfType<IconManager>().RepairIslandIcon;
+        Icon = Instantiate(IconPrefab, iconManager.transform);
+        Icon.name = gameObject.name + "Icon";
         if (Icon == null)
         {
-            Debug.LogError("Icon haven't been assigned to IconManager");
+            Debug.LogError("Icon haven't been successfully instantiate");
         }
-
+        Icon.SetActive(false);
         GameEvents.Sigton.onNPCSicked
          .Subscribe(x =>
          {
@@ -237,6 +240,7 @@ public class Island : RestoreIslandSample
     //need to check and find out how many resources need for repairing
     public void repair()
     {
+        Icon.SetActive(false);
         durability = 100;
         damagedIsland.SetActive(false);
         activeIsland.SetActive(true);
@@ -246,10 +250,12 @@ public class Island : RestoreIslandSample
 
     public void damaged()
     {
-        if (playerHere)
-        {
-            Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
-        }
+        //if (playerHere)
+        //{
+        //    Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        //}
+        Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+        Icon.SetActive(true);
         m_condition = IslandCondition.DAMAGED;
         activeIsland.SetActive(false);
         damagedIsland.SetActive(true);
@@ -259,6 +265,7 @@ public class Island : RestoreIslandSample
 
     public void destroy()
     {
+        Icon.SetActive(false);
         m_condition = IslandCondition.DESTROYED;
         if (playerHere)
         {
@@ -329,7 +336,7 @@ public class Island : RestoreIslandSample
         {
             if (m_condition == IslandCondition.DAMAGED)
             {
-                Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
+                //Icon.transform.position = Camera.main.WorldToScreenPoint(transform.position + IconOffset);
                 Mediator.Sigton.StartInteraction(this);
                 
             }
@@ -360,12 +367,12 @@ public class Island : RestoreIslandSample
 
     public override void ShowIcon()
     {
-        Icon.SetActive(true);
+        //Icon.SetActive(true);
     }
 
     public override void HideIcon()
     {
-        Icon.SetActive(false);
+        //Icon.SetActive(false);
     }
 
 }
