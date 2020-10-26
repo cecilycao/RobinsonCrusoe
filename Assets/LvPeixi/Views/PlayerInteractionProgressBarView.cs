@@ -8,14 +8,14 @@ public class PlayerInteractionProgressBarView : MonoBehaviour
     private Slider slider;
     
     [Header("-----TEST VARIABLE BLOCK------")]
-    [SerializeField]
-    int runOperTime = 0;
-    [SerializeField]
-    int closeOperTime = 0;
-    [SerializeField]
-    int playCancelTimes = 0;
-    [SerializeField]
-    bool isActive;
+
+    public int runOperTime = 0;
+
+    public int closeOperTime = 0;
+
+    public int playCancelTimes = 0;
+
+    public bool isActive;
 
     IDisposable progressMircotine;
     // Start is called before the first frame update

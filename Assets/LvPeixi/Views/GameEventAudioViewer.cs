@@ -8,7 +8,7 @@ public class GameEventAudioViewer : MonoBehaviour
     int previousHunger = 0;
     int previousFatigue = 0;
 
-    bool hungerAudioStartPlay = false;
+    //bool hungerAudioStartPlay = false;
     private void Start()
     {
         DelayStart();

@@ -7,10 +7,10 @@ using UniRx;
 
 public class GameLogViewer : MonoBehaviour
 {
-    [SerializeField]
-    private Button startGameBtn;
-    [SerializeField]
-    private Button settingGameBtn;
+
+    public Button startGameBtn;
+  
+    public Button settingGameBtn;
     // Start is called before the first frame update
     void Start()
     {

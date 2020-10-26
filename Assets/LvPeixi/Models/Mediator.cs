@@ -38,7 +38,7 @@ public class Mediator : MonoBehaviour,IMediator
     public int positiveCollectPerformTime = 0;
     [Header("玩家正在接触的交互道具")]
     [SerializeField]
-    private string theInteractObject = "None";
+    public string theInteractObject = "None";
     #endregion
 
     #region//-----initialize-----

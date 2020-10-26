@@ -8,15 +8,15 @@ public class PlayerHUDView : MonoBehaviour
 {
     public Text interactTipMsg;
     [SerializeField]
-    private Slider fatigueSlider;
+    public Slider fatigueSlider;
     [SerializeField]
-    private Slider hungerSlider;
+    public Slider hungerSlider;
     [SerializeField]
-    private Slider poisonSlider;
+    public Slider poisonSlider;
     [SerializeField]
-    private Slider foodMaterialSlider;
+    public Slider foodMaterialSlider;
     [SerializeField]
-    private Slider buildingMaterialSlider;
+    public Slider buildingMaterialSlider;
 
     public GameObject badEndUI;
     public GameObject happyEndUI;

@@ -6,8 +6,8 @@ public class PlayerBehaviorView : MonoBehaviour
     Rigidbody rigid;
     PlayerMovementPresenter movement;
     Animator anim;
-    [SerializeField]
-    MeshRenderer meshRenderer;
+
+    public MeshRenderer meshRenderer;
     public Texture2D[] texture2Ds;
     [SerializeField]
     Vector3 direction;

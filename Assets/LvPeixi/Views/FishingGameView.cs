@@ -7,12 +7,12 @@ using UniRx;
 
 public class FishingGameView : MonoBehaviour
 {
-    [SerializeField]
-    GameObject back;
-    [SerializeField]
-    GameObject pointArea;
-    [SerializeField]
-    GameObject pointers;
+
+    public GameObject back;
+
+    public GameObject pointArea;
+
+    public GameObject pointers;
     [SerializeField]
     private float pointerMoveSpeed = 10;
 

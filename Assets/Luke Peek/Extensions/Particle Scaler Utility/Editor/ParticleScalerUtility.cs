@@ -161,7 +161,7 @@ class ParticleScalerUtility : EditorWindow {
 		shape.radius *= scaleFactor;
 		shape.randomDirectionAmount *= scaleFactor;
 		shape.sphericalDirectionAmount *= scaleFactor;
-		shape.meshScale *= scaleFactor;
+		shape.scale *= scaleFactor;
 		shape.normalOffset *= scaleFactor;
 
 		// Speed
