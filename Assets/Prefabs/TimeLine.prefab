@@ -46,19 +46,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   events:
   - day: 3
-    time: 119
+    time: 60
     timeEvent: 0
   - day: 3
     time: 5
     timeEvent: 1
   - day: 5
-    time: 120
+    time: 60
     timeEvent: 4
   - day: 5
-    time: 119
+    time: 58
     timeEvent: 5
   - day: 16
-    time: 119
+    time: 60
     timeEvent: 2
   - day: 16
     time: 5
@@ -78,4 +78,5 @@ MonoBehaviour:
   NPCSickedDay: 7
   PlayerSickedDay: 13
   NPCHelpPreference: 20
+  isPlayerSaved: 0
   playerFlowchart: {fileID: 0}
