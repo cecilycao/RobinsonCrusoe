@@ -73,6 +73,9 @@ public class SickManager : MonoBehaviour
     public void NPCSickEnd()
     {
         Debug.Log("NPC Sick End");
+        NPCSample NPC = FindObjectOfType<NPCSample>();
+        NPC.preference = 15;
+
         GameEvents.Sigton.onNPCSickedEnd.OnNext(NPCSickedDay + 1);
     }
 
