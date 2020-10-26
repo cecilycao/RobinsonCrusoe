@@ -134,5 +134,69 @@
     "PlayerOnAwake": false,
     "Loop": false,
     "PS": null
+  },
+  {
+    "ClipName": "BGM_01",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": true,
+    "PS": null
+  },
+  {
+    "ClipName": "BGM_02",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": false,
+    "PS": null
+  },
+  {
+    "ClipName": "BGM_03",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": true,
+    "PS": null
+  },
+  {
+    "ClipName": "BGM_04",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": true,
+    "PS": null
+  },
+  {
+    "ClipName": "BGM_05",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": true,
+    "PS": null
+  },
+  {
+    "ClipName": "BGM_06",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": true,
+    "PS": null
+  },
+  {
+    "ClipName": "BGM_07",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": false,
+    "PS": null
+  },
+  {
+    "ClipName": "BGM_08",
+    "AudioMixerGroup": "BGM",
+    "Volume": 1.0,
+    "PlayerOnAwake": false,
+    "Loop": true,
+    "PS": null
   }
 ]

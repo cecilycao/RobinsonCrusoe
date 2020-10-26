@@ -16,7 +16,7 @@
   },
   {
     "Key": "fatigueIncreaseWhenTimeOut",
-    "Value": 1.0,
+    "Value": 3.0,
     "Description": "时间耗尽后每秒增加的疲劳值"
   },
   {

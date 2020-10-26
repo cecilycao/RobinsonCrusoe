@@ -31,7 +31,7 @@
   },
   {
     "Key": "interact_addIsland_hungerDecrea_default",
-    "Value": -10.0,
+    "Value": 0.0,
     "Description": "新建浮岛饥饿值变化",
     "PS": null
   },
@@ -49,13 +49,13 @@
   },
   {
     "Key": "interact_restoreIsland_hungerChange_default",
-    "Value": -10.0,
+    "Value": 0.0,
     "Description": "维修浮岛饥饿值变化",
     "PS": null
   },
   {
     "Key": "interact_restoreIsland_fatigueChange_defalut",
-    "Value": 15.0,
+    "Value": 10.0,
     "Description": "修复浮岛疲劳值变化",
     "PS": null
   },
@@ -67,7 +67,7 @@
   },
   {
     "Key": "interact_processFood_hungerDecrea_default",
-    "Value": -10.0,
+    "Value": 0.0,
     "Description": "加工食物饥饿值变化(默认值)",
     "PS": null
   },
@@ -79,13 +79,13 @@
   },
   {
     "Key": "processFoodFatigeIncrease",
-    "Value": 15.0,
+    "Value": 5.0,
     "Description": "加工食品疲劳值变化",
     "PS": null
   },
   {
     "Key": "interact_makeFoodMaterialCost_default",
-    "Value": -4.0,
+    "Value": -5.0,
     "Description": "制作食物消耗的食材",
     "PS": null
   },
@@ -109,13 +109,13 @@
   },
   {
     "Key": "interact_positiveCollect_hungerDecrea_default",
-    "Value": -10.0,
+    "Value": 0.0,
     "Description": "主动收集饥饿值变化",
     "PS": null
   },
   {
     "Key": "positiveCollectFatigueIncrease",
-    "Value": 15.0,
+    "Value": 10.0,
     "Description": "主动收集疲劳值变化",
     "PS": null
   },
@@ -127,25 +127,25 @@
   },
   {
     "Key": "interact_positiveCollect_buildingMaterialResourceCollectValue_default",
-    "Value": 4.0,
+    "Value": 3.0,
     "Description": "主动收集建材收集量",
     "PS": null
   },
   {
     "Key": "interact_positiveCollect_foodMaterialResourceCollectValue_default",
-    "Value": 3.0,
+    "Value": 2.0,
     "Description": "主动收集食材材收集量",
     "PS": null
   },
   {
     "Key": "interact_negativeCollect_hungerDecrea_default",
-    "Value": -10.0,
+    "Value": 0.0,
     "Description": "被动收集饥饿值变化",
     "PS": null
   },
   {
     "Key": "negativeCollectFatigueIncrease",
-    "Value": 15.0,
+    "Value": 20.0,
     "Description": "被动收集疲劳值变化",
     "PS": null
   },

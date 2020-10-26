@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 829202415644074446, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.14
+      value: -4.47
       objectReference: {fileID: 0}
     - target: {fileID: 829202415644074446, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 829202415644074446, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.15
+      value: -6.23
       objectReference: {fileID: 0}
     - target: {fileID: 829202415644074446, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 829202415644074481, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
       propertyPath: m_Name
-      value: NegativeResourceCollectorSample Variant
+      value: BuildingResourceCollectorSample Variant
       objectReference: {fileID: 0}
     - target: {fileID: 829202415644074481, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
@@ -87,10 +87,15 @@ PrefabInstance:
       propertyPath: resourceAccount
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5776172776118320184, guid: a5b095d630a4cf640991baea2125d176,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7817217773830554547, guid: a5b095d630a4cf640991baea2125d176,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5fe104aec7a84884c994990eda573b2c, type: 2}
+      objectReference: {fileID: 2100000, guid: d13b89f0ac7b04b47bc25202b54578d7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b095d630a4cf640991baea2125d176, type: 3}
