@@ -19,7 +19,10 @@ public class NegativeResourceCollector : MonoBehaviour,INegativeResourceCollecto
 
     private void Start()
     {
-        Icon = FindObjectOfType<IconManager>().CollectGarbageIcon;
+        if (Icon == null)
+        {
+            Icon = FindObjectOfType<IconManager>().CollectGarbageIcon;
+        }
         if (Icon == null)
         {
             Debug.LogError("Icon haven't been assigned to IconManager");

@@ -17,6 +17,7 @@ public class DialogManager : MonoBehaviour
 
     public CharacterFlowchart[] Dialogflowcharts;
     public SelfDialog[] SelfDialogs;
+    Flowchart playerFlowchart;
     //public Flowchart playerFlowchart;
     /*
     public RectTransform SelfDialogPanel;
@@ -57,7 +58,17 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
+
         int newDay;
+        playerFlowchart = null;
+        foreach (SelfDialog dialog in SelfDialogs)
+        {
+            if (dialog.isPlayer)
+            {
+                playerFlowchart = dialog.flowchart;
+            }
+        }
+        Assert.IsNotNull(playerFlowchart, "didn't find playerFlowchart");
 
         GameEvents.Sigton.timeSystem
         .Subscribe(_data =>
@@ -75,9 +86,16 @@ public class DialogManager : MonoBehaviour
             {
                 dialog.sendMessageToFlowchart(day, time);
             }
-            
-            
         });
+
+        GameEvents.Sigton.GetEvent<Subject<SubjectArg>>(InteractEventTags.showMonologue)
+            .Subscribe(x =>
+            {
+                print(x.senderSignature);
+                playerFlowchart.SetStringVariable("prompt", x.senderSignature);
+                playerFlowchart.SendFungusMessage("ShowPrompt");
+            });
+        
 
 
     }

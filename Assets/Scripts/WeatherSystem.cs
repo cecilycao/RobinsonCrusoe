@@ -43,11 +43,14 @@ public class WeatherSystem : MonoBehaviour
         {
             storm.Stop();
         }
-
+        AudioManager.Singleton.PlayAudio("GameEvent_sunnyDay");
         GameEvents.Sigton.OnRainStart += () =>
         {
             if (m_state != WeatherState.RAIN)
             {
+                AudioManager.Singleton.PauseAudio("GameEvent_stormComing");
+                AudioManager.Singleton.PauseAudio("GameEvent_sunnyDay");
+                AudioManager.Singleton.PlayAudio("GameEvent_rainDay");
                 m_state = WeatherState.RAIN;
                 startRain();
             }
@@ -55,14 +58,23 @@ public class WeatherSystem : MonoBehaviour
 
         GameEvents.Sigton.OnRainEnd += () =>
         {
-            m_state = WeatherState.SUNNY;
-            endRain();
+            if (m_state != WeatherState.SUNNY)
+            {
+                AudioManager.Singleton.PauseAudio("GameEvent_rainDay");
+                AudioManager.Singleton.PauseAudio("GameEvent_stormComing");
+                AudioManager.Singleton.PlayAudio("GameEvent_sunnyDay");
+                m_state = WeatherState.SUNNY;
+                endRain();
+            }
         };
 
         GameEvents.Sigton.OnStormStart += () =>
         {
             if (m_state != WeatherState.STORM)
             {
+                AudioManager.Singleton.PauseAudio("GameEvent_sunnyDay");
+                AudioManager.Singleton.PauseAudio("GameEvent_rainDay");
+                AudioManager.Singleton.PlayAudio("GameEvent_stormComing");
                 m_state = WeatherState.STORM;
                 startStorm();
             }
@@ -70,8 +82,14 @@ public class WeatherSystem : MonoBehaviour
 
         GameEvents.Sigton.OnStormEnd += () =>
         {
-            m_state = WeatherState.SUNNY;
-            endStorm();
+            if (m_state != WeatherState.SUNNY)
+            {
+                AudioManager.Singleton.PauseAudio("GameEvent_rainDay");
+                AudioManager.Singleton.PauseAudio("GameEvent_stormComing");
+                AudioManager.Singleton.PlayAudio("GameEvent_sunnyDay");
+                m_state = WeatherState.SUNNY;
+                endStorm();
+            }
         };
 
     }
@@ -79,26 +97,28 @@ public class WeatherSystem : MonoBehaviour
     //temp
     public void invokeRain()
     {
+        
         GameEvents.Sigton.OnStormEnd.Invoke();
         GameEvents.Sigton.OnRainStart.Invoke();
     }
 
     public void invokeStorm()
     {
+        
         GameEvents.Sigton.OnRainEnd.Invoke();
         GameEvents.Sigton.OnStormStart.Invoke();
     }
 
     public void invokeSunny()
     {
+        
         GameEvents.Sigton.OnRainEnd.Invoke();
         GameEvents.Sigton.OnStormEnd.Invoke();
     }
 
     void startRain()
     {
-        AudioManager.Singleton.PauseAudio("GameEvent_sunnyDay");
-        AudioManager.Singleton.PlayAudio("GameEvent_rainDay");
+        
         foreach (ParticleSystem rain in rainParticles)
         {
             rain.Play();
@@ -108,8 +128,6 @@ public class WeatherSystem : MonoBehaviour
 
     void startStorm()
     {
-        AudioManager.Singleton.PauseAudio("GameEvent_sunnyDay");
-        AudioManager.Singleton.PlayAudio("GameEvent_stormComing");
         foreach (ParticleSystem storm in stormParticles)
         {
             storm.Play();
@@ -118,22 +136,18 @@ public class WeatherSystem : MonoBehaviour
 
     void endRain()
     {
-        AudioManager.Singleton.PauseAudio("GameEvent_rainDay");
         foreach (ParticleSystem rain in rainParticles)
         {
             rain.Stop();
         }
-        AudioManager.Singleton.PlayAudio("GameEvent_sunnyDay");
     }
 
     void endStorm()
     {
-        AudioManager.Singleton.PauseAudio("GameEvent_stormComing");
         foreach (ParticleSystem storm in stormParticles)
         {
             storm.Stop();
         }
-        AudioManager.Singleton.PlayAudio("GameEvent_sunnyDay");
     }
 }
 

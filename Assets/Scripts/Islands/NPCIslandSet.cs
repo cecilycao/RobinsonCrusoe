@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCIslandSet : IslandSet
 {
     public string NPCName;
-    public Collider InitialCollider;
+    public GameObject InitialCollider;
     public Vector3 appearPosition;
     public Vector3 combinedPosition;
 
@@ -29,7 +29,7 @@ public class NPCIslandSet : IslandSet
         {
             island.IslandDestroyed.AddListener(checkFloatingAway);
         }
-        InitialCollider.enabled = true;
+        InitialCollider.SetActive(true);
     }
 
     public void appear()
@@ -42,7 +42,7 @@ public class NPCIslandSet : IslandSet
     public void combine()
     {
         gameObject.transform.position = combinedPosition;
-        InitialCollider.enabled = false;
+        InitialCollider.SetActive(false);
     }
 
     public void checkFloatingAway()

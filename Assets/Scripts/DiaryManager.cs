@@ -93,8 +93,9 @@ public class DiaryManager : MonoBehaviour
 
         DiaryPage firstPage = new DiaryPage();
         pageList.Add(firstPage);
-
-        DiaryPanel.SetActive(false);
+        DiaryPanel.SetActive(true);
+        previousButton.SetActive(false);
+        nextButton.SetActive(false);
         JournalAnimator.gameObject.SetActive(false);
 
     }
