@@ -182,7 +182,7 @@ public class DialogManager : MonoBehaviour
         } else if(day == SickManager.Instance.PlayerSickedDay + 1)
         {
             //按照是否救助分配对话
-            if (SickManager.Instance.isPlayerSaved)
+            if (!SickManager.Instance.isPlayerSaved)
             {
                 message = (SickManager.Instance.PlayerSickedDay + 1) + "notSavedDefault";
             } else
