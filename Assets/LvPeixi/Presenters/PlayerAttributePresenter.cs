@@ -225,7 +225,7 @@ public class PlayerAttributePresenter : MonoBehaviour,IPlayerAttribute
             {
                 if (model.hunger.Value <= 0)
                 {
-                    GameEvents.Sigton.onGameEnd.Invoke();
+                    //GameEvents.Sigton.onGameEnd.Invoke();
                 }
                 watchPlayerDied.Dispose();
             });

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour, IGameManager
     private void Awake()
     {
         GameConfig.Singleton = new GameConfig();
-        GUIEvents.Singleton = new GUIEvents();
+        ///GUIEvents.Singleton = new GUIEvents();
   
     }
 
