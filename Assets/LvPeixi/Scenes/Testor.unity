@@ -278,12 +278,12 @@ PrefabInstance:
     - target: {fileID: 541175406044280926, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: blockName
-      value: 6-100
+      value: 6-55
       objectReference: {fileID: 0}
     - target: {fileID: 541175406044280926, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 86.17021
+      value: 82.72725
       objectReference: {fileID: 0}
     - target: {fileID: 541175406044280926, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -355,6 +355,11 @@ PrefabInstance:
       propertyPath: setSayDialog
       value: 
       objectReference: {fileID: 959824968}
+    - target: {fileID: 1678655291901585770, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 16-50
+      objectReference: {fileID: 0}
     - target: {fileID: 1771613675927784165, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
@@ -370,6 +375,11 @@ PrefabInstance:
       propertyPath: nodeRect.y
       value: 502.28522
       objectReference: {fileID: 0}
+    - target: {fileID: 1822357445413032170, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2029550733976297728, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
@@ -379,6 +389,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: -102.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361850795723534502, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 7-55
       objectReference: {fileID: 0}
     - target: {fileID: 2383489288659386790, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -425,6 +440,11 @@ PrefabInstance:
       propertyPath: setSayDialog
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2528762125382747334, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2646331029049638362, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
@@ -455,6 +475,16 @@ PrefabInstance:
       propertyPath: eventHandler
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3649040676405497301, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 48.09085
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649040676405497301, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -162.86356
+      objectReference: {fileID: 0}
     - target: {fileID: 3841242499273905826, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
@@ -479,6 +509,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 353.88434
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002972677825646791, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: _duration.floatVal
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4040224807940996484, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -655,12 +690,12 @@ PrefabInstance:
     - target: {fileID: 4562451986289872871, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 80.26315
+      value: 81.81818
       objectReference: {fileID: 0}
     - target: {fileID: 4562451986289872871, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: blockName
-      value: 3-110
+      value: 3-50
       objectReference: {fileID: 0}
     - target: {fileID: 4583278961995404126, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -745,12 +780,12 @@ PrefabInstance:
     - target: {fileID: 5786055130958598605, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 85.526306
+      value: 86.36363
       objectReference: {fileID: 0}
     - target: {fileID: 5786055130958598605, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: blockName
-      value: 16-110
+      value: 16-55
       objectReference: {fileID: 0}
     - target: {fileID: 5826942526917111159, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -801,7 +836,7 @@ PrefabInstance:
     - target: {fileID: 6057368521502678945, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: message
-      value: 6-100
+      value: 6-55
       objectReference: {fileID: 0}
     - target: {fileID: 6087134096506939383, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -827,12 +862,12 @@ PrefabInstance:
     - target: {fileID: 6215161810791333135, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 78.94736
+      value: 76.13636
       objectReference: {fileID: 0}
     - target: {fileID: 6215161810791333135, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: blockName
-      value: 7-110
+      value: 7-55
       objectReference: {fileID: 0}
     - target: {fileID: 6227140994679593196, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1102,7 +1137,12 @@ PrefabInstance:
     - target: {fileID: 8133614787823889239, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: message
-      value: 3-110
+      value: 3-50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312143528429748556, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: _duration.floatVal
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8335653537184142194, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1129,10 +1169,15 @@ PrefabInstance:
       propertyPath: nodeRect.y
       value: 601.86865
       objectReference: {fileID: 0}
+    - target: {fileID: 8501853453485961001, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: _duration.floatVal
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8680946797318294011, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: message
-      value: 16-110
+      value: 16-55
       objectReference: {fileID: 0}
     - target: {fileID: 9014850794610642968, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1148,6 +1193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 133.50818
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019391864852053124, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 16-50
       objectReference: {fileID: 0}
     - target: {fileID: 9048708114215306819, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1379,7 +1429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 71145552}
   suppressBlockAutoSelect: 0
-  message: 1-118
+  message: 1-58
 --- !u!1 &71145523 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4148565478711010616, guid: 74716178b7b2d2940a0bf284cb4773bd,
@@ -1591,8 +1641,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 306.17242
-    y: -5.5005417
-    width: 72.34042
+    y: -6.5994425
+    width: 69.78022
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1739,7 +1789,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 409.29022
     y: -6.676979
-    width: 105.319145
+    width: 100.549446
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1893,7 +1943,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.29031
     y: 69.028854
-    width: 70.21277
+    width: 67.58241
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2150,12 +2200,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 13.218048
     y: -401.7621
-    width: 81.707306
+    width: 75
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 239
-  blockName: 1-118
+  blockName: 1-58
   description: 
   eventHandler: {fileID: 71145522}
   commandList:
@@ -2317,7 +2367,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 208.46674
     y: 144.20526
-    width: 71.276596
+    width: 68.68132
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2606,7 +2656,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 114.172806
     y: 206.85231
-    width: 68.085106
+    width: 66.48351
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2762,7 +2812,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.2313
     y: 209.1465
-    width: 69.14893
+    width: 67.58241
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3053,7 +3103,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.17276
     y: 274.26382
-    width: 74.46809
+    width: 71.97802
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3212,7 +3262,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.05508
     y: 286.91095
-    width: 75.53191
+    width: 73.07692
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3450,7 +3500,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 205.29034
     y: 74.55826
-    width: 71.276596
+    width: 68.68132
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3560,7 +3610,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 871100144}
+  setSayDialog: {fileID: 0}
 --- !u!114 &71145603
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3587,7 +3637,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 871100144}
+  setSayDialog: {fileID: 0}
 --- !u!114 &71145604
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3604,7 +3654,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 204.17279
     y: -6.6769333
-    width: 71.276596
+    width: 68.68132
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3714,7 +3764,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 871100144}
+  setSayDialog: {fileID: 0}
 --- !u!114 &71145608
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3741,7 +3791,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 871100144}
+  setSayDialog: {fileID: 0}
 --- !u!114 &71145609
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3756,9 +3806,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 111.29047
-    y: -10.676933
-    width: 70.21277
+    x: 112.389366
+    y: -11.775834
+    width: 67.58241
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3860,7 +3910,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 346.5
     y: 48.5
-    width: 80.4878
+    width: 80.681816
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3976,7 +4026,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 458.5
     y: 50.5
-    width: 79.26829
+    width: 79.54545
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4092,7 +4142,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 228.5
     y: 53.5
-    width: 80.4878
+    width: 80.681816
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4208,7 +4258,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 108.5
     y: 52.5
-    width: 79.26829
+    width: 79.54545
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4324,7 +4374,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -1
     y: 52.5
-    width: 78.048775
+    width: 78.40909
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4552,7 +4602,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 351
     y: -99.5
-    width: 184.14632
+    width: 184.0909
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4992,7 +5042,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 139.5
     y: -96.5
-    width: 162.1951
+    width: 163.63635
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -5071,7 +5121,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -2.6455393
     y: 200.01057
-    width: 123.170715
+    width: 122.727264
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -5929,7 +5979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 749963623}
   suppressBlockAutoSelect: 0
-  message: 6-30
+  message: 6-10
 --- !u!114 &749963618
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6061,14 +6111,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 434.699
-    y: 22.204464
-    width: 77.272705
+    x: 432.88083
+    y: 20.386284
+    width: 75.45453
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 94
-  blockName: 6-30
+  blockName: 6-10
   description: 
   eventHandler: {fileID: 749963617}
   commandList:
@@ -6092,7 +6142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 749963644}
   suppressBlockAutoSelect: 0
-  message: 6-65
+  message: 6-30
 --- !u!114 &749963639
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6231,7 +6281,7 @@ MonoBehaviour:
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 92
-  blockName: 6-65
+  blockName: 6-30
   description: 
   eventHandler: {fileID: 749963638}
   commandList:
@@ -6623,7 +6673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 71145553}
+  selectedFlowchart: {fileID: 912177900}
 --- !u!4 &1159029869
 Transform:
   m_ObjectHideFlags: 1
@@ -7784,6 +7834,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeLine
       objectReference: {fileID: 0}
+    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
+        type: 3}
+      propertyPath: events.Array.data[0].time
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
+        type: 3}
+      propertyPath: events.Array.data[2].time
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
+        type: 3}
+      propertyPath: events.Array.data[3].time
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290894170588567291, guid: e03341d039a5b2148b81a6eb9cf326c2,
+        type: 3}
+      propertyPath: events.Array.data[4].time
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03341d039a5b2148b81a6eb9cf326c2, type: 3}
 --- !u!1 &3290894169221472212 stripped
@@ -8795,7 +8865,7 @@ PrefabInstance:
     - target: {fileID: 1461494391302230647, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
       propertyPath: timeModel.dayLastTime
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1765816446772690598, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
