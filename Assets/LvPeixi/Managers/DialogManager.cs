@@ -93,7 +93,42 @@ public class DialogManager : MonoBehaviour
             {
                 print(x.senderSignature);
                 playerFlowchart.SetStringVariable("prompt", x.senderSignature);
-                playerFlowchart.SendFungusMessage("ShowPrompt");
+                //playerFlowchart.SendFungusMessage("ShowPrompt");
+                switch (x.senderSignature)
+                {
+                    case "按下E键对话":
+                        playerFlowchart.SendFungusMessage("ShowPrompt");
+                        break;
+                    case "按下E键收集资源":
+                        playerFlowchart.SendFungusMessage("ShowPrompt1");
+                        break;
+                    case "按住E键生产食物":
+                        playerFlowchart.SendFungusMessage("ShowPrompt2");
+                        break;
+                    case "按下E键修复浮岛":
+                        playerFlowchart.SendFungusMessage("ShowPrompt3");
+                        break;
+                    case "按下E键休息":
+                        playerFlowchart.SendFungusMessage("ShowPrompt4");
+                        break;
+                    case "我太累了，不想干":
+                        playerFlowchart.SendFungusMessage("ShowPrompt5");
+                        break;
+                    case "我没有足够的食材加工食物":
+                        playerFlowchart.SendFungusMessage("ShowPrompt6");
+                        break;
+                    case "真可惜，什么也没有捞到":
+                        playerFlowchart.SendFungusMessage("ShowPrompt7");
+                        break;
+                    case "创建浮岛所需的建材不够":
+                        playerFlowchart.SendFungusMessage("ShowPrompt8");
+                        break;
+                    case "按下E键创建岛屿":
+                        playerFlowchart.SendFungusMessage("ShowPrompt8");
+                        break;
+                    default:
+                        break;
+                }
             });
         
 

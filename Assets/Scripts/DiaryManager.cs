@@ -98,6 +98,7 @@ public class DiaryManager : MonoBehaviour
         nextButton.SetActive(false);
         JournalAnimator.gameObject.SetActive(false);
 
+        DiaryPanel.SetActive(true);
     }
 
     //create new page when a day is end(either because tired, time or die)
@@ -193,6 +194,7 @@ public class DiaryManager : MonoBehaviour
     public void closeDiary()
     {
         Debug.Log("Close Diary");
+
         JournalAnimator.SetTrigger("CloseJournal");
         DiaryPanel.SetActive(false);
 
