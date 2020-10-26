@@ -60,7 +60,7 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
             .Where(x => x <= 0)
             .Subscribe(x =>
             {
-                model.foodMaterial.Value = Mathf.Clamp(model.buildingMaterial.Value, 0, model.buildingMaterialCeiling);
+                model.buildingMaterial.Value = Mathf.Clamp(model.buildingMaterial.Value, 0, model.buildingMaterialCeiling);
             });
     }
 }

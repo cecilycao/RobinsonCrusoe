@@ -194,6 +194,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
+                    print(x);
                     if (x)
                     {
                         AssertExtension.NotNullRun(GameEvents.Sigton.onResourceCollected, () =>
@@ -458,25 +459,7 @@ public class Mediator : MonoBehaviour,IMediator
                     });
             }
   
-            if (foodProcess.HasFood)
-            {
-                //GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("按下E键吃食物");
-                //SendMonologue("按下E键吃食物");
-                //foodProcess.ShowIcon();
-                //watchInteractBtnPressed = 
-                //InputSystem.Singleton.OnInteractBtnPressed
-                //    .Subscribe(x =>
-                //    {
-                //        foodProcess.HideIcon();
-                //        int _hungerRes = (int)interactConfig["eatFood_hungerDec_default"];
-                //        attr.Hunger.Value -= _hungerRes;
-                //        attr.Fatigue.Value -= 10;
-                //        foodProcess.EndInteract(false);
-                //        GameEvents.Sigton.onInteractEnd();
-                //    });
-            }
-            else
-            {
+         
                 if (CheckPlayerFatigue())
                 {
                     GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("我太累了，不想干");
@@ -539,7 +522,7 @@ public class Mediator : MonoBehaviour,IMediator
                         AudioManager.Singleton.PauseAudio("Interact_processingFood");
                         //foodProcess.EndInteract(true);         
                     });
-            }
+        }
             GameEvents.Sigton.onInteractEnd += () =>
             {
                 IsAtInteractState = false;
@@ -548,7 +531,7 @@ public class Mediator : MonoBehaviour,IMediator
                 theInteractObject = "None";
                 ReleaseAllWatch();
             };
-        }
+        
     }
     /// <summary>
     /// 维修岛屿
