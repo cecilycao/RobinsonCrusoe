@@ -33,9 +33,17 @@ public class FishingGameView : MonoBehaviour
 
     Dictionary<string,float> config;
     // Start is called before the first frame update
+    void ShowChildren(bool active)
+    {
+        float _alpha = active ? 1f : 0;
+        back.GetComponent<RawImage>().color = new Color(1, 1, 1, _alpha);
+        pointArea.GetComponent<RawImage>().color = new Color(1, 1, 1, _alpha);
+        pointers.GetComponentInChildren<RawImage>().color = new Color(1, 1, 1, _alpha);
+    }
     void Start()
     {
         //-----get game config-----
+        ShowChildren(false);
         config = GameConfig.Singleton.InteractionConfig;
 
         GUIEvents.Singleton.PlayerStartFishing
@@ -43,17 +51,13 @@ public class FishingGameView : MonoBehaviour
             .Where(x=>!isActive)
             .Subscribe(x =>
             {
+                GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("fishing game view 收到消息");
                 isActive = true;
                 receiveSignalTime++;
                 RunFishGame(true);
             });
     }
-    void ShowChildren(bool active)
-    {
-        back.SetActive(active);
-        pointArea.SetActive(active);
-        pointers.SetActive(active);
-    }
+  
     void EndFishGame()
     {
         runTimesInReality++;

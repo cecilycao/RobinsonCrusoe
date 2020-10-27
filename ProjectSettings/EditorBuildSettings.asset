@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/LvPeixi/Scenes/LoadingScene.unity
     guid: 4ddfa52f3289cd64cb5a2e0b88461387
-  - enabled: 1
+  - enabled: 0
     path: Assets/LvPeixi/Scenes/ColliderTest.unity
     guid: d7d80ecf1648169409c0697625bfed7b
+  - enabled: 1
+    path: Assets/LvPeixi/Scenes/ExportTest.unity
+    guid: e3fe0f1ce0b80da40811c0f30be0b671
   m_configObjects: {}
