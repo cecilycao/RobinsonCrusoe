@@ -271,7 +271,7 @@ public class Mediator : MonoBehaviour,IMediator
 
             collector.ShowIcon();
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
-
+            IsAtInteractState = true;
             float buildIslandCostTime = interactConfig["addIslandTimeCost"];
             //SendMesOnContactStart("msg from neg collect contact start", InteractableObjectType.NegativeCollect);
             SendMonologue("按下E键收集资源");
@@ -289,7 +289,6 @@ public class Mediator : MonoBehaviour,IMediator
             watchInteractCompleted =
             InputSystem.Singleton.OnInteractBtnPressed
                 .Delay(TimeSpan.FromSeconds(buildIslandCostTime))
-                .First()
                 .Subscribe(x =>
                 {
 
@@ -316,9 +315,9 @@ public class Mediator : MonoBehaviour,IMediator
             InputSystem.Singleton.OnInteractBtnReleased
                .Subscribe(x =>
                {
-                   AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
-                   GameEvents.Sigton.onInteractEnd();
-                    //SendMesOutSideInteractBtnReleased("msg from negative collect released",InteractableObjectType.NegativeCollect);
+                    AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
+                    GameEvents.Sigton.onInteractEnd();
+                    SendMesOutSideInteractBtnReleased("msg from negative collect released",InteractableObjectType.NegativeCollect);
                     AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
                });
 
@@ -491,7 +490,6 @@ public class Mediator : MonoBehaviour,IMediator
                 //listen the interact key pressed event
                 watchInteractBtnPressed =
                 InputSystem.Singleton.OnInteractBtnPressed
-                    .First()
                     .Subscribe(x =>
                     {
                         print("start process food");
@@ -523,7 +521,6 @@ public class Mediator : MonoBehaviour,IMediator
 
                 watchInteractBtnReleased =
                 InputSystem.Singleton.OnInteractBtnReleased
-                    .First()
                     .Subscribe(x =>
                     {
                         //GUIEvents.Singleton.InteractionProgressBar.OnNext(0);
