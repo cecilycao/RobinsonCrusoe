@@ -9907,7 +9907,7 @@ PrefabInstance:
     - target: {fileID: 2146541046023508405, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2239546041485435330, guid: 4c5c7addc7cd649409512acc7c9d2d7b,
         type: 3}
@@ -10035,9 +10035,8 @@ PrefabInstance:
       value: GameSystems
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2115295802, guid: 4c5c7addc7cd649409512acc7c9d2d7b, type: 3}
-    - {fileID: 602032059215132897, guid: 4c5c7addc7cd649409512acc7c9d2d7b, type: 3}
-    - {fileID: 602032059215132902, guid: 4c5c7addc7cd649409512acc7c9d2d7b, type: 3}
-    - {fileID: 2196384379660637190, guid: 4c5c7addc7cd649409512acc7c9d2d7b, type: 3}
-    - {fileID: 2146541046023508405, guid: 4c5c7addc7cd649409512acc7c9d2d7b, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 4c5c7addc7cd649409512acc7c9d2d7b, type: 3}

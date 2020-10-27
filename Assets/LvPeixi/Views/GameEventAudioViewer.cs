@@ -19,7 +19,7 @@ public class GameEventAudioViewer : MonoBehaviour
         Observable.Timer(System.TimeSpan.FromMilliseconds(50))
             .Subscribe(x =>
             {
-                WhenHungerValueIncreased();
+               // WhenHungerValueIncreased();
 
                 OnInteractBtnReleasedWhenPressed();
 

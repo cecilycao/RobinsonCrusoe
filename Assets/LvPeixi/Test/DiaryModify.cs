@@ -68,6 +68,7 @@ public class DiaryModify : MonoBehaviour
     {
         GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount >= 1 && x.DayCount <= 4)
+            .First()
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("BGM_01");
@@ -75,6 +76,7 @@ public class DiaryModify : MonoBehaviour
 
         GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount == 3)
+             .First()
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("BGM_03");
@@ -82,6 +84,7 @@ public class DiaryModify : MonoBehaviour
 
         GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount == 5)
+             .First()
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("BGM_02");
@@ -89,24 +92,28 @@ public class DiaryModify : MonoBehaviour
 
         GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount == 7)
+             .First()
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("BGM_04");
             });
         GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount > 7 || x.DayCount <= 12)
+             .First()
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("BGM_05");
             });
         GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount >= 13 || x.DayCount <= 15)
+             .First()
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("BGM_06");
             });
         GameEvents.Sigton.timeSystem
             .Where(x => x.DayCount == 16)
+             .First()
             .Subscribe(x =>
             {
                 AudioManager.Singleton.PlayAudio("BGM_07");

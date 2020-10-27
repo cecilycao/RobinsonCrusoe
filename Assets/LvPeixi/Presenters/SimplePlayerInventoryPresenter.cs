@@ -43,6 +43,7 @@ public class SimplePlayerInventoryPresenter : MonoBehaviour
             .Subscribe(x =>
             {
                 foodMaterial_test = x;
+                model.foodMaterial.Value = Mathf.Clamp(model.foodMaterial.Value, 0, model.foodMaterialCeiling);
             });
 
         model.foodMaterial
