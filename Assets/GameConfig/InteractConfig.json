@@ -157,7 +157,7 @@
   },
   {
     "Key": "interact_negativeCollect_foodMaterialResourceCollectValue_default",
-    "Value": 5.0,
+    "Value": 4.0,
     "Description": "被动收集食材材值",
     "PS": null
   },
