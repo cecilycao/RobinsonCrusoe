@@ -240,8 +240,7 @@ public class Mediator : MonoBehaviour,IMediator
                 collector.HideIcon();
                 ReleaseAllWatch();
             };
-        }
-        
+        }  
     }
     /// <summary>
     /// 被动收集，只需要按住不放即可
@@ -249,8 +248,12 @@ public class Mediator : MonoBehaviour,IMediator
     /// <param name="collector"></param>
     public void StartInteraction(INegativeResourceCollector collector)
     {
-        GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("Mediator收到Negative Collector碰撞消息");
-      
+        if (!IsAtInteractState)
+        {
+
+
+            GUIEvents.Singleton.BroadcastInteractTipMessage.OnNext("Mediator收到Negative Collector碰撞消息");
+
             //theInteractObject = "NegativeCollector";
             //if (CheckPlayerFatigue())
             //{
@@ -265,7 +268,7 @@ public class Mediator : MonoBehaviour,IMediator
             //    return;
             //}
 
-            
+
             collector.ShowIcon();
             var inventory = FindObjectOfType<SimplePlayerInventoryPresenter>();
 
@@ -289,7 +292,7 @@ public class Mediator : MonoBehaviour,IMediator
                 .First()
                 .Subscribe(x =>
                 {
-                   
+
                     //-----set player attribute
                     int fatigueIncrease = (int)interactConfig["negativeCollectFatigueIncrease"];
                     playerAttribute.Fatigue.Value += fatigueIncrease;
@@ -309,16 +312,15 @@ public class Mediator : MonoBehaviour,IMediator
                     GameEvents.Sigton.onInteractEnd();
                 });
 
-             watchInteractBtnReleased =
-             InputSystem.Singleton.OnInteractBtnReleased
-                .First()
-                .Subscribe(x =>
-                {
-                    AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
-                    GameEvents.Sigton.onInteractEnd();
+            watchInteractBtnReleased =
+            InputSystem.Singleton.OnInteractBtnReleased
+               .Subscribe(x =>
+               {
+                   AudioManager.Singleton.PauseAudio("Interact_islandBuilding");
+                   GameEvents.Sigton.onInteractEnd();
                     //SendMesOutSideInteractBtnReleased("msg from negative collect released",InteractableObjectType.NegativeCollect);
                     AudioManager.Singleton.PlayAudio("Interact_build_restoreIsland_processFoodComplete");
-                });
+               });
 
             GameEvents.Sigton.onInteractEnd += () =>
             {
@@ -331,7 +333,7 @@ public class Mediator : MonoBehaviour,IMediator
                 theInteractObject = "None";
                 ReleaseAllWatch();
             };
-        
+        }
     }
     /// <summary>
     /// 新建浮岛

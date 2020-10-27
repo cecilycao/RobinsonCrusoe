@@ -44,7 +44,7 @@ public class GameConfig
     /// <param name="jsonFileName"></param>
     void JsonToFloat(ref Dictionary<string, float> _floatDic,string jsonFileName)
     {
-        string configJsonData = File.ReadAllText(Application.dataPath + "/GameConfig/"+ jsonFileName);
+        string configJsonData = File.ReadAllText(Application.dataPath + "/StreamingAssets/" + jsonFileName);
         if (configJsonData == null)
         {
             throw new System.Exception("failed to find the json file" + jsonFileName);
@@ -62,7 +62,7 @@ public class GameConfig
 
     void JsonToSoundInfo()
     {
-        string configJsonData = File.ReadAllText(Application.dataPath + "/GameConfig/AudioConfig.json");
+        string configJsonData = File.ReadAllText(Application.dataPath + "/StreamingAssets/AudioConfig.json");
 
         JsonData _jsonData = JsonMapper.ToObject(configJsonData);
         foreach (JsonData item in _jsonData)

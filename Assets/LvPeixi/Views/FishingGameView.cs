@@ -43,8 +43,19 @@ public class FishingGameView : MonoBehaviour
     void Start()
     {
         //-----get game config-----
+        if (Debug.isDebugBuild)
+        {
+            config = GameConfig.Singleton.InteractionConfig;
+            if (config == null)
+            {
+                Debug.Log("config is null,this made the FishignGameView.cs crashed");
+            }
+            else
+            {
+                Debug.Log("config is correct");
+            } 
+        }
         ShowChildren(false);
-        config = GameConfig.Singleton.InteractionConfig;
 
         GUIEvents.Singleton.PlayerStartFishing
             .Throttle(System.TimeSpan.FromSeconds(1))
