@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/LvPeixi/Scenes/GameLog.unity
     guid: e780755fa3ab14a4da1c160cb6eff964
-  - enabled: 1
+  - enabled: 0
     path: Assets/LvPeixi/Scenes/Testor.unity
     guid: e4e1f9ca338f1624db706b1786f3b662
   - enabled: 0
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/LvPeixi/Scenes/LoadingScene.unity
     guid: 4ddfa52f3289cd64cb5a2e0b88461387
+  - enabled: 1
+    path: Assets/LvPeixi/Scenes/ColliderTest.unity
+    guid: d7d80ecf1648169409c0697625bfed7b
   m_configObjects: {}
