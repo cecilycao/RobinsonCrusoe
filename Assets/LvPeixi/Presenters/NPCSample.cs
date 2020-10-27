@@ -64,7 +64,7 @@ public class NPCSample : MonoBehaviour,IInteractableNPC
 
     public void addPreference()
     {
-        if (day > 7 && preference < 25)
+        if (day > 7 && preference < 35)
         {
             preference += PREFERENCE_EACH_DIALOG;
         }

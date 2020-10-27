@@ -216,6 +216,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 71145645, guid: 74716178b7b2d2940a0bf284cb4773bd, type: 3}
+      propertyPath: message
+      value: 20/default
+      objectReference: {fileID: 0}
     - target: {fileID: 71145650, guid: 74716178b7b2d2940a0bf284cb4773bd, type: 3}
       propertyPath: nodeRect.x
       value: 307.34967
@@ -226,7 +230,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 71145650, guid: 74716178b7b2d2940a0bf284cb4773bd, type: 3}
       propertyPath: nodeRect.width
-      value: 107
+      value: 61.54639
+      objectReference: {fileID: 0}
+    - target: {fileID: 71145650, guid: 74716178b7b2d2940a0bf284cb4773bd, type: 3}
+      propertyPath: blockName
+      value: 20/default1
       objectReference: {fileID: 0}
     - target: {fileID: 71145662, guid: 74716178b7b2d2940a0bf284cb4773bd, type: 3}
       propertyPath: nodeRect.x
@@ -258,7 +266,7 @@ PrefabInstance:
     - target: {fileID: 355921165558962333, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 75
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 355921165558962333, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -269,6 +277,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 513.167
+      objectReference: {fileID: 0}
+    - target: {fileID: 355921165558962333, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 35/2
       objectReference: {fileID: 0}
     - target: {fileID: 536944020204604000, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -310,15 +323,25 @@ PrefabInstance:
       propertyPath: nodeRect.y
       value: 214.14651
       objectReference: {fileID: 0}
+    - target: {fileID: 697782816747941304, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 35/default
+      objectReference: {fileID: 0}
     - target: {fileID: 716678960565763035, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
       value: 
       objectReference: {fileID: 871100144}
+    - target: {fileID: 720517208201641970, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 30/1
+      objectReference: {fileID: 0}
     - target: {fileID: 1175744050700758187, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 76
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1175744050700758187, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -330,10 +353,15 @@ PrefabInstance:
       propertyPath: nodeRect.y
       value: 428.19968
       objectReference: {fileID: 0}
+    - target: {fileID: 1175744050700758187, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 30/2
+      objectReference: {fileID: 0}
     - target: {fileID: 1444162753773510138, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 107
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 1444162753773510138, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -344,6 +372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 518.23047
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444162753773510138, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 35/default
       objectReference: {fileID: 0}
     - target: {fileID: 1578972164951461143, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -363,7 +396,7 @@ PrefabInstance:
     - target: {fileID: 1771613675927784165, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 74
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1771613675927784165, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -374,6 +407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 502.28522
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771613675927784165, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 35/1
       objectReference: {fileID: 0}
     - target: {fileID: 1822357445413032170, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -465,6 +503,11 @@ PrefabInstance:
       propertyPath: setSayDialog
       value: 
       objectReference: {fileID: 871100144}
+    - target: {fileID: 3187362354834448820, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 35/1
+      objectReference: {fileID: 0}
     - target: {fileID: 3376580311024516126, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
@@ -498,17 +541,22 @@ PrefabInstance:
     - target: {fileID: 3965956615636221246, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 106
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 3965956615636221246, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
-      value: 305.66434
+      value: 319.66434
       objectReference: {fileID: 0}
     - target: {fileID: 3965956615636221246, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.y
-      value: 353.88434
+      value: 352.88434
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965956615636221246, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 25/default
       objectReference: {fileID: 0}
     - target: {fileID: 4002972677825646791, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -677,6 +725,11 @@ PrefabInstance:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 1620611667}
+    - target: {fileID: 4372515677613006824, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 25/default
+      objectReference: {fileID: 0}
     - target: {fileID: 4562451986289872871, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
@@ -696,6 +749,11 @@ PrefabInstance:
         type: 3}
       propertyPath: blockName
       value: 3-50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575973830744789589, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 25/1
       objectReference: {fileID: 0}
     - target: {fileID: 4583278961995404126, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -721,6 +779,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: -40.67698
+      objectReference: {fileID: 0}
+    - target: {fileID: 5039040094067671019, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 30/2
       objectReference: {fileID: 0}
     - target: {fileID: 5050829229380966989, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -795,22 +858,27 @@ PrefabInstance:
     - target: {fileID: 5857051526134454370, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 74
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5857051526134454370, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
-      value: 205.06029
+      value: 215.06029
       objectReference: {fileID: 0}
     - target: {fileID: 5857051526134454370, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.y
-      value: 355.28296
+      value: 351.28296
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857051526134454370, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 25/2
       objectReference: {fileID: 0}
     - target: {fileID: 5890739099666267926, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 108
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 5890739099666267926, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -821,6 +889,16 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 432.6771
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890739099666267926, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 30/default
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955682382657896539, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 25/2
       objectReference: {fileID: 0}
     - target: {fileID: 5989416048580881075, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -872,7 +950,7 @@ PrefabInstance:
     - target: {fileID: 6227140994679593196, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 76
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6227140994679593196, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -883,6 +961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 516.1521
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227140994679593196, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 35/3
       objectReference: {fileID: 0}
     - target: {fileID: 6262388811693624202, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -912,7 +995,7 @@ PrefabInstance:
     - target: {fileID: 6640289382755534532, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
-      value: 303.99628
+      value: 307.08905
       objectReference: {fileID: 0}
     - target: {fileID: 6640289382755534532, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -922,7 +1005,12 @@ PrefabInstance:
     - target: {fileID: 6640289382755534532, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 100
+      value: 61.54639
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640289382755534532, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 15/default1
       objectReference: {fileID: 0}
     - target: {fileID: 6736314737580014184, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1022,17 +1110,22 @@ PrefabInstance:
     - target: {fileID: 7595597129961114007, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 73
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7595597129961114007, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.x
-      value: 110.36995
+      value: 107.36995
       objectReference: {fileID: 0}
     - target: {fileID: 7595597129961114007, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.y
-      value: 346.1171
+      value: 351.1171
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595597129961114007, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 25/1
       objectReference: {fileID: 0}
     - target: {fileID: 7610585575338442376, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1119,6 +1212,11 @@ PrefabInstance:
       propertyPath: nodeRect.x
       value: 223.8476
       objectReference: {fileID: 0}
+    - target: {fileID: 7850350577053864643, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 35/2
+      objectReference: {fileID: 0}
     - target: {fileID: 7997298211573082004, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: setSayDialog
@@ -1174,10 +1272,20 @@ PrefabInstance:
       propertyPath: _duration.floatVal
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8516821119796552121, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 15/default
+      objectReference: {fileID: 0}
     - target: {fileID: 8680946797318294011, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: message
       value: 16-55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927110393666414226, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 35/3
       objectReference: {fileID: 0}
     - target: {fileID: 9014850794610642968, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1202,7 +1310,7 @@ PrefabInstance:
     - target: {fileID: 9048708114215306819, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: nodeRect.width
-      value: 75
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9048708114215306819, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1214,6 +1322,11 @@ PrefabInstance:
       propertyPath: nodeRect.y
       value: 423.49222
       objectReference: {fileID: 0}
+    - target: {fileID: 9048708114215306819, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: blockName
+      value: 30/1
+      objectReference: {fileID: 0}
     - target: {fileID: 9130756443922882508, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
       propertyPath: m_IsActive
@@ -1223,6 +1336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: setSayDialog
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153693447285805570, guid: 74716178b7b2d2940a0bf284cb4773bd,
+        type: 3}
+      propertyPath: message
+      value: 30/default
       objectReference: {fileID: 0}
     - target: {fileID: 9193952803421091387, guid: 74716178b7b2d2940a0bf284cb4773bd,
         type: 3}
@@ -1642,7 +1760,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 306.17242
     y: -6.5994425
-    width: 71
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1789,7 +1907,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 409.29022
     y: -6.676979
-    width: 102
+    width: 62
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1943,7 +2061,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.29031
     y: 69.028854
-    width: 69
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2396,7 +2514,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 208.46674
     y: 144.20526
-    width: 70
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2559,7 +2677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 71145569}
   suppressBlockAutoSelect: 0
-  message: 5/1
+  message: 15/1
 --- !u!114 &71145566
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2685,12 +2803,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 114.172806
     y: 206.85231
-    width: 67
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 77
-  blockName: 5/1
+  blockName: 15/1
   description: 
   eventHandler: {fileID: 71145565}
   commandList:
@@ -2715,7 +2833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 71145574}
   suppressBlockAutoSelect: 0
-  message: 5/2
+  message: 15/2
 --- !u!114 &71145571
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2841,12 +2959,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.2313
     y: 209.1465
-    width: 68
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 76
-  blockName: 5/2
+  blockName: 15/2
   description: 
   eventHandler: {fileID: 71145570}
   commandList:
@@ -3006,7 +3124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 71145584}
   suppressBlockAutoSelect: 0
-  message: 10/1
+  message: 20/1
 --- !u!114 &71145581
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3132,12 +3250,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 111.17276
     y: 274.26382
-    width: 74
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 74
-  blockName: 10/1
+  blockName: 20/1
   description: 
   eventHandler: {fileID: 71145580}
   commandList:
@@ -3165,7 +3283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 71145589}
   suppressBlockAutoSelect: 0
-  message: 10/2
+  message: 20/2
 --- !u!114 &71145586
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3291,12 +3409,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 207.05508
     y: 286.91095
-    width: 75
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 73
-  blockName: 10/2
+  blockName: 20/2
   description: 
   eventHandler: {fileID: 71145585}
   commandList:
@@ -3574,7 +3692,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 205.29034
     y: 74.55826
-    width: 70
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3728,7 +3846,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 204.17279
     y: -6.6769333
-    width: 70
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3882,7 +4000,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 112.389366
     y: -11.775834
-    width: 69
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -9113,6 +9231,31 @@ PrefabInstance:
       propertyPath: myNPC
       value: 
       objectReference: {fileID: 800424117}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[13].preference
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[14].preference
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[15].preference
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[16].preference
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000733716468849161, guid: a97b981c21bac9e468be26c2e5f72b8f,
+        type: 3}
+      propertyPath: myContents.Array.data[17].preference
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4000733716468849162, guid: a97b981c21bac9e468be26c2e5f72b8f,
         type: 3}
       propertyPath: m_Name
